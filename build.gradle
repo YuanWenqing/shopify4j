@@ -35,7 +35,8 @@ buildscript {
 // git version
 apply plugin: "org.ajoberstar.grgit"
 int commits = grgit.log().size()
-version = "1.0.${commits}"
+String baseVersion="0.1"
+version = "${baseVersion}.${commits}"
 if (!project.hasProperty("release")) {
     String branch = grgit.branch.current().name
     String prefix = branch.replace("/", "-")
@@ -55,9 +56,29 @@ subprojects {
 
     repositories {
         mavenLocal()
-        maven {
-            name "alimaven"
-            url "http://maven.aliyun.com/nexus/content/groups/public/"
+        String repo = rootProject.hasProperty("repo") ? rootProject.property("repo") : "nexus"
+        switch (repo) {
+            case "aliyun":
+                maven {
+                    name "alimaven"
+                    url "http://maven.aliyun.com/nexus/content/groups/public/"
+                }
+                break
+            case "central":
+                mavenCentral()
+                gradlePluginPortal()
+                break
+            case "nexus":
+            default:
+                maven {
+                    name "nexus"
+                    url property("nexus.repo.url")
+                    credentials {
+                        username property("nexus.username")
+                        password property("nexus.password")
+                    }
+                }
+                break
         }
     }
 
