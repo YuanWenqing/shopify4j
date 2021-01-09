@@ -25,7 +25,7 @@ public class Product {
 
   private String bodyHtml;
   /**
-   * format: https://en.wikipedia.org/wiki/ISO_8601
+   * https://en.wikipedia.org/wiki/ISO_8601
    */
   private DateTime createdAt;
   private String handle;
@@ -37,7 +37,8 @@ public class Product {
   private ProductImage image;
   @Setter(AccessLevel.NONE)
   private List<ProductImage> images;
-  private List<Metafield> metafields = new ArrayList<Metafield>();
+  @Setter(AccessLevel.NONE)
+  private List<Metafield> metafields;
   private List<Option> options;
   private String productType;
   private Boolean published;
@@ -55,7 +56,7 @@ public class Product {
   private String templateSuffix;
   private String title;
   /**
-   * https://en.wikipedia.org/wiki/ISO_8601 ，{@link org.joda.time.DateTime} 可解析
+   * https://en.wikipedia.org/wiki/ISO_8601
    */
   private DateTime updatedAt;
   @Setter(AccessLevel.NONE)
@@ -94,6 +95,14 @@ public class Product {
       variants = Lists.newArrayList();
     }
     variants.add(variant);
+    return this;
+  }
+
+  public Product addMetafield(Metafield metafield) {
+    if (metafields == null) {
+      metafields = Lists.newArrayList();
+    }
+    metafields.add(metafield);
     return this;
   }
 }
