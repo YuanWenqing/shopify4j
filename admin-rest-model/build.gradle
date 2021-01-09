@@ -9,6 +9,7 @@ dependencies {
     // util
     api("org.apache.commons:commons-lang3:$commonsLang3Version")
     api("com.google.guava:guava:$guavaVersion")
+    api("joda-time:joda-time:$jodatimeVersion")
 
     // json
     api("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
