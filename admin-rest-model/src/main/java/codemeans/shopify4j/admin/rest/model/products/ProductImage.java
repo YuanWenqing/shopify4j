@@ -21,6 +21,7 @@ public class ProductImage {
   /**
    * https://en.wikipedia.org/wiki/ISO_8601
    */
+  @Setter(AccessLevel.NONE)
   private DateTime createdAt;
   private Long id;
   private Long productId;
@@ -36,6 +37,7 @@ public class ProductImage {
   /**
    * https://en.wikipedia.org/wiki/ISO_8601
    */
+  @Setter(AccessLevel.NONE)
   private DateTime updatedAt;
 
   @Setter(AccessLevel.NONE)

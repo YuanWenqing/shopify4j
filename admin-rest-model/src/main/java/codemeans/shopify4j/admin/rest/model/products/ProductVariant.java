@@ -1,7 +1,8 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
 import codemeans.shopify4j.admin.rest.model.Metafield;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import codemeans.shopify4j.admin.rest.model.enums.InventoryPolicy;
+import codemeans.shopify4j.admin.rest.model.enums.WeightUnit;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.google.common.collect.Lists;
 import java.math.BigDecimal;
@@ -25,7 +26,7 @@ public class ProductVariant {
   /**
    * https://en.wikipedia.org/wiki/ISO_8601
    */
-  @JsonProperty("created_at")
+  @Setter(AccessLevel.NONE)
   private DateTime createdAt;
   private String fulfillmentService;
   private Integer grams;
@@ -50,6 +51,7 @@ public class ProductVariant {
   /**
    * https://en.wikipedia.org/wiki/ISO_8601
    */
+  @Setter(AccessLevel.NONE)
   private DateTime updatedAt;
   private Integer weight;
   private WeightUnit weightUnit;

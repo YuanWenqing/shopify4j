@@ -1,9 +1,10 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
 import codemeans.shopify4j.admin.rest.model.Metafield;
+import codemeans.shopify4j.admin.rest.model.enums.ProductStatus;
+import codemeans.shopify4j.admin.rest.model.enums.PublishedScope;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.google.common.collect.Lists;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import lombok.AccessLevel;
@@ -27,6 +28,7 @@ public class Product {
   /**
    * https://en.wikipedia.org/wiki/ISO_8601
    */
+  @Setter(AccessLevel.NONE)
   private DateTime createdAt;
   private String handle;
   private Long id;
@@ -56,6 +58,7 @@ public class Product {
   /**
    * https://en.wikipedia.org/wiki/ISO_8601
    */
+  @Setter(AccessLevel.NONE)
   private DateTime updatedAt;
   @Setter(AccessLevel.NONE)
   private List<ProductVariant> variants;
