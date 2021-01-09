@@ -3,11 +3,14 @@ package codemeans.shopify4j.admin.rest.model.products;
 import codemeans.shopify4j.admin.rest.model.Metafield;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.google.common.collect.Lists;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.joda.time.DateTime;
 
 /**
  * https://shopify.dev/docs/admin-api/rest/reference/products/product-variant
@@ -17,43 +20,48 @@ import lombok.experimental.Accessors;
 @JsonRootName("variant")
 public class ProductVariant {
 
-  private Long id;
+  private String barcode;
+  private BigDecimal compareAtPrice;
   /**
-   * https://en.wikipedia.org/wiki/ISO_8601 ，{@link org.joda.time.DateTime} 可解析
+   * https://en.wikipedia.org/wiki/ISO_8601
    */
   @JsonProperty("created_at")
-  private String createdAt;
-  /**
-   * https://en.wikipedia.org/wiki/ISO_8601 ，{@link org.joda.time.DateTime} 可解析
-   */
-  @JsonProperty("updated_at")
-  private String updatedAt;
-  private List<Metafield> metafields = new ArrayList<Metafield>();
-  @JsonProperty("product_id")
-  private long productId;
-  @JsonProperty("compare_at_price")
-  private BigDecimal compareAtPrice;
-  @JsonProperty("fulfillment_service")
+  private DateTime createdAt;
   private String fulfillmentService;
-  private int grams;
-  @JsonProperty("inventory_management")
+  private Integer grams;
+  private Long id;
+  private Long imageId;
+  private Long inventoryItemId;
   private String inventoryManagement;
-  @JsonProperty("inventory_policy")
-  private String inventoryPolicy;
-  @JsonProperty("inventory_quantity")
+  private InventoryPolicy inventoryPolicy = InventoryPolicy.DENY;
+  @Setter(AccessLevel.NONE)
   private int inventoryQuantity;
   private String option1;
   private String option2;
   private String option3;
+  @Setter(AccessLevel.NONE)
   private long position;
   private BigDecimal price;
-  @JsonProperty("requires_shipping")
-  private boolean requiresShipping;
-  /**
-   * 我们的skuId
-   */
+  private Long productId;
   private String sku;
-  private boolean taxable;
+  private Boolean taxable;
+  @Setter(AccessLevel.NONE)
   private String title;
-  private String barcode;
+  /**
+   * https://en.wikipedia.org/wiki/ISO_8601
+   */
+  private DateTime updatedAt;
+  private Integer weight;
+  private WeightUnit weightUnit;
+
+  @Setter(AccessLevel.NONE)
+  private List<Metafield> metafields;
+
+  public ProductVariant addMetafield(Metafield metafield) {
+    if (metafields == null) {
+      metafields = Lists.newArrayList();
+    }
+    metafields.add(metafield);
+    return this;
+  }
 }

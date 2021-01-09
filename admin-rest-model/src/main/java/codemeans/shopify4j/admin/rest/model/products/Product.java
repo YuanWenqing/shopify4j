@@ -37,8 +37,6 @@ public class Product {
   private ProductImage image;
   @Setter(AccessLevel.NONE)
   private List<ProductImage> images;
-  @Setter(AccessLevel.NONE)
-  private List<Metafield> metafields;
   private List<Option> options;
   private String productType;
   private Boolean published;
@@ -63,6 +61,16 @@ public class Product {
   private List<ProductVariant> variants;
   private String vendor;
 
+  @Setter(AccessLevel.NONE)
+  private List<Metafield> metafields;
+
+  public Product addMetafield(Metafield metafield) {
+    if (metafields == null) {
+      metafields = Lists.newArrayList();
+    }
+    metafields.add(metafield);
+    return this;
+  }
 
   public Product addImage(ProductImage image) {
     if (images == null) {
@@ -95,14 +103,6 @@ public class Product {
       variants = Lists.newArrayList();
     }
     variants.add(variant);
-    return this;
-  }
-
-  public Product addMetafield(Metafield metafield) {
-    if (metafields == null) {
-      metafields = Lists.newArrayList();
-    }
-    metafields.add(metafield);
     return this;
   }
 }
