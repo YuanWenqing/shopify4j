@@ -1,8 +1,8 @@
 buildscript {
     repositories {
         mavenLocal()
-        String repo = rootProject.hasProperty("repo") ? rootProject.property("repo") : "nexus"
-        switch (repo) {
+        final String depRepo = rootProject.hasProperty("repo") ? rootProject.property("repo") : "nexus"
+        switch (depRepo) {
             case "aliyun":
                 maven {
                     name "alimaven"
@@ -56,8 +56,8 @@ subprojects {
 
     repositories {
         mavenLocal()
-        String repo = rootProject.hasProperty("repo") ? rootProject.property("repo") : "nexus"
-        switch (repo) {
+        final String depRepo = rootProject.hasProperty("repo") ? rootProject.property("repo") : "nexus"
+        switch (depRepo) {
             case "aliyun":
                 maven {
                     name "alimaven"
@@ -123,17 +123,32 @@ subprojects {
 
 // 配置发布
 configure(subprojects.findAll { it.ext.publishable }) {
+    final String pubRepo = rootProject.hasProperty("pub") ? rootProject.property("pub") : "nexus"
+
     // 在这里应用插件，否则相关publishing配置无法生效
     apply plugin: "maven-publish"
     publishing {
         repositories {
-            maven {
-                name "oss"
-                def ossBaseUrl = "https://oss.sonatype.org/content/repositories"
-                url = project.hasProperty("release") ? "https://oss.sonatype.org/service/local/staging/deploy/maven2" : "$ossBaseUrl/snapshots"
-                credentials {
-                    username property("maven2.username")
-                    password property("maven2.password")
+            if (pubRepo == "oss") {
+                maven {
+                    name "oss"
+                    def ossBaseUrl = "https://oss.sonatype.org/content/repositories"
+                    url = project.hasProperty("release") ? "https://oss.sonatype.org/service/local/staging/deploy/maven2" : "$ossBaseUrl/snapshots"
+                    credentials {
+                        username property("maven2.username")
+                        password property("maven2.password")
+                    }
+                }
+            } else {
+                maven {
+                    name "nexus"
+                    def releaseRepoUrl = property("nexus.repo.release")
+                    def snapshotRepoUrl = property("nexus.repo.snapshot")
+                    url = project.hasProperty("release") ? releaseRepoUrl : snapshotRepoUrl
+                    credentials {
+                        username = property("nexus.username")
+                        password = property("nexus.password")
+                    }
                 }
             }
         }
@@ -193,8 +208,10 @@ configure(subprojects.findAll { it.ext.publishable }) {
     }
     task('local').dependsOn(publishToMavenLocal)
 
-    apply plugin: "signing"  // generate a signature file for each artifact
-    signing {
-        sign publishing.publications.mavenJava
+    if (pubRepo == "oss") {
+        apply plugin: "signing"  // generate a signature file for each artifact
+        signing {
+            sign publishing.publications.mavenJava
+        }
     }
 }
