@@ -10,6 +10,9 @@ dependencies {
     api("org.apache.commons:commons-lang3:$commonsLang3Version")
     api("com.google.guava:guava:$guavaVersion")
 
+    // json
+    api("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+
     // log
     implementation("org.slf4j:slf4j-api:$slf4jVersion")
 

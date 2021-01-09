@@ -3,7 +3,6 @@ description "Java SDK for Shopify Admin REST API"
 dependencies {
     project(":admin-rest-model")
 
-    api("com.google.code.gson:gson:$gsonVersion")
     api("com.squareup.okhttp3:okhttp:$okhttpVersion")
 
 
