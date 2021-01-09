@@ -1,0 +1,4 @@
+rootProject.name = "shopify4j"
+
+include 'admin-rest-model'
+include 'admin-rest-api'

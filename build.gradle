@@ -1,0 +1,169 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven {
+            name "alimaven"
+            url "http://maven.aliyun.com/nexus/content/groups/public/"
+        }
+        if (rootProject.hasProperty("nexus.repo.url")) {
+            maven {
+                name "nexus"
+                url property("nexus.repo.url")
+                credentials {
+                    username property("nexus.username")
+                    password property("nexus.password")
+                }
+            }
+        }
+    }
+    dependencies {
+        // http://ajoberstar.org/grgit/grgit-reference.html
+        classpath "org.ajoberstar.grgit:grgit-gradle:$grgitGradleVersion"
+    }
+}
+
+// git version
+apply plugin: "org.ajoberstar.grgit"
+int commits = grgit.log().size()
+version = "1.0.${commits}"
+if (!project.hasProperty("release")) {
+    String branch = grgit.branch.current().name
+    String prefix = branch.replace("/", "-")
+    String abbreviatedId = grgit.head().abbreviatedId
+    version = "${prefix}-${version}.${abbreviatedId}"
+}
+println("version=$version")
+
+// project setting
+subprojects {
+    group = "xyz.codemeans.shopify4j"
+    version = rootProject.version
+
+    ext {
+        publishable = true
+    }
+
+    repositories {
+        mavenLocal()
+        maven {
+            name "alimaven"
+            url "http://maven.aliyun.com/nexus/content/groups/public/"
+        }
+    }
+
+    apply plugin: "java"
+    apply plugin: "java-library"
+
+    // artifacts
+    jar.doLast {
+        println "jar: ${archivePath}"
+    }
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        from sourceSets.main.allJava
+        classifier = 'sources'
+        doLast {
+            println "sources: ${archivePath}"
+        }
+    }
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+        doLast {
+            println "sources: ${archivePath}"
+        }
+    }
+
+    apply plugin: "jacoco"
+    jacocoTestReport.dependsOn(test)
+    jacocoTestReport.doLast {
+        println jacocoTestReport.reports.html.entryPoint
+    }
+
+    test.doLast {
+        println test.reports.html.entryPoint
+    }
+
+    dependencies {
+        // test
+        testImplementation("junit:junit:$junitVersion")
+    }
+
+}
+
+// 配置发布
+configure(subprojects.findAll { it.ext.publishable }) {
+    // 在这里应用插件，否则相关publishing配置无法生效
+    apply plugin: "maven-publish"
+    publishing {
+        repositories {
+            maven {
+                name "oss"
+                def ossBaseUrl = "https://oss.sonatype.org/content/repositories"
+                url = project.hasProperty("release") ? "https://oss.sonatype.org/service/local/staging/deploy/maven2" : "$ossBaseUrl/snapshots"
+                credentials {
+                    username property("maven2.username")
+                    password property("maven2.password")
+                }
+            }
+        }
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+
+                if (project.hasProperty("release")) {
+                    version = project.getVersion()
+                } else {
+                    version = project.getVersion() + "-SNAPSHOT"
+                }
+
+                artifact sourcesJar
+                artifact javadocJar
+
+                pom {
+                    name = project.displayName
+                    description = project.description
+                    url = 'https://github.com/YuanWenqing/shopify4j'
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'yuanwq'
+                            name = 'YuanWenqing'
+                            email = 'ywq8876@163.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:git://github.com:YuanWenqing/shopify4j.git'
+                        developerConnection = 'scm:git:ssh://github.com:YuanWenqing/shopify4j.git'
+                        url = 'https://github.com/YuanWenqing/shopify4j'
+                    }
+                }
+            }
+        }
+    }
+    publish {
+        doLast {
+            def pub = publishing.publications.mavenJava
+            println "artifact: ${pub.groupId}:${pub.artifactId}:${pub.version}"
+            for (repo in publishing.repositories) {
+                println "upload to ${repo.url}"
+            }
+        }
+    }
+    publishToMavenLocal {
+        doLast {
+            def pub = publishing.publications.mavenJava
+            println "artifact: ${pub.groupId}:${pub.artifactId}:${pub.version}"
+        }
+    }
+    task('local').dependsOn(publishToMavenLocal)
+
+    apply plugin: "signing"  // generate a signature file for each artifact
+    signing {
+        sign publishing.publications.mavenJava
+    }
+}
