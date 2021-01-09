@@ -1,12 +1,17 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
 import codemeans.shopify4j.admin.rest.model.Metafield;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.google.common.collect.Lists;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
 
 /**
  * https://shopify.dev/docs/admin-api/rest/reference/products/product
@@ -16,41 +21,79 @@ import lombok.experimental.Accessors;
 @JsonRootName("product")
 public class Product {
 
+  private static final String COMMA = ",";
+
+  private String bodyHtml;
+  /**
+   * format: https://en.wikipedia.org/wiki/ISO_8601
+   */
+  private DateTime createdAt;
+  private String handle;
   private Long id;
   /**
-   * https://en.wikipedia.org/wiki/ISO_8601 ，{@link org.joda.time.DateTime} 可解析
+   * first image, only used for get info from shopify
    */
-  @JsonProperty("created_at")
-  private String createdAt;
-  /**
-   * https://en.wikipedia.org/wiki/ISO_8601 ，{@link org.joda.time.DateTime} 可解析
-   */
-  @JsonProperty("updated_at")
-  private String updatedAt;
-  private List<Metafield> metafields = new ArrayList<Metafield>();
-  @JsonProperty("body_html")
-  private String bodyHtml;
-  private String handle;
-  @JsonProperty("image")
+  @Setter(AccessLevel.NONE)
   private ProductImage image;
-  @JsonProperty("images")
+  @Setter(AccessLevel.NONE)
   private List<ProductImage> images;
+  private List<Metafield> metafields = new ArrayList<Metafield>();
   private List<Option> options;
-  @JsonProperty("product_type")
   private String productType;
   private Boolean published;
   /**
-   * https://en.wikipedia.org/wiki/ISO_8601 ，{@link org.joda.time.DateTime} 可解析
+   * https://en.wikipedia.org/wiki/ISO_8601
    */
-  @JsonProperty("published_at")
-  private String publishedAt;
+  private DateTime publishedAt;
+  private PublishedScope publishedScope;
+  private ProductStatus status;
+  /**
+   * joined by comma
+   */
+  @Setter(AccessLevel.NONE)
   private String tags;
-  @JsonProperty("template_suffix")
   private String templateSuffix;
   private String title;
+  /**
+   * https://en.wikipedia.org/wiki/ISO_8601 ，{@link org.joda.time.DateTime} 可解析
+   */
+  private DateTime updatedAt;
+  @Setter(AccessLevel.NONE)
   private List<ProductVariant> variants;
   private String vendor;
-  @JsonProperty("published_scope")
-  private String publishedScope;
 
+
+  public Product addImage(ProductImage image) {
+    if (images == null) {
+      images = Lists.newArrayList();
+    }
+    images.add(image);
+    return this;
+  }
+
+  public Product addTag(String tag) {
+    if (StringUtils.isNotBlank(tags)) {
+      this.tags = StringUtils.joinWith(COMMA, tags, tag);
+    } else {
+      this.tags = tag;
+    }
+    return this;
+  }
+
+  public Product addTags(Collection<String> tags) {
+    if (StringUtils.isBlank(this.tags)) {
+      this.tags = StringUtils.join(tags, COMMA);
+    } else {
+      this.tags = this.tags + COMMA + StringUtils.join(tags, COMMA);
+    }
+    return this;
+  }
+
+  public Product addVariant(ProductVariant variant) {
+    if (variants == null) {
+      variants = Lists.newArrayList();
+    }
+    variants.add(variant);
+    return this;
+  }
 }
