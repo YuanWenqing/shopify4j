@@ -15,21 +15,25 @@ import org.joda.time.DateTime;
 @JsonRootName("option")
 public class Option {
 
-  private Long id;
   /**
    * https://en.wikipedia.org/wiki/ISO_8601 ，{@link org.joda.time.DateTime} 可解析
    */
   @Setter(AccessLevel.NONE)
   private DateTime createdAt;
-  /**
-   * https://en.wikipedia.org/wiki/ISO_8601 ，{@link org.joda.time.DateTime} 可解析
-   */
-  @Setter(AccessLevel.NONE)
-  private DateTime updatedAt;
+  private Long id;
   private String name;
-  private long position;
-  private long productId;
+  private Integer position;
+  private Long productId;
+  @Setter(AccessLevel.NONE)
+  private List<String> values;
 
+  public Option addValue(String value) {
+    if (values == null) {
+      values = Lists.newArrayList();
+    }
+    values.add(value);
+    return this;
+  }
 
   @Setter(AccessLevel.NONE)
   private List<Metafield> metafields;
