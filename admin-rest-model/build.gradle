@@ -1,0 +1,19 @@
+description "Java Model used for Shopify Admin REST API"
+
+dependencies {
+    // lombok
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
+    testCompileOnly("org.projectlombok:lombok")
+
+    // util
+    api("org.apache.commons:commons-lang3:$commonsLang3Version")
+    api("com.google.guava:guava:$guavaVersion")
+
+    // log
+    implementation("org.slf4j:slf4j-api")
+
+    // test
+    testImplementation("junit:junit:$junitVersion")
+
+}

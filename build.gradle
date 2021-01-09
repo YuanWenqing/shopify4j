@@ -114,11 +114,6 @@ subprojects {
         println test.reports.html.entryPoint
     }
 
-    dependencies {
-        // test
-        testImplementation("junit:junit:$junitVersion")
-    }
-
 }
 
 // 配置发布
