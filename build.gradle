@@ -1,19 +1,29 @@
 buildscript {
     repositories {
         mavenLocal()
-        maven {
-            name "alimaven"
-            url "http://maven.aliyun.com/nexus/content/groups/public/"
-        }
-        if (rootProject.hasProperty("nexus.repo.url")) {
-            maven {
-                name "nexus"
-                url property("nexus.repo.url")
-                credentials {
-                    username property("nexus.username")
-                    password property("nexus.password")
+        String repo = rootProject.hasProperty("repo") ? rootProject.property("repo") : "nexus"
+        switch (repo) {
+            case "aliyun":
+                maven {
+                    name "alimaven"
+                    url "http://maven.aliyun.com/nexus/content/groups/public/"
                 }
-            }
+                break
+            case "central":
+                mavenCentral()
+                gradlePluginPortal()
+                break
+            case "nexus":
+            default:
+                maven {
+                    name "nexus"
+                    url property("nexus.repo.url")
+                    credentials {
+                        username property("nexus.username")
+                        password property("nexus.password")
+                    }
+                }
+                break
         }
     }
     dependencies {
