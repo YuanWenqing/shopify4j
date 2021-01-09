@@ -4,14 +4,14 @@ dependencies {
     // lombok
     annotationProcessor("org.projectlombok:lombok:$lombokVersion")
     compileOnly("org.projectlombok:lombok:$lombokVersion")
-    testCompileOnly("org.projectlombok:lombok")
+    testCompileOnly("org.projectlombok:lombok:$lombokVersion")
 
     // util
     api("org.apache.commons:commons-lang3:$commonsLang3Version")
     api("com.google.guava:guava:$guavaVersion")
 
     // log
-    implementation("org.slf4j:slf4j-api")
+    implementation("org.slf4j:slf4j-api:$slf4jVersion")
 
     // test
     testImplementation("junit:junit:$junitVersion")

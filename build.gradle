@@ -161,7 +161,7 @@ configure(subprojects.findAll { it.ext.publishable }) {
                 artifact javadocJar
 
                 pom {
-                    name = project.displayName
+                    name = project.name
                     description = project.description
                     url = 'https://github.com/YuanWenqing/shopify4j'
                     licenses {

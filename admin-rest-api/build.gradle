@@ -8,7 +8,7 @@ dependencies {
 
 
     // log
-    implementation("org.slf4j:slf4j-api")
+    implementation("org.slf4j:slf4j-api:$slf4jVersion")
 
     // test
     testImplementation("junit:junit:$junitVersion")
