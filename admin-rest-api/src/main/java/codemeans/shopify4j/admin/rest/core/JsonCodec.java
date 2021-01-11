@@ -14,7 +14,7 @@ import com.fasterxml.jackson.datatype.joda.JodaModule;
  */
 public class JsonCodec implements Serializer, Deserializer {
 
-  private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
+  private final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
       .enable(SerializationFeature.WRAP_ROOT_VALUE)
       .enable(DeserializationFeature.UNWRAP_ROOT_VALUE)
       .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
