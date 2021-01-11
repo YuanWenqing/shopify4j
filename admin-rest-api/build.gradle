@@ -6,6 +6,7 @@ dependencies {
     api("com.squareup.okhttp3:okhttp:$okhttpVersion")
 
     api("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+    api("com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion")
 
     // log
     implementation("org.slf4j:slf4j-api:$slf4jVersion")
