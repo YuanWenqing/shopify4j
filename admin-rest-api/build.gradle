@@ -1,9 +1,10 @@
 description "Java SDK for Shopify Admin REST API"
 
 dependencies {
-    project(":admin-rest-model")
+    api(project(":admin-rest-model"))
 
     api("com.squareup.okhttp3:okhttp:$okhttpVersion")
+    api("commons-io:commons-io:$commonsIOVersion")
 
     api("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
     api("com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion")
