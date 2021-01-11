@@ -3,9 +3,9 @@ description "Java SDK for Shopify Admin REST API"
 dependencies {
     project(":admin-rest-model")
 
-    api("com.google.code.gson:gson:$gsonVersion")
     api("com.squareup.okhttp3:okhttp:$okhttpVersion")
 
+    api("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
 
     // log
     implementation("org.slf4j:slf4j-api:$slf4jVersion")

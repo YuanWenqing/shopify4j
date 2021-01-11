@@ -9,6 +9,10 @@ dependencies {
     // util
     api("org.apache.commons:commons-lang3:$commonsLang3Version")
     api("com.google.guava:guava:$guavaVersion")
+    api("joda-time:joda-time:$jodatimeVersion")
+
+    // json
+    compileOnly("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion")
 
     // log
     implementation("org.slf4j:slf4j-api:$slf4jVersion")
