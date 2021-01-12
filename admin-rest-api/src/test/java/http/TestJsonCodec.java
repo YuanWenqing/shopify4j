@@ -1,4 +1,4 @@
-package codemeans.shopify4j.admin.rest.core;
+package codemeans.shopify4j.admin.rest.http;
 
 import codemeans.shopify4j.admin.rest.exception.SerializingException;
 import codemeans.shopify4j.admin.rest.model.products.Product;

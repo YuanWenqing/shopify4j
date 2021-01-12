@@ -1,7 +1,7 @@
 package codemeans.shopify4j.admin.rest.api.impl;
 
 import codemeans.shopify4j.admin.rest.api.ProductApi;
-import codemeans.shopify4j.admin.rest.core.Invoker;
+import codemeans.shopify4j.admin.rest.http.Invoker;
 import codemeans.shopify4j.admin.rest.exception.ShopifyErrorException;
 import codemeans.shopify4j.admin.rest.model.Count;
 import codemeans.shopify4j.admin.rest.model.products.Product;
