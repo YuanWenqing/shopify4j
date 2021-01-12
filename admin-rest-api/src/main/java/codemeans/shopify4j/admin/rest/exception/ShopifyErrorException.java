@@ -10,7 +10,7 @@ import java.util.List;
  * @author: yuanwq
  * @date: 2021-01-12
  */
-public class ShopifyErrorsException {
+public class ShopifyErrorException extends Exception {
 
   private final List<ShopifyError> errors = Lists.newArrayList();
 
