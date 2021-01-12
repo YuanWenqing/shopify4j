@@ -2,6 +2,8 @@ package codemeans.shopify4j.admin.rest.sdk;
 
 import codemeans.shopify4j.admin.rest.api.ProductApi;
 import codemeans.shopify4j.admin.rest.api.impl.ProductApiImpl;
+import codemeans.shopify4j.admin.rest.auth.StoreCredential;
+import codemeans.shopify4j.admin.rest.http.ICodec;
 import codemeans.shopify4j.admin.rest.http.Invoker;
 
 /**
@@ -14,7 +16,7 @@ public class StoreImpl implements Store {
 
   private ProductApi productApi;
 
-  public StoreImpl(Invoker invoker) {
+  public StoreImpl(StoreCredential credential, Invoker invoker) {
     this.invoker = invoker;
     initApis(invoker);
   }

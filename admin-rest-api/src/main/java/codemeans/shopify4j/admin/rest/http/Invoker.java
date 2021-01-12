@@ -12,6 +12,8 @@ public interface Invoker {
 
   OkHttpClient getOkHttpClient();
 
+  ICodec getCodec();
+
   /**
    * 发起请求，处理shopify server error
    */

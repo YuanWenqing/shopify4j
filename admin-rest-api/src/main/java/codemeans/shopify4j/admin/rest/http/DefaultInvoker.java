@@ -17,11 +17,11 @@ import okhttp3.Response;
 public class DefaultInvoker implements Invoker {
 
   private final OkHttpClient okHttpClient;
-  private final Deserializer deserializer;
+  private final ICodec codec;
 
-  public DefaultInvoker(OkHttpClient okHttpClient, Deserializer deserializer) {
+  public DefaultInvoker(OkHttpClient okHttpClient, ICodec codec) {
     this.okHttpClient = okHttpClient;
-    this.deserializer = deserializer;
+    this.codec = codec;
   }
 
   public static OkHttpClient createOkHttpClient() {
@@ -41,15 +41,20 @@ public class DefaultInvoker implements Invoker {
   }
 
   @Override
+  public ICodec getCodec() {
+    return codec;
+  }
+
+  @Override
   public <T> T invoke(Request request, Class<T> respType) throws ShopifyServerException {
     String body = null;
     try (Response response = okHttpClient.newCall(request).execute()) {
       body = response.body().string();
       if (response.code() >= 300) {
-        Errors errors = deserializer.deserialize(Errors.class, body);
+        Errors errors = codec.deserialize(Errors.class, body);
         throw new ShopifyServerException(errors);
       }
-      return deserializer.deserialize(respType, body);
+      return codec.deserialize(respType, body);
     } catch (IOException e) {
       throw new ShopifyClientException("fail to invoke request: " + request, e);
     } catch (SerializingException e) {

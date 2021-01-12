@@ -7,4 +7,5 @@ package codemeans.shopify4j.admin.rest.sdk;
 public interface StoreFactory {
 
   Store createStore(String storeDomain);
+
 }
