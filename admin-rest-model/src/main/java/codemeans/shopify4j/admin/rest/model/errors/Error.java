@@ -7,7 +7,7 @@ import lombok.Data;
  * @date: 2021-01-12
  */
 @Data
-public class ShopifyError {
+public class Error {
 
   // TODO: fields?
 }
