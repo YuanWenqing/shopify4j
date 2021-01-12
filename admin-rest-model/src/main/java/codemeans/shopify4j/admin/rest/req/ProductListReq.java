@@ -1,6 +1,6 @@
 package codemeans.shopify4j.admin.rest.req;
 
-import codemeans.shopify4j.admin.rest.model.enums.ProductStatus;
+import codemeans.shopify4j.admin.rest.model.products.ProductStatus;
 import codemeans.shopify4j.admin.rest.model.products.PublishedStatus;
 import com.google.common.collect.Lists;
 import java.util.List;
