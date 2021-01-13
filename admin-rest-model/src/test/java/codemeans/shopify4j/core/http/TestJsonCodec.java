@@ -1,7 +1,7 @@
 package codemeans.shopify4j.core.http;
 
-import codemeans.shopify4j.core.exception.SerializingException;
 import codemeans.shopify4j.admin.rest.model.products.Product;
+import codemeans.shopify4j.core.exception.SerializingException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import org.apache.commons.io.IOUtils;
@@ -13,7 +13,7 @@ import org.junit.Test;
  */
 public class TestJsonCodec {
 
-  private final JsonCodec codec = new JsonCodec();
+  private final JsonCodec codec = JsonCodec.DEFAULT_INSTANCE;
 
   @Test
   public void testProduct() throws IOException, SerializingException {

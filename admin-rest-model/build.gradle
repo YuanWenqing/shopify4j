@@ -19,5 +19,6 @@ dependencies {
 
     // test
     testImplementation("junit:junit:$junitVersion")
-
+    testImplementation("commons-io:commons-io:$commonsIOVersion")
+    testImplementation(project(":shopify4j-core"))
 }
