@@ -80,7 +80,7 @@ public class OkHttpInvoker implements Invoker {
 
   private Request authenticateRequest(Request request) {
     String accessToken = accessTokenProvider.getAccessToken(request.url().host());
-    if (StringUtils.isNotBlank(accessToken)) {
+    if (StringUtils.isBlank(accessToken)) {
       throw new ShopifyClientException("blank accessToken, request: " + request);
     }
     return request.newBuilder()

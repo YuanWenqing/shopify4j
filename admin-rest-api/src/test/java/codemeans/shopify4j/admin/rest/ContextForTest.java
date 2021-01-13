@@ -3,6 +3,8 @@ package codemeans.shopify4j.admin.rest;
 import codemeans.shopify4j.admin.rest.sdk.ShopifyStore;
 import codemeans.shopify4j.admin.rest.sdk.ShopifyStoreImpl;
 import codemeans.shopify4j.core.http.Invoker;
+import codemeans.shopify4j.core.store.MemoryStoreSettingStorage;
+import codemeans.shopify4j.core.store.PrivateAppAccessTokenProvider;
 import codemeans.shopify4j.core.store.StoreSetting;
 import codemeans.shopify4j.okhttp.OkHttpInvoker;
 import java.io.IOException;
@@ -18,9 +20,15 @@ import org.apache.commons.io.IOUtils;
 public class ContextForTest {
 
   public static final StoreSetting STORE_SETTING = loadStoreSetting("store.properties");
-  public static final Invoker INVOKER = new OkHttpInvoker();
-  public static final ShopifyStore TEST_STORE = new ShopifyStoreImpl(STORE_SETTING, INVOKER);
+  public static final MemoryStoreSettingStorage STORE_SETTING_STORAGE = new MemoryStoreSettingStorage();
 
+  static {
+    STORE_SETTING_STORAGE.registerStore(STORE_SETTING);
+  }
+
+  public static final Invoker INVOKER = new OkHttpInvoker(
+      new PrivateAppAccessTokenProvider(STORE_SETTING_STORAGE));
+  public static final ShopifyStore TEST_STORE = new ShopifyStoreImpl(STORE_SETTING, INVOKER);
 
   private static StoreSetting loadStoreSetting(String resourceName) {
     try {
