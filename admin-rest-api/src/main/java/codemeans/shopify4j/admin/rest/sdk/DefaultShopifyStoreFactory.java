@@ -2,9 +2,9 @@ package codemeans.shopify4j.admin.rest.sdk;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import codemeans.shopify4j.core.StoreSetting;
-import codemeans.shopify4j.core.StoreSettingStorage;
-import codemeans.shopify4j.admin.rest.http.Invoker;
+import codemeans.shopify4j.core.store.StoreSetting;
+import codemeans.shopify4j.core.store.StoreSettingStorage;
+import codemeans.shopify4j.core.http.Invoker;
 import com.google.common.collect.Maps;
 import java.util.Map;
 import lombok.NonNull;

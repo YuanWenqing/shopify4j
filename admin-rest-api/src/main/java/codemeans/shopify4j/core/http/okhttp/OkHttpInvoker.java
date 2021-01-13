@@ -1,8 +1,10 @@
-package codemeans.shopify4j.admin.rest.http;
+package codemeans.shopify4j.core.http.okhttp;
 
-import codemeans.shopify4j.admin.rest.exception.SerializingException;
-import codemeans.shopify4j.admin.rest.exception.ShopifyClientException;
-import codemeans.shopify4j.admin.rest.exception.ShopifyServerException;
+import codemeans.shopify4j.core.exception.SerializingException;
+import codemeans.shopify4j.core.exception.ShopifyClientException;
+import codemeans.shopify4j.core.exception.ShopifyServerException;
+import codemeans.shopify4j.core.http.ICodec;
+import codemeans.shopify4j.core.http.Invoker;
 import codemeans.shopify4j.admin.rest.model.errors.Errors;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -14,12 +16,12 @@ import okhttp3.Response;
  * @author: yuanwq
  * @date: 2021-01-12
  */
-public class DefaultInvoker implements Invoker {
+public class OkHttpInvoker implements Invoker {
 
   private final OkHttpClient okHttpClient;
   private final ICodec codec;
 
-  public DefaultInvoker(OkHttpClient okHttpClient, ICodec codec) {
+  public OkHttpInvoker(OkHttpClient okHttpClient, ICodec codec) {
     this.okHttpClient = okHttpClient;
     this.codec = codec;
   }

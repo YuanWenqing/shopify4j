@@ -1,4 +1,4 @@
-package codemeans.shopify4j.core;
+package codemeans.shopify4j.core.store;
 
 import lombok.Data;
 

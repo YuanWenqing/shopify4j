@@ -1,6 +1,6 @@
 package codemeans.shopify4j.admin.rest.api;
 
-import codemeans.shopify4j.admin.rest.exception.ShopifyServerException;
+import codemeans.shopify4j.core.exception.ShopifyServerException;
 import codemeans.shopify4j.admin.rest.model.Count;
 import codemeans.shopify4j.admin.rest.model.products.Product;
 import codemeans.shopify4j.admin.rest.model.products.ProductList;
@@ -12,8 +12,6 @@ import codemeans.shopify4j.admin.rest.req.ProductListReq;
  * @date: 2021-01-11
  */
 public interface ProductApi {
-
-  String getEndpoint();
 
   ProductList listProducts(ProductListReq req) throws ShopifyServerException;
 

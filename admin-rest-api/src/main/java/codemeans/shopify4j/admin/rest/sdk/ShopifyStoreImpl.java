@@ -2,8 +2,8 @@ package codemeans.shopify4j.admin.rest.sdk;
 
 import codemeans.shopify4j.admin.rest.api.ProductApi;
 import codemeans.shopify4j.admin.rest.api.impl.ProductApiImpl;
-import codemeans.shopify4j.core.StoreSetting;
-import codemeans.shopify4j.admin.rest.http.Invoker;
+import codemeans.shopify4j.core.store.StoreSetting;
+import codemeans.shopify4j.core.http.Invoker;
 
 /**
  * @author: yuanwq

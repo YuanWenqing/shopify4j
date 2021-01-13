@@ -1,4 +1,4 @@
-package codemeans.shopify4j.admin.rest.http;
+package codemeans.shopify4j.core.http;
 
 /**
  * @author: yuanwq
