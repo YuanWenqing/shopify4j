@@ -13,6 +13,8 @@ import codemeans.shopify4j.admin.rest.req.ProductListReq;
  */
 public interface ProductApi {
 
+  String getEndpoint();
+
   ProductList listProducts(ProductListReq req) throws ShopifyServerException;
 
   Count countProducts(ProductCountReq req) throws ShopifyServerException;

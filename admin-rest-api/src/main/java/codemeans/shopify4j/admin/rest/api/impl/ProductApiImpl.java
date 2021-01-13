@@ -1,8 +1,8 @@
 package codemeans.shopify4j.admin.rest.api.impl;
 
 import codemeans.shopify4j.admin.rest.api.ProductApi;
-import codemeans.shopify4j.admin.rest.http.Invoker;
 import codemeans.shopify4j.admin.rest.exception.ShopifyServerException;
+import codemeans.shopify4j.admin.rest.http.Invoker;
 import codemeans.shopify4j.admin.rest.model.Count;
 import codemeans.shopify4j.admin.rest.model.products.Product;
 import codemeans.shopify4j.admin.rest.model.products.ProductList;
@@ -15,10 +15,17 @@ import codemeans.shopify4j.admin.rest.req.ProductListReq;
  */
 public class ProductApiImpl implements ProductApi {
 
+  private final String endpoint;
   private final Invoker invoker;
 
-  public ProductApiImpl(Invoker invoker) {
+  public ProductApiImpl(String baseEndpoint, Invoker invoker) {
+    this.endpoint = baseEndpoint + "products";
     this.invoker = invoker;
+  }
+
+  @Override
+  public String getEndpoint() {
+    return endpoint;
   }
 
   @Override

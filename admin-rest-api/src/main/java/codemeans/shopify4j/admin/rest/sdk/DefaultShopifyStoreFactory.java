@@ -13,14 +13,14 @@ import lombok.NonNull;
  * @author: yuanwq
  * @date: 2021-01-12
  */
-public class DefaultStoreFactory implements StoreFactory {
+public class DefaultShopifyStoreFactory implements ShopifyStoreFactory {
 
   private final StoreCredentialStorage credentialStorage;
   private final Invoker invoker;
 
-  private final Map<String, Store> storeMap = Maps.newConcurrentMap();
+  private final Map<String, ShopifyStore> storeMap = Maps.newConcurrentMap();
 
-  public DefaultStoreFactory(
+  public DefaultShopifyStoreFactory(
       @NonNull StoreCredentialStorage credentialStorage,
       @NonNull Invoker invoker) {
     this.credentialStorage = credentialStorage;
@@ -28,10 +28,10 @@ public class DefaultStoreFactory implements StoreFactory {
   }
 
   @Override
-  public Store createStore(String storeDomain) {
+  public ShopifyStore createStore(String storeDomain) {
     StoreCredential credential = credentialStorage.getCredential(storeDomain);
     checkNotNull(credential, "No Credential for " + storeDomain);
 
-    return new StoreImpl(credential, invoker);
+    return new ShopifyStoreImpl(credential, invoker);
   }
 }

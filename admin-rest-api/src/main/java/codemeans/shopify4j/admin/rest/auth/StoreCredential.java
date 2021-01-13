@@ -12,7 +12,9 @@ public class StoreCredential {
   /**
    * store domain, format like {@code your-shop.myshopify.com}
    */
-  private final String storeDomain;
-  private final String apiKey;
-  private final String password;
+  private String storeDomain;
+  private String apiVersion = "2021-01";
+  private String apiKey;
+  private String password;
+
 }
