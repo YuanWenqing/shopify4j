@@ -2,7 +2,9 @@ package codemeans.shopify4j.admin.rest.api;
 
 import codemeans.shopify4j.admin.rest.ContextForTest;
 import codemeans.shopify4j.admin.rest.api.impl.ProductApiImpl;
+import codemeans.shopify4j.admin.rest.model.Count;
 import codemeans.shopify4j.admin.rest.model.products.Product;
+import codemeans.shopify4j.admin.rest.req.ProductCountReq;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
 import org.junit.Test;
 
@@ -14,10 +16,15 @@ public class TestProductApi {
 
   private final ProductApi api = new ProductApiImpl(ContextForTest.TEST_STORE);
 
-
   @Test
-  public void testGet() throws ShopifyServerException {
+  public void testGetProduct() throws ShopifyServerException {
     Product product = api.getProduct(5496978866341L);
     System.out.println(product);
+  }
+
+  @Test
+  public void testCount() throws ShopifyServerException {
+    Count count = api.countProducts(new ProductCountReq());
+    System.out.println(count);
   }
 }

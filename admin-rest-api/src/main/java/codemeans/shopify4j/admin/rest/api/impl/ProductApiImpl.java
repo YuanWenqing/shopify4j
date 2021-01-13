@@ -44,8 +44,7 @@ public class ProductApiImpl implements ProductApi {
 
   @Override
   public Count countProducts(ProductCountReq req) throws ShopifyServerException {
-    // TODO: impl 2021-01-12
-    return null;
+    return invoker.get(countEndpoint(), Count.class);
   }
 
   @Override
