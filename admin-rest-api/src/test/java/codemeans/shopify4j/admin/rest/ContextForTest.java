@@ -26,8 +26,8 @@ public class ContextForTest {
     try {
       StoreSetting setting = new StoreSetting();
       Properties properties = new Properties();
-      properties.load(
-          new StringReader(IOUtils.resourceToString(resourceName, StandardCharsets.UTF_8)));
+      properties.load(new StringReader(IOUtils.resourceToString(resourceName,
+          StandardCharsets.UTF_8, ContextForTest.class.getClassLoader())));
       setting.setStoreDomain(properties.getProperty("store-domain"));
       setting.setApiKey(properties.getProperty("api-key"));
       setting.setApiPassword(properties.getProperty("api-password"));
