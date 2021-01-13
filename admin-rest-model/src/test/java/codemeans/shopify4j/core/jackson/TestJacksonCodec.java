@@ -1,4 +1,4 @@
-package codemeans.shopify4j.core.http;
+package codemeans.shopify4j.core.jackson;
 
 import codemeans.shopify4j.admin.rest.model.products.Product;
 import codemeans.shopify4j.core.exception.SerializingException;
@@ -11,9 +11,9 @@ import org.junit.Test;
  * @author: yuanwq
  * @date: 2021-01-11
  */
-public class TestJsonCodec {
+public class TestJacksonCodec {
 
-  private final JsonCodec codec = JsonCodec.DEFAULT_INSTANCE;
+  private final JacksonCodec codec = JacksonCodec.DEFAULT_INSTANCE;
 
   @Test
   public void testProduct() throws IOException, SerializingException {

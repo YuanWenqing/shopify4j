@@ -6,7 +6,7 @@ import codemeans.shopify4j.core.exception.ShopifyServerException;
 import codemeans.shopify4j.core.http.HttpRequest;
 import codemeans.shopify4j.core.http.ICodec;
 import codemeans.shopify4j.core.http.Invoker;
-import codemeans.shopify4j.core.http.JsonCodec;
+import codemeans.shopify4j.core.jackson.JacksonCodec;
 import codemeans.shopify4j.core.store.AccessTokenProvider;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -27,7 +27,7 @@ public class OkHttpInvoker implements Invoker {
   private final ICodec codec;
 
   public OkHttpInvoker(AccessTokenProvider accessTokenProvider) {
-    this(accessTokenProvider, createOkHttpClient(), JsonCodec.DEFAULT_INSTANCE);
+    this(accessTokenProvider, createOkHttpClient(), JacksonCodec.DEFAULT_INSTANCE);
   }
 
   public OkHttpInvoker(AccessTokenProvider accessTokenProvider, OkHttpClient okHttpClient,

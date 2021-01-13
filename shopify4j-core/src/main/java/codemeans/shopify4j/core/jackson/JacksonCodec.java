@@ -1,6 +1,7 @@
-package codemeans.shopify4j.core.http;
+package codemeans.shopify4j.core.jackson;
 
 import codemeans.shopify4j.core.exception.SerializingException;
+import codemeans.shopify4j.core.http.ICodec;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -14,9 +15,9 @@ import lombok.NonNull;
  * @author: yuanwq
  * @date: 2021-01-11
  */
-public class JsonCodec implements ICodec {
+public class JacksonCodec implements ICodec {
 
-  public static final JsonCodec DEFAULT_INSTANCE = new JsonCodec();
+  public static final JacksonCodec DEFAULT_INSTANCE = new JacksonCodec();
 
   private final ObjectMapper ROOT_WRAPPING = new ObjectMapper()
       .enable(SerializationFeature.WRAP_ROOT_VALUE)
