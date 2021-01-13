@@ -6,11 +6,13 @@ import codemeans.shopify4j.core.exception.ShopifyServerException;
 import codemeans.shopify4j.core.http.ICodec;
 import codemeans.shopify4j.core.http.Invoker;
 import codemeans.shopify4j.core.http.JsonCodec;
+import codemeans.shopify4j.core.store.AccessTokenProvider;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author: yuanwq
@@ -18,14 +20,17 @@ import okhttp3.Response;
  */
 public class OkHttpInvoker implements Invoker {
 
+  private final AccessTokenProvider accessTokenProvider;
   private final OkHttpClient okHttpClient;
   private final ICodec codec;
 
-  public OkHttpInvoker() {
-    this(createOkHttpClient(), JsonCodec.DEFAULT_INSTANCE);
+  public OkHttpInvoker(AccessTokenProvider accessTokenProvider) {
+    this(accessTokenProvider, createOkHttpClient(), JsonCodec.DEFAULT_INSTANCE);
   }
 
-  public OkHttpInvoker(OkHttpClient okHttpClient, ICodec codec) {
+  public OkHttpInvoker(AccessTokenProvider accessTokenProvider, OkHttpClient okHttpClient,
+      ICodec codec) {
+    this.accessTokenProvider = accessTokenProvider;
     this.okHttpClient = okHttpClient;
     this.codec = codec;
   }
@@ -58,6 +63,7 @@ public class OkHttpInvoker implements Invoker {
 
   private <T> T invoke(Request request, Class<T> respType) throws ShopifyServerException {
     String body = null;
+    request = authenticateRequest(request);
     try (Response response = okHttpClient.newCall(request).execute()) {
       body = response.body().string();
       if (response.code() >= 300) {
@@ -70,5 +76,15 @@ public class OkHttpInvoker implements Invoker {
       throw new ShopifyClientException(
           "fail to deserialize response, request: " + request + ", response.body: " + body, e);
     }
+  }
+
+  private Request authenticateRequest(Request request) {
+    String accessToken = accessTokenProvider.getAccessToken(request.url().host());
+    if (StringUtils.isNotBlank(accessToken)) {
+      throw new ShopifyClientException("blank accessToken, request: " + request);
+    }
+    return request.newBuilder()
+        .addHeader("X-Shopify-Access-Token", accessToken)
+        .build();
   }
 }
