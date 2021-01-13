@@ -7,9 +7,8 @@ dependencies {
     testCompileOnly("org.projectlombok:lombok:$lombokVersion")
 
     api(project(":shopify4j-core"))
-    api(project(":admin-rest-model"))
 
-    api("commons-io:commons-io:$commonsIOVersion")
+    api("com.squareup.okhttp3:okhttp:$okhttpVersion")
 
     // test
     testImplementation("junit:junit:$junitVersion")
