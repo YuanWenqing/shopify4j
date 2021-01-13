@@ -2,8 +2,8 @@ package codemeans.shopify4j.admin.rest.sdk;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import codemeans.shopify4j.admin.rest.auth.StoreCredential;
-import codemeans.shopify4j.admin.rest.auth.StoreCredentialStorage;
+import codemeans.shopify4j.core.StoreSetting;
+import codemeans.shopify4j.core.StoreSettingStorage;
 import codemeans.shopify4j.admin.rest.http.Invoker;
 import com.google.common.collect.Maps;
 import java.util.Map;
@@ -15,21 +15,21 @@ import lombok.NonNull;
  */
 public class DefaultShopifyStoreFactory implements ShopifyStoreFactory {
 
-  private final StoreCredentialStorage credentialStorage;
+  private final StoreSettingStorage storeSettingStorage;
   private final Invoker invoker;
 
   private final Map<String, ShopifyStore> storeMap = Maps.newConcurrentMap();
 
   public DefaultShopifyStoreFactory(
-      @NonNull StoreCredentialStorage credentialStorage,
+      @NonNull StoreSettingStorage storeSettingStorage,
       @NonNull Invoker invoker) {
-    this.credentialStorage = credentialStorage;
+    this.storeSettingStorage = storeSettingStorage;
     this.invoker = invoker;
   }
 
   @Override
   public ShopifyStore createStore(String storeDomain) {
-    StoreCredential credential = credentialStorage.getCredential(storeDomain);
+    StoreSetting credential = storeSettingStorage.getStoreSetting(storeDomain);
     checkNotNull(credential, "No Credential for " + storeDomain);
 
     return new ShopifyStoreImpl(credential, invoker);

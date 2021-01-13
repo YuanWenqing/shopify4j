@@ -2,7 +2,7 @@ package codemeans.shopify4j.admin.rest.sdk;
 
 import codemeans.shopify4j.admin.rest.api.ProductApi;
 import codemeans.shopify4j.admin.rest.api.impl.ProductApiImpl;
-import codemeans.shopify4j.admin.rest.auth.StoreCredential;
+import codemeans.shopify4j.core.StoreSetting;
 import codemeans.shopify4j.admin.rest.http.Invoker;
 
 /**
@@ -11,16 +11,16 @@ import codemeans.shopify4j.admin.rest.http.Invoker;
  */
 public class ShopifyStoreImpl implements ShopifyStore {
 
-  private final StoreCredential credential;
+  private final StoreSetting storeSetting;
   private final Invoker invoker;
   private final String baseEndpoint;
 
   private ProductApi productApi;
 
-  public ShopifyStoreImpl(StoreCredential credential, Invoker invoker) {
-    this.credential = credential;
-    this.baseEndpoint = String.format("https://%s/admin/api/%s/", credential.getStoreDomain(),
-        credential.getApiVersion());
+  public ShopifyStoreImpl(StoreSetting storeSetting, Invoker invoker) {
+    this.storeSetting = storeSetting;
+    this.baseEndpoint = String.format("https://%s/admin/api/%s/", storeSetting.getStoreDomain(),
+        storeSetting.getApiVersion());
     this.invoker = invoker;
     initApis();
   }
@@ -31,12 +31,12 @@ public class ShopifyStoreImpl implements ShopifyStore {
 
   @Override
   public String getStoreDomain() {
-    return credential.getStoreDomain();
+    return storeSetting.getStoreDomain();
   }
 
   @Override
   public String getApiVersion() {
-    return credential.getApiVersion();
+    return storeSetting.getApiVersion();
   }
 
   @Override

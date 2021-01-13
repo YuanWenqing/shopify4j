@@ -1,4 +1,4 @@
-package codemeans.shopify4j.admin.rest.auth;
+package codemeans.shopify4j.core;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import lombok.Data;
  * @date: 2020-08-26
  */
 @Data
-public class StoreCredential {
+public class StoreSetting {
 
   /**
    * store domain, format like {@code your-shop.myshopify.com}
