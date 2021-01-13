@@ -12,7 +12,7 @@ import com.fasterxml.jackson.datatype.joda.JodaModule;
  * @author: yuanwq
  * @date: 2021-01-11
  */
-public class JsonCodec implements Serializer, Deserializer {
+public class JsonCodec implements ICodec {
 
   public static final JsonCodec DEFAULT_INSTANCE = new JsonCodec();
 
