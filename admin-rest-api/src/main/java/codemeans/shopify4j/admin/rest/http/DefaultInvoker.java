@@ -35,7 +35,6 @@ public class DefaultInvoker implements Invoker {
     return builder.build();
   }
 
-  @Override
   public OkHttpClient getOkHttpClient() {
     return okHttpClient;
   }
@@ -52,7 +51,7 @@ public class DefaultInvoker implements Invoker {
       body = response.body().string();
       if (response.code() >= 300) {
         Errors errors = codec.deserialize(Errors.class, body);
-        throw new ShopifyServerException(errors);
+        throw new ShopifyServerException(response.code(), errors);
       }
       return codec.deserialize(respType, body);
     } catch (IOException e) {

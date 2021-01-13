@@ -13,9 +13,11 @@ import java.util.List;
  */
 public class ShopifyServerException extends Exception {
 
+  private final int statusCode;
   private final List<Error> errors = Lists.newArrayList();
 
-  public ShopifyServerException(Errors errors) {
+  public ShopifyServerException(int statusCode, Errors errors) {
+    this.statusCode = statusCode;
     this.errors.addAll(errors.getErrors());
   }
 }
