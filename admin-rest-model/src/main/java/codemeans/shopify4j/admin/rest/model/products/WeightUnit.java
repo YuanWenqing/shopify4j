@@ -1,4 +1,4 @@
-package codemeans.shopify4j.admin.rest.model.enums;
+package codemeans.shopify4j.admin.rest.model.products;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
