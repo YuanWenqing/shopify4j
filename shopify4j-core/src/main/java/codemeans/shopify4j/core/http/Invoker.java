@@ -13,6 +13,6 @@ public interface Invoker {
   /**
    * http GET
    */
-  <T> T get(String url, Class<T> respType) throws ShopifyServerException;
+  <T> T get(HttpRequest request, Class<T> respType) throws ShopifyServerException;
 
 }

@@ -3,12 +3,14 @@ package codemeans.shopify4j.okhttp;
 import codemeans.shopify4j.core.exception.SerializingException;
 import codemeans.shopify4j.core.exception.ShopifyClientException;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
+import codemeans.shopify4j.core.http.HttpRequest;
 import codemeans.shopify4j.core.http.ICodec;
 import codemeans.shopify4j.core.http.Invoker;
 import codemeans.shopify4j.core.http.JsonCodec;
 import codemeans.shopify4j.core.store.AccessTokenProvider;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -56,9 +58,16 @@ public class OkHttpInvoker implements Invoker {
   }
 
   @Override
-  public <T> T get(String url, Class<T> respType) throws ShopifyServerException {
-    Request request = new Request.Builder().url(url).build();
+  public <T> T get(HttpRequest httpRequest, Class<T> respType) throws ShopifyServerException {
+    HttpUrl httpUrl = buildHttpUrl(httpRequest);
+    Request request = new Request.Builder().url(httpUrl).build();
     return invoke(request, respType);
+  }
+
+  private HttpUrl buildHttpUrl(HttpRequest httpRequest) {
+    HttpUrl.Builder builder = HttpUrl.parse(httpRequest.getEndpoint()).newBuilder();
+    httpRequest.getQueries().forEach((k, v) -> builder.addQueryParameter(k, v));
+    return builder.build();
   }
 
   private <T> T invoke(Request request, Class<T> respType) throws ShopifyServerException {
