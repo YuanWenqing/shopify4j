@@ -1,7 +1,6 @@
 package codemeans.shopify4j.core.http;
 
 import codemeans.shopify4j.core.exception.ShopifyServerException;
-import okhttp3.Request;
 
 /**
  * @author: yuanwq
@@ -12,7 +11,8 @@ public interface Invoker {
   ICodec getCodec();
 
   /**
-   * 发起请求，处理shopify server error
+   * http GET
    */
-  <T> T invoke(Request request, Class<T> respType) throws ShopifyServerException;
+  <T> T get(String url, Class<T> respType) throws ShopifyServerException;
+
 }

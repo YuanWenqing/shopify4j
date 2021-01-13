@@ -6,7 +6,6 @@ dependencies {
     compileOnly("org.projectlombok:lombok:$lombokVersion")
     testCompileOnly("org.projectlombok:lombok:$lombokVersion")
 
-    api("commons-io:commons-io:$commonsIOVersion")
     api("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
     api("com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion")
 

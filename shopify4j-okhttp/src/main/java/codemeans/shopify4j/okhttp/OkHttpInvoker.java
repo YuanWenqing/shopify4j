@@ -1,11 +1,10 @@
-package codemeans.shopify4j.core.http.okhttp;
+package codemeans.shopify4j.okhttp;
 
 import codemeans.shopify4j.core.exception.SerializingException;
 import codemeans.shopify4j.core.exception.ShopifyClientException;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
 import codemeans.shopify4j.core.http.ICodec;
 import codemeans.shopify4j.core.http.Invoker;
-import codemeans.shopify4j.admin.rest.model.errors.Errors;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
@@ -47,13 +46,17 @@ public class OkHttpInvoker implements Invoker {
   }
 
   @Override
-  public <T> T invoke(Request request, Class<T> respType) throws ShopifyServerException {
+  public <T> T get(String url, Class<T> respType) throws ShopifyServerException {
+    Request request = new Request.Builder().url(url).build();
+    return invoke(request, respType);
+  }
+
+  private <T> T invoke(Request request, Class<T> respType) throws ShopifyServerException {
     String body = null;
     try (Response response = okHttpClient.newCall(request).execute()) {
       body = response.body().string();
       if (response.code() >= 300) {
-        Errors errors = codec.deserialize(Errors.class, body);
-        throw new ShopifyServerException(response.code(), errors);
+        throw new ShopifyServerException(response.code(), body);
       }
       return codec.deserialize(respType, body);
     } catch (IOException e) {
