@@ -67,7 +67,9 @@ public class OkHttpInvoker implements Invoker {
   @Override
   public <T> T get(HttpRequest httpRequest, Class<T> respType) throws ShopifyServerException {
     HttpUrl httpUrl = buildHttpUrl(httpRequest);
-    Request request = new Request.Builder().url(httpUrl).build();
+    Request request = new Request.Builder()
+        .url(httpUrl)
+        .build();
     return invoke(request, respType);
   }
 
@@ -101,6 +103,16 @@ public class OkHttpInvoker implements Invoker {
         .put(RequestBody.create(MEDIA_TYPE_JSON, body))
         .build();
     return invoke(request, respType);
+  }
+
+  @Override
+  public void delete(HttpRequest httpRequest) throws ShopifyServerException {
+    HttpUrl httpUrl = buildHttpUrl(httpRequest);
+    Request request = new Request.Builder()
+        .url(httpUrl)
+        .delete()
+        .build();
+    invoke(request, String.class);
   }
 
   private HttpUrl buildHttpUrl(HttpRequest httpRequest) {

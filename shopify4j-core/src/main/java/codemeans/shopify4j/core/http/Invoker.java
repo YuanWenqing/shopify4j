@@ -31,4 +31,9 @@ public interface Invoker {
    * http PUT and {@code content-type=application/json}
    */
   <T> T putJson(HttpRequest httpRequest, Class<T> respType) throws ShopifyServerException;
+
+  /**
+   * http DELETE
+   */
+  void delete(HttpRequest httpRequest) throws ShopifyServerException;
 }

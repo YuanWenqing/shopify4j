@@ -74,7 +74,7 @@ public class ProductApiImpl implements ProductApi {
 
   @Override
   public void deleteProduct(long id) throws ShopifyServerException {
-    // TODO: impl 2021-01-12
-
+    HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id));
+    invoker.delete(httpRequest);
   }
 }
