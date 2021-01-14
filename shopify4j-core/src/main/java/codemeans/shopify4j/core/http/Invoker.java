@@ -20,6 +20,10 @@ public interface Invoker {
   /**
    * http GET
    */
-  <T> T get(HttpRequest request, Class<T> respType) throws ShopifyServerException;
+  <T> T get(HttpRequest httpRequest, Class<T> respType) throws ShopifyServerException;
 
+  /**
+   * http POST and {@code content-type=application/json}
+   */
+  <T> T postJson(HttpRequest httpRequest, Class<T> respType) throws ShopifyServerException;
 }

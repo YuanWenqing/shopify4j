@@ -12,8 +12,10 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.HttpUrl;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.apache.commons.lang3.StringUtils;
 
@@ -23,6 +25,9 @@ import org.apache.commons.lang3.StringUtils;
  */
 @Slf4j
 public class OkHttpInvoker implements Invoker {
+
+  private static final MediaType MEDIA_TYPE_JSON = MediaType
+      .parse("application/json; charset=utf-8");
 
   private final AccessTokenProvider accessTokenProvider;
   private final OkHttpClient okHttpClient;
@@ -63,6 +68,22 @@ public class OkHttpInvoker implements Invoker {
   public <T> T get(HttpRequest httpRequest, Class<T> respType) throws ShopifyServerException {
     HttpUrl httpUrl = buildHttpUrl(httpRequest);
     Request request = new Request.Builder().url(httpUrl).build();
+    return invoke(request, respType);
+  }
+
+  @Override
+  public <T> T postJson(HttpRequest httpRequest, Class<T> respType) throws ShopifyServerException {
+    HttpUrl httpUrl = buildHttpUrl(httpRequest);
+    String body;
+    try {
+      body = codec.serialize(httpRequest.getBody());
+    } catch (SerializingException e) {
+      throw new ShopifyClientException("request: " + httpRequest, e);
+    }
+    Request request = new Request.Builder()
+        .url(httpUrl)
+        .post(RequestBody.create(MEDIA_TYPE_JSON, body))
+        .build();
     return invoke(request, respType);
   }
 

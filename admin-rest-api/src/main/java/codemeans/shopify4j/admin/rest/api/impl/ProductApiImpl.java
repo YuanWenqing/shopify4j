@@ -57,8 +57,9 @@ public class ProductApiImpl implements ProductApi {
 
   @Override
   public Product createProduct(Product req) throws ShopifyServerException {
-    // TODO: impl 2021-01-12
-    return null;
+    HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint())
+        .setBody(req);
+    return invoker.postJson(httpRequest, Product.class);
   }
 
   @Override
