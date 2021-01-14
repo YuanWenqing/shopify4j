@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import org.apache.commons.io.IOUtils;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.junit.Test;
 
 /**
@@ -44,9 +45,11 @@ public class TestJacksonCodec {
     System.out.println(map);
     assertEquals("global", map.get("published_scope"));
 
+    DateTime dateTime = DateTime.now();
     ProductCountReq countReq = new ProductCountReq()
-        .setCreatedAtMin(DateTime.now());
+        .setCreatedAtMin(dateTime);
     map = codec.asQueryMap(countReq);
+    assertEquals(dateTime.withZone(DateTimeZone.UTC).toString(), map.get("created_at_min"));
     System.out.println(map);
   }
 }
