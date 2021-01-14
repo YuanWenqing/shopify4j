@@ -10,6 +10,7 @@ import codemeans.shopify4j.core.jackson.JacksonCodec;
 import codemeans.shopify4j.core.store.AccessTokenProvider;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -20,6 +21,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author: yuanwq
  * @date: 2021-01-12
  */
+@Slf4j
 public class OkHttpInvoker implements Invoker {
 
   private final AccessTokenProvider accessTokenProvider;
@@ -66,7 +68,7 @@ public class OkHttpInvoker implements Invoker {
 
   private HttpUrl buildHttpUrl(HttpRequest httpRequest) {
     HttpUrl.Builder builder = HttpUrl.parse(httpRequest.getEndpoint()).newBuilder();
-    httpRequest.getQueries().forEach((k, v) -> builder.addQueryParameter(k, v));
+    httpRequest.getQueries().forEach(builder::addQueryParameter);
     return builder.build();
   }
 
@@ -75,6 +77,10 @@ public class OkHttpInvoker implements Invoker {
     request = authenticateRequest(request);
     try (Response response = okHttpClient.newCall(request).execute()) {
       body = response.body().string();
+      if (log.isDebugEnabled()) {
+        log.debug("request: {}, response.code={}, response.body={}",
+            request, response.code(), body);
+      }
       if (response.code() >= 300) {
         throw new ShopifyServerException(response.code(), body);
       }
