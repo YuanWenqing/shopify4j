@@ -26,4 +26,9 @@ public interface Invoker {
    * http POST and {@code content-type=application/json}
    */
   <T> T postJson(HttpRequest httpRequest, Class<T> respType) throws ShopifyServerException;
+
+  /**
+   * http PUT and {@code content-type=application/json}
+   */
+  <T> T putJson(HttpRequest httpRequest, Class<T> respType) throws ShopifyServerException;
 }

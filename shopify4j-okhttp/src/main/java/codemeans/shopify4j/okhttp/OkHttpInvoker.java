@@ -87,6 +87,22 @@ public class OkHttpInvoker implements Invoker {
     return invoke(request, respType);
   }
 
+  @Override
+  public <T> T putJson(HttpRequest httpRequest, Class<T> respType) throws ShopifyServerException {
+    HttpUrl httpUrl = buildHttpUrl(httpRequest);
+    String body;
+    try {
+      body = codec.serialize(httpRequest.getBody());
+    } catch (SerializingException e) {
+      throw new ShopifyClientException("request: " + httpRequest, e);
+    }
+    Request request = new Request.Builder()
+        .url(httpUrl)
+        .put(RequestBody.create(MEDIA_TYPE_JSON, body))
+        .build();
+    return invoke(request, respType);
+  }
+
   private HttpUrl buildHttpUrl(HttpRequest httpRequest) {
     HttpUrl.Builder builder = HttpUrl.parse(httpRequest.getEndpoint()).newBuilder();
     httpRequest.getQueries().forEach(builder::addQueryParameter);
