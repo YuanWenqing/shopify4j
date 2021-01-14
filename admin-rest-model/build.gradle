@@ -15,9 +15,10 @@ dependencies {
     compileOnly("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion")
 
     // log
-    implementation("org.slf4j:slf4j-api:$slf4jVersion")
+    api("org.slf4j:slf4j-api:$slf4jVersion")
 
     // test
     testImplementation("junit:junit:$junitVersion")
-
+    testImplementation("commons-io:commons-io:$commonsIOVersion")
+    testImplementation(project(":shopify4j-core"))
 }

@@ -2,8 +2,8 @@ package codemeans.shopify4j.admin.rest.sdk;
 
 import codemeans.shopify4j.admin.rest.api.ProductApi;
 import codemeans.shopify4j.admin.rest.api.impl.ProductApiImpl;
-import codemeans.shopify4j.core.StoreSetting;
-import codemeans.shopify4j.admin.rest.http.Invoker;
+import codemeans.shopify4j.core.http.Invoker;
+import codemeans.shopify4j.core.store.StoreSetting;
 
 /**
  * @author: yuanwq
@@ -19,14 +19,14 @@ public class ShopifyStoreImpl implements ShopifyStore {
 
   public ShopifyStoreImpl(StoreSetting storeSetting, Invoker invoker) {
     this.storeSetting = storeSetting;
-    this.baseEndpoint = String.format("https://%s/admin/api/%s/", storeSetting.getStoreDomain(),
+    this.baseEndpoint = String.format("https://%s/admin/api/%s", storeSetting.getStoreDomain(),
         storeSetting.getApiVersion());
     this.invoker = invoker;
     initApis();
   }
 
   private void initApis() {
-    productApi = new ProductApiImpl(baseEndpoint, invoker);
+    productApi = new ProductApiImpl(this);
   }
 
   @Override
@@ -45,7 +45,12 @@ public class ShopifyStoreImpl implements ShopifyStore {
   }
 
   @Override
-  public ProductApi product() {
+  public Invoker getInvoker() {
+    return invoker;
+  }
+
+  @Override
+  public ProductApi products() {
     return productApi;
   }
 }

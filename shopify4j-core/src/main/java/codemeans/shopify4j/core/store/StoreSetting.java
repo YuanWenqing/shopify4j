@@ -1,4 +1,4 @@
-package codemeans.shopify4j.core;
+package codemeans.shopify4j.core.store;
 
 import lombok.Data;
 
@@ -15,6 +15,6 @@ public class StoreSetting {
   private String storeDomain;
   private String apiVersion = "2021-01";
   private String apiKey;
-  private String password;
+  private String apiPassword;
 
 }

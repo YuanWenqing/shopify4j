@@ -6,14 +6,15 @@ dependencies {
     compileOnly("org.projectlombok:lombok:$lombokVersion")
     testCompileOnly("org.projectlombok:lombok:$lombokVersion")
 
-    api(project(":shopify4j-core"))
-    api(project(":admin-rest-model"))
+    api("org.apache.commons:commons-lang3:$commonsLang3Version")
 
-    api("commons-io:commons-io:$commonsIOVersion")
+    api("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+    api("com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion")
+
+    // log
+    api("org.slf4j:slf4j-api:$slf4jVersion")
 
     // test
     testImplementation("junit:junit:$junitVersion")
-    testImplementation(project(":shopify4j-okhttp"))
-    testImplementation("org.apache.logging.log4j:log4j-slf4j-impl:$log4jVersion")
 
 }

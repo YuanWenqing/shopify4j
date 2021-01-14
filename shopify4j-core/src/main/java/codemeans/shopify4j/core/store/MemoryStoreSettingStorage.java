@@ -1,7 +1,7 @@
-package codemeans.shopify4j.core;
+package codemeans.shopify4j.core.store;
 
-import com.google.common.collect.Maps;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author: yuanwq
@@ -16,7 +16,7 @@ public class MemoryStoreSettingStorage implements StoreSettingStorage {
   }
 
   public MemoryStoreSettingStorage() {
-    this(Maps.newConcurrentMap());
+    this(new ConcurrentHashMap<>());
   }
 
   public MemoryStoreSettingStorage registerStore(StoreSetting storeSetting) {
