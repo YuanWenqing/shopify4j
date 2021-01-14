@@ -76,7 +76,9 @@ public class JacksonCodec implements ICodec {
     Iterator<Entry<String, JsonNode>> iterator = jsonNode.fields();
     while (iterator.hasNext()) {
       Entry<String, JsonNode> entry = iterator.next();
-      if (entry.getValue() == null || entry.getValue().isNull()) {
+      if (entry.getValue() == null
+          || entry.getValue().isNull()
+          || (entry.getValue().isArray() && entry.getValue().isEmpty())) {
         continue;
       }
       String value;
