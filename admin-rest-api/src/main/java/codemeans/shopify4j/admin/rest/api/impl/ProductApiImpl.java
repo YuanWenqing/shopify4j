@@ -41,8 +41,9 @@ public class ProductApiImpl implements ProductApi {
 
   @Override
   public ProductList listProducts(ProductListReq req) throws ShopifyServerException {
-    // TODO: impl 2021-01-12
-    return null;
+    HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint());
+    httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
+    return invoker.get(httpRequest, ProductList.class);
   }
 
   @Override
