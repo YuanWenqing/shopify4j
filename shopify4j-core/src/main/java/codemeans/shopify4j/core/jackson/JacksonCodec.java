@@ -30,12 +30,14 @@ public class JacksonCodec implements ICodec {
 
   private final ObjectMapper ROOT_WRAPPING = new ObjectMapper()
       .enable(SerializationFeature.WRAP_ROOT_VALUE)
+      .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
       .enable(DeserializationFeature.UNWRAP_ROOT_VALUE)
       .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
       .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE)
       .registerModule(new JodaModule());
   private final ObjectMapper ROOT_UNWRAPPING = new ObjectMapper()
       .disable(SerializationFeature.WRAP_ROOT_VALUE)
+      .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
       .disable(DeserializationFeature.UNWRAP_ROOT_VALUE)
       .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
       .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE)
