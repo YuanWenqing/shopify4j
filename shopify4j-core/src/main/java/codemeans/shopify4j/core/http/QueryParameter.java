@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 public @interface QueryParameter {
 
   /**
-   * name of query parameter
+   * name of query parameter. Default is snake case format of field's name
    */
   String name() default "";
 
