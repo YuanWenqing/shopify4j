@@ -6,6 +6,8 @@ import java.util.Map;
 import lombok.Data;
 
 /**
+ * Generic Http Request
+ *
  * @author: yuanwq
  * @date: 2021-01-13
  */
@@ -30,6 +32,11 @@ public class HttpRequest {
 
   public HttpRequest addQuery(String name, String value) {
     this.queries.put(name, value);
+    return this;
+  }
+
+  public HttpRequest addQueries(Map<String, String> map) {
+    map.forEach(this::addQuery);
     return this;
   }
 
