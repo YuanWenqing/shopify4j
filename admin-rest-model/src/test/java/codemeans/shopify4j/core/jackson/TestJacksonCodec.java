@@ -1,5 +1,7 @@
 package codemeans.shopify4j.core.jackson;
 
+import static junit.framework.TestCase.assertEquals;
+
 import codemeans.shopify4j.admin.rest.model.products.Product;
 import codemeans.shopify4j.core.exception.SerializingException;
 import java.io.IOException;
@@ -20,6 +22,12 @@ public class TestJacksonCodec {
     String string = IOUtils.resourceToString("sample/product.json", StandardCharsets.UTF_8,
         this.getClass().getClassLoader());
     Product product = codec.deserialize(Product.class, string);
+    System.out.println(">>>>> product <<<<<");
     System.out.println(product);
+    System.out.println(">>>>> serialize <<<<<");
+    String serialized = codec.serialize(product);
+    System.out.println(serialized);
+    Product product2 = codec.deserialize(Product.class, serialized);
+    assertEquals(product, product2);
   }
 }
