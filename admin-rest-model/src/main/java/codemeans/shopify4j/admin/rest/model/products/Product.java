@@ -1,9 +1,11 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
 import codemeans.shopify4j.admin.rest.model.Metafield;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
-import java.util.Collection;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -66,26 +68,34 @@ public class Product {
   private DateTime publishedAt;
   private PublishedScope publishedScope;
   private ProductStatus status;
-  /**
-   * joined by comma
-   */
-  @Setter(AccessLevel.NONE)
-  private String tags;
+  @JsonIgnore
+  private List<String> tags;
 
   public Product addTag(String tag) {
-    if (StringUtils.isNotBlank(tags)) {
-      this.tags = StringUtils.joinWith(COMMA, tags, tag);
-    } else {
-      this.tags = tag;
+    if (tags == null) {
+      this.tags = Lists.newArrayList();
     }
+    this.tags.add(tag);
     return this;
   }
 
-  public Product addTags(Collection<String> tags) {
-    if (StringUtils.isBlank(this.tags)) {
-      this.tags = StringUtils.join(tags, COMMA);
-    } else {
-      this.tags = this.tags + COMMA + StringUtils.join(tags, COMMA);
+  @JsonIgnore
+  public List<String> getTagsAsList() {
+    return tags;
+  }
+
+  @JsonProperty("tags")
+  public String getTagsAsText() {
+    if (tags == null) {
+      return null;
+    }
+    return StringUtils.join(tags, COMMA);
+  }
+
+  @JsonProperty("tags")
+  public Product setTags(String tags) {
+    if (StringUtils.isNotBlank(tags)) {
+      this.tags = Lists.newArrayList(Splitter.on(COMMA).trimResults().splitToList(tags));
     }
     return this;
   }
