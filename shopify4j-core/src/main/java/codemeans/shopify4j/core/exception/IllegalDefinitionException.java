@@ -13,6 +13,10 @@ public class IllegalDefinitionException extends RuntimeException {
     super(message);
   }
 
+  public IllegalDefinitionException(String field, Object value, String message) {
+    super(String.format("field=%s, value=%s, error: %s", field, value, message));
+  }
+
   public IllegalDefinitionException(String message, Throwable cause) {
     super(message, cause);
   }

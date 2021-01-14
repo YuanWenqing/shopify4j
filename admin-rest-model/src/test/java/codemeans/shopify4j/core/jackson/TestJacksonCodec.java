@@ -3,10 +3,14 @@ package codemeans.shopify4j.core.jackson;
 import static junit.framework.TestCase.assertEquals;
 
 import codemeans.shopify4j.admin.rest.model.products.Product;
+import codemeans.shopify4j.admin.rest.model.products.PublishedScope;
+import codemeans.shopify4j.admin.rest.req.ProductCountReq;
 import codemeans.shopify4j.core.exception.SerializingException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 import org.apache.commons.io.IOUtils;
+import org.joda.time.DateTime;
 import org.junit.Test;
 
 /**
@@ -29,5 +33,20 @@ public class TestJacksonCodec {
     System.out.println(serialized);
     Product product2 = codec.deserialize(Product.class, serialized);
     assertEquals(product, product2);
+  }
+
+
+  @Test
+  public void testConvertAsQueryMap() {
+    Product product = new Product()
+        .setPublishedScope(PublishedScope.GLOBAL);
+    Map<String, String> map = codec.asQueryMap(product);
+    System.out.println(map);
+    assertEquals("global", map.get("published_scope"));
+
+    ProductCountReq countReq = new ProductCountReq()
+        .setCreatedAtMin(DateTime.now());
+    map = codec.asQueryMap(countReq);
+    System.out.println(map);
   }
 }
