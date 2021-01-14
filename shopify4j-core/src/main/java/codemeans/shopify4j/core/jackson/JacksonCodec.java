@@ -28,20 +28,27 @@ public class JacksonCodec implements ICodec {
 
   public static final JacksonCodec DEFAULT_INSTANCE = new JacksonCodec();
 
-  private final ObjectMapper ROOT_WRAPPING = new ObjectMapper()
-      .enable(SerializationFeature.WRAP_ROOT_VALUE)
-      .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-      .enable(DeserializationFeature.UNWRAP_ROOT_VALUE)
-      .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
-      .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE)
-      .registerModule(new JodaModule());
-  private final ObjectMapper ROOT_UNWRAPPING = new ObjectMapper()
-      .disable(SerializationFeature.WRAP_ROOT_VALUE)
-      .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-      .disable(DeserializationFeature.UNWRAP_ROOT_VALUE)
-      .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
-      .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE)
-      .registerModule(new JodaModule());
+  private final ObjectMapper rootWrapping;
+  private final ObjectMapper rootUnwrapping;
+
+  public JacksonCodec() {
+    rootWrapping = new ObjectMapper()
+        .enable(SerializationFeature.WRAP_ROOT_VALUE)
+        .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+        .enable(DeserializationFeature.UNWRAP_ROOT_VALUE)
+        .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+        .setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE)
+        .registerModule(new JodaModule());
+    rootUnwrapping = rootWrapping.copy()
+        .disable(SerializationFeature.WRAP_ROOT_VALUE)
+        .disable(DeserializationFeature.UNWRAP_ROOT_VALUE);
+  }
+
+  public JacksonCodec(ObjectMapper rootWrapping,
+      ObjectMapper rootUnwrapping) {
+    this.rootWrapping = rootWrapping;
+    this.rootUnwrapping = rootUnwrapping;
+  }
 
   @Override
   public String serialize(@NonNull Object o) throws SerializingException {
@@ -55,9 +62,9 @@ public class JacksonCodec implements ICodec {
   private ObjectMapper getObjectMapper(Class<?> type) {
     JsonRootName jsonRootName = type.getAnnotation(JsonRootName.class);
     if (jsonRootName != null) {
-      return ROOT_WRAPPING;
+      return rootWrapping;
     }
-    return ROOT_UNWRAPPING;
+    return rootUnwrapping;
   }
 
   @Override
@@ -72,7 +79,7 @@ public class JacksonCodec implements ICodec {
   @Override
   public Map<String, String> asQueryMap(Object req) {
     Map<String, String> map = new LinkedHashMap<>();
-    JsonNode jsonNode = ROOT_UNWRAPPING.valueToTree(req);
+    JsonNode jsonNode = rootUnwrapping.valueToTree(req);
     Iterator<Entry<String, JsonNode>> iterator = jsonNode.fields();
     while (iterator.hasNext()) {
       Entry<String, JsonNode> entry = iterator.next();
