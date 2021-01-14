@@ -24,7 +24,9 @@ public class TestProductApi {
 
   @Test
   public void testCount() throws ShopifyServerException {
-    Count count = api.countProducts(new ProductCountReq());
+    ProductCountReq countReq = new ProductCountReq();
+    countReq.setVendor("mypreferr");
+    Count count = api.countProducts(countReq);
     System.out.println(count);
   }
 }

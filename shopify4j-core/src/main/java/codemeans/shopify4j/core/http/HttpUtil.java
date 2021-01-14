@@ -28,6 +28,7 @@ public class HttpUtil {
       final String name = resolveQueryName(field);
       Object value = null;
       try {
+        field.setAccessible(true);
         value = field.get(req);
       } catch (IllegalAccessException ignore) {
       }
