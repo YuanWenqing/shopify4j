@@ -30,7 +30,7 @@ public class TestProductImageApi {
   public void testList() throws ShopifyServerException {
     ProductImageList productImageList = api.list(productId, new ProductImageApi.ListReq());
     System.out.println(productImageList);
-    ProductImage expect = productImageList.getProductImages().get(0);
+    ProductImage expect = productImageList.getImages().get(0);
     ProductImage actual = api.get(expect.getProductId(), expect.getId());
     assertEquals(expect, actual);
   }

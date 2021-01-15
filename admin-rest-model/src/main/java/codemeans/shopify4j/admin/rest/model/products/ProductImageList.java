@@ -14,13 +14,13 @@ import lombok.Setter;
 public class ProductImageList {
 
   @Setter(AccessLevel.NONE)
-  private List<ProductImage> productImages;
+  private List<ProductImage> images;
 
-  public ProductImageList addProductImage(ProductImage productImage) {
-    if (productImages == null) {
-      productImages = Lists.newArrayList();
+  public ProductImageList addProductImage(ProductImage image) {
+    if (images == null) {
+      images = Lists.newArrayList();
     }
-    this.productImages.add(productImage);
+    this.images.add(image);
     return this;
   }
 }
