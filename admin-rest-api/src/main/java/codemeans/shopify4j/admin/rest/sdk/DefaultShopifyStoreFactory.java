@@ -32,6 +32,6 @@ public class DefaultShopifyStoreFactory implements ShopifyStoreFactory {
     StoreSetting credential = storeSettingStorage.getStoreSetting(storeDomain);
     checkNotNull(credential, "No Credential for " + storeDomain);
 
-    return new ShopifyStoreImpl(credential, invoker);
+    return new DefaultShopifyStore(credential, invoker);
   }
 }

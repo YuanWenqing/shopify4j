@@ -21,7 +21,7 @@ import codemeans.shopify4j.core.store.StoreSetting;
  * @author: yuanwq
  * @date: 2021-01-12
  */
-public class ShopifyStoreImpl implements ShopifyStore {
+public class DefaultShopifyStore implements ShopifyStore {
 
   private final StoreSetting storeSetting;
   private final Invoker invoker;
@@ -35,7 +35,7 @@ public class ShopifyStoreImpl implements ShopifyStore {
   private ProductImageApi productImageApi;
   private ProductVariantApi productVariantApi;
 
-  public ShopifyStoreImpl(StoreSetting storeSetting, Invoker invoker) {
+  public DefaultShopifyStore(StoreSetting storeSetting, Invoker invoker) {
     this.storeSetting = storeSetting;
     this.baseEndpoint = String.format("https://%s/admin/api/%s", storeSetting.getStoreDomain(),
         storeSetting.getApiVersion());

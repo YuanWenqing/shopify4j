@@ -1,7 +1,7 @@
 package codemeans.shopify4j.admin.rest;
 
 import codemeans.shopify4j.admin.rest.sdk.ShopifyStore;
-import codemeans.shopify4j.admin.rest.sdk.ShopifyStoreImpl;
+import codemeans.shopify4j.admin.rest.sdk.DefaultShopifyStore;
 import codemeans.shopify4j.core.http.Invoker;
 import codemeans.shopify4j.core.store.MemoryStoreSettingStorage;
 import codemeans.shopify4j.core.store.PrivateAppAccessTokenProvider;
@@ -28,7 +28,7 @@ public class ContextForTest {
 
   public static final Invoker INVOKER = new OkHttpInvoker(
       new PrivateAppAccessTokenProvider(STORE_SETTING_STORAGE));
-  public static final ShopifyStore TEST_STORE = new ShopifyStoreImpl(STORE_SETTING, INVOKER);
+  public static final ShopifyStore TEST_STORE = new DefaultShopifyStore(STORE_SETTING, INVOKER);
 
   private static StoreSetting loadStoreSetting(String resourceName) {
     try {
