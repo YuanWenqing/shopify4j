@@ -4,7 +4,6 @@ import static junit.framework.TestCase.assertEquals;
 
 import codemeans.shopify4j.admin.rest.model.products.Product;
 import codemeans.shopify4j.admin.rest.model.products.PublishedScope;
-import codemeans.shopify4j.admin.rest.req.ProductCountReq;
 import codemeans.shopify4j.core.exception.SerializingException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -46,7 +45,7 @@ public class TestJacksonCodec {
     assertEquals("global", map.get("published_scope"));
 
     DateTime dateTime = DateTime.now();
-    ProductCountReq countReq = new ProductCountReq()
+    CountReq countReq = new CountReq()
         .setCreatedAtMin(dateTime);
     map = codec.asQueryMap(countReq);
     assertEquals(dateTime.withZone(DateTimeZone.UTC).toString(), map.get("created_at_min"));

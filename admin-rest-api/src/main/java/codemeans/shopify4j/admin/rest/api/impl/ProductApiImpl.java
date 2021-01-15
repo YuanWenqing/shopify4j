@@ -6,8 +6,6 @@ import codemeans.shopify4j.admin.rest.api.ProductApi;
 import codemeans.shopify4j.admin.rest.model.Count;
 import codemeans.shopify4j.admin.rest.model.products.Product;
 import codemeans.shopify4j.admin.rest.model.products.ProductList;
-import codemeans.shopify4j.admin.rest.req.ProductCountReq;
-import codemeans.shopify4j.admin.rest.req.ProductListReq;
 import codemeans.shopify4j.admin.rest.sdk.ShopifyStore;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
 import codemeans.shopify4j.core.http.HttpRequest;
@@ -40,14 +38,14 @@ public class ProductApiImpl implements ProductApi {
   }
 
   @Override
-  public ProductList listProducts(ProductListReq req) throws ShopifyServerException {
+  public ProductList listProducts(ListReq req) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint());
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, ProductList.class);
   }
 
   @Override
-  public Count countProducts(ProductCountReq req) throws ShopifyServerException {
+  public Count countProducts(CountReq req) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(countEndpoint());
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, Count.class);

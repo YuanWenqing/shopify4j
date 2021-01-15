@@ -1,12 +1,12 @@
 package codemeans.shopify4j.admin.rest.api;
 
 import codemeans.shopify4j.admin.rest.ContextForTest;
+import codemeans.shopify4j.admin.rest.api.ProductApi.ListReq;
 import codemeans.shopify4j.admin.rest.api.impl.ProductApiImpl;
 import codemeans.shopify4j.admin.rest.model.Count;
 import codemeans.shopify4j.admin.rest.model.products.Product;
 import codemeans.shopify4j.admin.rest.model.products.ProductList;
-import codemeans.shopify4j.admin.rest.req.ProductCountReq;
-import codemeans.shopify4j.admin.rest.req.ProductListReq;
+import codemeans.shopify4j.admin.rest.api.ProductApi.CountReq;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
 import org.junit.Test;
 
@@ -26,7 +26,7 @@ public class TestProductApi {
 
   @Test
   public void testCount() throws ShopifyServerException {
-    ProductCountReq countReq = new ProductCountReq();
+    CountReq countReq = new CountReq();
     countReq.setVendor("mypreferr");
     Count count = api.countProducts(countReq);
     System.out.println(count);
@@ -34,7 +34,7 @@ public class TestProductApi {
 
   @Test
   public void testList() throws ShopifyServerException {
-    ProductListReq listReq = new ProductListReq()
+    ListReq listReq = new ListReq()
         .setVendor("mypreferr");
     ProductList productList = api.listProducts(listReq);
     System.out.println(productList);
