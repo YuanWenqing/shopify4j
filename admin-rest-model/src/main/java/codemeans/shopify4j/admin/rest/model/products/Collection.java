@@ -1,7 +1,6 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
-import javax.swing.SortOrder;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
