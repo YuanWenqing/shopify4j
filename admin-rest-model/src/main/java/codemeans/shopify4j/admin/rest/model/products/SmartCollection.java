@@ -1,6 +1,8 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.google.common.collect.Lists;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
@@ -13,20 +15,28 @@ import org.joda.time.DateTime;
  */
 @Data
 @Accessors(chain = true)
-@JsonRootName("custom_collection")
-public class CustomCollection {
+@JsonRootName("smart_collection")
+public class SmartCollection {
 
   private String bodyHtml;
   private String handle;
   private Long id;
   private CollectionImage image;
-  private Boolean published;
   @Setter(AccessLevel.NONE)
   private DateTime publishedAt;
   private PublishedScope publishedScope;
+  private final List<Rule> rules = Lists.newArrayList();
+
+  public SmartCollection addRule(Rule rule) {
+    this.rules.add(rule);
+    return this;
+  }
+
+  private Boolean disjunctive;
   private SortOrder sortOrder;
   private String templateSuffix;
   private String title;
   @Setter(AccessLevel.NONE)
   private DateTime updatedAt;
+
 }
