@@ -15,7 +15,7 @@ import org.joda.time.DateTime;
 public class CollectionImage {
 
   /**
-   * An image attached to a custom collection returned as Base64-encoded binary data.
+   * Base64-encoded binary data of image, used for uploading
    */
   private String attachment;
   private String src;

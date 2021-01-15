@@ -19,16 +19,20 @@ import org.joda.time.DateTime;
 public class ProductImage {
 
   /**
+   * Base64-encoded binary data of image, used for uploading
+   */
+  private String attachment;
+  /**
    * https://en.wikipedia.org/wiki/ISO_8601
    */
   @Setter(AccessLevel.NONE)
   private DateTime createdAt;
   private Long id;
-  private Long productId;
   /**
    * if unset, position of image will be updated with the index of image array(starting from 1)
    */
   private Integer position;
+  private Long productId;
   @Setter(AccessLevel.NONE)
   private List<Long> variantIds;
   private String src;
