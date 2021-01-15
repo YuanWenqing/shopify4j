@@ -28,7 +28,7 @@ public class ProductImage {
   /**
    * 为空，则更新为第一张图，并替换主图
    */
-  private int position;
+  private Integer position;
   @Setter(AccessLevel.NONE)
   private List<Long> variantIds;
   private String src;

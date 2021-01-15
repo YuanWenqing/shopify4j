@@ -25,7 +25,7 @@ public interface ProductApi {
 
   void deleteProduct(long id) throws ShopifyServerException;
 
-  default <R> R doPipeline(ProductPipeline<R> pipeline) {
+  default <R> R doPipeline(ProductPipeline<R> pipeline) throws ShopifyServerException {
     return pipeline.runWith(this);
   }
 

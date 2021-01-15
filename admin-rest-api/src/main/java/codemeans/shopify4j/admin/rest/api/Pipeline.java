@@ -1,5 +1,7 @@
 package codemeans.shopify4j.admin.rest.api;
 
+import codemeans.shopify4j.core.exception.ShopifyServerException;
+
 /**
  * @author: yuanwq
  * @date: 2021-01-14
@@ -11,5 +13,5 @@ public interface Pipeline<API, R> {
    */
   Class<R> typeOfR();
 
-  R runWith(API api);
+  R runWith(API api) throws ShopifyServerException;
 }

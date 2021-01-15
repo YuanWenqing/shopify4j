@@ -39,7 +39,7 @@ public class ProductVariant {
   private String option2;
   private String option3;
   @Setter(AccessLevel.NONE)
-  private long position;
+  private Integer position;
   private BigDecimal price;
   private Long productId;
   private String sku;
