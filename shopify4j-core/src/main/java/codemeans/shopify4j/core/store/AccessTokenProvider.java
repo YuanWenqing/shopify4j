@@ -8,4 +8,7 @@ public interface AccessTokenProvider {
 
   String getAccessToken(String storeDomain);
 
+  static AccessTokenProvider constant(String accessToken) {
+    return storeDomain -> accessToken;
+  }
 }
