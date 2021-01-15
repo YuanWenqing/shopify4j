@@ -26,7 +26,7 @@ public class ProductImage {
   private Long id;
   private Long productId;
   /**
-   * 为空，则更新为第一张图，并替换主图
+   * if unset, position of image will be updated with the index of image array(starting from 1)
    */
   private Integer position;
   @Setter(AccessLevel.NONE)
