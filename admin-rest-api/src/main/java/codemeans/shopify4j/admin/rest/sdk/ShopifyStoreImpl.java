@@ -1,8 +1,10 @@
 package codemeans.shopify4j.admin.rest.sdk;
 
 import codemeans.shopify4j.admin.rest.api.CollectApi;
+import codemeans.shopify4j.admin.rest.api.CollectionApi;
 import codemeans.shopify4j.admin.rest.api.ProductApi;
 import codemeans.shopify4j.admin.rest.api.impl.CollectApiImpl;
+import codemeans.shopify4j.admin.rest.api.impl.CollectionApiImpl;
 import codemeans.shopify4j.admin.rest.api.impl.ProductApiImpl;
 import codemeans.shopify4j.core.http.Invoker;
 import codemeans.shopify4j.core.store.StoreSetting;
@@ -19,6 +21,7 @@ public class ShopifyStoreImpl implements ShopifyStore {
 
   private ProductApi productApi;
   private CollectApi collectApi;
+  private CollectionApi collectionApi;
 
   public ShopifyStoreImpl(StoreSetting storeSetting, Invoker invoker) {
     this.storeSetting = storeSetting;
@@ -31,6 +34,7 @@ public class ShopifyStoreImpl implements ShopifyStore {
   private void initApis() {
     productApi = ProductApiImpl.of(this);
     collectApi = CollectApiImpl.of(this);
+    collectionApi = CollectionApiImpl.of(this);
   }
 
   @Override
@@ -61,5 +65,10 @@ public class ShopifyStoreImpl implements ShopifyStore {
   @Override
   public CollectApi collects() {
     return collectApi;
+  }
+
+  @Override
+  public CollectionApi collections() {
+    return collectionApi;
   }
 }
