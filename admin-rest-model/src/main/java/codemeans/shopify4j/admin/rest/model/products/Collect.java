@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 import org.joda.time.DateTime;
 
 /**
@@ -12,6 +13,7 @@ import org.joda.time.DateTime;
  */
 @Data
 @JsonRootName("collect")
+@Accessors(chain = true)
 public class Collect {
 
   private Long collectionId;

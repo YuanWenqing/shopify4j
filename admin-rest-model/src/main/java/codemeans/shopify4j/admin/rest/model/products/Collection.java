@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 import org.joda.time.DateTime;
 
 /**
@@ -11,6 +12,7 @@ import org.joda.time.DateTime;
  * @date: 2021-01-15
  */
 @Data
+@Accessors(chain = true)
 @JsonRootName("collection")
 public class Collection {
 
@@ -30,6 +32,7 @@ public class Collection {
   private DateTime updatedAt;
 
   @Data
+  @Accessors(chain = true)
   public static class Image {
 
     private String src;
