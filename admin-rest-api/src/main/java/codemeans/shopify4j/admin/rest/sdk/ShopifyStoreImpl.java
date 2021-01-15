@@ -2,9 +2,11 @@ package codemeans.shopify4j.admin.rest.sdk;
 
 import codemeans.shopify4j.admin.rest.api.products.CollectApi;
 import codemeans.shopify4j.admin.rest.api.products.CollectionApi;
+import codemeans.shopify4j.admin.rest.api.products.CustomCollectionApi;
 import codemeans.shopify4j.admin.rest.api.products.ProductApi;
 import codemeans.shopify4j.admin.rest.api.products.impl.CollectApiImpl;
 import codemeans.shopify4j.admin.rest.api.products.impl.CollectionApiImpl;
+import codemeans.shopify4j.admin.rest.api.products.impl.CustomCollectionApiImpl;
 import codemeans.shopify4j.admin.rest.api.products.impl.ProductApiImpl;
 import codemeans.shopify4j.core.http.Invoker;
 import codemeans.shopify4j.core.store.StoreSetting;
@@ -22,6 +24,7 @@ public class ShopifyStoreImpl implements ShopifyStore {
   private ProductApi productApi;
   private CollectApi collectApi;
   private CollectionApi collectionApi;
+  private CustomCollectionApi customCollectionApi;
 
   public ShopifyStoreImpl(StoreSetting storeSetting, Invoker invoker) {
     this.storeSetting = storeSetting;
@@ -35,6 +38,7 @@ public class ShopifyStoreImpl implements ShopifyStore {
     productApi = ProductApiImpl.of(this);
     collectApi = CollectApiImpl.of(this);
     collectionApi = CollectionApiImpl.of(this);
+    customCollectionApi = CustomCollectionApiImpl.of(this);
   }
 
   @Override
@@ -70,5 +74,10 @@ public class ShopifyStoreImpl implements ShopifyStore {
   @Override
   public CollectionApi collections() {
     return collectionApi;
+  }
+
+  @Override
+  public CustomCollectionApi customCollections() {
+    return customCollectionApi;
   }
 }
