@@ -1,4 +1,4 @@
-package codemeans.shopify4j.admin.rest.req;
+package codemeans.shopify4j.admin.rest.model;
 
 import lombok.Data;
 
