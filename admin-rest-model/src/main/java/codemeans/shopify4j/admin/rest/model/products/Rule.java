@@ -1,42 +1,34 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 /**
  * @author: yuanwq
  * @date: 2021-01-15
  */
-public interface Rule {
+@Data
+@Accessors(chain = true)
+@AllArgsConstructor
+@NoArgsConstructor
+public class Rule {
 
-  String getColumn();
+  private String column;
+  private String relation;
+  private String condition;
 
-  String getRelation();
+  public static Rule text(TextColumn column, TextRelation relation, String condition) {
+    return new Rule(column.name(), relation.name(), condition);
+  }
 
-  String getCondition();
+  public static Rule number(NumberRelation column, NumberRelation relation, Number number) {
+    return new Rule(column.name(), relation.name(), number.toString());
+  }
 
-  @Data
-  @Accessors(fluent = true)
-  class TextRule implements Rule {
-
-    private final TextColumn column;
-    private final TextRelation relation;
-    private final String condition;
-
-    @Override
-    public String getColumn() {
-      return column.name();
-    }
-
-    @Override
-    public String getRelation() {
-      return relation.name();
-    }
-
-    @Override
-    public String getCondition() {
-      return condition;
-    }
+  public static Rule tag(String tag) {
+    return new Rule("tag", "equals", tag);
   }
 
   enum TextColumn {
@@ -55,30 +47,6 @@ public interface Rule {
     not_contains
   }
 
-  @Data
-  @Accessors(fluent = true)
-  class NumberRule implements Rule {
-
-    private final NumberColumn column;
-    private final NumberRelation relation;
-    private final String condition;
-
-    @Override
-    public String getColumn() {
-      return column.name();
-    }
-
-    @Override
-    public String getRelation() {
-      return relation.name();
-    }
-
-    @Override
-    public String getCondition() {
-      return condition;
-    }
-  }
-
   enum NumberColumn {
     variant_compare_at_price,
     variant_weight,
@@ -93,21 +61,4 @@ public interface Rule {
     not_equals
   }
 
-  @Data
-  class TagRule implements Rule {
-
-    private final String condition;
-
-    @Override
-
-    public String getColumn() {
-      return "tag";
-    }
-
-    @Override
-    public String getRelation() {
-      return "equals";
-    }
-
-  }
 }
