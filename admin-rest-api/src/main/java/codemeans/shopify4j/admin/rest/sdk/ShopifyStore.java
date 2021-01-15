@@ -1,6 +1,7 @@
 package codemeans.shopify4j.admin.rest.sdk;
 
 import codemeans.shopify4j.admin.rest.api.CollectApi;
+import codemeans.shopify4j.admin.rest.api.CollectionApi;
 import codemeans.shopify4j.admin.rest.api.ProductApi;
 import codemeans.shopify4j.core.http.Invoker;
 
@@ -28,4 +29,6 @@ public interface ShopifyStore {
   ProductApi products();
 
   CollectApi collects();
+
+  CollectionApi collections();
 }
