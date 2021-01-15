@@ -2,8 +2,8 @@ package codemeans.shopify4j.admin.rest.api.impl;
 
 import codemeans.shopify4j.admin.rest.api.CollectApi;
 import codemeans.shopify4j.admin.rest.model.Count;
-import codemeans.shopify4j.admin.rest.model.collects.CollectList;
 import codemeans.shopify4j.admin.rest.model.products.Collect;
+import codemeans.shopify4j.admin.rest.model.products.CollectList;
 import codemeans.shopify4j.admin.rest.sdk.ShopifyStore;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
 import codemeans.shopify4j.core.http.HttpRequest;

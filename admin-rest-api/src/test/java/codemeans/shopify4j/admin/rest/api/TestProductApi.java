@@ -1,12 +1,11 @@
 package codemeans.shopify4j.admin.rest.api;
 
 import codemeans.shopify4j.admin.rest.ContextForTest;
+import codemeans.shopify4j.admin.rest.api.ProductApi.CountReq;
 import codemeans.shopify4j.admin.rest.api.ProductApi.ListReq;
-import codemeans.shopify4j.admin.rest.api.impl.ProductApiImpl;
 import codemeans.shopify4j.admin.rest.model.Count;
 import codemeans.shopify4j.admin.rest.model.products.Product;
 import codemeans.shopify4j.admin.rest.model.products.ProductList;
-import codemeans.shopify4j.admin.rest.api.ProductApi.CountReq;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
 import org.junit.Test;
 
@@ -16,7 +15,7 @@ import org.junit.Test;
  */
 public class TestProductApi {
 
-  private final ProductApi api = new ProductApiImpl(ContextForTest.TEST_STORE);
+  private final ProductApi api = ContextForTest.TEST_STORE.products();
 
   @Test
   public void testGetProduct() throws ShopifyServerException {

@@ -1,6 +1,5 @@
-package codemeans.shopify4j.admin.rest.model.collects;
+package codemeans.shopify4j.admin.rest.model.products;
 
-import codemeans.shopify4j.admin.rest.model.products.Collect;
 import com.google.common.collect.Lists;
 import java.util.List;
 import lombok.AccessLevel;
