@@ -2,11 +2,9 @@ package codemeans.shopify4j.admin.rest.sdk;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import codemeans.shopify4j.core.http.Invoker;
 import codemeans.shopify4j.core.store.StoreSetting;
 import codemeans.shopify4j.core.store.StoreSettingStorage;
-import codemeans.shopify4j.core.http.Invoker;
-import com.google.common.collect.Maps;
-import java.util.Map;
 import lombok.NonNull;
 
 /**
@@ -17,8 +15,6 @@ public class DefaultShopifyStoreFactory implements ShopifyStoreFactory {
 
   private final StoreSettingStorage storeSettingStorage;
   private final Invoker invoker;
-
-  private final Map<String, ShopifyStore> storeMap = Maps.newConcurrentMap();
 
   public DefaultShopifyStoreFactory(
       @NonNull StoreSettingStorage storeSettingStorage,

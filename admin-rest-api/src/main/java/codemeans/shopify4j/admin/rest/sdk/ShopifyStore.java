@@ -1,9 +1,9 @@
 package codemeans.shopify4j.admin.rest.sdk;
 
+import codemeans.shopify4j.admin.rest.api.Pipeline;
 import codemeans.shopify4j.admin.rest.api.products.CollectApi;
 import codemeans.shopify4j.admin.rest.api.products.CollectionApi;
 import codemeans.shopify4j.admin.rest.api.products.CustomCollectionApi;
-import codemeans.shopify4j.admin.rest.api.products.Pipeline;
 import codemeans.shopify4j.admin.rest.api.products.ProductApi;
 import codemeans.shopify4j.admin.rest.api.products.ProductImageApi;
 import codemeans.shopify4j.admin.rest.api.products.ProductVariantApi;

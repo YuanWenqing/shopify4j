@@ -1,4 +1,4 @@
-package codemeans.shopify4j.admin.rest.api.products;
+package codemeans.shopify4j.admin.rest.api;
 
 import codemeans.shopify4j.core.exception.ShopifyServerException;
 
