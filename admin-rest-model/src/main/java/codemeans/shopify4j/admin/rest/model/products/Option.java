@@ -16,7 +16,7 @@ import org.joda.time.DateTime;
 public class Option {
 
   /**
-   * https://en.wikipedia.org/wiki/ISO_8601 ，{@link org.joda.time.DateTime} 可解析
+   * https://en.wikipedia.org/wiki/ISO_8601
    */
   @Setter(AccessLevel.NONE)
   private DateTime createdAt;
