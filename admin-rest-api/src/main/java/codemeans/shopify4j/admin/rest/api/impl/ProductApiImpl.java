@@ -38,33 +38,33 @@ public class ProductApiImpl implements ProductApi {
   }
 
   @Override
-  public ProductList listProducts(ListReq req) throws ShopifyServerException {
+  public ProductList list(ListReq req) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint());
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, ProductList.class);
   }
 
   @Override
-  public Count countProducts(CountReq req) throws ShopifyServerException {
+  public Count count(CountReq req) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(countEndpoint());
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, Count.class);
   }
 
   @Override
-  public Product getProduct(long id) throws ShopifyServerException {
+  public Product get(long id) throws ShopifyServerException {
     return invoker.get(singleEndpoint(id), Product.class);
   }
 
   @Override
-  public Product createProduct(Product req) throws ShopifyServerException {
+  public Product create(Product req) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint())
         .setBody(req);
     return invoker.postJson(httpRequest, Product.class);
   }
 
   @Override
-  public Product updateProduct(Product req) throws ShopifyServerException {
+  public Product update(Product req) throws ShopifyServerException {
     checkNotNull(req.getId(), "Null Product Id");
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(req.getId()))
         .setBody(req);
@@ -72,7 +72,7 @@ public class ProductApiImpl implements ProductApi {
   }
 
   @Override
-  public void deleteProduct(long id) throws ShopifyServerException {
+  public void delete(long id) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id));
     invoker.delete(httpRequest);
   }

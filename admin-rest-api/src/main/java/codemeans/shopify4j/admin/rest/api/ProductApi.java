@@ -18,19 +18,19 @@ import org.joda.time.DateTime;
  */
 public interface ProductApi {
 
-  ProductList listProducts(ListReq req) throws ShopifyServerException;
+  ProductList list(ListReq req) throws ShopifyServerException;
 
-  Count countProducts(CountReq req) throws ShopifyServerException;
+  Count count(CountReq req) throws ShopifyServerException;
 
-  Product getProduct(long id) throws ShopifyServerException;
+  Product get(long id) throws ShopifyServerException;
 
-  Product createProduct(Product req) throws ShopifyServerException;
+  Product create(Product req) throws ShopifyServerException;
 
-  Product updateProduct(Product req) throws ShopifyServerException;
+  Product update(Product req) throws ShopifyServerException;
 
-  void deleteProduct(long id) throws ShopifyServerException;
+  void delete(long id) throws ShopifyServerException;
 
-  default <R> R doPipeline(ProductPipeline<R> pipeline) throws ShopifyServerException {
+  default <R> R pipeline(ProductPipeline<R> pipeline) throws ShopifyServerException {
     return pipeline.runWith(this);
   }
 
