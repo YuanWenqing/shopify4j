@@ -35,8 +35,11 @@ buildscript {
 // git version
 apply plugin: "org.ajoberstar.grgit"
 int commits = grgit.log().size()
-String baseVersion="0.1"
-version = "${baseVersion}.${commits}"
+version = "1.0"
+String pubRepo = rootProject.hasProperty("pub") ? rootProject.property("pub") : "nexus"
+if (pubRepo != "oss") {
+    version = "${version}.${commits}"
+}
 if (!project.hasProperty("release")) {
     String branch = grgit.branch.current().name
     String prefix = branch.replace("/", "-")
@@ -118,8 +121,6 @@ subprojects {
 
 // 配置发布
 configure(subprojects.findAll { it.ext.publishable }) {
-    final String pubRepo = rootProject.hasProperty("pub") ? rootProject.property("pub") : "nexus"
-
     // 在这里应用插件，否则相关publishing配置无法生效
     apply plugin: "maven-publish"
     publishing {
