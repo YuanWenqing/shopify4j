@@ -5,12 +5,14 @@ import codemeans.shopify4j.admin.rest.api.products.CollectionApi;
 import codemeans.shopify4j.admin.rest.api.products.CustomCollectionApi;
 import codemeans.shopify4j.admin.rest.api.products.ProductApi;
 import codemeans.shopify4j.admin.rest.api.products.ProductImageApi;
+import codemeans.shopify4j.admin.rest.api.products.ProductVariantApi;
 import codemeans.shopify4j.admin.rest.api.products.SmartCollectionApi;
 import codemeans.shopify4j.admin.rest.api.products.impl.CollectApiImpl;
 import codemeans.shopify4j.admin.rest.api.products.impl.CollectionApiImpl;
 import codemeans.shopify4j.admin.rest.api.products.impl.CustomCollectionApiImpl;
 import codemeans.shopify4j.admin.rest.api.products.impl.ProductApiImpl;
 import codemeans.shopify4j.admin.rest.api.products.impl.ProductImageApiImpl;
+import codemeans.shopify4j.admin.rest.api.products.impl.ProductVariantApiImpl;
 import codemeans.shopify4j.admin.rest.api.products.impl.SmartCollectionApiImpl;
 import codemeans.shopify4j.core.http.Invoker;
 import codemeans.shopify4j.core.store.StoreSetting;
@@ -31,6 +33,7 @@ public class ShopifyStoreImpl implements ShopifyStore {
   private CustomCollectionApi customCollectionApi;
   private SmartCollectionApi smartCollectionApi;
   private ProductImageApi productImageApi;
+  private ProductVariantApi productVariantApi;
 
   public ShopifyStoreImpl(StoreSetting storeSetting, Invoker invoker) {
     this.storeSetting = storeSetting;
@@ -47,6 +50,7 @@ public class ShopifyStoreImpl implements ShopifyStore {
     customCollectionApi = CustomCollectionApiImpl.of(this);
     smartCollectionApi = SmartCollectionApiImpl.of(this);
     productImageApi = ProductImageApiImpl.of(this);
+    productVariantApi = ProductVariantApiImpl.of(this);
   }
 
   @Override
@@ -92,6 +96,11 @@ public class ShopifyStoreImpl implements ShopifyStore {
   @Override
   public ProductImageApi productImages() {
     return productImageApi;
+  }
+
+  @Override
+  public ProductVariantApi productVariants() {
+    return productVariantApi;
   }
 
 }
