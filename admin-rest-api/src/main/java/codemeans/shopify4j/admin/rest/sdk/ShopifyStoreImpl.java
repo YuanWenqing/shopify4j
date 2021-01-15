@@ -1,11 +1,11 @@
 package codemeans.shopify4j.admin.rest.sdk;
 
-import codemeans.shopify4j.admin.rest.api.CollectApi;
-import codemeans.shopify4j.admin.rest.api.CollectionApi;
-import codemeans.shopify4j.admin.rest.api.ProductApi;
-import codemeans.shopify4j.admin.rest.api.impl.CollectApiImpl;
-import codemeans.shopify4j.admin.rest.api.impl.CollectionApiImpl;
-import codemeans.shopify4j.admin.rest.api.impl.ProductApiImpl;
+import codemeans.shopify4j.admin.rest.api.products.CollectApi;
+import codemeans.shopify4j.admin.rest.api.products.CollectionApi;
+import codemeans.shopify4j.admin.rest.api.products.ProductApi;
+import codemeans.shopify4j.admin.rest.api.products.impl.CollectApiImpl;
+import codemeans.shopify4j.admin.rest.api.products.impl.CollectionApiImpl;
+import codemeans.shopify4j.admin.rest.api.products.impl.ProductApiImpl;
 import codemeans.shopify4j.core.http.Invoker;
 import codemeans.shopify4j.core.store.StoreSetting;
 
