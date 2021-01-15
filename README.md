@@ -15,16 +15,14 @@ implementation("xyz.codemeans.shopify4j:admin-rest-api:1.0")
 implementation("xyz.codemeans.shopify4j:shopify4j-okhttp:1.0")
 ```
 
-## Building from source
+## Build from source
 
 Requirements:
 
 * JDK 8
 * gradle >= 5.6
 
-Configure nexus repository in build.gradle,
-
- `$HOME/.gradle/gradle.properties` OR `gradle.properteis`
+Configure nexus repository in build.gradle: `$HOME/.gradle/gradle.properties` OR `gradle.properteis`
 
 ```properties
 nexus.repo.url=http://your.nexus.host/repository/maven-public/
