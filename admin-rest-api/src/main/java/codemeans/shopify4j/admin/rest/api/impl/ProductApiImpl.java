@@ -17,24 +17,28 @@ import codemeans.shopify4j.core.http.Invoker;
  */
 public class ProductApiImpl implements ProductApi {
 
-  private final ShopifyStore store;
+  private final String baseEndpoint;
   private final Invoker invoker;
 
-  public ProductApiImpl(ShopifyStore store) {
-    this.store = store;
-    this.invoker = store.getInvoker();
+  public ProductApiImpl(String baseEndpoint, Invoker invoker) {
+    this.baseEndpoint = baseEndpoint;
+    this.invoker = invoker;
+  }
+
+  public static ProductApi of(ShopifyStore store) {
+    return new ProductApiImpl(store.getBaseEndpoint(), store.getInvoker());
   }
 
   private String resourcesEndpoint() {
-    return store.getBaseEndpoint() + "/products.json";
+    return baseEndpoint + "/products.json";
   }
 
   private String countEndpoint() {
-    return store.getBaseEndpoint() + "/products/count.json";
+    return baseEndpoint + "/products/count.json";
   }
 
   private String singleEndpoint(long id) {
-    return String.format("%s/products/%s.json", store.getBaseEndpoint(), id);
+    return String.format("%s/products/%s.json", baseEndpoint, id);
   }
 
   @Override

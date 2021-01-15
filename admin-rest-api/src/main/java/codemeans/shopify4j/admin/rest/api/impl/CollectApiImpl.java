@@ -15,24 +15,28 @@ import codemeans.shopify4j.core.http.Invoker;
  */
 public class CollectApiImpl implements CollectApi {
 
-  private final ShopifyStore store;
+  private final String baseEndpoint;
   private final Invoker invoker;
 
-  public CollectApiImpl(ShopifyStore store) {
-    this.store = store;
-    this.invoker = store.getInvoker();
+  public CollectApiImpl(String baseEndpoint, Invoker invoker) {
+    this.baseEndpoint = baseEndpoint;
+    this.invoker = invoker;
+  }
+
+  public static CollectApi of(ShopifyStore store) {
+    return new CollectApiImpl(store.getBaseEndpoint(), store.getInvoker());
   }
 
   private String resourcesEndpoint() {
-    return store.getBaseEndpoint() + "/collects.json";
+    return baseEndpoint + "/collects.json";
   }
 
   private String countEndpoint() {
-    return store.getBaseEndpoint() + "/collects/count.json";
+    return baseEndpoint + "/collects/count.json";
   }
 
   private String singleEndpoint(long id) {
-    return String.format("%s/collects/%s.json", store.getBaseEndpoint(), id);
+    return String.format("%s/collects/%s.json", baseEndpoint, id);
   }
 
   @Override
