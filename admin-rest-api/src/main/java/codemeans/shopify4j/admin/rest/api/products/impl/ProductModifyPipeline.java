@@ -1,7 +1,7 @@
-package codemeans.shopify4j.admin.rest.api.impl;
+package codemeans.shopify4j.admin.rest.api.products.impl;
 
-import codemeans.shopify4j.admin.rest.api.ProductApi;
-import codemeans.shopify4j.admin.rest.api.ProductApi.ProductPipeline;
+import codemeans.shopify4j.admin.rest.api.products.ProductApi;
+import codemeans.shopify4j.admin.rest.api.products.ProductApi.ProductPipeline;
 import codemeans.shopify4j.admin.rest.model.products.Product;
 import codemeans.shopify4j.admin.rest.model.products.ProductImage;
 import codemeans.shopify4j.admin.rest.model.products.ProductVariant;

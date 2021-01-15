@@ -12,17 +12,21 @@ import org.joda.time.DateTime;
  * @date: 2021-01-15
  */
 @Data
-@JsonRootName("collect")
 @Accessors(chain = true)
-public class Collect {
+@JsonRootName("custom_collection")
+public class CustomCollection {
 
-  private Long collectionId;
-  @Setter(AccessLevel.NONE)
-  private DateTime createdAt;
+  private String bodyHtml;
+  private String handle;
+  private CollectionImage image;
   private Long id;
-  private Integer position;
-  private Long productId;
-  private String sortValue;
+  private Boolean published;
+  @Setter(AccessLevel.NONE)
+  private DateTime publishedAt;
+  private PublishedScope publishedScope;
+  private SortOrder sortOrder;
+  private String templateSuffix;
+  private String title;
   @Setter(AccessLevel.NONE)
   private DateTime updatedAt;
 }

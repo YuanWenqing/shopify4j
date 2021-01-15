@@ -1,4 +1,4 @@
-package codemeans.shopify4j.admin.rest.api;
+package codemeans.shopify4j.admin.rest.api.products;
 
 import codemeans.shopify4j.admin.rest.model.products.Collection;
 import codemeans.shopify4j.admin.rest.model.products.ProductList;
