@@ -20,11 +20,11 @@ public class CachedShopifyStoreFactory implements ShopifyStoreFactory {
   }
 
   @Override
-  public ShopifyStore createStore(String storeDomain) {
+  public ShopifyStore getStore(String storeDomain) {
     if (!storeMap.containsKey(storeDomain)) {
       synchronized (storeDomain.intern()) {
         if (!storeMap.containsKey(storeDomain)) {
-          ShopifyStore shopifyStore = delegate.createStore(storeDomain);
+          ShopifyStore shopifyStore = delegate.getStore(storeDomain);
           storeMap.put(storeDomain, shopifyStore);
         }
       }

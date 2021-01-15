@@ -24,7 +24,7 @@ public class DefaultShopifyStoreFactory implements ShopifyStoreFactory {
   }
 
   @Override
-  public ShopifyStore createStore(String storeDomain) {
+  public ShopifyStore getStore(String storeDomain) {
     StoreSetting credential = storeSettingStorage.getStoreSetting(storeDomain);
     checkNotNull(credential, "No Credential for " + storeDomain);
 
