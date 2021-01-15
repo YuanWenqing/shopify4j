@@ -13,17 +13,16 @@ import org.joda.time.DateTime;
  */
 @Data
 @Accessors(chain = true)
-@JsonRootName("collection")
-public class Collection {
+@JsonRootName("custom_collection")
+public class CustomCollection {
 
   private String bodyHtml;
   private String handle;
   private CollectionImage image;
-  @Setter(AccessLevel.NONE)
   private Long id;
+  private Boolean published;
   @Setter(AccessLevel.NONE)
   private DateTime publishedAt;
-  @Setter(AccessLevel.NONE)
   private PublishedScope publishedScope;
   private SortOrder sortOrder;
   private String templateSuffix;
