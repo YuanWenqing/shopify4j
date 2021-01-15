@@ -4,6 +4,7 @@ import codemeans.shopify4j.admin.rest.api.products.CollectApi;
 import codemeans.shopify4j.admin.rest.api.products.CollectionApi;
 import codemeans.shopify4j.admin.rest.api.products.CustomCollectionApi;
 import codemeans.shopify4j.admin.rest.api.products.ProductApi;
+import codemeans.shopify4j.admin.rest.api.products.ProductImageApi;
 import codemeans.shopify4j.admin.rest.api.products.SmartCollectionApi;
 import codemeans.shopify4j.core.http.Invoker;
 import codemeans.shopify4j.core.store.StoreSetting;
@@ -36,4 +37,6 @@ public interface ShopifyStore {
   CustomCollectionApi customCollections();
 
   SmartCollectionApi smartCollections();
+
+  ProductImageApi productImages();
 }
