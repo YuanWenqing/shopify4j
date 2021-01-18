@@ -12,5 +12,8 @@ import lombok.experimental.Accessors;
 public class RefundDuty {
 
   private Long dutyId;
-  private RefundType refundType;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.RefundType
+   */
+  private String refundType;
 }

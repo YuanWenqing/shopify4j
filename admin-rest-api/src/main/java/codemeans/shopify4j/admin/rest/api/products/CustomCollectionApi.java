@@ -3,7 +3,6 @@ package codemeans.shopify4j.admin.rest.api.products;
 import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.CustomCollection;
 import codemeans.shopify4j.admin.rest.model.products.CustomCollectionList;
-import codemeans.shopify4j.admin.rest.model.products.PublishedStatus;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +42,10 @@ public interface CustomCollectionApi {
     private DateTime updatedAtMax;
     private DateTime publishedAtMin;
     private DateTime publishedAtMax;
-    private PublishedStatus publishedStatus;
+    /**
+     * @see codemeans.shopify4j.admin.rest.model.enums.PublishedStatus
+     */
+    private String publishedStatus;
     private final List<String> fields = new ArrayList<>();
 
     public CustomCollectionApi.ListReq addId(long id) {
@@ -68,7 +70,10 @@ public interface CustomCollectionApi {
     private DateTime updatedAtMax;
     private DateTime publishedAtMin;
     private DateTime publishedAtMax;
-    private PublishedStatus publishedStatus;
+    /**
+     * @see codemeans.shopify4j.admin.rest.model.enums.PublishedStatus
+     */
+    private String publishedStatus;
 
   }
 }

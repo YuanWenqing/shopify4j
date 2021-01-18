@@ -1,6 +1,5 @@
 package codemeans.shopify4j.admin.rest.model.orders;
 
-import codemeans.shopify4j.admin.rest.model.discounts.DiscountType;
 import java.math.BigDecimal;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -15,6 +14,9 @@ public class AppliedDiscountCode {
 
   private String code;
   private BigDecimal amount;
-  private DiscountType type;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.DiscountType
+   */
+  private String type;
 
 }

@@ -1,5 +1,6 @@
 package codemeans.shopify4j.admin.rest.model.common;
 
+import codemeans.shopify4j.admin.rest.internal.ShopifyEnum;
 import codemeans.shopify4j.core.annotation.Required;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.AccessLevel;
@@ -43,7 +44,7 @@ public class Metafield {
   @Required
   private String valueType;
 
-  public enum ValueType {
+  public enum ValueType implements ShopifyEnum<ValueType> {
     string,
     integer,
     json_string

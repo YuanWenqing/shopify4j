@@ -4,8 +4,6 @@ import codemeans.shopify4j.admin.rest.api.Pipeline;
 import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.Product;
 import codemeans.shopify4j.admin.rest.model.products.ProductList;
-import codemeans.shopify4j.admin.rest.model.products.ProductStatus;
-import codemeans.shopify4j.admin.rest.model.products.PublishedStatus;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +48,10 @@ public interface ProductApi {
     private String vendor;
     private String handle;
     private String productType;
-    private ProductStatus status;
+    /**
+     * @see codemeans.shopify4j.admin.rest.model.enums.ProductStatus
+     */
+    private String status;
     private Long collectionId;
     private DateTime createdAtMin;
     private DateTime createdAtMax;
@@ -58,7 +59,10 @@ public interface ProductApi {
     private DateTime updatedAtMax;
     private DateTime publishedAtMin;
     private DateTime publishedAtMax;
-    private PublishedStatus publishedStatus;
+    /**
+     * @see codemeans.shopify4j.admin.rest.model.enums.PublishedStatus
+     */
+    private String publishedStatus;
     private final List<String> fields = new ArrayList<>();
     private final List<String> presentmentCurrencies = new ArrayList<>();
 
@@ -91,7 +95,10 @@ public interface ProductApi {
     private DateTime updatedAtMax;
     private DateTime publishedAtMin;
     private DateTime publishedAtMax;
-    private PublishedStatus publishedStatus;
+    /**
+     * @see codemeans.shopify4j.admin.rest.model.enums.PublishedStatus
+     */
+    private String publishedStatus;
 
   }
 }

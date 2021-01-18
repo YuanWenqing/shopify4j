@@ -23,9 +23,15 @@ public class Collection {
   private Long id;
   @Setter(AccessLevel.NONE)
   private DateTime publishedAt;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.PublishedScope
+   */
   @Setter(AccessLevel.NONE)
-  private PublishedScope publishedScope;
-  private SortOrder sortOrder;
+  private String publishedScope;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.SortOrder
+   */
+  private String sortOrder;
   private String templateSuffix;
   private String title;
   @Setter(AccessLevel.NONE)

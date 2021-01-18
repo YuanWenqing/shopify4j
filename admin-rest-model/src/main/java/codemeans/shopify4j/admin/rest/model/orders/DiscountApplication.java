@@ -1,9 +1,5 @@
 package codemeans.shopify4j.admin.rest.model.orders;
 
-import codemeans.shopify4j.admin.rest.model.discounts.AllocationMethod;
-import codemeans.shopify4j.admin.rest.model.discounts.DiscountValueType;
-import codemeans.shopify4j.admin.rest.model.discounts.TargetSelection;
-import codemeans.shopify4j.admin.rest.model.discounts.TargetType;
 import java.math.BigDecimal;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -16,12 +12,27 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class DiscountApplication {
 
-  private DiscountApplicationType type;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.DiscountApplicationType
+   */
+  private String type;
   private String title;
   private String description;
   private BigDecimal value;
-  private DiscountValueType valueType;
-  private AllocationMethod allocationMethod;
-  private TargetSelection targetSelection;
-  private TargetType targetType;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.DiscountValueType
+   */
+  private String valueType;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.AllocationMethod
+   */
+  private String allocationMethod;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.TargetSelection
+   */
+  private String targetSelection;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.TargetType
+   */
+  private String targetType;
 }

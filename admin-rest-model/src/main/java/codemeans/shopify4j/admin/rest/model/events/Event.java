@@ -28,7 +28,14 @@ public class Event {
   private Long subjectId;
   private String subjectType;
   /**
-   * see subclasses of {@link EventVerb}
+   * @see codemeans.shopify4j.admin.rest.model.enums.ArticleVerb
+   * @see codemeans.shopify4j.admin.rest.model.enums.BlogVerb
+   * @see codemeans.shopify4j.admin.rest.model.enums.CollectionVerb
+   * @see codemeans.shopify4j.admin.rest.model.enums.CommentVerb
+   * @see codemeans.shopify4j.admin.rest.model.enums.OrderVerb
+   * @see codemeans.shopify4j.admin.rest.model.enums.PageVerb
+   * @see codemeans.shopify4j.admin.rest.model.enums.PriceVerb
+   * @see codemeans.shopify4j.admin.rest.model.enums.ProductVerb
    */
   private String verb;
 

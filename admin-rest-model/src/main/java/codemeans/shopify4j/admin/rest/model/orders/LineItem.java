@@ -21,7 +21,10 @@ public class LineItem {
   private Boolean custom;
   private Integer fulfillableQuantity;
   private String fulfillmentService;
-  private ItemFulfillmentStatus fulfillmentStatus;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.ItemFulfillmentStatus
+   */
+  private String fulfillmentStatus;
   private Integer grams;
   private Long id;
   private BigDecimal price;

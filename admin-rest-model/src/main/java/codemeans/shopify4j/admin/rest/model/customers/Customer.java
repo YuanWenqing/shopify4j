@@ -52,15 +52,21 @@ public class Customer {
   @Setter(AccessLevel.NONE)
   private String lastOrderName;
   private Metafield metafield;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.MarketingOptInLevel
+   */
   @Setter(AccessLevel.NONE)
-  private MarketingOptInLevel marketingOptInLevel;
+  private String marketingOptInLevel;
   private String multipassIdentifier;
   private String note;
   @Setter(AccessLevel.NONE)
   private int ordersCount;
   private String phone;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.CustomerState
+   */
   @Setter(AccessLevel.NONE)
-  private CustomerState state;
+  private String state;
   @JsonIgnore
   private List<String> tags;
 
@@ -89,10 +95,13 @@ public class Customer {
   }
 
   private Boolean taxExempt;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.TaxExemption
+   */
   @Setter(AccessLevel.NONE)
-  private List<TaxExemption> taxExemptions;
+  private List<String> taxExemptions;
 
-  private Customer addTaxExemption(TaxExemption taxExemption) {
+  private Customer addTaxExemption(String taxExemption) {
     if (taxExemptions == null) {
       taxExemptions = new ArrayList<>();
     }
