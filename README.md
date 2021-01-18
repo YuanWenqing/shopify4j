@@ -64,7 +64,7 @@ Product = store.products.get(pid);
 
 ## APIs
 
-For now, supported apis:
+For now, supported apis can be checked in [`ShopifyStore`](./admin-rest-api/src/main/java/codemeans/shopify4j/admin/rest/sdk/ShopifyStore.java)
 
 * `store.collects()`
 * `store.collections()`
@@ -73,10 +73,11 @@ For now, supported apis:
 * `store.products()`
 * `store.productImages()`
 * `store.productVariants()`
+* ...
 
 ## Pipeline
 
-In some cases, multiple requests will be invoked to complete one business operation.
+Sometimes, it's necessary to invoke multiple requests to complete one business operation.
 
 For example, creation of a product with different images in some varaints needs steps below:
 
@@ -142,11 +143,11 @@ If information of your stores is saved in some persistent database, you can just
 
 ## (De)serialization
 
-Jackson is the default library for json serialization. Since it is not easy to configure root-wrapping for specific classes by Jackson until the future version 3.0, we adopt a convention for model definication: `@JsonRootName` is used as a signal to explicitly indicate whether root-wrapping is enabled.
+Jackson is the default json serialization library. Since it is not easy to configure root-wrapping for specific classes by Jackson until the future version 3.0, we adopt a convention for model definication: `@JsonRootName` is used as a signal to explicitly indicate whether root-wrapping is enabled.
 
 ## Enums
 
-`shopify4j` is a third-party sdk, thus it's impossible to track changes of Shopify API in time. For compatibility  and flexiblity, we don't use enums in Shopify model directly. But for convenience, we define almost all of the enums described in Shopify documentation and every enum type implements the interface `ShopifyEnum`. It's very simple to use pre-defined enums when requesting Shopify like this:
+`shopify4j` is a third-party sdk of Shopify, thus it's impossible to track changes of Shopify API exactly in time. For compatibility  and flexiblity, we don't use enums in Shopify model directly. But for convenience, we define almost all of the enums described in Shopify documentation and every enum type implements the interface `ShopifyEnum`. It's very simple to use pre-defined enums when requesting Shopify like this:
 
 ~~~java
 ProductApi.ListReq listReq = new ProductApi.ListReq()
