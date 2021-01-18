@@ -1,4 +1,4 @@
-package codemeans.shopify4j.admin.rest.model.annotation;
+package codemeans.shopify4j.core.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

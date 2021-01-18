@@ -1,6 +1,6 @@
 package codemeans.shopify4j.admin.rest.model.common;
 
-import codemeans.shopify4j.admin.rest.model.annotation.Required;
+import codemeans.shopify4j.core.annotation.Required;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.AccessLevel;
 import lombok.Data;
