@@ -33,5 +33,14 @@ public class Metafield {
   private String ownerId;
   private String ownerResource;
   private String value;
+  /**
+   * @see ValueType
+   */
   private String valueType;
+
+  public enum ValueType {
+    string,
+    integer,
+    json_string
+  }
 }
