@@ -131,4 +131,13 @@ public class DraftOrder {
   private DateTime updatedAt;
   private DraftOrderStatus status;
 
+  @Data
+  @Accessors(chain = true)
+  public static class ShippingLine {
+
+    private String handle;
+    private BigDecimal price;
+    private String title;
+    private Boolean custom;
+  }
 }

@@ -5,8 +5,10 @@ package codemeans.shopify4j.admin.rest.model.shipping;
  * @date: 2021-01-18
  */
 public enum FulfillmentStatus {
-
-  fulfilled,
-  partial,
-  not_eligible
+  pending,
+  open,
+  success,
+  cancelled,
+  error,
+  failure
 }

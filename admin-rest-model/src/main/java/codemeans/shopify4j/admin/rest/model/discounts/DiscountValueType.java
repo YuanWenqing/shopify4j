@@ -1,4 +1,4 @@
-package codemeans.shopify4j.admin.rest.model.orders;
+package codemeans.shopify4j.admin.rest.model.discounts;
 
 /**
  * @author: yuanwq
