@@ -144,3 +144,19 @@ If information of your stores is saved in some persistent database, you can just
 
 Jackson is the default library for json serialization. Since it is not easy to configure root-wrapping for specific classes by Jackson until the future version 3.0, we adopt a convention for model definication: `@JsonRootName` is used as a signal to explicitly indicate whether root-wrapping is enabled.
 
+## Enums
+
+`shopify4j` is a third-party sdk, thus it's impossible to track changes of Shopify API in time. For compatibility  and flexiblity, we don't use enums in Shopify model directly. But for convenience, we define almost all of the enums described in Shopify documentation and every enum type implements the interface `ShopifyEnum`. It's very simple to use pre-defined enums when requesting Shopify like this:
+
+~~~java
+ProductApi.ListReq listReq = new ProductApi.ListReq()
+  .setStatus(ProductStatus.active.shopifyValue())
+  .setPublishedStatus(PublishedStatus.any.shopifyValue());
+~~~
+
+If you want to cast a string value in response to an enum value, do like this:
+
+~~~java
+ProductStatus status = ShopifyEnum.asEnum("active", ProductStatus.class);
+~~~
+

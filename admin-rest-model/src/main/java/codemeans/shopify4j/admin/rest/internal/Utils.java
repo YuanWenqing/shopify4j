@@ -3,7 +3,6 @@ package codemeans.shopify4j.admin.rest.internal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -38,14 +37,5 @@ public class Utils {
       return null;
     }
     return StringUtils.join(tags, COMMA);
-  }
-
-  public static <T extends Enum<T> & ShopifyEnum> T getEnumValue(Class<T> enumType, String value) {
-    for (T t : EnumUtils.getEnumList(enumType)) {
-      if (StringUtils.equals(value, t.shopifyValue())) {
-        return t;
-      }
-    }
-    return null;
   }
 }
