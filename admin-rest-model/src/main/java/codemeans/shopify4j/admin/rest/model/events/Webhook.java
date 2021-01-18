@@ -32,7 +32,10 @@ public class Webhook {
     return this;
   }
 
-  private Format format;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.WebhookFormat
+   */
+  private String format;
 
   private Long id;
   private List<String> metafieldNamespaces;
@@ -59,9 +62,6 @@ public class Webhook {
    * @see EventTopics
    */
   private String topic;
-  private DateTime updated;
+  private DateTime updatedAt;
 
-  public enum Format {
-    json, xml
-  }
 }
