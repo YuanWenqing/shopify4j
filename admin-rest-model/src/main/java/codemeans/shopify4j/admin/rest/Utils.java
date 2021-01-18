@@ -1,4 +1,4 @@
-package codemeans.shopify4j.admin.rest.model;
+package codemeans.shopify4j.admin.rest;
 
 import java.util.Arrays;
 import java.util.List;
