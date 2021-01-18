@@ -24,7 +24,7 @@ public interface ProductVariantApi {
 
   ProductVariant create(long productId, ProductVariant req) throws ShopifyServerException;
 
-  ProductVariant update(ProductVariant req) throws ShopifyServerException;
+  ProductVariant update(long id, ProductVariant req) throws ShopifyServerException;
 
   void delete(long productId, long variantId) throws ShopifyServerException;
 

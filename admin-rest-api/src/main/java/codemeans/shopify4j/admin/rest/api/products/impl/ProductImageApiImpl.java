@@ -1,7 +1,5 @@
 package codemeans.shopify4j.admin.rest.api.products.impl;
 
-import static codemeans.shopify4j.admin.rest.internal.Utils.checkNotNull;
-
 import codemeans.shopify4j.admin.rest.api.products.ProductImageApi;
 import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.ProductImage;
@@ -70,9 +68,9 @@ public class ProductImageApiImpl implements ProductImageApi {
   }
 
   @Override
-  public ProductImage update(long productId, ProductImage req) throws ShopifyServerException {
-    checkNotNull(req.getId(), "Null ProductImage Id");
-    HttpRequest httpRequest = HttpRequest.of(singleEndpoint(productId, req.getId()))
+  public ProductImage update(long productId, long imageId, ProductImage req)
+      throws ShopifyServerException {
+    HttpRequest httpRequest = HttpRequest.of(singleEndpoint(productId, imageId))
         .setBody(req);
     return invoker.putJson(httpRequest, ProductImage.class);
   }

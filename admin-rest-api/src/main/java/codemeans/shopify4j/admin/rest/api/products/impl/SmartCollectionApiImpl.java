@@ -1,7 +1,5 @@
 package codemeans.shopify4j.admin.rest.api.products.impl;
 
-import static codemeans.shopify4j.admin.rest.internal.Utils.checkNotNull;
-
 import codemeans.shopify4j.admin.rest.api.products.SmartCollectionApi;
 import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.SmartCollection;
@@ -68,9 +66,8 @@ public class SmartCollectionApiImpl implements SmartCollectionApi {
   }
 
   @Override
-  public SmartCollection update(SmartCollection req) throws ShopifyServerException {
-    checkNotNull(req.getId(), "Null SmartCollection Id");
-    HttpRequest httpRequest = HttpRequest.of(singleEndpoint(req.getId()))
+  public SmartCollection update(long id, SmartCollection req) throws ShopifyServerException {
+    HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id))
         .setBody(req);
     return invoker.putJson(httpRequest, SmartCollection.class);
   }

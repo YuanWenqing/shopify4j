@@ -9,9 +9,11 @@ import codemeans.shopify4j.admin.rest.internal.ShopifyEnum;
 public enum FinancialStatus implements ShopifyEnum<FinancialStatus> {
   pending,
   authorized,
+  paid,
   partially_paid,
-  getPartially_paid,
-  partially_refunded,
+  unpaid,
   refunded,
-  voided
+  partially_refunded,
+  voided,
+  any,
 }

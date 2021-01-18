@@ -68,7 +68,7 @@ public abstract class ProductModifyPipeline implements ProductPipeline<Product> 
         && modifiedProduct.getImages() != null
         && modifiedProduct.getVariants() != null) {
       Product variantImageReq = buildVariantImageReq(modifiedProduct);
-      modifiedProduct = api.update(variantImageReq);
+      modifiedProduct = api.update(modifiedProduct.getId(), variantImageReq);
     }
     return modifiedProduct;
   }
@@ -127,7 +127,7 @@ public abstract class ProductModifyPipeline implements ProductPipeline<Product> 
     @Override
     protected Product modifyProduct(ProductApi api, Product modifyReq)
         throws ShopifyServerException {
-      return api.update(modifyReq);
+      return api.update(modifyReq.getId(), modifyReq);
     }
   }
 }
