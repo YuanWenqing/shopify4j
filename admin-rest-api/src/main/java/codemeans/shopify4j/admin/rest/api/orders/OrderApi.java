@@ -2,7 +2,9 @@ package codemeans.shopify4j.admin.rest.api.orders;
 
 import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.orders.Order;
+import codemeans.shopify4j.admin.rest.model.orders.Refund;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
@@ -25,7 +27,7 @@ public interface OrderApi {
 
   Order open(long id) throws ShopifyServerException;
 
-  Order cancel(long id) throws ShopifyServerException;
+  Order cancel(long id, CancelReq req) throws ShopifyServerException;
 
   Order create(Order req) throws ShopifyServerException;
 
@@ -102,4 +104,16 @@ public interface OrderApi {
     private String fulfillmentStatus;
   }
 
+  @Data
+  class CancelReq {
+
+    private BigDecimal amount;
+    private String currency;
+    /**
+     * @see codemeans.shopify4j.admin.rest.model.enums.CancelReason
+     */
+    private String reason;
+    private Boolean email;
+    private Refund refund;
+  }
 }

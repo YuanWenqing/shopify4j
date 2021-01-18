@@ -58,6 +58,17 @@ public class Refund {
   }
 
   @Setter(AccessLevel.NONE)
+  private List<RefundLineItem> refundLineItems;
+
+  public Refund addRefundLineItem(RefundLineItem refundLineItem) {
+    if (refundLineItems == null) {
+      refundLineItems = new ArrayList<>();
+    }
+    this.refundLineItems.add(refundLineItem);
+    return this;
+  }
+
+  @Setter(AccessLevel.NONE)
   private List<Transaction> transactions;
 
   public Refund addTransaction(Transaction transaction) {

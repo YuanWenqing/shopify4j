@@ -1,5 +1,7 @@
 package codemeans.shopify4j.admin.rest.sdk;
 
+import codemeans.shopify4j.admin.rest.api.orders.OrderApi;
+import codemeans.shopify4j.admin.rest.api.orders.impl.OrderApiImpl;
 import codemeans.shopify4j.admin.rest.api.products.CollectApi;
 import codemeans.shopify4j.admin.rest.api.products.CollectionApi;
 import codemeans.shopify4j.admin.rest.api.products.CustomCollectionApi;
@@ -34,6 +36,7 @@ public class DefaultShopifyStore implements ShopifyStore {
   private SmartCollectionApi smartCollectionApi;
   private ProductImageApi productImageApi;
   private ProductVariantApi productVariantApi;
+  private OrderApi orderApi;
 
   public DefaultShopifyStore(StoreSetting storeSetting, Invoker invoker) {
     this.storeSetting = storeSetting;
@@ -44,6 +47,7 @@ public class DefaultShopifyStore implements ShopifyStore {
   }
 
   private void initApis() {
+    // products
     productApi = ProductApiImpl.of(this);
     collectApi = CollectApiImpl.of(this);
     collectionApi = CollectionApiImpl.of(this);
@@ -51,6 +55,8 @@ public class DefaultShopifyStore implements ShopifyStore {
     smartCollectionApi = SmartCollectionApiImpl.of(this);
     productImageApi = ProductImageApiImpl.of(this);
     productVariantApi = ProductVariantApiImpl.of(this);
+    // orders
+    orderApi = OrderApiImpl.of(this);
   }
 
   @Override
@@ -103,4 +109,8 @@ public class DefaultShopifyStore implements ShopifyStore {
     return productVariantApi;
   }
 
+  @Override
+  public OrderApi orders() {
+    return orderApi;
+  }
 }

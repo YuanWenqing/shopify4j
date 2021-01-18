@@ -42,6 +42,12 @@ public interface ProductApi {
   class ListReq {
 
     private final List<Long> ids = new ArrayList<>();
+
+    public ListReq addId(long id) {
+      this.ids.add(id);
+      return this;
+    }
+
     private Integer limit;
     private Long sinceId;
     private String title;
@@ -64,17 +70,13 @@ public interface ProductApi {
      */
     private String publishedStatus;
     private final List<String> fields = new ArrayList<>();
-    private final List<String> presentmentCurrencies = new ArrayList<>();
-
-    public ListReq addId(long id) {
-      this.ids.add(id);
-      return this;
-    }
 
     public ListReq addField(String field) {
       this.fields.add(field);
       return this;
     }
+
+    private final List<String> presentmentCurrencies = new ArrayList<>();
 
     public ListReq addPresentmentCurrency(String presentmentCurrency) {
       this.presentmentCurrencies.add(presentmentCurrency);
