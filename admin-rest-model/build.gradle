@@ -1,5 +1,3 @@
-description "Java Model used for Shopify Admin REST API"
-
 dependencies {
     // lombok
     annotationProcessor("org.projectlombok:lombok:$lombokVersion")

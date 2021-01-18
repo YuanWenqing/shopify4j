@@ -107,8 +107,8 @@ subprojects {
         }
     }
     tasks.withType(Javadoc).all {
-        options.tags = [ "date" ]
-        options.addStringOption('Xdoclint:none', '-quiet')
+        options.tags = [ "date", "author" ]
+//        options.addStringOption('Xdoclint:none', '-quiet')
 //        enabled = false
     }
 
@@ -122,6 +122,19 @@ subprojects {
         println test.reports.html.entryPoint
     }
 
+}
+
+project(":shopify4j-core") {
+    description "Basic Concepts of Java SDK for Shopify"
+}
+project(":shopify4j-okhttp") {
+    description "Default Implementation of Request Invoker for Shopify4j"
+}
+project(":admin-rest-model") {
+    description "Java Model used for Shopify Admin REST API"
+}
+project(":admin-rest-api") {
+    description "Java SDK for Shopify Admin REST API"
 }
 
 // 配置发布
