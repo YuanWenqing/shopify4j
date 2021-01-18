@@ -1,8 +1,8 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
-import codemeans.shopify4j.admin.rest.model.Metafield;
+import codemeans.shopify4j.admin.rest.model.common.Metafield;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -49,7 +49,7 @@ public class ProductImage {
 
   public ProductImage addMetafield(Metafield metafield) {
     if (metafields == null) {
-      metafields = Lists.newArrayList();
+      metafields = new ArrayList<>();
     }
     metafields.add(metafield);
     return this;
@@ -57,7 +57,7 @@ public class ProductImage {
 
   public ProductImage addVariantId(long variantId) {
     if (variantIds == null) {
-      variantIds = Lists.newArrayList();
+      variantIds = new ArrayList<>();
     }
     variantIds.add(variantId);
     return this;

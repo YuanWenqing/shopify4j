@@ -6,7 +6,7 @@ import codemeans.shopify4j.admin.rest.ContextForTest;
 import codemeans.shopify4j.admin.rest.api.products.SmartCollectionApi;
 import codemeans.shopify4j.admin.rest.api.products.SmartCollectionApi.CountReq;
 import codemeans.shopify4j.admin.rest.api.products.SmartCollectionApi.ListReq;
-import codemeans.shopify4j.admin.rest.model.Count;
+import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.SmartCollection;
 import codemeans.shopify4j.admin.rest.model.products.SmartCollectionList;
 import codemeans.shopify4j.core.exception.ShopifyServerException;

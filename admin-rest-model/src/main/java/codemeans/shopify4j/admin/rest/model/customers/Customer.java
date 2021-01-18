@@ -1,11 +1,10 @@
 package codemeans.shopify4j.admin.rest.model.customers;
 
-import codemeans.shopify4j.admin.rest.model.Metafield;
+import codemeans.shopify4j.admin.rest.model.Utils;
+import codemeans.shopify4j.admin.rest.model.common.Metafield;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.Splitter;
-import com.google.common.collect.Lists;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +23,6 @@ import org.joda.time.DateTime;
 @Accessors(chain = true)
 @JsonRootName("customer")
 public class Customer {
-
-  private static final String COMMA = ",";
 
   private Boolean acceptsMarketing;
   @Setter(AccessLevel.NONE)
@@ -70,7 +67,7 @@ public class Customer {
 
   public Customer addTag(String tag) {
     if (tags == null) {
-      this.tags = Lists.newArrayList();
+      this.tags = new ArrayList<>();
     }
     this.tags.add(tag);
     return this;
@@ -83,17 +80,12 @@ public class Customer {
 
   @JsonProperty("tags")
   public String getTagsAsText() {
-    if (tags == null) {
-      return null;
-    }
-    return StringUtils.join(tags, COMMA);
+    return Utils.joinTags(tags);
   }
 
   @JsonProperty("tags")
   public Customer setTags(String tags) {
-    if (StringUtils.isNotBlank(tags)) {
-      this.tags = Lists.newArrayList(Splitter.on(COMMA).trimResults().splitToList(tags));
-    }
+    this.tags = Utils.splitTags(tags);
     return this;
   }
 

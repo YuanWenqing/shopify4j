@@ -1,11 +1,11 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
-import codemeans.shopify4j.admin.rest.model.Metafield;
+import codemeans.shopify4j.admin.rest.model.Utils;
+import codemeans.shopify4j.admin.rest.model.common.Metafield;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.Splitter;
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -21,8 +21,6 @@ import org.joda.time.DateTime;
 @Accessors(chain = true)
 @JsonRootName("product")
 public class Product {
-
-  private static final String COMMA = ",";
 
   private String bodyHtml;
   /**
@@ -42,7 +40,7 @@ public class Product {
 
   public Product addImage(ProductImage image) {
     if (images == null) {
-      images = Lists.newArrayList();
+      images = new ArrayList<>();
     }
     images.add(image);
     return this;
@@ -53,7 +51,7 @@ public class Product {
 
   public Product addOption(Option option) {
     if (options == null) {
-      options = Lists.newArrayList();
+      options = new ArrayList<>();
     }
     option.setPosition(options.size() + 1);
     options.add(option);
@@ -73,7 +71,7 @@ public class Product {
 
   public Product addTag(String tag) {
     if (tags == null) {
-      this.tags = Lists.newArrayList();
+      this.tags = new ArrayList<>();
     }
     this.tags.add(tag);
     return this;
@@ -86,17 +84,12 @@ public class Product {
 
   @JsonProperty("tags")
   public String getTagsAsText() {
-    if (tags == null) {
-      return null;
-    }
-    return StringUtils.join(tags, COMMA);
+    return Utils.joinTags(tags);
   }
 
   @JsonProperty("tags")
   public Product setTags(String tags) {
-    if (StringUtils.isNotBlank(tags)) {
-      this.tags = Lists.newArrayList(Splitter.on(COMMA).trimResults().splitToList(tags));
-    }
+    this.tags = Utils.splitTags(tags);
     return this;
   }
 
@@ -112,7 +105,7 @@ public class Product {
 
   public Product addVariant(ProductVariant variant) {
     if (variants == null) {
-      variants = Lists.newArrayList();
+      variants = new ArrayList<>();
     }
     variants.add(variant);
     return this;
@@ -125,7 +118,7 @@ public class Product {
 
   public Product addMetafield(Metafield metafield) {
     if (metafields == null) {
-      metafields = Lists.newArrayList();
+      metafields = new ArrayList<>();
     }
     metafields.add(metafield);
     return this;

@@ -1,8 +1,8 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
-import codemeans.shopify4j.admin.rest.model.Metafield;
+import codemeans.shopify4j.admin.rest.model.common.Metafield;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -29,7 +29,7 @@ public class Option {
 
   public Option addValue(String value) {
     if (values == null) {
-      values = Lists.newArrayList();
+      values = new ArrayList<>();
     }
     values.add(value);
     return this;
@@ -40,7 +40,7 @@ public class Option {
 
   public Option addMetafield(Metafield metafield) {
     if (metafields == null) {
-      metafields = Lists.newArrayList();
+      metafields = new ArrayList<>();
     }
     metafields.add(metafield);
     return this;

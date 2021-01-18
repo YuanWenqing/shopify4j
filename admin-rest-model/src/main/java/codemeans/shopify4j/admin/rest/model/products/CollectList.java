@@ -1,6 +1,6 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -18,7 +18,7 @@ public class CollectList {
 
   public CollectList addCollect(Collect collect) {
     if (collects == null) {
-      collects = Lists.newArrayList();
+      collects = new ArrayList<>();
     }
     this.collects.add(collect);
     return this;

@@ -1,5 +1,6 @@
 package codemeans.shopify4j.admin.rest.model.orders;
 
+import codemeans.shopify4j.admin.rest.model.Utils;
 import codemeans.shopify4j.admin.rest.model.common.MoneySet;
 import codemeans.shopify4j.admin.rest.model.common.NameValueAttribute;
 import codemeans.shopify4j.admin.rest.model.customers.Customer;
@@ -7,8 +8,6 @@ import codemeans.shopify4j.admin.rest.model.shipping.Fulfillment;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.Splitter;
-import com.google.common.collect.Lists;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,6 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 
 /**
@@ -27,8 +25,6 @@ import org.joda.time.DateTime;
 @Accessors(chain = true)
 @JsonRootName("order")
 public class Order {
-
-  private static final String COMMA = ",";
 
   private String appId;
   private OrderAddress billingAddress;
@@ -150,7 +146,7 @@ public class Order {
 
   public Order addTag(String tag) {
     if (tags == null) {
-      this.tags = Lists.newArrayList();
+      this.tags = new ArrayList<>();
     }
     this.tags.add(tag);
     return this;
@@ -163,17 +159,12 @@ public class Order {
 
   @JsonProperty("tags")
   public String getTagsAsText() {
-    if (tags == null) {
-      return null;
-    }
-    return StringUtils.join(tags, COMMA);
+    return Utils.joinTags(tags);
   }
 
   @JsonProperty("tags")
   public Order setTags(String tags) {
-    if (StringUtils.isNotBlank(tags)) {
-      this.tags = Lists.newArrayList(Splitter.on(COMMA).trimResults().splitToList(tags));
-    }
+    this.tags = Utils.splitTags(tags);
     return this;
   }
 

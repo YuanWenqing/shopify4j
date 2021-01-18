@@ -1,7 +1,7 @@
 package codemeans.shopify4j.admin.rest.api.products.impl;
 
 import codemeans.shopify4j.admin.rest.api.products.CollectApi;
-import codemeans.shopify4j.admin.rest.model.Count;
+import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.Collect;
 import codemeans.shopify4j.admin.rest.model.products.CollectList;
 import codemeans.shopify4j.admin.rest.sdk.ShopifyStore;

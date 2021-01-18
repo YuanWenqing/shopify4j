@@ -6,7 +6,6 @@ import codemeans.shopify4j.admin.rest.model.products.Product;
 import codemeans.shopify4j.admin.rest.model.products.ProductImage;
 import codemeans.shopify4j.admin.rest.model.products.ProductVariant;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
-import com.google.common.collect.Maps;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -82,8 +81,8 @@ public abstract class ProductModifyPipeline implements ProductPipeline<Product> 
   private Product buildVariantImageReq(Product modifiedProduct) {
     Product variantImageReq = new Product()
         .setId(modifiedProduct.getId());
-    Map<Integer, ProductImage> positionToImage = Maps
-        .uniqueIndex(modifiedProduct.getImages(), ProductImage::getPosition);
+    Map<Integer, ProductImage> positionToImage = new LinkedHashMap<>();
+    modifiedProduct.getImages().forEach(image -> positionToImage.put(image.getPosition(), image));
     for (ProductVariant variant : modifiedProduct.getVariants()) {
       ProductVariant variantWithImage = new ProductVariant()
           .setId(variant.getId())

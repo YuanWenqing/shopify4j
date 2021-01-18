@@ -1,11 +1,12 @@
-package codemeans.shopify4j.admin.rest.model;
+package codemeans.shopify4j.admin.rest.model.common;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import codemeans.shopify4j.core.annotation.Required;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import java.util.ArrayList;
-import java.util.List;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.joda.time.DateTime;
 
 /**
  * https://shopify.dev/docs/admin-api/rest/reference/metafield
@@ -15,22 +16,36 @@ import lombok.experimental.Accessors;
 @JsonRootName("metafield")
 public class Metafield {
 
-  private Long id;
   /**
    * https://en.wikipedia.org/wiki/ISO_8601 ，{@link org.joda.time.DateTime} 可解析
    */
-  @JsonProperty("created_at")
-  private String createdAt;
+  @Setter(AccessLevel.NONE)
+  private DateTime createdAt;
   /**
    * https://en.wikipedia.org/wiki/ISO_8601 ，{@link org.joda.time.DateTime} 可解析
    */
-  @JsonProperty("updated_at")
-  private String updatedAt;
-  private List<Metafield> metafields = new ArrayList<Metafield>();
+  @Setter(AccessLevel.NONE)
+  private DateTime updatedAt;
   private String description;
+  @Setter(AccessLevel.NONE)
+  private Long id;
+  @Required
   private String key;
+  @Required
   private String namespace;
+  private String ownerId;
+  private String ownerResource;
+  @Required
   private String value;
-  @JsonProperty("value_type")
+  /**
+   * @see ValueType
+   */
+  @Required
   private String valueType;
+
+  public enum ValueType {
+    string,
+    integer,
+    json_string
+  }
 }

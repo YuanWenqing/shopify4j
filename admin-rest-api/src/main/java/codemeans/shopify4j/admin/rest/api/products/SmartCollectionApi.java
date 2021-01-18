@@ -1,11 +1,11 @@
 package codemeans.shopify4j.admin.rest.api.products;
 
-import codemeans.shopify4j.admin.rest.model.Count;
+import codemeans.shopify4j.admin.rest.model.common.Count;
+import codemeans.shopify4j.admin.rest.model.products.PublishedStatus;
 import codemeans.shopify4j.admin.rest.model.products.SmartCollection;
 import codemeans.shopify4j.admin.rest.model.products.SmartCollectionList;
-import codemeans.shopify4j.admin.rest.model.products.PublishedStatus;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -33,7 +33,7 @@ public interface SmartCollectionApi {
   @Accessors(chain = true)
   class ListReq {
 
-    private final List<Long> ids = Lists.newArrayList();
+    private final List<Long> ids = new ArrayList<>();
     private Integer limit;
     private Long sinceId;
     private String title;
@@ -44,7 +44,7 @@ public interface SmartCollectionApi {
     private DateTime publishedAtMin;
     private DateTime publishedAtMax;
     private PublishedStatus publishedStatus;
-    private final List<String> fields = Lists.newArrayList();
+    private final List<String> fields = new ArrayList<>();
 
     public SmartCollectionApi.ListReq addId(long id) {
       this.ids.add(id);
