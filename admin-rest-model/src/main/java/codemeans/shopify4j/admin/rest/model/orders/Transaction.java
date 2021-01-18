@@ -26,13 +26,19 @@ public class Transaction {
   private DateTime createdAt;
   private String currency;
   private String deviceId;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.TransactionErrorCode
+   */
   @Setter(AccessLevel.NONE)
-  private TransactionErrorCode errorCode;
+  private String errorCode;
   private ExtendedAuthorizationAttributes extendedAuthorizationAttributes;
   private String gateway;
   @Setter(AccessLevel.NONE)
   private Long id;
-  private TransactionKind kind;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.TransactionKind
+   */
+  private String kind;
   @Setter(AccessLevel.NONE)
   private Long locationId;
   @Setter(AccessLevel.NONE)
@@ -43,10 +49,16 @@ public class Transaction {
   @Setter(AccessLevel.NONE)
   private DateTime processedAt;
   @Setter(AccessLevel.NONE)
-  private Map<String,Object> receipt;
+  private Map<String, Object> receipt;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.TransactionSource
+   */
   @Setter(AccessLevel.NONE)
-  private TransactionSource sourceName;
-  private TransactionStatus status;
+  private String sourceName;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.TransactionStatus
+   */
+  private String status;
   private Boolean test;
   private Long userId;
   private CurrencyExchangeAdjustment currencyExchangeAdjustment;

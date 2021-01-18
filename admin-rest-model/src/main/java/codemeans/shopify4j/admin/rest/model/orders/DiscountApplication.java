@@ -13,7 +13,10 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class DiscountApplication {
 
-  private DiscountApplicationType type;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.DiscountApplicationType
+   */
+  private String type;
   private String title;
   private String description;
   private BigDecimal value;

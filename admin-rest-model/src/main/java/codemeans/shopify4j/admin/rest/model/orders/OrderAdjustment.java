@@ -18,7 +18,10 @@ public class OrderAdjustment {
   private Long refundId;
   private BigDecimal amount;
   private BigDecimal taxAmount;
-  private OrderAdjustmentKind kind;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.OrderAdjustmentKind
+   */
+  private String kind;
   private String reason;
   private MoneySet amountSet;
   private MoneySet taxAmountSet;

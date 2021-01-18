@@ -18,7 +18,10 @@ public class RefundLineItem {
   private Long lineItemId;
   private Integer quantity;
   private Long locationId;
-  private RestockType restockType;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.RestockType
+   */
+  private String restockType;
   private BigDecimal subtotal;
   private BigDecimal totalTax;
   private MoneySet subtotalSet;

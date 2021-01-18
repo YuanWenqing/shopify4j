@@ -30,7 +30,10 @@ public class Order {
   private OrderAddress billingAddress;
   private String browserIp;
   private Boolean buyerAcceptsMarketing;
-  private CancelReason cancelReason;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.CancelReason
+   */
+  private String cancelReason;
   @Setter(AccessLevel.NONE)
   private DateTime cancelledAt;
   private String cartToken;
@@ -69,7 +72,10 @@ public class Order {
   }
 
   private String email;
-  private FinancialStatus financialStatus;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.FinancialStatus
+   */
+  private String financialStatus;
 
   @Setter(AccessLevel.NONE)
   private List<Fulfillment> fulfillments;
@@ -79,7 +85,10 @@ public class Order {
     return this;
   }
 
-  private OrderFulfillmentStatus fulfillmentStatus;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.OrderFulfillmentStatus
+   */
+  private String fulfillmentStatus;
   private Long id;
   private String landingSite;
   @Setter(AccessLevel.NONE)
@@ -121,7 +130,10 @@ public class Order {
   private String presentmentCurrency;
   @Setter(AccessLevel.NONE)
   private DateTime processedAt;
-  private ProcessingMethod processingMethod;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.ProcessingMethod
+   */
+  private String processingMethod;
   private String referringSite;
   @Setter(AccessLevel.NONE)
   private List<Refund> refunds;
