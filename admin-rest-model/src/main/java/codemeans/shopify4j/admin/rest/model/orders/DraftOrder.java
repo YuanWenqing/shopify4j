@@ -1,6 +1,6 @@
 package codemeans.shopify4j.admin.rest.model.orders;
 
-import codemeans.shopify4j.admin.rest.Utils;
+import codemeans.shopify4j.admin.rest.internal.Utils;
 import codemeans.shopify4j.admin.rest.model.common.NameValueAttribute;
 import codemeans.shopify4j.admin.rest.model.customers.Customer;
 import codemeans.shopify4j.admin.rest.model.customers.TaxExemption;

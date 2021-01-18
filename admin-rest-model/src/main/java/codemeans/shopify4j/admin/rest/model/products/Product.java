@@ -1,6 +1,6 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
-import codemeans.shopify4j.admin.rest.Utils;
+import codemeans.shopify4j.admin.rest.internal.Utils;
 import codemeans.shopify4j.admin.rest.model.common.Metafield;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

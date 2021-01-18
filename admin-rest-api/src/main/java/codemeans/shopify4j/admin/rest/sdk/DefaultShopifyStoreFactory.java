@@ -1,6 +1,6 @@
 package codemeans.shopify4j.admin.rest.sdk;
 
-import static codemeans.shopify4j.admin.rest.model.Utils.checkNotNull;
+import static codemeans.shopify4j.admin.rest.internal.Utils.checkNotNull;
 
 import codemeans.shopify4j.core.http.Invoker;
 import codemeans.shopify4j.core.store.StoreSetting;
