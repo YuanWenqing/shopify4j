@@ -2,6 +2,7 @@ package codemeans.shopify4j.admin.rest.api.orders;
 
 import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.orders.Order;
+import codemeans.shopify4j.admin.rest.model.orders.OrderList;
 import codemeans.shopify4j.admin.rest.model.orders.Refund;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
 import java.math.BigDecimal;
@@ -34,12 +35,6 @@ public interface OrderApi {
   Order update(Order req) throws ShopifyServerException;
 
   void delete(long id) throws ShopifyServerException;
-
-  @Data
-  class OrderList {
-
-    private List<Order> orders;
-  }
 
   @Data
   @Accessors(chain = true)

@@ -6,6 +6,7 @@ import codemeans.shopify4j.admin.rest.api.orders.OrderApi;
 import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.common.Empty;
 import codemeans.shopify4j.admin.rest.model.orders.Order;
+import codemeans.shopify4j.admin.rest.model.orders.OrderList;
 import codemeans.shopify4j.admin.rest.sdk.ShopifyStore;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
 import codemeans.shopify4j.core.http.HttpRequest;
