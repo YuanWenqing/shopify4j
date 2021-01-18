@@ -99,13 +99,18 @@ subprojects {
             println "sources: ${archivePath}"
         }
     }
-//    task javadocJar(type: Jar, dependsOn: javadoc) {
-//        classifier = 'javadoc'
-//        from javadoc.destinationDir
-//        doLast {
-//            println "sources: ${archivePath}"
-//        }
-//    }
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+        doLast {
+            println "sources: ${archivePath}"
+        }
+    }
+    tasks.withType(Javadoc).all {
+        options.tags = [ "date" ]
+        options.addStringOption('Xdoclint:none', '-quiet')
+//        enabled = false
+    }
 
     apply plugin: "jacoco"
     jacocoTestReport.dependsOn(test)
@@ -159,7 +164,7 @@ configure(subprojects.findAll { it.ext.publishable }) {
                 }
 
                 artifact sourcesJar
-//                artifact javadocJar
+                artifact javadocJar
 
                 pom {
                     name = project.name
