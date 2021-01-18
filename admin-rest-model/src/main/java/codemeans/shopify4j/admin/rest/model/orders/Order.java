@@ -1,6 +1,6 @@
 package codemeans.shopify4j.admin.rest.model.orders;
 
-import codemeans.shopify4j.admin.rest.model.Utils;
+import codemeans.shopify4j.admin.rest.Utils;
 import codemeans.shopify4j.admin.rest.model.common.MoneySet;
 import codemeans.shopify4j.admin.rest.model.common.NameValueAttribute;
 import codemeans.shopify4j.admin.rest.model.customers.Customer;
