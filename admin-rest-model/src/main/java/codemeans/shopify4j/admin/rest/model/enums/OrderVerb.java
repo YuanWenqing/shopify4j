@@ -1,10 +1,12 @@
-package codemeans.shopify4j.admin.rest.model.events;
+package codemeans.shopify4j.admin.rest.model.enums;
+
+import codemeans.shopify4j.admin.rest.internal.ShopifyEnum;
 
 /**
  * @author: yuanwq
  * @date: 2021-01-11
  */
-public enum OrderVerb implements EventVerb {
+public enum OrderVerb implements ShopifyEnum<OrderVerb> {
   authorization_failure,
   authorization_pending,
   authorization_success,
