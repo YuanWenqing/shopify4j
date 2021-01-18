@@ -1,6 +1,6 @@
-package codemeans.shopify4j.admin.rest.model.customers;
+package codemeans.shopify4j.admin.rest.model.orders;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.math.BigDecimal;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -10,10 +10,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class CustomerAddress {
-
-  private Long id;
-  private Long customerId;
+public class OrderAddress {
 
   private String firstName;
   private String lastName;
@@ -25,11 +22,10 @@ public class CustomerAddress {
   private String provinceCode;
   private String country;
   private String countryCode;
-  private String countryName;
   private String zip;
+  private BigDecimal latitude;
+  private BigDecimal longitude;
   private String phone;
   private String name;
 
-  @JsonProperty("default")
-  private Boolean ifDefault;
 }
