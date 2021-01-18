@@ -1,10 +1,12 @@
-package codemeans.shopify4j.admin.rest.model.shipping;
+package codemeans.shopify4j.admin.rest.model.enums;
+
+import codemeans.shopify4j.admin.rest.internal.ShopifyEnum;
 
 /**
  * @author: yuanwq
  * @date: 2021-01-18
  */
-public enum ShipmentStatus {
+public enum ShipmentStatus implements ShopifyEnum<ShipmentStatus> {
   label_printed,
   label_purchased,
   attempted_delivery,

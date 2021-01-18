@@ -36,8 +36,14 @@ public class Fulfillment {
   private Long orderId;
   private Receipt receipt;
   private String service;
-  private ShipmentStatus shipmentStatus;
-  private FulfillmentStatus status;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.ShipmentStatus
+   */
+  private String shipmentStatus;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.FulfillmentStatus
+   */
+  private String status;
   private String trackingCompany;
   @Setter(AccessLevel.NONE)
   private List<String> trackingNumbers;
