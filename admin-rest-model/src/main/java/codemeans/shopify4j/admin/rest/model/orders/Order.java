@@ -15,7 +15,6 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 
 /**
@@ -26,8 +25,6 @@ import org.joda.time.DateTime;
 @Accessors(chain = true)
 @JsonRootName("order")
 public class Order {
-
-  private static final String COMMA = ",";
 
   private String appId;
   private OrderAddress billingAddress;
@@ -162,10 +159,7 @@ public class Order {
 
   @JsonProperty("tags")
   public String getTagsAsText() {
-    if (tags == null) {
-      return null;
-    }
-    return StringUtils.join(tags, COMMA);
+    return Utils.joinTags(tags);
   }
 
   @JsonProperty("tags")

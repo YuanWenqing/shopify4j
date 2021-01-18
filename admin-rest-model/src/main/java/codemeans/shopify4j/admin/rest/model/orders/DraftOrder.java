@@ -26,8 +26,6 @@ import org.joda.time.DateTime;
 @JsonRootName("draft_order")
 public class DraftOrder {
 
-  private static final String COMMA = ",";
-
   private Long id;
   private Long orderId;
   private String name;
@@ -80,10 +78,7 @@ public class DraftOrder {
 
   @JsonProperty("tags")
   public String getTagsAsText() {
-    if (tags == null) {
-      return null;
-    }
-    return StringUtils.join(tags, COMMA);
+    return Utils.joinTags(tags);
   }
 
   @JsonProperty("tags")

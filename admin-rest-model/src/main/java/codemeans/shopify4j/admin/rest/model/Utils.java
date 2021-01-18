@@ -1,6 +1,5 @@
 package codemeans.shopify4j.admin.rest.model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,11 +27,15 @@ public class Utils {
     if (tags == null) {
       return null;
     }
-    if (StringUtils.isBlank(tags)) {
-      return new ArrayList<>();
-    }
-    return Arrays.stream(tags.split(COMMA))
+    return Arrays.stream(StringUtils.splitByWholeSeparator(tags, COMMA))
         .map(String::trim)
         .collect(Collectors.toList());
+  }
+
+  public static String joinTags(List<String> tags) {
+    if (tags == null) {
+      return null;
+    }
+    return StringUtils.join(tags, COMMA);
   }
 }

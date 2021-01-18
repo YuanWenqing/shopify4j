@@ -24,8 +24,6 @@ import org.joda.time.DateTime;
 @JsonRootName("customer")
 public class Customer {
 
-  private static final String COMMA = ",";
-
   private Boolean acceptsMarketing;
   @Setter(AccessLevel.NONE)
   private DateTime acceptsMarketingUpdatedAt;
@@ -82,10 +80,7 @@ public class Customer {
 
   @JsonProperty("tags")
   public String getTagsAsText() {
-    if (tags == null) {
-      return null;
-    }
-    return StringUtils.join(tags, COMMA);
+    return Utils.joinTags(tags);
   }
 
   @JsonProperty("tags")

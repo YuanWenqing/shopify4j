@@ -22,8 +22,6 @@ import org.joda.time.DateTime;
 @JsonRootName("product")
 public class Product {
 
-  private static final String COMMA = ",";
-
   private String bodyHtml;
   /**
    * https://en.wikipedia.org/wiki/ISO_8601
@@ -86,10 +84,7 @@ public class Product {
 
   @JsonProperty("tags")
   public String getTagsAsText() {
-    if (tags == null) {
-      return null;
-    }
-    return StringUtils.join(tags, COMMA);
+    return Utils.joinTags(tags);
   }
 
   @JsonProperty("tags")
