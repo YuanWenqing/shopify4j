@@ -59,7 +59,7 @@ public class Webhook {
   }
 
   /**
-   * @see EventTopics
+   * @see codemeans.shopify4j.admin.rest.model.enums.EventTopic
    */
   private String topic;
   private DateTime updatedAt;
