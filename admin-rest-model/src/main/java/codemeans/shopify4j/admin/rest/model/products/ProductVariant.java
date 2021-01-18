@@ -1,7 +1,6 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
 import codemeans.shopify4j.admin.rest.model.common.Metafield;
-import codemeans.shopify4j.admin.rest.model.enums.WeightUnit;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -59,7 +58,7 @@ public class ProductVariant {
   /**
    * @see codemeans.shopify4j.admin.rest.model.enums.WeightUnit
    */
-  private WeightUnit weightUnit;
+  private String weightUnit;
 
   @Setter(AccessLevel.NONE)
   private List<Metafield> metafields;

@@ -3,8 +3,8 @@ package codemeans.shopify4j.core.jackson;
 import static junit.framework.TestCase.assertEquals;
 
 import codemeans.shopify4j.admin.rest.api.products.ProductApi.CountReq;
-import codemeans.shopify4j.admin.rest.model.products.Product;
 import codemeans.shopify4j.admin.rest.model.enums.PublishedScope;
+import codemeans.shopify4j.admin.rest.model.products.Product;
 import codemeans.shopify4j.core.exception.SerializingException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -40,7 +40,7 @@ public class TestJacksonCodec {
   @Test
   public void testConvertAsQueryMap() {
     Product product = new Product()
-        .setPublishedScope(PublishedScope.GLOBAL);
+        .setPublishedScope(PublishedScope.GLOBAL.shopifyValue());
     Map<String, String> map = codec.asQueryMap(product);
     System.out.println(map);
     assertEquals("global", map.get("published_scope"));
