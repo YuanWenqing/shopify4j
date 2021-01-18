@@ -3,7 +3,7 @@ package codemeans.shopify4j.admin.rest.api.products.impl;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import codemeans.shopify4j.admin.rest.api.products.CustomCollectionApi;
-import codemeans.shopify4j.admin.rest.model.Count;
+import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.CustomCollection;
 import codemeans.shopify4j.admin.rest.model.products.CustomCollectionList;
 import codemeans.shopify4j.admin.rest.sdk.ShopifyStore;

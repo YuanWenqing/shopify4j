@@ -3,7 +3,7 @@ package codemeans.shopify4j.admin.rest.api.products.impl;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import codemeans.shopify4j.admin.rest.api.products.ProductImageApi;
-import codemeans.shopify4j.admin.rest.model.Count;
+import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.ProductImage;
 import codemeans.shopify4j.admin.rest.model.products.ProductImageList;
 import codemeans.shopify4j.admin.rest.sdk.ShopifyStore;

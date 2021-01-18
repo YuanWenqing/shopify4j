@@ -4,7 +4,7 @@ import static junit.framework.TestCase.assertEquals;
 
 import codemeans.shopify4j.admin.rest.ContextForTest;
 import codemeans.shopify4j.admin.rest.api.products.ProductVariantApi;
-import codemeans.shopify4j.admin.rest.model.Count;
+import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.ProductVariant;
 import codemeans.shopify4j.admin.rest.model.products.ProductVariantList;
 import codemeans.shopify4j.core.exception.ShopifyServerException;

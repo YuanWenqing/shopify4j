@@ -4,7 +4,7 @@ import codemeans.shopify4j.admin.rest.ContextForTest;
 import codemeans.shopify4j.admin.rest.api.products.ProductApi;
 import codemeans.shopify4j.admin.rest.api.products.ProductApi.CountReq;
 import codemeans.shopify4j.admin.rest.api.products.ProductApi.ListReq;
-import codemeans.shopify4j.admin.rest.model.Count;
+import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.Product;
 import codemeans.shopify4j.admin.rest.model.products.ProductList;
 import codemeans.shopify4j.core.exception.ShopifyServerException;

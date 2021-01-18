@@ -1,6 +1,6 @@
 package codemeans.shopify4j.admin.rest.api.products;
 
-import codemeans.shopify4j.admin.rest.model.Count;
+import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.SmartCollection;
 import codemeans.shopify4j.admin.rest.model.products.SmartCollectionList;
 import codemeans.shopify4j.admin.rest.model.products.PublishedStatus;
