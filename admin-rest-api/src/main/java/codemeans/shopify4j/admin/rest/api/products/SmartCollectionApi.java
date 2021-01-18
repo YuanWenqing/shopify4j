@@ -1,7 +1,6 @@
 package codemeans.shopify4j.admin.rest.api.products;
 
 import codemeans.shopify4j.admin.rest.model.common.Count;
-import codemeans.shopify4j.admin.rest.model.products.PublishedStatus;
 import codemeans.shopify4j.admin.rest.model.products.SmartCollection;
 import codemeans.shopify4j.admin.rest.model.products.SmartCollectionList;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
@@ -43,7 +42,10 @@ public interface SmartCollectionApi {
     private DateTime updatedAtMax;
     private DateTime publishedAtMin;
     private DateTime publishedAtMax;
-    private PublishedStatus publishedStatus;
+    /**
+     * @see codemeans.shopify4j.admin.rest.model.enums.PublishedStatus
+     */
+    private String publishedStatus;
     private final List<String> fields = new ArrayList<>();
 
     public SmartCollectionApi.ListReq addId(long id) {
@@ -68,7 +70,10 @@ public interface SmartCollectionApi {
     private DateTime updatedAtMax;
     private DateTime publishedAtMin;
     private DateTime publishedAtMax;
-    private PublishedStatus publishedStatus;
+    /**
+     * @see codemeans.shopify4j.admin.rest.model.enums.PublishedStatus
+     */
+    private String publishedStatus;
 
   }
 }

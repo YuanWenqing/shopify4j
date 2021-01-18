@@ -4,7 +4,7 @@ import static junit.framework.TestCase.assertEquals;
 
 import codemeans.shopify4j.admin.rest.api.products.ProductApi.CountReq;
 import codemeans.shopify4j.admin.rest.model.products.Product;
-import codemeans.shopify4j.admin.rest.model.products.PublishedScope;
+import codemeans.shopify4j.admin.rest.model.enums.PublishedScope;
 import codemeans.shopify4j.core.exception.SerializingException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

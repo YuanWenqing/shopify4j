@@ -1,6 +1,7 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
 import codemeans.shopify4j.admin.rest.model.common.Metafield;
+import codemeans.shopify4j.admin.rest.model.enums.WeightUnit;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -32,7 +33,10 @@ public class ProductVariant {
   private Long imageId;
   private Long inventoryItemId;
   private String inventoryManagement;
-  private InventoryPolicy inventoryPolicy = InventoryPolicy.DENY;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.InventoryPolicy
+   */
+  private String inventoryPolicy;
   @Setter(AccessLevel.NONE)
   private int inventoryQuantity;
   private String option1;
@@ -52,6 +56,9 @@ public class ProductVariant {
   @Setter(AccessLevel.NONE)
   private DateTime updatedAt;
   private Integer weight;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.WeightUnit
+   */
   private WeightUnit weightUnit;
 
   @Setter(AccessLevel.NONE)

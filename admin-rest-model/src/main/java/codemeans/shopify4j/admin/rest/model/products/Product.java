@@ -63,8 +63,14 @@ public class Product {
    * https://en.wikipedia.org/wiki/ISO_8601
    */
   private DateTime publishedAt;
-  private PublishedScope publishedScope;
-  private ProductStatus status;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.PublishedScope
+   */
+  private String publishedScope;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.ProductStatus
+   */
+  private String status;
   @JsonIgnore
   private List<String> tags;
 

@@ -1,5 +1,6 @@
-package codemeans.shopify4j.admin.rest.model.products;
+package codemeans.shopify4j.admin.rest.model.enums;
 
+import codemeans.shopify4j.admin.rest.internal.ShopifyEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -8,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author: yuanwq
  * @date: 2021-01-15
  */
-public enum SortOrder {
+public enum SortOrder implements ShopifyEnum<SortOrder> {
 
   @JsonProperty("alpha-asc")
   ALPHA_ASC,

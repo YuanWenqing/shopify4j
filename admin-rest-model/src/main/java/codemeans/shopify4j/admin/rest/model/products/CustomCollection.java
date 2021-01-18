@@ -23,8 +23,14 @@ public class CustomCollection {
   private Boolean published;
   @Setter(AccessLevel.NONE)
   private DateTime publishedAt;
-  private PublishedScope publishedScope;
-  private SortOrder sortOrder;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.PublishedScope
+   */
+  private String publishedScope;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.SortOrder
+   */
+  private String sortOrder;
   private String templateSuffix;
   private String title;
   @Setter(AccessLevel.NONE)

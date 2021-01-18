@@ -24,7 +24,10 @@ public class SmartCollection {
   private CollectionImage image;
   @Setter(AccessLevel.NONE)
   private DateTime publishedAt;
-  private PublishedScope publishedScope;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.PublishedScope
+   */
+  private String publishedScope;
   private final List<Rule> rules = new ArrayList<>();
 
   public SmartCollection addRule(Rule rule) {
@@ -33,7 +36,10 @@ public class SmartCollection {
   }
 
   private Boolean disjunctive;
-  private SortOrder sortOrder;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.SortOrder
+   */
+  private String sortOrder;
   private String templateSuffix;
   private String title;
   @Setter(AccessLevel.NONE)
