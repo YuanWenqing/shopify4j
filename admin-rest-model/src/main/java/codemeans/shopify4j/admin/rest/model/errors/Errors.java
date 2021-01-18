@@ -1,6 +1,6 @@
 package codemeans.shopify4j.admin.rest.model.errors;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
 
@@ -11,5 +11,5 @@ import lombok.Data;
 @Data
 public class Errors {
 
-  private List<Error> errors = Lists.newArrayList();
+  private List<Error> errors = new ArrayList<>();
 }

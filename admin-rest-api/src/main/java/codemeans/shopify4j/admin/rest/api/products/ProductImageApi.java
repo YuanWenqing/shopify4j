@@ -4,7 +4,7 @@ import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.ProductImage;
 import codemeans.shopify4j.admin.rest.model.products.ProductImageList;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -32,7 +32,7 @@ public interface ProductImageApi {
   class ListReq {
 
     private Long sinceId;
-    private final List<String> fields = Lists.newArrayList();
+    private final List<String> fields = new ArrayList<>();
 
     public ProductImageApi.ListReq addField(String field) {
       this.fields.add(field);

@@ -1,13 +1,12 @@
 package codemeans.shopify4j.admin.rest.model.orders;
 
+import codemeans.shopify4j.admin.rest.model.Utils;
 import codemeans.shopify4j.admin.rest.model.common.NameValueAttribute;
 import codemeans.shopify4j.admin.rest.model.customers.Customer;
 import codemeans.shopify4j.admin.rest.model.customers.TaxExemption;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.Splitter;
-import com.google.common.collect.Lists;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +67,7 @@ public class DraftOrder {
 
   public DraftOrder addTag(String tag) {
     if (tags == null) {
-      this.tags = Lists.newArrayList();
+      this.tags = new ArrayList<>();
     }
     this.tags.add(tag);
     return this;
@@ -89,9 +88,7 @@ public class DraftOrder {
 
   @JsonProperty("tags")
   public DraftOrder setTags(String tags) {
-    if (StringUtils.isNotBlank(tags)) {
-      this.tags = Lists.newArrayList(Splitter.on(COMMA).trimResults().splitToList(tags));
-    }
+    this.tags = Utils.splitTags(tags);
     return this;
   }
 

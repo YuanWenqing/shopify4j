@@ -1,7 +1,7 @@
 package codemeans.shopify4j.admin.rest.sdk;
 
-import com.google.common.collect.Maps;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * delegate to another {@link ShopifyStoreFactory} and cache created {@link ShopifyStore}
@@ -13,7 +13,7 @@ public class CachedShopifyStoreFactory implements ShopifyStoreFactory {
 
   private final ShopifyStoreFactory delegate;
 
-  private final Map<String, ShopifyStore> storeMap = Maps.newConcurrentMap();
+  private final Map<String, ShopifyStore> storeMap = new ConcurrentHashMap<>();
 
   private CachedShopifyStoreFactory(ShopifyStoreFactory delegate) {
     this.delegate = delegate;

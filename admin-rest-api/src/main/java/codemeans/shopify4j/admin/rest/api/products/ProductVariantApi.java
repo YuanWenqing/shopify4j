@@ -4,7 +4,7 @@ import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.ProductVariant;
 import codemeans.shopify4j.admin.rest.model.products.ProductVariantList;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -33,7 +33,7 @@ public interface ProductVariantApi {
   class ListReq {
 
     private Integer limit;
-    private final List<String> presentmentCurrencies = Lists.newArrayList();
+    private final List<String> presentmentCurrencies = new ArrayList<>();
 
     public ListReq addPresentmentCurrency(String presentmentCurrency) {
       this.presentmentCurrencies.add(presentmentCurrency);
@@ -41,7 +41,7 @@ public interface ProductVariantApi {
     }
 
     private Long sinceId;
-    private final List<String> fields = Lists.newArrayList();
+    private final List<String> fields = new ArrayList<>();
 
     public ListReq addField(String field) {
       this.fields.add(field);

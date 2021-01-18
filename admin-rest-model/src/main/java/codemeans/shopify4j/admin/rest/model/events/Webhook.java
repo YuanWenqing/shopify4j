@@ -1,7 +1,7 @@
 package codemeans.shopify4j.admin.rest.model.events;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -26,7 +26,7 @@ public class Webhook {
 
   public Webhook addField(String field) {
     if (fields == null) {
-      fields = Lists.newArrayList();
+      fields = new ArrayList<>();
     }
     fields.add(field);
     return this;
@@ -39,7 +39,7 @@ public class Webhook {
 
   public Webhook addMetafieldNamespace(String namespace) {
     if (metafieldNamespaces == null) {
-      metafieldNamespaces = Lists.newArrayList();
+      metafieldNamespaces = new ArrayList<>();
     }
     metafieldNamespaces.add(namespace);
     return this;
@@ -49,7 +49,7 @@ public class Webhook {
 
   public Webhook addPrivateMetafieldNamespace(String namespace) {
     if (privateMetafieldNamespaces == null) {
-      privateMetafieldNamespaces = Lists.newArrayList();
+      privateMetafieldNamespaces = new ArrayList<>();
     }
     privateMetafieldNamespaces.add(namespace);
     return this;

@@ -1,6 +1,6 @@
 package codemeans.shopify4j.admin.rest.api.products.impl;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static codemeans.shopify4j.admin.rest.model.Utils.checkNotNull;
 
 import codemeans.shopify4j.admin.rest.api.products.ProductImageApi;
 import codemeans.shopify4j.admin.rest.model.common.Count;
