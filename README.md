@@ -140,3 +140,7 @@ Product productFromStore2 = storeFactory.getStore(domain2).products().get(pid2);
 
 If information of your stores is saved in some persistent database, you can just implement another `StoreSettingStorage` to retrieve data and build out a `StoreSetting`.
 
+## (De)serialization
+
+Jackson is the default library for json serialization. Since it is not easy to configure root-wrapping for specific classes by Jackson until the future version 3.0, we adopt a convention for model definication: `@JsonRootName` is used as a signal to explicitly indicate whether root-wrapping is enabled.
+
