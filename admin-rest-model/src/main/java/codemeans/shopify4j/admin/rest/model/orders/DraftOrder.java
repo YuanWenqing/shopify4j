@@ -3,7 +3,7 @@ package codemeans.shopify4j.admin.rest.model.orders;
 import codemeans.shopify4j.admin.rest.internal.Utils;
 import codemeans.shopify4j.admin.rest.model.common.NameValueAttribute;
 import codemeans.shopify4j.admin.rest.model.customers.Customer;
-import codemeans.shopify4j.admin.rest.model.customers.TaxExemption;
+import codemeans.shopify4j.admin.rest.model.enums.TaxExemption;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -87,10 +87,13 @@ public class DraftOrder {
   }
 
   private Boolean taxExempt;
+  /**
+   * @see codemeans.shopify4j.admin.rest.model.enums.TaxExemption
+   */
   @Setter(AccessLevel.NONE)
-  private List<TaxExemption> taxExemptions;
+  private List<String> taxExemptions;
 
-  private DraftOrder addTaxExemption(TaxExemption taxExemption) {
+  private DraftOrder addTaxExemption(String taxExemption) {
     if (taxExemptions == null) {
       taxExemptions = new ArrayList<>();
     }

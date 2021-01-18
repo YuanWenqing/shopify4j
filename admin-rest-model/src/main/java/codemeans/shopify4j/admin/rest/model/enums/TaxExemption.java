@@ -1,10 +1,12 @@
-package codemeans.shopify4j.admin.rest.model.customers;
+package codemeans.shopify4j.admin.rest.model.enums;
+
+import codemeans.shopify4j.admin.rest.internal.ShopifyEnum;
 
 /**
  * @author: yuanwq
  * @date: 2021-01-18
  */
-public enum TaxExemption {
+public enum TaxExemption implements ShopifyEnum<TaxExemption> {
 
   EXEMPT_ALL,
   CA_STATUS_CARD_EXEMPTION,
@@ -27,5 +29,10 @@ public enum TaxExemption {
   CA_MB_FARMER_EXEMPTION,
   CA_NS_FARMER_EXEMPTION,
   CA_SK_FARMER_EXEMPTION,
+  ;
 
+  @Override
+  public String shopifyValue() {
+    return name().toUpperCase();
+  }
 }
