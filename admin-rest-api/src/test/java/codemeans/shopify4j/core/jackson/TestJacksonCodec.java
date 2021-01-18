@@ -40,7 +40,7 @@ public class TestJacksonCodec {
   @Test
   public void testConvertAsQueryMap() {
     Product product = new Product()
-        .setPublishedScope(PublishedScope.GLOBAL.shopifyValue());
+        .setPublishedScope(PublishedScope.global.shopifyValue());
     Map<String, String> map = codec.asQueryMap(product);
     System.out.println(map);
     assertEquals("global", map.get("published_scope"));
