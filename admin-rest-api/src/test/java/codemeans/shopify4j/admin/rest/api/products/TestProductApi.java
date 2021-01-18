@@ -1,7 +1,6 @@
-package codemeans.shopify4j.admin.rest.api;
+package codemeans.shopify4j.admin.rest.api.products;
 
 import codemeans.shopify4j.admin.rest.ContextForTest;
-import codemeans.shopify4j.admin.rest.api.products.ProductApi;
 import codemeans.shopify4j.admin.rest.api.products.ProductApi.CountReq;
 import codemeans.shopify4j.admin.rest.api.products.ProductApi.ListReq;
 import codemeans.shopify4j.admin.rest.model.common.Count;

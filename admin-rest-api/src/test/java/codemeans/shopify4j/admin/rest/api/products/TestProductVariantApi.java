@@ -1,9 +1,8 @@
-package codemeans.shopify4j.admin.rest.api;
+package codemeans.shopify4j.admin.rest.api.products;
 
 import static junit.framework.TestCase.assertEquals;
 
 import codemeans.shopify4j.admin.rest.ContextForTest;
-import codemeans.shopify4j.admin.rest.api.products.ProductVariantApi;
 import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.ProductVariant;
 import codemeans.shopify4j.admin.rest.model.products.ProductVariantList;

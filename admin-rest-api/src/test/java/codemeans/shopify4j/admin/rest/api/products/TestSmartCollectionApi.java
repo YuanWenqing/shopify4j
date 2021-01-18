@@ -1,9 +1,8 @@
-package codemeans.shopify4j.admin.rest.api;
+package codemeans.shopify4j.admin.rest.api.products;
 
 import static junit.framework.TestCase.assertEquals;
 
 import codemeans.shopify4j.admin.rest.ContextForTest;
-import codemeans.shopify4j.admin.rest.api.products.SmartCollectionApi;
 import codemeans.shopify4j.admin.rest.api.products.SmartCollectionApi.CountReq;
 import codemeans.shopify4j.admin.rest.api.products.SmartCollectionApi.ListReq;
 import codemeans.shopify4j.admin.rest.model.common.Count;

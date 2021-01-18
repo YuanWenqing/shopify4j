@@ -1,11 +1,9 @@
-package codemeans.shopify4j.admin.rest.api;
+package codemeans.shopify4j.admin.rest.api.products;
 
 import static junit.framework.TestCase.assertEquals;
 
 import codemeans.shopify4j.admin.rest.ContextForTest;
-import codemeans.shopify4j.admin.rest.api.products.CollectApi;
 import codemeans.shopify4j.admin.rest.api.products.CollectApi.ListReq;
-import codemeans.shopify4j.admin.rest.api.products.CollectionApi;
 import codemeans.shopify4j.admin.rest.model.products.Collect;
 import codemeans.shopify4j.admin.rest.model.products.CollectList;
 import codemeans.shopify4j.admin.rest.model.products.Collection;
