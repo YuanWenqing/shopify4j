@@ -1,7 +1,5 @@
 package codemeans.shopify4j.admin.rest.api.products.impl;
 
-import static codemeans.shopify4j.admin.rest.internal.Utils.checkNotNull;
-
 import codemeans.shopify4j.admin.rest.api.products.CustomCollectionApi;
 import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.CustomCollection;
@@ -68,9 +66,8 @@ public class CustomCollectionApiImpl implements CustomCollectionApi {
   }
 
   @Override
-  public CustomCollection update(CustomCollection req) throws ShopifyServerException {
-    checkNotNull(req.getId(), "Null CustomCollection Id");
-    HttpRequest httpRequest = HttpRequest.of(singleEndpoint(req.getId()))
+  public CustomCollection update(long id, CustomCollection req) throws ShopifyServerException {
+    HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id))
         .setBody(req);
     return invoker.putJson(httpRequest, CustomCollection.class);
   }

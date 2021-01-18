@@ -1,7 +1,5 @@
 package codemeans.shopify4j.admin.rest.api.orders.impl;
 
-import static codemeans.shopify4j.admin.rest.internal.Utils.checkNotNull;
-
 import codemeans.shopify4j.admin.rest.api.orders.OrderApi;
 import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.common.Empty;
@@ -73,9 +71,8 @@ public class OrderApiImpl implements OrderApi {
   }
 
   @Override
-  public Order update(Order req) throws ShopifyServerException {
-    checkNotNull(req.getId(), "Null Order Id");
-    HttpRequest httpRequest = HttpRequest.of(singleEndpoint(req.getId()))
+  public Order update(long id, Order req) throws ShopifyServerException {
+    HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id))
         .setBody(req);
     return invoker.putJson(httpRequest, Order.class);
   }

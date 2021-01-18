@@ -1,7 +1,5 @@
 package codemeans.shopify4j.admin.rest.api.products.impl;
 
-import static codemeans.shopify4j.admin.rest.internal.Utils.checkNotNull;
-
 import codemeans.shopify4j.admin.rest.api.products.ProductVariantApi;
 import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.ProductVariant;
@@ -70,9 +68,8 @@ public class ProductVariantApiImpl implements ProductVariantApi {
   }
 
   @Override
-  public ProductVariant update(ProductVariant req) throws ShopifyServerException {
-    checkNotNull(req.getId(), "Null ProductVariant Id");
-    HttpRequest httpRequest = HttpRequest.of(singleEndpoint(req.getId()))
+  public ProductVariant update(long id, ProductVariant req) throws ShopifyServerException {
+    HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id))
         .setBody(req);
     return invoker.putJson(httpRequest, ProductVariant.class);
   }

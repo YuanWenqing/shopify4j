@@ -25,7 +25,7 @@ public interface ProductApi {
 
   Product create(Product req) throws ShopifyServerException;
 
-  Product update(Product req) throws ShopifyServerException;
+  Product update(long id, Product req) throws ShopifyServerException;
 
   void delete(long id) throws ShopifyServerException;
 

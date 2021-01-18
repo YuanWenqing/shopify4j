@@ -1,7 +1,5 @@
 package codemeans.shopify4j.admin.rest.api.products.impl;
 
-import static codemeans.shopify4j.admin.rest.internal.Utils.checkNotNull;
-
 import codemeans.shopify4j.admin.rest.api.products.ProductApi;
 import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.Product;
@@ -68,9 +66,8 @@ public class ProductApiImpl implements ProductApi {
   }
 
   @Override
-  public Product update(Product req) throws ShopifyServerException {
-    checkNotNull(req.getId(), "Null Product Id");
-    HttpRequest httpRequest = HttpRequest.of(singleEndpoint(req.getId()))
+  public Product update(long id, Product req) throws ShopifyServerException {
+    HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id))
         .setBody(req);
     return invoker.putJson(httpRequest, Product.class);
   }

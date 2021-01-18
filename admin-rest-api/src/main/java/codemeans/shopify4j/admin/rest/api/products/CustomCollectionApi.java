@@ -24,7 +24,7 @@ public interface CustomCollectionApi {
 
   CustomCollection create(CustomCollection req) throws ShopifyServerException;
 
-  CustomCollection update(CustomCollection req) throws ShopifyServerException;
+  CustomCollection update(long id, CustomCollection req) throws ShopifyServerException;
 
   void delete(long id) throws ShopifyServerException;
 

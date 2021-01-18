@@ -23,7 +23,7 @@ public interface ProductImageApi {
 
   ProductImage create(long productId, ProductImage req) throws ShopifyServerException;
 
-  ProductImage update(long productId, ProductImage req) throws ShopifyServerException;
+  ProductImage update(long productId, long imageId, ProductImage req) throws ShopifyServerException;
 
   void delete(long productId, long imageId) throws ShopifyServerException;
 

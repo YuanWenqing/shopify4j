@@ -32,7 +32,7 @@ public interface OrderApi {
 
   Order create(Order req) throws ShopifyServerException;
 
-  Order update(Order req) throws ShopifyServerException;
+  Order update(long id, Order req) throws ShopifyServerException;
 
   void delete(long id) throws ShopifyServerException;
 

@@ -24,7 +24,7 @@ public interface SmartCollectionApi {
 
   SmartCollection create(SmartCollection req) throws ShopifyServerException;
 
-  SmartCollection update(SmartCollection req) throws ShopifyServerException;
+  SmartCollection update(long id, SmartCollection req) throws ShopifyServerException;
 
   void delete(long id) throws ShopifyServerException;
 
