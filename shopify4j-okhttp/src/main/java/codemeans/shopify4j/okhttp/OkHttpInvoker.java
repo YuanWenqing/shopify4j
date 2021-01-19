@@ -17,7 +17,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author: yuanwq
@@ -29,29 +28,29 @@ public class OkHttpInvoker implements Invoker {
   private static final MediaType MEDIA_TYPE_JSON = MediaType
       .parse("application/json; charset=utf-8");
 
-  private final AccessTokenProvider accessTokenProvider;
   private final OkHttpClient okHttpClient;
   private final ICodec codec;
 
   public OkHttpInvoker(AccessTokenProvider accessTokenProvider) {
-    this(accessTokenProvider, createOkHttpClient(), JacksonCodec.DEFAULT_INSTANCE);
+    this(createOkHttpClient(accessTokenProvider), JacksonCodec.DEFAULT_INSTANCE);
   }
 
-  public OkHttpInvoker(AccessTokenProvider accessTokenProvider, OkHttpClient okHttpClient,
-      ICodec codec) {
-    this.accessTokenProvider = accessTokenProvider;
+  public OkHttpInvoker(OkHttpClient okHttpClient, ICodec codec) {
     this.okHttpClient = okHttpClient;
     this.codec = codec;
   }
 
-  public static OkHttpClient createOkHttpClient() {
+  public static OkHttpClient createOkHttpClient(AccessTokenProvider accessTokenProvider) {
     OkHttpClient.Builder builder = new OkHttpClient.Builder();
     // timeout
     builder.connectTimeout(60, TimeUnit.SECONDS)
         .callTimeout(60, TimeUnit.SECONDS)
         .readTimeout(60, TimeUnit.SECONDS);
-    // redirect
-    builder.followRedirects(true).followSslRedirects(true);
+    // custom redirect
+    builder.followRedirects(false);
+    // interceptor
+    builder.addInterceptor(new SeeOtherInterceptor())
+        .addInterceptor(new AccessTokenInterceptor(accessTokenProvider));
     return builder.build();
   }
 
@@ -123,32 +122,21 @@ public class OkHttpInvoker implements Invoker {
 
   private <T> T invoke(Request request, Class<T> respType) throws ShopifyServerException {
     String body = null;
-    request = authenticateRequest(request);
     try (Response response = okHttpClient.newCall(request).execute()) {
       body = response.body().string();
       if (log.isDebugEnabled()) {
         log.debug("request: {}, response.code={}, response.body={}",
             request, response.code(), body);
       }
-      if (response.code() >= 300) {
-        throw new ShopifyServerException(response.code(), body);
+      if (response.isSuccessful()) {
+        return codec.deserialize(respType, body);
       }
-      return codec.deserialize(respType, body);
+      throw new ShopifyServerException(response.code(), body);
     } catch (IOException e) {
       throw new ShopifyClientException("fail to invoke request: " + request, e);
     } catch (SerializingException e) {
       throw new ShopifyClientException(
           "fail to deserialize response, request: " + request + ", response.body: " + body, e);
     }
-  }
-
-  private Request authenticateRequest(Request request) {
-    String accessToken = accessTokenProvider.getAccessToken(request.url().host());
-    if (StringUtils.isBlank(accessToken)) {
-      throw new ShopifyClientException("blank accessToken, request: " + request);
-    }
-    return request.newBuilder()
-        .addHeader("X-Shopify-Access-Token", accessToken)
-        .build();
   }
 }

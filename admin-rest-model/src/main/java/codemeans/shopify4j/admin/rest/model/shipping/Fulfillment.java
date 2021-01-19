@@ -2,11 +2,8 @@ package codemeans.shopify4j.admin.rest.model.shipping;
 
 import codemeans.shopify4j.admin.rest.model.orders.LineItem;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import java.util.ArrayList;
 import java.util.List;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.joda.time.DateTime;
 
@@ -19,17 +16,9 @@ import org.joda.time.DateTime;
 @JsonRootName("fulfillment")
 public class Fulfillment {
 
-  @Setter(AccessLevel.NONE)
   private DateTime createdAt;
   private Long id;
-  @Setter(AccessLevel.NONE)
-  private final List<LineItem> lineItems = new ArrayList<>();
-
-  public Fulfillment addLineItem(LineItem lineItem) {
-    this.lineItems.add(lineItem);
-    return this;
-  }
-
+  private List<LineItem> lineItems;
   private Long locationId;
   private String name;
   private Boolean notifyCustomer;
@@ -45,23 +34,8 @@ public class Fulfillment {
    */
   private String status;
   private String trackingCompany;
-  @Setter(AccessLevel.NONE)
   private List<String> trackingNumbers;
-
-  public Fulfillment addTrackingNumber(String trackingNumber) {
-    this.trackingNumbers.add(trackingNumber);
-    return this;
-  }
-
-  @Setter(AccessLevel.NONE)
   private List<String> trackingUrls;
-
-  public Fulfillment addTrackingUrl(String trackingUrl) {
-    this.trackingUrls.add(trackingUrl);
-    return this;
-  }
-
-  @Setter(AccessLevel.NONE)
   private DateTime updatedAt;
   private String variantInventoryManagement;
 }

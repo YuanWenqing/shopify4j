@@ -1,9 +1,9 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
+import codemeans.shopify4j.admin.rest.annotation.ReadOnly;
+import codemeans.shopify4j.admin.rest.annotation.Required;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.joda.time.DateTime;
 
@@ -18,21 +18,24 @@ public class CustomCollection {
 
   private String bodyHtml;
   private String handle;
+  @ReadOnly
   private Long id;
   private CollectionImage image;
   private Boolean published;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private DateTime publishedAt;
   /**
    * @see codemeans.shopify4j.admin.rest.model.enums.PublishedScope
    */
+  @ReadOnly
   private String publishedScope;
   /**
    * @see codemeans.shopify4j.admin.rest.model.enums.SortOrder
    */
   private String sortOrder;
   private String templateSuffix;
+  @Required
   private String title;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private DateTime updatedAt;
 }

@@ -1,5 +1,7 @@
 package codemeans.shopify4j.admin.rest.model.orders;
 
+import codemeans.shopify4j.admin.rest.annotation.ReadOnly;
+import codemeans.shopify4j.admin.rest.annotation.Required;
 import codemeans.shopify4j.admin.rest.internal.Utils;
 import codemeans.shopify4j.admin.rest.model.common.MoneySet;
 import codemeans.shopify4j.admin.rest.model.common.NameValueAttribute;
@@ -11,9 +13,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.joda.time.DateTime;
 
@@ -26,130 +26,97 @@ import org.joda.time.DateTime;
 @JsonRootName("order")
 public class Order {
 
+  @ReadOnly
   private String appId;
   private OrderAddress billingAddress;
+  @ReadOnly
   private String browserIp;
   private Boolean buyerAcceptsMarketing;
   /**
    * @see codemeans.shopify4j.admin.rest.model.enums.CancelReason
    */
   private String cancelReason;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private DateTime cancelledAt;
+  @ReadOnly
   private String cartToken;
+  @ReadOnly
   private String checkoutToken;
+  @ReadOnly
   private ClientDetails clientDetails;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private DateTime closedAt;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private DateTime createdAt;
   private String currency;
-  private BigDecimal currentTotalDiscount;
+  @ReadOnly
+  private BigDecimal currentTotalDiscounts;
+  @ReadOnly
   private MoneySet currentTotalDiscountsSet;
+  @ReadOnly
   private MoneySet currentTotalDutiesSet;
+  @ReadOnly
   private BigDecimal currentTotalPrice;
+  @ReadOnly
   private MoneySet currentTotalPriceSet;
+  @ReadOnly
   private BigDecimal currentSubtotalPrice;
+  @ReadOnly
   private MoneySet currentSubtotalPriceSet;
+  @ReadOnly
   private BigDecimal currentTotalTax;
+  @ReadOnly
   private MoneySet currentTotalTaxSet;
   private Customer customer;
+  @ReadOnly
   private String customerLocale;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private List<DiscountApplication> discountApplications;
-
-  public Order addDiscountApplication(DiscountApplication discountApplication) {
-    this.discountApplications.add(discountApplication);
-    return this;
-  }
-
-  @Setter(AccessLevel.NONE)
-  private List<AppliedDiscountCode> appliedDiscountCodes;
-
-  public Order addAppliedDiscountCode(AppliedDiscountCode appliedDiscountCode) {
-    this.appliedDiscountCodes.add(appliedDiscountCode);
-    return this;
-  }
-
+  private List<AppliedDiscountCode> discountCodes;
   private String email;
   /**
    * @see codemeans.shopify4j.admin.rest.model.enums.FinancialStatus
    */
   private String financialStatus;
-
-  @Setter(AccessLevel.NONE)
   private List<Fulfillment> fulfillments;
-
-  public Order addFulfillment(Fulfillment fulfillment) {
-    this.fulfillments.add(fulfillment);
-    return this;
-  }
-
   /**
    * @see codemeans.shopify4j.admin.rest.model.enums.OrderFulfillmentStatus
    */
   private String fulfillmentStatus;
+  @Deprecated
+  private String gateway;
+  @ReadOnly
   private Long id;
+  @ReadOnly
   private String landingSite;
-  @Setter(AccessLevel.NONE)
-  private final List<LineItem> lineItems = new ArrayList<>();
-
-  public Order addLineItem(LineItem lineItem) {
-    this.lineItems.add(lineItem);
-    return this;
-  }
-
+  @Required
+  private List<LineItem> lineItems;
   private Long locationId;
   private String name;
   private String note;
-  @Setter(AccessLevel.NONE)
   private List<NameValueAttribute> noteAttributes;
-
-  public Order addNoteAttribute(NameValueAttribute attribute) {
-    if (noteAttributes == null) {
-      noteAttributes = new ArrayList<>();
-    }
-    this.noteAttributes.add(attribute);
-    return this;
-  }
-
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private Integer number;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private Long orderNumber;
+  @ReadOnly
   private MoneySet originalTotalDutiesSet;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private List<String> paymentGatewayNames;
-
-  public Order addPaymentGatewayName(String paymentGatewayName) {
-    this.paymentGatewayNames.add(paymentGatewayName);
-    return this;
-  }
 
   private String phone;
   private String presentmentCurrency;
-  @Setter(AccessLevel.NONE)
   private DateTime processedAt;
   /**
    * @see codemeans.shopify4j.admin.rest.model.enums.ProcessingMethod
    */
+  @ReadOnly
   private String processingMethod;
   private String referringSite;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private List<Refund> refunds;
   private OrderAddress shippingAddress;
-
-  @Setter(AccessLevel.NONE)
   private List<ShippingLine> shippingLines;
-
-  public Order addShippingLine(ShippingLine shippingLine) {
-    if (shippingLines == null) {
-      shippingLines = new ArrayList<>();
-    }
-    shippingLines.add(shippingLine);
-    return this;
-  }
-
   private String sourceName;
   private BigDecimal subtotalPrice;
   private MoneySet subtotalPriceSet;
@@ -180,20 +147,10 @@ public class Order {
     return this;
   }
 
-  @Setter(AccessLevel.NONE)
   private List<TaxLine> taxLines;
-
-  public Order addTaxLine(TaxLine taxLine) {
-    if (taxLines == null) {
-      taxLines = new ArrayList<>();
-    }
-    taxLines.add(taxLine);
-    return this;
-  }
-
   private Boolean taxesIncluded;
   private Boolean test;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private String token;
   private BigDecimal totalDiscounts;
   private MoneySet totalDiscountsSet;
@@ -205,12 +162,12 @@ public class Order {
   private MoneySet totalShippingPriceSet;
   private BigDecimal totalTax;
   private MoneySet totalTaxSet;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private BigDecimal totalTipReceived;
   private Integer totalWeight;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private DateTime updatedAt;
   private Long userId;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private String orderStatusUrl;
 }

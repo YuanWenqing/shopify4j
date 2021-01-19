@@ -1,5 +1,6 @@
 package codemeans.shopify4j.admin.rest.model.common;
 
+import codemeans.shopify4j.admin.rest.annotation.Required;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,8 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 public class NameValueAttribute {
 
+  @Required
   private String name;
+  @Required
   private String value;
 }

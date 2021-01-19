@@ -32,13 +32,7 @@ public interface ProductImageApi {
   class ListReq {
 
     private Long sinceId;
-    private final List<String> fields = new ArrayList<>();
-
-    public ProductImageApi.ListReq addField(String field) {
-      this.fields.add(field);
-      return this;
-    }
-
+    private List<String> fields;
   }
 
 }

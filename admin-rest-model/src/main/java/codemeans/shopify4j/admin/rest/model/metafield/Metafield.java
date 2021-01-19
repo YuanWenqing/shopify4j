@@ -1,11 +1,9 @@
-package codemeans.shopify4j.admin.rest.model.common;
+package codemeans.shopify4j.admin.rest.model.metafield;
 
-import codemeans.shopify4j.admin.rest.internal.ShopifyEnum;
-import codemeans.shopify4j.core.annotation.Required;
+import codemeans.shopify4j.admin.rest.annotation.ReadOnly;
+import codemeans.shopify4j.admin.rest.annotation.Required;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.joda.time.DateTime;
 
@@ -18,17 +16,17 @@ import org.joda.time.DateTime;
 public class Metafield {
 
   /**
-   * https://en.wikipedia.org/wiki/ISO_8601 ，{@link org.joda.time.DateTime} 可解析
+   * https://en.wikipedia.org/wiki/ISO_8601
    */
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private DateTime createdAt;
   /**
-   * https://en.wikipedia.org/wiki/ISO_8601 ，{@link org.joda.time.DateTime} 可解析
+   * https://en.wikipedia.org/wiki/ISO_8601
    */
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private DateTime updatedAt;
   private String description;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private Long id;
   @Required
   private String key;
@@ -39,14 +37,9 @@ public class Metafield {
   @Required
   private String value;
   /**
-   * @see ValueType
+   * @see codemeans.shopify4j.admin.rest.model.enums.MetafieldValueType
    */
   @Required
   private String valueType;
 
-  public enum ValueType implements ShopifyEnum<ValueType> {
-    string,
-    integer,
-    json_string
-  }
 }

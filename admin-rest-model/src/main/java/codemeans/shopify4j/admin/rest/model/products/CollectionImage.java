@@ -1,8 +1,7 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
-import lombok.AccessLevel;
+import codemeans.shopify4j.admin.rest.annotation.ReadOnly;
 import lombok.Data;
-import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.joda.time.DateTime;
 
@@ -20,8 +19,10 @@ public class CollectionImage {
   private String attachment;
   private String src;
   private String alt;
+  @ReadOnly
   private int width;
+  @ReadOnly
   private int height;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private DateTime createdAt;
 }

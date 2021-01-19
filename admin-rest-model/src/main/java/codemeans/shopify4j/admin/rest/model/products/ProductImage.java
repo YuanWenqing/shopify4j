@@ -1,12 +1,9 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
-import codemeans.shopify4j.admin.rest.model.common.Metafield;
+import codemeans.shopify4j.admin.rest.model.metafield.Metafield;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import java.util.ArrayList;
 import java.util.List;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.joda.time.DateTime;
 
@@ -25,7 +22,6 @@ public class ProductImage {
   /**
    * https://en.wikipedia.org/wiki/ISO_8601
    */
-  @Setter(AccessLevel.NONE)
   private DateTime createdAt;
   private Long id;
   /**
@@ -33,7 +29,6 @@ public class ProductImage {
    */
   private Integer position;
   private Long productId;
-  @Setter(AccessLevel.NONE)
   private List<Long> variantIds;
   private String src;
   private Integer width;
@@ -41,25 +36,6 @@ public class ProductImage {
   /**
    * https://en.wikipedia.org/wiki/ISO_8601
    */
-  @Setter(AccessLevel.NONE)
   private DateTime updatedAt;
-
-  @Setter(AccessLevel.NONE)
   private List<Metafield> metafields;
-
-  public ProductImage addMetafield(Metafield metafield) {
-    if (metafields == null) {
-      metafields = new ArrayList<>();
-    }
-    metafields.add(metafield);
-    return this;
-  }
-
-  public ProductImage addVariantId(long variantId) {
-    if (variantIds == null) {
-      variantIds = new ArrayList<>();
-    }
-    variantIds.add(variantId);
-    return this;
-  }
 }

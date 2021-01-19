@@ -33,21 +33,9 @@ public interface ProductVariantApi {
   class ListReq {
 
     private Integer limit;
-    private final List<String> presentmentCurrencies = new ArrayList<>();
-
-    public ListReq addPresentmentCurrency(String presentmentCurrency) {
-      this.presentmentCurrencies.add(presentmentCurrency);
-      return this;
-    }
-
+    private  List<String> presentmentCurrencies;
     private Long sinceId;
-    private final List<String> fields = new ArrayList<>();
-
-    public ListReq addField(String field) {
-      this.fields.add(field);
-      return this;
-    }
-
+    private List<String> fields;
   }
 
 }

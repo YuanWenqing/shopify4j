@@ -1,11 +1,10 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
+import codemeans.shopify4j.admin.rest.annotation.ReadOnly;
+import codemeans.shopify4j.admin.rest.annotation.Required;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import java.util.ArrayList;
 import java.util.List;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.joda.time.DateTime;
 
@@ -22,27 +21,22 @@ public class SmartCollection {
   private String handle;
   private Long id;
   private CollectionImage image;
-  @Setter(AccessLevel.NONE)
   private DateTime publishedAt;
   /**
    * @see codemeans.shopify4j.admin.rest.model.enums.PublishedScope
    */
   private String publishedScope;
-  private final List<Rule> rules = new ArrayList<>();
-
-  public SmartCollection addRule(Rule rule) {
-    this.rules.add(rule);
-    return this;
-  }
-
+  @Required
+  private List<Rule> rules;
   private Boolean disjunctive;
   /**
    * @see codemeans.shopify4j.admin.rest.model.enums.SortOrder
    */
   private String sortOrder;
   private String templateSuffix;
+  @Required
   private String title;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private DateTime updatedAt;
 
 }

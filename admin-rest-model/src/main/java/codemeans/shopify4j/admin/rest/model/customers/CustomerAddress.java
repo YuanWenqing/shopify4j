@@ -1,5 +1,6 @@
 package codemeans.shopify4j.admin.rest.model.customers;
 
+import codemeans.shopify4j.admin.rest.annotation.ReadOnly;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -22,8 +23,10 @@ public class CustomerAddress {
   private String address2;
   private String city;
   private String province;
+  @ReadOnly
   private String provinceCode;
   private String country;
+  @ReadOnly
   private String countryCode;
   private String countryName;
   private String zip;

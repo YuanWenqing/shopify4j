@@ -1,5 +1,6 @@
 package codemeans.shopify4j.admin.rest.model.common;
 
+import codemeans.shopify4j.admin.rest.annotation.Required;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +17,8 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 public class Money {
 
+  @Required
   private BigDecimal amount;
+  @Required
   private String currencyCode;
 }
