@@ -130,10 +130,10 @@ public class OkHttpInvoker implements Invoker {
         log.debug("request: {}, response.code={}, response.body={}",
             request, response.code(), body);
       }
-      if (response.code() >= 300) {
-        throw new ShopifyServerException(response.code(), body);
+      if (response.isSuccessful()) {
+        return codec.deserialize(respType, body);
       }
-      return codec.deserialize(respType, body);
+      throw new ShopifyServerException(response.code(), body);
     } catch (IOException e) {
       throw new ShopifyClientException("fail to invoke request: " + request, e);
     } catch (SerializingException e) {

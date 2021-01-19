@@ -1,6 +1,9 @@
 package codemeans.shopify4j.admin.rest.sdk;
 
+import codemeans.shopify4j.admin.rest.api.discounts.DiscountCodeApi;
+import codemeans.shopify4j.admin.rest.api.discounts.DiscountCodeCreationApi;
 import codemeans.shopify4j.admin.rest.api.discounts.PriceRuleApi;
+import codemeans.shopify4j.admin.rest.api.discounts.impl.DiscountCodeApiImpl;
 import codemeans.shopify4j.admin.rest.api.discounts.impl.PriceRuleApiImpl;
 import codemeans.shopify4j.admin.rest.api.orders.DraftOrderApi;
 import codemeans.shopify4j.admin.rest.api.orders.OrderApi;
@@ -35,6 +38,8 @@ public class DefaultShopifyStore implements ShopifyStore {
 
   /*>>>>> discounts <<<<<*/
   private PriceRuleApi priceRuleApi;
+  private DiscountCodeApi discountCodeApi;
+  private DiscountCodeCreationApi discountCodeCreationApi;
   /*>>>>> products <<<<<*/
   private ProductApi productApi;
   private CollectApi collectApi;
@@ -58,6 +63,7 @@ public class DefaultShopifyStore implements ShopifyStore {
   private void initApis() {
     // discounts
     priceRuleApi = PriceRuleApiImpl.of(this);
+    discountCodeApi = DiscountCodeApiImpl.of(this);
     // products
     productApi = ProductApiImpl.of(this);
     collectApi = CollectApiImpl.of(this);
@@ -134,5 +140,15 @@ public class DefaultShopifyStore implements ShopifyStore {
   @Override
   public PriceRuleApi priceRules() {
     return priceRuleApi;
+  }
+
+  @Override
+  public DiscountCodeApi discountCodes() {
+    return discountCodeApi;
+  }
+
+  @Override
+  public DiscountCodeCreationApi discountCodeCreations() {
+    return discountCodeCreationApi;
   }
 }
