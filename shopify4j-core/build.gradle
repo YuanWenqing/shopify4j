@@ -5,6 +5,7 @@ dependencies {
     testCompileOnly("org.projectlombok:lombok:$lombokVersion")
 
     api("org.apache.commons:commons-lang3:$commonsLang3Version")
+//    api("org.apache.commons:commons-collections4:$commonsCollections4Version")
 
     api("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
     api("com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion")
