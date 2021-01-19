@@ -46,11 +46,11 @@ public class OkHttpInvoker implements Invoker {
     builder.connectTimeout(60, TimeUnit.SECONDS)
         .callTimeout(60, TimeUnit.SECONDS)
         .readTimeout(60, TimeUnit.SECONDS);
-    // redirect
-    builder.followRedirects(true)
-        .followSslRedirects(true);
+    // custom redirect
+    builder.followRedirects(false);
     // interceptor
-    builder.addNetworkInterceptor(new ShopifyAccessTokenInterceptor(accessTokenProvider));
+    builder.addInterceptor(new SeeOtherInterceptor())
+        .addInterceptor(new AccessTokenInterceptor(accessTokenProvider));
     return builder.build();
   }
 

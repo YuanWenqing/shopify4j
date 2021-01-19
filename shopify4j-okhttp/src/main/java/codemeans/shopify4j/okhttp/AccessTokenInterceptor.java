@@ -12,11 +12,11 @@ import org.apache.commons.lang3.StringUtils;
  * @author: yuanwq
  * @date: 2021-01-19
  */
-public class ShopifyAccessTokenInterceptor implements Interceptor {
+public class AccessTokenInterceptor implements Interceptor {
 
   private final AccessTokenProvider accessTokenProvider;
 
-  public ShopifyAccessTokenInterceptor(AccessTokenProvider accessTokenProvider) {
+  public AccessTokenInterceptor(AccessTokenProvider accessTokenProvider) {
     this.accessTokenProvider = accessTokenProvider;
   }
 
