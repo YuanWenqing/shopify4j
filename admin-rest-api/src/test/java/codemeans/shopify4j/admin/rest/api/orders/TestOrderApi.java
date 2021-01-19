@@ -24,7 +24,7 @@ public class TestOrderApi {
   public void testCount() throws ShopifyServerException {
     CountReq countReq = new CountReq()
         .setStatus(OrderStatus.any.shopifyValue());
-    Count count = api.count(countReq);
+    Count count = api.count(countReq).object();
     System.out.println(count);
   }
 
@@ -32,10 +32,10 @@ public class TestOrderApi {
   public void testList() throws ShopifyServerException {
     ListReq listReq = new ListReq()
         .setStatus(OrderStatus.any.shopifyValue());
-    OrderList orderList = api.list(listReq);
+    OrderList orderList = api.list(listReq).object();
     System.out.println(orderList);
     Order order1 = orderList.getOrders().get(0);
-    Order order2 = api.get(order1.getId());
+    Order order2 = api.get(order1.getId()).object();
     System.out.println(order2);
     assertEquals(order1, order2);
   }

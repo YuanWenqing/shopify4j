@@ -22,18 +22,18 @@ public class TestSmartCollectionApi {
   @Test
   public void testCount() throws ShopifyServerException {
     CountReq countReq = new CountReq();
-    Count count = api.count(countReq);
+    Count count = api.count(countReq).object();
     System.out.println(count);
   }
 
   @Test
   public void testList() throws ShopifyServerException {
     ListReq listReq = new ListReq();
-    SmartCollectionList smartCollectionList = api.list(listReq);
+    SmartCollectionList smartCollectionList = api.list(listReq).object();
     System.out.println(smartCollectionList);
 
     SmartCollection smartCollection1 = smartCollectionList.getSmartCollections().get(0);
-    SmartCollection smartCollection2 = api.get(smartCollection1.getId());
+    SmartCollection smartCollection2 = api.get(smartCollection1.getId()).object();
     System.out.println(smartCollection2);
     assertEquals(smartCollection1, smartCollection2);
 

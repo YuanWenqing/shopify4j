@@ -21,16 +21,16 @@ public class TestProductImageApi {
 
   @Test
   public void testCount() throws ShopifyServerException {
-    Count count = api.count(productId, null);
+    Count count = api.count(productId, null).object();
     System.out.println(count);
   }
 
   @Test
   public void testList() throws ShopifyServerException {
-    ProductImageList productImageList = api.list(productId, new ProductImageApi.ListReq());
+    ProductImageList productImageList = api.list(productId, new ProductImageApi.ListReq()).object();
     System.out.println(productImageList);
     ProductImage expect = productImageList.getImages().get(0);
-    ProductImage actual = api.get(expect.getProductId(), expect.getId());
+    ProductImage actual = api.get(expect.getProductId(), expect.getId()).object();
     assertEquals(expect, actual);
   }
 }
