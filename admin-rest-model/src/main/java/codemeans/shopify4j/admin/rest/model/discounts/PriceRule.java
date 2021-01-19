@@ -1,5 +1,6 @@
 package codemeans.shopify4j.admin.rest.model.discounts;
 
+import codemeans.shopify4j.admin.rest.annotation.ReadOnly;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -23,9 +24,9 @@ public class PriceRule {
    * @see codemeans.shopify4j.admin.rest.model.enums.AllocationMethod
    */
   private String allocationMethod;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private DateTime createdAt;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private DateTime updatedAt;
   /**
    * @see codemeans.shopify4j.admin.rest.model.enums.CustomerSelection
@@ -76,6 +77,7 @@ public class PriceRule {
     return this;
   }
 
+  @ReadOnly
   private Long id;
   private Boolean oncePerCustomer;
   @Setter(AccessLevel.NONE)

@@ -19,7 +19,6 @@ import org.joda.time.DateTime;
 @JsonRootName("fulfillment")
 public class Fulfillment {
 
-  @Setter(AccessLevel.NONE)
   private DateTime createdAt;
   private Long id;
   @Setter(AccessLevel.NONE)
@@ -61,7 +60,6 @@ public class Fulfillment {
     return this;
   }
 
-  @Setter(AccessLevel.NONE)
   private DateTime updatedAt;
   private String variantInventoryManagement;
 }

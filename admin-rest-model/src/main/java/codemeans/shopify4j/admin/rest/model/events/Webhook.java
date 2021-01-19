@@ -1,5 +1,6 @@
 package codemeans.shopify4j.admin.rest.model.events;
 
+import codemeans.shopify4j.admin.rest.annotation.ReadOnly;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,9 @@ import org.joda.time.DateTime;
 public class Webhook {
 
   private String address;
+  @ReadOnly
   private String apiVersion;
+  @ReadOnly
   private DateTime createdAt;
   @Setter(AccessLevel.NONE)
   private List<String> fields;
@@ -36,7 +39,7 @@ public class Webhook {
    * @see codemeans.shopify4j.admin.rest.model.enums.WebhookFormat
    */
   private String format;
-
+  @ReadOnly
   private Long id;
   private List<String> metafieldNamespaces;
 
@@ -62,6 +65,7 @@ public class Webhook {
    * @see codemeans.shopify4j.admin.rest.model.enums.EventTopic
    */
   private String topic;
+  @ReadOnly
   private DateTime updatedAt;
 
 }

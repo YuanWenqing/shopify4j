@@ -1,7 +1,8 @@
 package codemeans.shopify4j.admin.rest.model.customers;
 
+import codemeans.shopify4j.admin.rest.annotation.ReadOnly;
 import codemeans.shopify4j.admin.rest.internal.Utils;
-import codemeans.shopify4j.admin.rest.model.common.Metafield;
+import codemeans.shopify4j.admin.rest.model.metafield.Metafield;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -24,7 +25,6 @@ import org.joda.time.DateTime;
 public class Customer {
 
   private Boolean acceptsMarketing;
-  @Setter(AccessLevel.NONE)
   private DateTime acceptsMarketingUpdatedAt;
   @Setter(AccessLevel.NONE)
   private List<CustomerAddress> addresses;
@@ -37,35 +37,35 @@ public class Customer {
     return this;
   }
 
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private String currency;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private DateTime createdAt;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private CustomerAddress defaultAddress;
   private String email;
   private String firstName;
   private Long id;
   private String lastName;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private Long lastOrderId;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private String lastOrderName;
   private Metafield metafield;
   /**
    * @see codemeans.shopify4j.admin.rest.model.enums.MarketingOptInLevel
    */
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private String marketingOptInLevel;
   private String multipassIdentifier;
   private String note;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private int ordersCount;
   private String phone;
   /**
    * @see codemeans.shopify4j.admin.rest.model.enums.CustomerState
    */
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private String state;
   @JsonIgnore
   private List<String> tags;
@@ -109,10 +109,10 @@ public class Customer {
     return this;
   }
 
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private BigDecimal totalSpent;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private DateTime updatedAt;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private Boolean verifiedEmail;
 }

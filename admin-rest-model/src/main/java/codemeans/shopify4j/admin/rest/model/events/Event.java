@@ -20,9 +20,10 @@ public class Event {
   @Setter(AccessLevel.NONE)
   private List<String> arguments;
   private String body;
-  @Setter(AccessLevel.NONE)
   private DateTime createdAt;
   private Long id;
+  @Deprecated
+  private String description;
   private String path;
   private String message;
   private Long subjectId;

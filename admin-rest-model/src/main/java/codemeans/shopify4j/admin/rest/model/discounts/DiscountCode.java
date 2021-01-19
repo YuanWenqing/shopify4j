@@ -1,10 +1,9 @@
 package codemeans.shopify4j.admin.rest.model.discounts;
 
+import codemeans.shopify4j.admin.rest.annotation.ReadOnly;
 import codemeans.shopify4j.admin.rest.annotation.Required;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.joda.time.DateTime;
 
@@ -19,12 +18,14 @@ public class DiscountCode {
 
   @Required
   private String code;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private DateTime createdAt;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private DateTime updatedAt;
+  @ReadOnly
   private Long id;
+  @ReadOnly
   private Long priceRuleId;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private Integer usageCount;
 }
