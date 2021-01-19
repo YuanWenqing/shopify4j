@@ -4,6 +4,7 @@ import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.ProductVariant;
 import codemeans.shopify4j.admin.rest.model.products.ProductVariantList;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
+import codemeans.shopify4j.core.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
@@ -15,18 +16,18 @@ import lombok.experimental.Accessors;
  */
 public interface ProductVariantApi {
 
-  ProductVariantList list(long productId, ProductVariantApi.ListReq req)
+  HttpResponse<ProductVariantList> list(long productId, ProductVariantApi.ListReq req)
       throws ShopifyServerException;
 
-  Count count(long productId) throws ShopifyServerException;
+  HttpResponse<Count> count(long productId) throws ShopifyServerException;
 
-  ProductVariant get(long variantId) throws ShopifyServerException;
+  HttpResponse<ProductVariant> get(long variantId) throws ShopifyServerException;
 
-  ProductVariant create(long productId, ProductVariant req) throws ShopifyServerException;
+  HttpResponse<ProductVariant> create(long productId, ProductVariant req) throws ShopifyServerException;
 
-  ProductVariant update(long id, ProductVariant req) throws ShopifyServerException;
+  HttpResponse<ProductVariant> update(long id, ProductVariant req) throws ShopifyServerException;
 
-  void delete(long productId, long variantId) throws ShopifyServerException;
+  HttpResponse<String> delete(long productId, long variantId) throws ShopifyServerException;
 
   @Data
   @Accessors(chain = true)

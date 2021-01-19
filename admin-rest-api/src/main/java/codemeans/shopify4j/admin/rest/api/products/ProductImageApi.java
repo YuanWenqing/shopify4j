@@ -4,6 +4,7 @@ import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.ProductImage;
 import codemeans.shopify4j.admin.rest.model.products.ProductImageList;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
+import codemeans.shopify4j.core.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
@@ -15,17 +16,17 @@ import lombok.experimental.Accessors;
  */
 public interface ProductImageApi {
 
-  ProductImageList list(long productId, ProductImageApi.ListReq req) throws ShopifyServerException;
+  HttpResponse<ProductImageList> list(long productId, ProductImageApi.ListReq req) throws ShopifyServerException;
 
-  Count count(long productId, Long imageSinceId) throws ShopifyServerException;
+  HttpResponse<Count> count(long productId, Long imageSinceId) throws ShopifyServerException;
 
-  ProductImage get(long productId, long imageId) throws ShopifyServerException;
+  HttpResponse<ProductImage> get(long productId, long imageId) throws ShopifyServerException;
 
-  ProductImage create(long productId, ProductImage req) throws ShopifyServerException;
+  HttpResponse<ProductImage> create(long productId, ProductImage req) throws ShopifyServerException;
 
-  ProductImage update(long productId, long imageId, ProductImage req) throws ShopifyServerException;
+  HttpResponse<ProductImage> update(long productId, long imageId, ProductImage req) throws ShopifyServerException;
 
-  void delete(long productId, long imageId) throws ShopifyServerException;
+  HttpResponse<String> delete(long productId, long imageId) throws ShopifyServerException;
 
   @Data
   @Accessors(chain = true)

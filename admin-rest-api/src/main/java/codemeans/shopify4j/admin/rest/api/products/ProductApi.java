@@ -5,6 +5,7 @@ import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.Product;
 import codemeans.shopify4j.admin.rest.model.products.ProductList;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
+import codemeans.shopify4j.core.http.HttpResponse;
 import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -16,17 +17,17 @@ import org.joda.time.DateTime;
  */
 public interface ProductApi {
 
-  ProductList list(ListReq req) throws ShopifyServerException;
+  HttpResponse<ProductList> list(ListReq req) throws ShopifyServerException;
 
-  Count count(CountReq req) throws ShopifyServerException;
+  HttpResponse<Count> count(CountReq req) throws ShopifyServerException;
 
-  Product get(long id) throws ShopifyServerException;
+  HttpResponse<Product> get(long id) throws ShopifyServerException;
 
-  Product create(Product req) throws ShopifyServerException;
+  HttpResponse<Product> create(Product req) throws ShopifyServerException;
 
-  Product update(long id, Product req) throws ShopifyServerException;
+  HttpResponse<Product> update(long id, Product req) throws ShopifyServerException;
 
-  void delete(long id) throws ShopifyServerException;
+  HttpResponse<String> delete(long id) throws ShopifyServerException;
 
   default <R> R pipeline(ProductPipeline<R> pipeline) throws ShopifyServerException {
     return pipeline.runWith(this);

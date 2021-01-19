@@ -7,6 +7,7 @@ import codemeans.shopify4j.admin.rest.model.discounts.PriceRuleList;
 import codemeans.shopify4j.admin.rest.sdk.ShopifyStore;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
 import codemeans.shopify4j.core.http.HttpRequest;
+import codemeans.shopify4j.core.http.HttpResponse;
 import codemeans.shopify4j.core.http.Invoker;
 
 /**
@@ -40,40 +41,40 @@ public class PriceRuleApiImpl implements PriceRuleApi {
   }
 
   @Override
-  public PriceRuleList list(ListReq req) throws ShopifyServerException {
+  public HttpResponse<PriceRuleList> list(ListReq req) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint());
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, PriceRuleList.class);
   }
 
   @Override
-  public Count count() throws ShopifyServerException {
+  public HttpResponse<Count> count() throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(countEndpoint());
     return invoker.get(httpRequest, Count.class);
   }
 
   @Override
-  public PriceRule get(long id) throws ShopifyServerException {
+  public HttpResponse<PriceRule> get(long id) throws ShopifyServerException {
     return invoker.get(singleEndpoint(id), PriceRule.class);
   }
 
   @Override
-  public PriceRule create(PriceRule req) throws ShopifyServerException {
+  public HttpResponse<PriceRule> create(PriceRule req) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint())
         .setBody(req);
     return invoker.postJson(httpRequest, PriceRule.class);
   }
 
   @Override
-  public PriceRule update(long id, PriceRule req) throws ShopifyServerException {
+  public HttpResponse<PriceRule> update(long id, PriceRule req) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id))
         .setBody(req);
     return invoker.putJson(httpRequest, PriceRule.class);
   }
 
   @Override
-  public void delete(long id) throws ShopifyServerException {
+  public HttpResponse<String> delete(long id) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id));
-    invoker.delete(httpRequest);
+    return invoker.delete(httpRequest, String.class);
   }
 }

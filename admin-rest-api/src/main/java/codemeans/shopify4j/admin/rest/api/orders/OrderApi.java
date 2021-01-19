@@ -5,6 +5,7 @@ import codemeans.shopify4j.admin.rest.model.orders.Order;
 import codemeans.shopify4j.admin.rest.model.orders.OrderList;
 import codemeans.shopify4j.admin.rest.model.orders.Refund;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
+import codemeans.shopify4j.core.http.HttpResponse;
 import java.math.BigDecimal;
 import java.util.List;
 import lombok.Data;
@@ -17,23 +18,23 @@ import org.joda.time.DateTime;
  */
 public interface OrderApi {
 
-  OrderList list(ListReq req) throws ShopifyServerException;
+  HttpResponse<OrderList> list(ListReq req) throws ShopifyServerException;
 
-  Order get(long id) throws ShopifyServerException;
+  HttpResponse<Order> get(long id) throws ShopifyServerException;
 
-  Count count(CountReq req) throws ShopifyServerException;
+  HttpResponse<Count> count(CountReq req) throws ShopifyServerException;
 
-  Order close(long id) throws ShopifyServerException;
+  HttpResponse<Order> close(long id) throws ShopifyServerException;
 
-  Order open(long id) throws ShopifyServerException;
+  HttpResponse<Order> open(long id) throws ShopifyServerException;
 
-  Order cancel(long id, CancelReq req) throws ShopifyServerException;
+  HttpResponse<Order> cancel(long id, CancelReq req) throws ShopifyServerException;
 
-  Order create(Order req) throws ShopifyServerException;
+  HttpResponse<Order> create(Order req) throws ShopifyServerException;
 
-  Order update(long id, Order req) throws ShopifyServerException;
+  HttpResponse<Order> update(long id, Order req) throws ShopifyServerException;
 
-  void delete(long id) throws ShopifyServerException;
+  HttpResponse<String> delete(long id) throws ShopifyServerException;
 
   @Data
   @Accessors(chain = true)

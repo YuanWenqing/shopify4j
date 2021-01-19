@@ -6,6 +6,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * Generic Http Response
@@ -13,15 +15,23 @@ import java.util.Map.Entry;
  * @author: yuanwq
  * @date: 2021-01-19
  */
+@Data
+@Accessors(fluent = true)
 public class HttpResponse<T> {
 
+  /**
+   * raw string body
+   */
   private final String body;
-  private final T data;
+  /**
+   * deserialized object from body
+   */
+  private final T object;
   private final Map<String, List<String>> headers = new LinkedHashMap<>();
 
-  public HttpResponse(String body, T data) {
+  public HttpResponse(String body, T object) {
     this.body = body;
-    this.data = data;
+    this.object = object;
   }
 
   public HttpResponse<T> addAllHeaders(Map<String, List<String>> headers) {
