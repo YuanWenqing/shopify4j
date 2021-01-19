@@ -7,7 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * required field in Shopify documentation
+ * read-only field in Shopify documentation
  *
  * @author: yuanwq
  * @date: 2021-01-18
@@ -15,6 +15,6 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface Required {
+public @interface ReadOnly {
 
 }
