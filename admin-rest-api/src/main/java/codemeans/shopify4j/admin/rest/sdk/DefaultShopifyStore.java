@@ -1,6 +1,8 @@
 package codemeans.shopify4j.admin.rest.sdk;
 
+import codemeans.shopify4j.admin.rest.api.orders.DraftOrderApi;
 import codemeans.shopify4j.admin.rest.api.orders.OrderApi;
+import codemeans.shopify4j.admin.rest.api.orders.impl.DraftOrderApiImpl;
 import codemeans.shopify4j.admin.rest.api.orders.impl.OrderApiImpl;
 import codemeans.shopify4j.admin.rest.api.products.CollectApi;
 import codemeans.shopify4j.admin.rest.api.products.CollectionApi;
@@ -29,6 +31,7 @@ public class DefaultShopifyStore implements ShopifyStore {
   private final Invoker invoker;
   private final String baseEndpoint;
 
+  /*>>>>> products <<<<<*/
   private ProductApi productApi;
   private CollectApi collectApi;
   private CollectionApi collectionApi;
@@ -36,6 +39,8 @@ public class DefaultShopifyStore implements ShopifyStore {
   private SmartCollectionApi smartCollectionApi;
   private ProductImageApi productImageApi;
   private ProductVariantApi productVariantApi;
+  /*>>>>> orders <<<<<*/
+  private DraftOrderApi draftOrderApi;
   private OrderApi orderApi;
 
   public DefaultShopifyStore(StoreSetting storeSetting, Invoker invoker) {
@@ -56,6 +61,7 @@ public class DefaultShopifyStore implements ShopifyStore {
     productImageApi = ProductImageApiImpl.of(this);
     productVariantApi = ProductVariantApiImpl.of(this);
     // orders
+    draftOrderApi = DraftOrderApiImpl.of(this);
     orderApi = OrderApiImpl.of(this);
   }
 
@@ -107,6 +113,11 @@ public class DefaultShopifyStore implements ShopifyStore {
   @Override
   public ProductVariantApi productVariants() {
     return productVariantApi;
+  }
+
+  @Override
+  public DraftOrderApi draftOrders() {
+    return draftOrderApi;
   }
 
   @Override

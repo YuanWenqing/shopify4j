@@ -2,9 +2,9 @@ package codemeans.shopify4j.admin.rest.api.orders;
 
 import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.orders.DraftOrder;
+import codemeans.shopify4j.admin.rest.model.orders.DraftOrderInvoice;
 import codemeans.shopify4j.admin.rest.model.orders.DraftOrderList;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
-import com.fasterxml.jackson.annotation.JsonRootName;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
@@ -27,7 +27,7 @@ public interface DraftOrderApi {
 
   Count count(CountReq req) throws ShopifyServerException;
 
-  DraftOrder sendInvoice(long id, SendInvoiceReq req) throws ShopifyServerException;
+  DraftOrder sendInvoice(long id, DraftOrderInvoice req) throws ShopifyServerException;
 
   void delete(long id) throws ShopifyServerException;
 
@@ -73,14 +73,4 @@ public interface DraftOrderApi {
     private DateTime updatedAtMax;
   }
 
-  @Data
-  @JsonRootName("draft_order_invoice")
-  class SendInvoiceReq {
-
-    private String to;
-    private String from;
-    private final List<String> bcc = new ArrayList<>();
-    private String subject;
-    private String customMessage;
-  }
 }

@@ -1,6 +1,7 @@
 package codemeans.shopify4j.admin.rest.sdk;
 
 import codemeans.shopify4j.admin.rest.api.Pipeline;
+import codemeans.shopify4j.admin.rest.api.orders.DraftOrderApi;
 import codemeans.shopify4j.admin.rest.api.orders.OrderApi;
 import codemeans.shopify4j.admin.rest.api.products.CollectApi;
 import codemeans.shopify4j.admin.rest.api.products.CollectionApi;
@@ -50,5 +51,8 @@ public interface ShopifyStore {
 
   ProductVariantApi productVariants();
 
+  DraftOrderApi draftOrders();
+
   OrderApi orders();
+
 }
