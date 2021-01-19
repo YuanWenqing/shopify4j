@@ -57,7 +57,7 @@ Invoker invoker = new OkHttpInvoker(AccessTokenProvider.constant(setting.getApiP
 ShopifyStore store = new DefaultShopifyStore(setting, invoker);
 
 // get a product
-Product = store.products.get(pid);
+Product = store.products.get(pid).object();
 ...
 ```
 
@@ -134,8 +134,8 @@ ShopifyStoreFactory storeFactory = new DefaultShopifyStoreFactory(settingStorage
 // cache created stores, avoiding duplicated creation
 storeFactory = CachedShopifyStoreFactory.of(storeFactory);
 
-Product productFromStore1 = storeFactory.getStore(domain1).products().get(pid1);
-Product productFromStore2 = storeFactory.getStore(domain2).products().get(pid2);
+Product productFromStore1 = storeFactory.getStore(domain1).products().get(pid1).object();
+Product productFromStore2 = storeFactory.getStore(domain2).products().get(pid2).object();
 ```
 
 If information of your stores is saved in some persistent database, you can just implement another `StoreSettingStorage` to retrieve data and build out a `StoreSetting`.

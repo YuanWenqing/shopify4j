@@ -19,7 +19,7 @@ public class TestProductApi {
 
   @Test
   public void testGetProduct() throws ShopifyServerException {
-    Product product = api.get(5496978866341L);
+    Product product = api.get(5496978866341L).object();
     System.out.println(product);
   }
 
@@ -27,7 +27,7 @@ public class TestProductApi {
   public void testCount() throws ShopifyServerException {
     CountReq countReq = new CountReq();
     countReq.setVendor("mypreferr");
-    Count count = api.count(countReq);
+    Count count = api.count(countReq).object();
     System.out.println(count);
   }
 
@@ -35,7 +35,7 @@ public class TestProductApi {
   public void testList() throws ShopifyServerException {
     ListReq listReq = new ListReq()
         .setVendor("mypreferr");
-    ProductList productList = api.list(listReq);
+    ProductList productList = api.list(listReq).object();
     System.out.println(productList);
   }
 }

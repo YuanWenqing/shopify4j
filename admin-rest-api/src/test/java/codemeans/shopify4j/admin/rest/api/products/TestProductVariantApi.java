@@ -21,16 +21,16 @@ public class TestProductVariantApi {
 
   @Test
   public void testCount() throws ShopifyServerException {
-    Count count = api.count(productId);
+    Count count = api.count(productId).object();
     System.out.println(count);
   }
 
   @Test
   public void testList() throws ShopifyServerException {
-    ProductVariantList productVariantList = api.list(productId, new ProductVariantApi.ListReq());
+    ProductVariantList productVariantList = api.list(productId, new ProductVariantApi.ListReq()).object();
     System.out.println(productVariantList);
     ProductVariant expect = productVariantList.getVariants().get(0);
-    ProductVariant actual = api.get(expect.getId());
+    ProductVariant actual = api.get(expect.getId()).object();
     assertEquals(expect, actual);
   }
 }

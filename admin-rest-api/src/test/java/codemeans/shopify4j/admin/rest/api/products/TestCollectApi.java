@@ -22,17 +22,17 @@ public class TestCollectApi {
   @Test
   public void testCount() throws ShopifyServerException {
     CountReq countReq = new CountReq();
-    Count count = api.count(countReq);
+    Count count = api.count(countReq).object();
     System.out.println(count);
   }
 
   @Test
   public void testList() throws ShopifyServerException {
     ListReq listReq = new ListReq();
-    CollectList collectList = api.list(listReq);
+    CollectList collectList = api.list(listReq).object();
     System.out.println(collectList);
     Collect collect1 = collectList.getCollects().get(0);
-    Collect collect2 = api.get(collect1.getId());
+    Collect collect2 = api.get(collect1.getId()).object();
     System.out.println(collect2);
     assertEquals(collect1, collect2);
   }

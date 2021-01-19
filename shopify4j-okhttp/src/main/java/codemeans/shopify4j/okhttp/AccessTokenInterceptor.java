@@ -1,6 +1,7 @@
 package codemeans.shopify4j.okhttp;
 
 import codemeans.shopify4j.core.exception.ShopifyClientException;
+import codemeans.shopify4j.core.http.ShopifyHeaders;
 import codemeans.shopify4j.core.store.AccessTokenProvider;
 import java.io.IOException;
 import okhttp3.Interceptor;
@@ -28,7 +29,7 @@ public class AccessTokenInterceptor implements Interceptor {
       throw new ShopifyClientException("blank accessToken, request: " + request);
     }
     request = request.newBuilder()
-        .addHeader("X-Shopify-Access-Token", accessToken)
+        .addHeader(ShopifyHeaders.ACCESS_TOKEN, accessToken)
         .build();
     return chain.proceed(request);
   }

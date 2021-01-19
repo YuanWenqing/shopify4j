@@ -13,27 +13,30 @@ public interface Invoker {
   /**
    * http GET
    */
-  default <T> T get(String url, Class<T> respType) throws ShopifyServerException {
+  default <T> HttpResponse<T> get(String url, Class<T> respType) throws ShopifyServerException {
     return get(HttpRequest.of(url), respType);
   }
 
   /**
    * http GET
    */
-  <T> T get(HttpRequest httpRequest, Class<T> respType) throws ShopifyServerException;
+  <T> HttpResponse<T> get(HttpRequest httpRequest, Class<T> respType) throws ShopifyServerException;
 
   /**
    * http POST and {@code content-type=application/json}
    */
-  <T> T postJson(HttpRequest httpRequest, Class<T> respType) throws ShopifyServerException;
+  <T> HttpResponse<T> postJson(HttpRequest httpRequest, Class<T> respType)
+      throws ShopifyServerException;
 
   /**
    * http PUT and {@code content-type=application/json}
    */
-  <T> T putJson(HttpRequest httpRequest, Class<T> respType) throws ShopifyServerException;
+  <T> HttpResponse<T> putJson(HttpRequest httpRequest, Class<T> respType)
+      throws ShopifyServerException;
 
   /**
    * http DELETE
    */
-  void delete(HttpRequest httpRequest) throws ShopifyServerException;
+  <T> HttpResponse<T> delete(HttpRequest httpRequest, Class<T> respType)
+      throws ShopifyServerException;
 }

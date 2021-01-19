@@ -7,6 +7,7 @@ import codemeans.shopify4j.admin.rest.model.products.ProductVariantList;
 import codemeans.shopify4j.admin.rest.sdk.ShopifyStore;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
 import codemeans.shopify4j.core.http.HttpRequest;
+import codemeans.shopify4j.core.http.HttpResponse;
 import codemeans.shopify4j.core.http.Invoker;
 
 /**
@@ -44,39 +45,39 @@ public class ProductVariantApiImpl implements ProductVariantApi {
   }
 
   @Override
-  public ProductVariantList list(long productId, ListReq req) throws ShopifyServerException {
+  public HttpResponse<ProductVariantList> list(long productId, ListReq req) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint(productId));
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, ProductVariantList.class);
   }
 
   @Override
-  public Count count(long productId) throws ShopifyServerException {
+  public HttpResponse<Count> count(long productId) throws ShopifyServerException {
     return invoker.get(countEndpoint(productId), Count.class);
   }
 
   @Override
-  public ProductVariant get(long variantId) throws ShopifyServerException {
+  public HttpResponse<ProductVariant> get(long variantId) throws ShopifyServerException {
     return invoker.get(singleEndpoint(variantId), ProductVariant.class);
   }
 
   @Override
-  public ProductVariant create(long productId, ProductVariant req) throws ShopifyServerException {
+  public HttpResponse<ProductVariant> create(long productId, ProductVariant req) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint(productId))
         .setBody(req);
     return invoker.postJson(httpRequest, ProductVariant.class);
   }
 
   @Override
-  public ProductVariant update(long id, ProductVariant req) throws ShopifyServerException {
+  public HttpResponse<ProductVariant> update(long id, ProductVariant req) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id))
         .setBody(req);
     return invoker.putJson(httpRequest, ProductVariant.class);
   }
 
   @Override
-  public void delete(long productId, long variantId) throws ShopifyServerException {
+  public HttpResponse<String> delete(long productId, long variantId) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(boundedSingleEndpoint(productId, variantId));
-    invoker.delete(httpRequest);
+    return invoker.delete(httpRequest, String.class);
   }
 }

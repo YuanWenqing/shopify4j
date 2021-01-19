@@ -7,6 +7,7 @@ import codemeans.shopify4j.admin.rest.model.products.SmartCollectionList;
 import codemeans.shopify4j.admin.rest.sdk.ShopifyStore;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
 import codemeans.shopify4j.core.http.HttpRequest;
+import codemeans.shopify4j.core.http.HttpResponse;
 import codemeans.shopify4j.core.http.Invoker;
 
 /**
@@ -40,41 +41,41 @@ public class SmartCollectionApiImpl implements SmartCollectionApi {
   }
 
   @Override
-  public SmartCollectionList list(ListReq req) throws ShopifyServerException {
+  public HttpResponse<SmartCollectionList> list(ListReq req) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint());
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, SmartCollectionList.class);
   }
 
   @Override
-  public Count count(CountReq req) throws ShopifyServerException {
+  public HttpResponse<Count> count(CountReq req) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(countEndpoint());
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, Count.class);
   }
 
   @Override
-  public SmartCollection get(long id) throws ShopifyServerException {
+  public HttpResponse<SmartCollection> get(long id) throws ShopifyServerException {
     return invoker.get(singleEndpoint(id), SmartCollection.class);
   }
 
   @Override
-  public SmartCollection create(SmartCollection req) throws ShopifyServerException {
+  public HttpResponse<SmartCollection> create(SmartCollection req) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint())
         .setBody(req);
     return invoker.postJson(httpRequest, SmartCollection.class);
   }
 
   @Override
-  public SmartCollection update(long id, SmartCollection req) throws ShopifyServerException {
+  public HttpResponse<SmartCollection> update(long id, SmartCollection req) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id))
         .setBody(req);
     return invoker.putJson(httpRequest, SmartCollection.class);
   }
 
   @Override
-  public void delete(long id) throws ShopifyServerException {
+  public HttpResponse<String> delete(long id) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id));
-    invoker.delete(httpRequest);
+    return invoker.delete(httpRequest, String.class);
   }
 }

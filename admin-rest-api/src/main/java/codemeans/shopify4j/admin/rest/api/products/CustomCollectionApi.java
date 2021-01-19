@@ -4,6 +4,7 @@ import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.CustomCollection;
 import codemeans.shopify4j.admin.rest.model.products.CustomCollectionList;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
+import codemeans.shopify4j.core.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
@@ -16,17 +17,17 @@ import org.joda.time.DateTime;
  */
 public interface CustomCollectionApi {
 
-  CustomCollectionList list(CustomCollectionApi.ListReq req) throws ShopifyServerException;
+  HttpResponse<CustomCollectionList> list(CustomCollectionApi.ListReq req) throws ShopifyServerException;
 
-  Count count(CustomCollectionApi.CountReq req) throws ShopifyServerException;
+  HttpResponse<Count> count(CustomCollectionApi.CountReq req) throws ShopifyServerException;
 
-  CustomCollection get(long id) throws ShopifyServerException;
+  HttpResponse<CustomCollection> get(long id) throws ShopifyServerException;
 
-  CustomCollection create(CustomCollection req) throws ShopifyServerException;
+  HttpResponse<CustomCollection> create(CustomCollection req) throws ShopifyServerException;
 
-  CustomCollection update(long id, CustomCollection req) throws ShopifyServerException;
+  HttpResponse<CustomCollection> update(long id, CustomCollection req) throws ShopifyServerException;
 
-  void delete(long id) throws ShopifyServerException;
+  HttpResponse<String> delete(long id) throws ShopifyServerException;
 
   @Data
   @Accessors(chain = true)

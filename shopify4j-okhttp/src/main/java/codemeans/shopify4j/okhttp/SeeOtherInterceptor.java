@@ -1,5 +1,6 @@
 package codemeans.shopify4j.okhttp;
 
+import codemeans.shopify4j.core.http.ShopifyHeaders;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import okhttp3.Interceptor;
@@ -30,7 +31,7 @@ public class SeeOtherInterceptor implements Interceptor {
         return response;
       }
       Util.closeQuietly(response.body());
-      String location = response.header("Location");
+      String location = response.header(ShopifyHeaders.LOCATION);
       String redirectUrl = location + ".json";
       request = request.newBuilder()
           .url(redirectUrl)
