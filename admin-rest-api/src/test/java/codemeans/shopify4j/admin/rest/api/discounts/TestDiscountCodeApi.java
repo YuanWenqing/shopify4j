@@ -1,0 +1,34 @@
+package codemeans.shopify4j.admin.rest.api.discounts;
+
+import static junit.framework.TestCase.assertEquals;
+
+import codemeans.shopify4j.admin.rest.ContextForTest;
+import codemeans.shopify4j.admin.rest.model.discounts.DiscountCode;
+import codemeans.shopify4j.admin.rest.model.discounts.DiscountCodeList;
+import codemeans.shopify4j.core.exception.ShopifyServerException;
+import org.junit.Test;
+
+/**
+ * @author: yuanwq
+ * @date: 2021-01-13
+ */
+public class TestDiscountCodeApi {
+
+  private final long priceRuleId = 749521109157L;
+  private final DiscountCodeApi api = ContextForTest.TEST_STORE.discountCodes();
+
+  @Test
+  public void testList() throws ShopifyServerException {
+    DiscountCodeList list = api.list(priceRuleId);
+    System.out.println(list);
+
+    DiscountCode value1 = list.getDiscountCodes().get(0);
+    DiscountCode value2 = api.get(priceRuleId, value1.getId());
+    System.out.println(value2);
+    assertEquals(value1, value2);
+
+    DiscountCode value3 = api.lookup(value1.getCode());
+    System.out.println(value3);
+    assertEquals(value1, value3);
+  }
+}
