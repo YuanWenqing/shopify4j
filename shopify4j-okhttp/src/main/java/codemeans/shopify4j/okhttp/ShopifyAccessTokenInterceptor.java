@@ -1,0 +1,35 @@
+package codemeans.shopify4j.okhttp;
+
+import codemeans.shopify4j.core.exception.ShopifyClientException;
+import codemeans.shopify4j.core.store.AccessTokenProvider;
+import java.io.IOException;
+import okhttp3.Interceptor;
+import okhttp3.Request;
+import okhttp3.Response;
+import org.apache.commons.lang3.StringUtils;
+
+/**
+ * @author: yuanwq
+ * @date: 2021-01-19
+ */
+public class ShopifyAccessTokenInterceptor implements Interceptor {
+
+  private final AccessTokenProvider accessTokenProvider;
+
+  public ShopifyAccessTokenInterceptor(AccessTokenProvider accessTokenProvider) {
+    this.accessTokenProvider = accessTokenProvider;
+  }
+
+  @Override
+  public Response intercept(Chain chain) throws IOException {
+    Request request = chain.request();
+    String accessToken = accessTokenProvider.getAccessToken(request.url().host());
+    if (StringUtils.isBlank(accessToken)) {
+      throw new ShopifyClientException("blank accessToken, request: " + request);
+    }
+    request = request.newBuilder()
+        .addHeader("X-Shopify-Access-Token", accessToken)
+        .build();
+    return chain.proceed(request);
+  }
+}
