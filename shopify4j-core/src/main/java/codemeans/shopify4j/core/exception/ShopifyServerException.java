@@ -1,5 +1,6 @@
 package codemeans.shopify4j.core.exception;
 
+import codemeans.shopify4j.core.http.HttpResponse;
 import lombok.Getter;
 
 /**
@@ -11,18 +12,26 @@ import lombok.Getter;
 public class ShopifyServerException extends Exception {
 
   @Getter
-  private final int statusCode;
-  @Getter
-  private final String response;
+  private HttpResponse response;
 
-  public ShopifyServerException(int statusCode, String response) {
-    this.statusCode = statusCode;
+  public ShopifyServerException(HttpResponse response) {
+    super(response.toString());
     this.response = response;
   }
 
-  @Override
-  public String getMessage() {
-    return String.format("Status=%s, response: %s", statusCode, response);
+  public ShopifyServerException() {
+  }
+
+  public ShopifyServerException(String message) {
+    super(message);
+  }
+
+  public ShopifyServerException(String message, Throwable cause) {
+    super(message, cause);
+  }
+
+  public ShopifyServerException(Throwable cause) {
+    super(cause);
   }
 
 }

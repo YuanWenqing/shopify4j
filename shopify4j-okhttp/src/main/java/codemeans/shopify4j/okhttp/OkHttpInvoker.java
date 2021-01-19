@@ -130,17 +130,17 @@ public class OkHttpInvoker implements Invoker {
     String body = null;
     try (Response response = okHttpClient.newCall(request).execute()) {
       body = response.body().string();
+      HttpResponse<T> httpResponse = new HttpResponse<>(response.code(), body);
+      httpResponse.addAllHeaders(response.headers().toMultimap());
       if (log.isDebugEnabled()) {
         log.debug("request: {}, response.code={}, response.body={}",
             request, response.code(), body);
       }
       if (response.isSuccessful()) {
-        T data = codec.deserialize(respType, body);
-        HttpResponse<T> httpResponse = new HttpResponse<>(body, data);
-        httpResponse.addAllHeaders(response.headers().toMultimap());
+        httpResponse.setObject(codec.deserialize(respType, body));
         return httpResponse;
       }
-      throw new ShopifyServerException(response.code(), body);
+      throw new ShopifyServerException(httpResponse);
     } catch (IOException e) {
       throw new ShopifyClientException("fail to invoke request: " + request, e);
     } catch (SerializingException e) {

@@ -6,7 +6,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 
 /**
@@ -17,8 +19,10 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(fluent = true)
+@Setter(AccessLevel.NONE)
 public class HttpResponse<T> {
 
+  private final int code;
   /**
    * raw string body
    */
@@ -26,11 +30,15 @@ public class HttpResponse<T> {
   /**
    * deserialized object from body
    */
-  private final T object;
+  private T object;
   private final Map<String, List<String>> headers = new LinkedHashMap<>();
 
-  public HttpResponse(String body, T object) {
+  public HttpResponse(int code, String body) {
+    this.code = code;
     this.body = body;
+  }
+
+  public void setObject(T object) {
     this.object = object;
   }
 
