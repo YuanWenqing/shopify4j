@@ -44,7 +44,6 @@ public class DraftOrder {
 
   private String email;
   private String currency;
-  @Setter(AccessLevel.NONE)
   private DateTime invoiceSentAt;
   private String invoiceUrl;
 
@@ -116,11 +115,8 @@ public class DraftOrder {
   private BigDecimal totalTax;
   private BigDecimal subtotalPrice;
   private BigDecimal totalPrice;
-  @Setter(AccessLevel.NONE)
   private DateTime completedAt;
-  @Setter(AccessLevel.NONE)
   private DateTime createdAt;
-  @Setter(AccessLevel.NONE)
   private DateTime updatedAt;
   /**
    * @see codemeans.shopify4j.admin.rest.model.enums.DraftOrderStatus
