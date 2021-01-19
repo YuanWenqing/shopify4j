@@ -6,8 +6,10 @@ import codemeans.shopify4j.admin.rest.model.products.Product;
 import codemeans.shopify4j.admin.rest.model.products.ProductImage;
 import codemeans.shopify4j.admin.rest.model.products.ProductVariant;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -83,6 +85,7 @@ public abstract class ProductModifyPipeline implements ProductPipeline<Product> 
         .setId(modifiedProduct.getId());
     Map<Integer, ProductImage> positionToImage = new LinkedHashMap<>();
     modifiedProduct.getImages().forEach(image -> positionToImage.put(image.getPosition(), image));
+    List<ProductVariant> variants = new ArrayList<>();
     for (ProductVariant variant : modifiedProduct.getVariants()) {
       ProductVariant variantWithImage = new ProductVariant()
           .setId(variant.getId())
@@ -92,8 +95,9 @@ public abstract class ProductModifyPipeline implements ProductPipeline<Product> 
       if (image != null) {
         variantWithImage.setImageId(image.getId());
       }
-      variantImageReq.addVariant(variantWithImage);
+      variants.add(variantWithImage);
     }
+    variantImageReq.setVariants(variants);
     return variantImageReq;
   }
 
