@@ -53,8 +53,7 @@ https://shopify.dev/docs/admin-api/rest/reference
 
 ```java
 StoreSetting setting = new StoreSetting();
-Invoker invoker = new OkHttpInvoker(
-      AccessTokenProvider.constant(setting.getApiPassword()));
+Invoker invoker = new OkHttpInvoker(AccessTokenProvider.constant(setting.getApiPassword()));
 ShopifyStore store = new DefaultShopifyStore(setting, invoker);
 
 // get a product
