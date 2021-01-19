@@ -12,5 +12,7 @@ public interface ShopifyHeaders {
   String API_CALL_LIMIT = "X-Shopify-Shop-Api-Call-Limit";
   String RETRY_AFTER = "Retry-After";
   String LOCATION = "Location";
-
+  String STAGE = "X-Shopify-Stage";
+  String SHOPID = "X-ShopId";
+  String LOGIN_REQUIRED = "X-Shopify-Login-Required";
 }
