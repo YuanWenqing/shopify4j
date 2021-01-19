@@ -30,19 +30,19 @@ public class DraftOrderApiImpl implements DraftOrderApi {
   }
 
   private String resourcesEndpoint() {
-    return baseEndpoint + "/draftOrders.json";
+    return baseEndpoint + "/draft_orders.json";
   }
 
   private String countEndpoint() {
-    return baseEndpoint + "/draftOrders/count.json";
+    return baseEndpoint + "/draft_orders/count.json";
   }
 
   private String singleEndpoint(long id) {
-    return String.format("%s/draftOrders/%s.json", baseEndpoint, id);
+    return String.format("%s/draft_orders/%s.json", baseEndpoint, id);
   }
 
   private String singleOperationEndpoint(long id, String operation) {
-    return String.format("%s/draftOrders/%s/%s.json", baseEndpoint, id, operation);
+    return String.format("%s/draft_orders/%s/%s.json", baseEndpoint, id, operation);
   }
 
   @Override
