@@ -2,11 +2,13 @@ package codemeans.shopify4j.admin.rest.api.products.impl;
 
 import codemeans.shopify4j.admin.rest.api.products.CollectApi;
 import codemeans.shopify4j.admin.rest.model.common.Count;
+import codemeans.shopify4j.admin.rest.model.common.Empty;
 import codemeans.shopify4j.admin.rest.model.products.Collect;
 import codemeans.shopify4j.admin.rest.model.products.CollectList;
 import codemeans.shopify4j.admin.rest.sdk.ShopifyStore;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
 import codemeans.shopify4j.core.http.HttpRequest;
+import codemeans.shopify4j.core.http.HttpResponse;
 import codemeans.shopify4j.core.http.Invoker;
 
 /**
@@ -40,34 +42,34 @@ public class CollectApiImpl implements CollectApi {
   }
 
   @Override
-  public Collect create(Collect req) throws ShopifyServerException {
+  public HttpResponse<Collect> create(Collect req) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint())
         .setBody(req);
     return invoker.postJson(httpRequest, Collect.class);
   }
 
   @Override
-  public void delete(long id) throws ShopifyServerException {
+  public HttpResponse<String> delete(long id) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id));
-    invoker.delete(httpRequest);
+    return invoker.delete(httpRequest, String.class);
   }
 
   @Override
-  public CollectList list(ListReq req) throws ShopifyServerException {
+  public HttpResponse<CollectList> list(ListReq req) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint());
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, CollectList.class);
   }
 
   @Override
-  public Count count(CountReq req) throws ShopifyServerException {
+  public HttpResponse<Count> count(CountReq req) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(countEndpoint());
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, Count.class);
   }
 
   @Override
-  public Collect get(long id) throws ShopifyServerException {
+  public HttpResponse<Collect> get(long id) throws ShopifyServerException {
     return invoker.get(singleEndpoint(id), Collect.class);
   }
 

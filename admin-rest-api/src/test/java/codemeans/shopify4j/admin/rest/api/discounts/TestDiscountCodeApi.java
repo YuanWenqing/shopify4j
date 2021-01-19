@@ -19,15 +19,15 @@ public class TestDiscountCodeApi {
 
   @Test
   public void testList() throws ShopifyServerException {
-    DiscountCodeList list = api.list(priceRuleId);
+    DiscountCodeList list = api.list(priceRuleId).object();
     System.out.println(list);
 
     DiscountCode value1 = list.getDiscountCodes().get(0);
-    DiscountCode value2 = api.get(priceRuleId, value1.getId());
+    DiscountCode value2 = api.get(priceRuleId, value1.getId()).object();
     System.out.println(value2);
     assertEquals(value1, value2);
 
-    DiscountCode value3 = api.lookup(value1.getCode());
+    DiscountCode value3 = api.lookup(value1.getCode()).object();
     System.out.println(value3);
     assertEquals(value1, value3);
   }

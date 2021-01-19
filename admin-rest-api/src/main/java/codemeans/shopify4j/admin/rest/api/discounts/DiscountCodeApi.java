@@ -3,6 +3,7 @@ package codemeans.shopify4j.admin.rest.api.discounts;
 import codemeans.shopify4j.admin.rest.model.discounts.DiscountCode;
 import codemeans.shopify4j.admin.rest.model.discounts.DiscountCodeList;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
+import codemeans.shopify4j.core.http.HttpResponse;
 
 /**
  * @author: yuanwq
@@ -10,17 +11,19 @@ import codemeans.shopify4j.core.exception.ShopifyServerException;
  */
 public interface DiscountCodeApi {
 
-  DiscountCode create(long priceRuleId, DiscountCode req) throws ShopifyServerException;
-
-  DiscountCode update(long priceRuleId, long discountCodeId, DiscountCode req)
+  HttpResponse<DiscountCode> create(long priceRuleId, DiscountCode req)
       throws ShopifyServerException;
 
-  DiscountCodeList list(long priceRuleId) throws ShopifyServerException;
+  HttpResponse<DiscountCode> update(long priceRuleId, long discountCodeId, DiscountCode req)
+      throws ShopifyServerException;
 
-  DiscountCode get(long priceRuleId, long discountCodeId) throws ShopifyServerException;
+  HttpResponse<DiscountCodeList> list(long priceRuleId) throws ShopifyServerException;
 
-  DiscountCode lookup(String code) throws ShopifyServerException;
+  HttpResponse<DiscountCode> get(long priceRuleId, long discountCodeId)
+      throws ShopifyServerException;
 
-  void delete(long priceRuleId, long discountCodeId) throws ShopifyServerException;
+  HttpResponse<DiscountCode> lookup(String code) throws ShopifyServerException;
+
+  HttpResponse<String> delete(long priceRuleId, long discountCodeId) throws ShopifyServerException;
 
 }

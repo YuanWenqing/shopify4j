@@ -20,18 +20,18 @@ public class TestPriceRuleApi {
 
   @Test
   public void testCount() throws ShopifyServerException {
-    Count count = api.count();
+    Count count = api.count().object();
     System.out.println(count);
   }
 
   @Test
   public void testList() throws ShopifyServerException {
     ListReq listReq = new ListReq();
-    PriceRuleList priceRuleList = api.list(listReq);
+    PriceRuleList priceRuleList = api.list(listReq).object();
     System.out.println(priceRuleList);
 
     PriceRule priceRule1 = priceRuleList.getPriceRules().get(0);
-    PriceRule priceRule2 = api.get(priceRule1.getId());
+    PriceRule priceRule2 = api.get(priceRule1.getId()).object();
     System.out.println(priceRule2);
     assertEquals(priceRule1, priceRule2);
 

@@ -23,15 +23,15 @@ public class TestCollectionApi {
   @Test
   public void test() throws ShopifyServerException {
     ListReq listReq = new ListReq();
-    CollectList collectList = collectApi.list(listReq);
+    CollectList collectList = collectApi.list(listReq).object();
     System.out.println(collectList);
     Collect collect = collectList.getCollects().get(0);
     long collectionId = collect.getCollectionId();
-    Collection collection = api.get(collectionId);
+    Collection collection = api.get(collectionId).object();
     System.out.println(collection);
     assertEquals(collectionId, collection.getId().longValue());
 
-    ProductList productList = api.products(collectionId, null);
+    ProductList productList = api.products(collectionId, null).object();
     System.out.println(productList);
   }
 }

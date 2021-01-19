@@ -4,6 +4,7 @@ import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.SmartCollection;
 import codemeans.shopify4j.admin.rest.model.products.SmartCollectionList;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
+import codemeans.shopify4j.core.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
@@ -16,17 +17,17 @@ import org.joda.time.DateTime;
  */
 public interface SmartCollectionApi {
 
-  SmartCollectionList list(SmartCollectionApi.ListReq req) throws ShopifyServerException;
+  HttpResponse<SmartCollectionList> list(SmartCollectionApi.ListReq req) throws ShopifyServerException;
 
-  Count count(SmartCollectionApi.CountReq req) throws ShopifyServerException;
+  HttpResponse<Count> count(SmartCollectionApi.CountReq req) throws ShopifyServerException;
 
-  SmartCollection get(long id) throws ShopifyServerException;
+  HttpResponse<SmartCollection> get(long id) throws ShopifyServerException;
 
-  SmartCollection create(SmartCollection req) throws ShopifyServerException;
+  HttpResponse<SmartCollection> create(SmartCollection req) throws ShopifyServerException;
 
-  SmartCollection update(long id, SmartCollection req) throws ShopifyServerException;
+  HttpResponse<SmartCollection> update(long id, SmartCollection req) throws ShopifyServerException;
 
-  void delete(long id) throws ShopifyServerException;
+  HttpResponse<String> delete(long id) throws ShopifyServerException;
 
   @Data
   @Accessors(chain = true)

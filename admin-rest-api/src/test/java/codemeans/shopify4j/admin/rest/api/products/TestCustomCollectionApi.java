@@ -22,18 +22,18 @@ public class TestCustomCollectionApi {
   @Test
   public void testCount() throws ShopifyServerException {
     CountReq countReq = new CountReq();
-    Count count = api.count(countReq);
+    Count count = api.count(countReq).object();
     System.out.println(count);
   }
 
   @Test
   public void testList() throws ShopifyServerException {
     ListReq listReq = new ListReq();
-    CustomCollectionList customCollectionList = api.list(listReq);
+    CustomCollectionList customCollectionList = api.list(listReq).object();
     System.out.println(customCollectionList);
 
     CustomCollection customCollection1 = customCollectionList.getCustomCollections().get(0);
-    CustomCollection customCollection2 = api.get(customCollection1.getId());
+    CustomCollection customCollection2 = api.get(customCollection1.getId()).object();
     System.out.println(customCollection2);
     assertEquals(customCollection1, customCollection2);
 

@@ -7,6 +7,7 @@ import codemeans.shopify4j.admin.rest.model.products.ProductImageList;
 import codemeans.shopify4j.admin.rest.sdk.ShopifyStore;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
 import codemeans.shopify4j.core.http.HttpRequest;
+import codemeans.shopify4j.core.http.HttpResponse;
 import codemeans.shopify4j.core.http.Invoker;
 
 /**
@@ -40,14 +41,14 @@ public class ProductImageApiImpl implements ProductImageApi {
   }
 
   @Override
-  public ProductImageList list(long productId, ListReq req) throws ShopifyServerException {
+  public HttpResponse<ProductImageList> list(long productId, ListReq req) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint(productId));
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, ProductImageList.class);
   }
 
   @Override
-  public Count count(long productId, Long imageSinceId) throws ShopifyServerException {
+  public HttpResponse<Count> count(long productId, Long imageSinceId) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(countEndpoint(productId));
     if (imageSinceId != null) {
       httpRequest.addQuery("since_id", imageSinceId.toString());
@@ -56,19 +57,19 @@ public class ProductImageApiImpl implements ProductImageApi {
   }
 
   @Override
-  public ProductImage get(long productId, long imageId) throws ShopifyServerException {
+  public HttpResponse<ProductImage> get(long productId, long imageId) throws ShopifyServerException {
     return invoker.get(singleEndpoint(productId, imageId), ProductImage.class);
   }
 
   @Override
-  public ProductImage create(long productId, ProductImage req) throws ShopifyServerException {
+  public HttpResponse<ProductImage> create(long productId, ProductImage req) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint(productId))
         .setBody(req);
     return invoker.postJson(httpRequest, ProductImage.class);
   }
 
   @Override
-  public ProductImage update(long productId, long imageId, ProductImage req)
+  public HttpResponse<ProductImage> update(long productId, long imageId, ProductImage req)
       throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(productId, imageId))
         .setBody(req);
@@ -76,8 +77,8 @@ public class ProductImageApiImpl implements ProductImageApi {
   }
 
   @Override
-  public void delete(long productId, long imageId) throws ShopifyServerException {
+  public HttpResponse<String> delete(long productId, long imageId) throws ShopifyServerException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(productId, imageId));
-    invoker.delete(httpRequest);
+    return invoker.delete(httpRequest, String.class);
   }
 }
