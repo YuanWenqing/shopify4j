@@ -39,12 +39,7 @@ public interface CollectApi {
 
     private Integer limit;
     private Long sinceId;
-    private final List<String> fields = new ArrayList<>();
-
-    public ListReq addField(String field) {
-      this.fields.add(field);
-      return this;
-    }
+    private List<String> fields;
 
   }
 }

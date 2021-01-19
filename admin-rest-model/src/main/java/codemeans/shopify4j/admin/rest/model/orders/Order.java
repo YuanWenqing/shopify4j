@@ -13,9 +13,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.joda.time.DateTime;
 
@@ -74,29 +72,13 @@ public class Order {
   private String customerLocale;
   @ReadOnly
   private List<DiscountApplication> discountApplications;
-
-  @Setter(AccessLevel.NONE)
   private List<AppliedDiscountCode> discountCodes;
-
-  public Order addAppliedDiscountCode(AppliedDiscountCode discountCode) {
-    this.discountCodes.add(discountCode);
-    return this;
-  }
-
   private String email;
   /**
    * @see codemeans.shopify4j.admin.rest.model.enums.FinancialStatus
    */
   private String financialStatus;
-
-  @Setter(AccessLevel.NONE)
   private List<Fulfillment> fulfillments;
-
-  public Order addFulfillment(Fulfillment fulfillment) {
-    this.fulfillments.add(fulfillment);
-    return this;
-  }
-
   /**
    * @see codemeans.shopify4j.admin.rest.model.enums.OrderFulfillmentStatus
    */
@@ -107,30 +89,12 @@ public class Order {
   private Long id;
   @ReadOnly
   private String landingSite;
-  @Setter(AccessLevel.NONE)
   @Required
-  private final List<LineItem> lineItems = new ArrayList<>();
-
-  @Required
-  public Order addLineItem(LineItem lineItem) {
-    this.lineItems.add(lineItem);
-    return this;
-  }
-
+  private List<LineItem> lineItems;
   private Long locationId;
   private String name;
   private String note;
-  @Setter(AccessLevel.NONE)
   private List<NameValueAttribute> noteAttributes;
-
-  public Order addNoteAttribute(NameValueAttribute attribute) {
-    if (noteAttributes == null) {
-      noteAttributes = new ArrayList<>();
-    }
-    this.noteAttributes.add(attribute);
-    return this;
-  }
-
   @ReadOnly
   private Integer number;
   @ReadOnly
@@ -152,18 +116,7 @@ public class Order {
   @ReadOnly
   private List<Refund> refunds;
   private OrderAddress shippingAddress;
-
-  @Setter(AccessLevel.NONE)
   private List<ShippingLine> shippingLines;
-
-  public Order addShippingLine(ShippingLine shippingLine) {
-    if (shippingLines == null) {
-      shippingLines = new ArrayList<>();
-    }
-    shippingLines.add(shippingLine);
-    return this;
-  }
-
   private String sourceName;
   private BigDecimal subtotalPrice;
   private MoneySet subtotalPriceSet;
@@ -194,17 +147,7 @@ public class Order {
     return this;
   }
 
-  @Setter(AccessLevel.NONE)
   private List<TaxLine> taxLines;
-
-  public Order addTaxLine(TaxLine taxLine) {
-    if (taxLines == null) {
-      taxLines = new ArrayList<>();
-    }
-    taxLines.add(taxLine);
-    return this;
-  }
-
   private Boolean taxesIncluded;
   private Boolean test;
   @ReadOnly

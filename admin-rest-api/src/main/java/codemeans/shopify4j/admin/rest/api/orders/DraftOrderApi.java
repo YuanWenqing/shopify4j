@@ -5,7 +5,6 @@ import codemeans.shopify4j.admin.rest.model.orders.DraftOrder;
 import codemeans.shopify4j.admin.rest.model.orders.DraftOrderInvoice;
 import codemeans.shopify4j.admin.rest.model.orders.DraftOrderList;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
-import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -37,13 +36,7 @@ public interface DraftOrderApi {
   @Accessors(chain = true)
   class ListReq {
 
-    private final List<Long> ids = new ArrayList<>();
-
-    public ListReq addId(long id) {
-      this.ids.add(id);
-      return this;
-    }
-
+    private List<Long> ids;
     private Integer limit;
     private Long sinceId;
     private DateTime updatedAtMin;
@@ -52,12 +45,7 @@ public interface DraftOrderApi {
      * @see codemeans.shopify4j.admin.rest.model.enums.DraftOrderStatus
      */
     private String status;
-    private final List<String> fields = new ArrayList<>();
-
-    public ListReq addField(String field) {
-      this.fields.add(field);
-      return this;
-    }
+    private List<String> fields;
   }
 
   @Data

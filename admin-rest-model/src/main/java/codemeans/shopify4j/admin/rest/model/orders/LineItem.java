@@ -3,11 +3,8 @@ package codemeans.shopify4j.admin.rest.model.orders;
 import codemeans.shopify4j.admin.rest.model.common.MoneySet;
 import codemeans.shopify4j.admin.rest.model.common.NameValueAttribute;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
 import lombok.experimental.Accessors;
 
 /**
@@ -41,58 +38,17 @@ public class LineItem {
   private String vendor;
   private String name;
   private Boolean giftCard;
-  @Setter(AccessLevel.NONE)
   private List<NameValueAttribute> properties;
-
-  public LineItem addProperty(NameValueAttribute attribute) {
-    if (properties == null) {
-      properties = new ArrayList<>();
-    }
-    this.properties.add(attribute);
-    return this;
-  }
-
   private Boolean taxable;
-
-  @Setter(AccessLevel.NONE)
   private List<TaxLine> taxLines;
-
-  public LineItem addTaxLine(TaxLine taxLine) {
-    if (taxLines == null) {
-      taxLines = new ArrayList<>();
-    }
-    taxLines.add(taxLine);
-    return this;
-  }
-
   private AppliedDiscount appliedDiscount;
-
   private String tipPaymentGateway;
   private String tipPaymentMethod;
   private BigDecimal totalDiscount;
   private MoneySet totalDiscountSet;
-  @Setter(AccessLevel.NONE)
   private List<DiscountAllocation> discountAllocations;
-
-  public LineItem addDiscountAllocation(DiscountAllocation discountAllocation) {
-    if (discountAllocations == null) {
-      discountAllocations = new ArrayList<>();
-    }
-    discountAllocations.add(discountAllocation);
-    return this;
-  }
-
   private OriginLocation originLocation;
-  @Setter(AccessLevel.NONE)
   private List<Duty> duties;
-
-  public LineItem addDuty(Duty duty) {
-    if (duties == null) {
-      duties = new ArrayList<>();
-    }
-    duties.add(duty);
-    return this;
-  }
 
   @Data
   @Accessors(chain = true)

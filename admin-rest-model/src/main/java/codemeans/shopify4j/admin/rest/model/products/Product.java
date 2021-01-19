@@ -38,29 +38,8 @@ public class Product {
   @Setter(AccessLevel.NONE)
   @ReadOnly
   private ProductImage image;
-  @Setter(AccessLevel.NONE)
   private List<ProductImage> images;
-
-  public Product addImage(ProductImage image) {
-    if (images == null) {
-      images = new ArrayList<>();
-    }
-    images.add(image);
-    return this;
-  }
-
-  @Setter(AccessLevel.NONE)
   private List<Option> options;
-
-  public Product addOption(Option option) {
-    if (options == null) {
-      options = new ArrayList<>();
-    }
-    option.setPosition(options.size() + 1);
-    options.add(option);
-    return this;
-  }
-
   private String productType;
   private Boolean published;
   /**
@@ -110,29 +89,8 @@ public class Product {
    */
   @ReadOnly
   private DateTime updatedAt;
-  @Setter(AccessLevel.NONE)
   private List<ProductVariant> variants;
-
-  public Product addVariant(ProductVariant variant) {
-    if (variants == null) {
-      variants = new ArrayList<>();
-    }
-    variants.add(variant);
-    return this;
-  }
-
   private String vendor;
-
-  @Setter(AccessLevel.NONE)
   private List<Metafield> metafields;
-
-  public Product addMetafield(Metafield metafield) {
-    if (metafields == null) {
-      metafields = new ArrayList<>();
-    }
-    metafields.add(metafield);
-    return this;
-  }
-
 
 }

@@ -6,7 +6,6 @@ import codemeans.shopify4j.admin.rest.model.orders.OrderList;
 import codemeans.shopify4j.admin.rest.model.orders.Refund;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -40,13 +39,7 @@ public interface OrderApi {
   @Accessors(chain = true)
   class ListReq {
 
-    private final List<Long> ids = new ArrayList<>();
-
-    public ListReq addId(long id) {
-      this.ids.add(id);
-      return this;
-    }
-
+    private List<Long> ids;
     private Integer limit;
     private Long sinceId;
     private DateTime createdAtMin;
@@ -68,13 +61,8 @@ public interface OrderApi {
      * @see codemeans.shopify4j.admin.rest.model.enums.OrderListFulfillmentStatus
      */
     private String fulfillmentStatus;
+    private List<String> fields;
 
-    private final List<String> fields = new ArrayList<>();
-
-    public ListReq addField(String field) {
-      this.fields.add(field);
-      return this;
-    }
   }
 
   @Data

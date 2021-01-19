@@ -5,9 +5,7 @@ import codemeans.shopify4j.admin.rest.annotation.Required;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import java.math.BigDecimal;
 import java.util.Map;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.joda.time.DateTime;
 

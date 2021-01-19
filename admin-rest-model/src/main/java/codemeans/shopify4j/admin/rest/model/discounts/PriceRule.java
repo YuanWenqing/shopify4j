@@ -33,108 +33,18 @@ public class PriceRule {
    */
   private String customerSelection;
   private DateTime endsAt;
-  @Setter(AccessLevel.NONE)
   private List<Long> entitledCollectionIds;
-
-  public PriceRule addEntitledCollectionId(long collectionId) {
-    if (entitledCollectionIds == null) {
-      entitledCollectionIds = new ArrayList<>();
-    }
-    entitledCollectionIds.add(collectionId);
-    return this;
-  }
-
-  @Setter(AccessLevel.NONE)
   private List<Long> entitledCountryIds;
-
-  public PriceRule addEntitledCountryId(long countryId) {
-    if (entitledCountryIds == null) {
-      entitledCountryIds = new ArrayList<>();
-    }
-    entitledCountryIds.add(countryId);
-    return this;
-  }
-
-  @Setter(AccessLevel.NONE)
   private List<Long> entitledProductIds;
-
-  public PriceRule addEntitledProductId(long productId) {
-    if (entitledProductIds == null) {
-      entitledProductIds = new ArrayList<>();
-    }
-    entitledProductIds.add(productId);
-    return this;
-  }
-
-  @Setter(AccessLevel.NONE)
   private List<Long> entitledVariantIds;
-
-  public PriceRule addEntitledVariantId(long variantId) {
-    if (entitledVariantIds == null) {
-      entitledVariantIds = new ArrayList<>();
-    }
-    entitledVariantIds.add(variantId);
-    return this;
-  }
-
   @ReadOnly
   private Long id;
   private Boolean oncePerCustomer;
-  @Setter(AccessLevel.NONE)
   private List<Long> prerequisiteCustomerIds;
-
-  public PriceRule addPrerequisiteCustomerId(long customerId) {
-    if (prerequisiteCustomerIds == null) {
-      prerequisiteCustomerIds = new ArrayList<>();
-    }
-    prerequisiteCustomerIds.add(customerId);
-    return this;
-  }
-
-  @Setter(AccessLevel.NONE)
   private List<Long> prerequisiteSavedSearchIds;
-
-  public PriceRule addPrerequisiteSavedSearchId(long savedSearchId) {
-    if (prerequisiteSavedSearchIds == null) {
-      prerequisiteSavedSearchIds = new ArrayList<>();
-    }
-    prerequisiteSavedSearchIds.add(savedSearchId);
-    return this;
-  }
-
-  @Setter(AccessLevel.NONE)
   private List<Long> prerequisiteProductIds;
-
-  public PriceRule addPrerequisiteProductId(long productId) {
-    if (prerequisiteProductIds == null) {
-      prerequisiteProductIds = new ArrayList<>();
-    }
-    prerequisiteProductIds.add(productId);
-    return this;
-  }
-
-  @Setter(AccessLevel.NONE)
   private List<Long> prerequisiteVariantIds;
-
-  public PriceRule addPrerequisiteVariantId(long variantId) {
-    if (prerequisiteVariantIds == null) {
-      prerequisiteVariantIds = new ArrayList<>();
-    }
-    prerequisiteVariantIds.add(variantId);
-    return this;
-  }
-
-  @Setter(AccessLevel.NONE)
   private List<Long> prerequisiteCollectionIds;
-
-  public PriceRule addPrerequisiteCollectionId(long collectionId) {
-    if (prerequisiteCollectionIds == null) {
-      prerequisiteCollectionIds = new ArrayList<>();
-    }
-    prerequisiteCollectionIds.add(collectionId);
-    return this;
-  }
-
   @Setter(AccessLevel.NONE)
   private PrerequisiteCondition prerequisiteQuantityRange;
 

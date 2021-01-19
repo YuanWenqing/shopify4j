@@ -3,9 +3,7 @@ package codemeans.shopify4j.admin.rest.model.metafield;
 import codemeans.shopify4j.admin.rest.annotation.ReadOnly;
 import codemeans.shopify4j.admin.rest.annotation.Required;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.joda.time.DateTime;
 

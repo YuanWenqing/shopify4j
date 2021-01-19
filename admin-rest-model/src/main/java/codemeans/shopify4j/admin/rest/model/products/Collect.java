@@ -1,9 +1,7 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.joda.time.DateTime;
 

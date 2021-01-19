@@ -9,9 +9,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.joda.time.DateTime;
 
@@ -26,17 +24,7 @@ public class Customer {
 
   private Boolean acceptsMarketing;
   private DateTime acceptsMarketingUpdatedAt;
-  @Setter(AccessLevel.NONE)
   private List<CustomerAddress> addresses;
-
-  private Customer addAddress(CustomerAddress address) {
-    if (addresses == null) {
-      addresses = new ArrayList<>();
-    }
-    this.addresses.add(address);
-    return this;
-  }
-
   @ReadOnly
   private String currency;
   @ReadOnly
@@ -98,17 +86,7 @@ public class Customer {
   /**
    * @see codemeans.shopify4j.admin.rest.model.enums.TaxExemption
    */
-  @Setter(AccessLevel.NONE)
   private List<String> taxExemptions;
-
-  private Customer addTaxExemption(String taxExemption) {
-    if (taxExemptions == null) {
-      taxExemptions = new ArrayList<>();
-    }
-    this.taxExemptions.add(taxExemption);
-    return this;
-  }
-
   @ReadOnly
   private BigDecimal totalSpent;
   @ReadOnly
