@@ -9,9 +9,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.joda.time.DateTime;
 
@@ -31,30 +29,12 @@ public class DraftOrder {
   private OrderAddress shippingAddress;
   private OrderAddress billingAddress;
   private String note;
-  @Setter(AccessLevel.NONE)
   private List<NameValueAttribute> noteAttributes;
-
-  public DraftOrder addNoteAttribute(NameValueAttribute attribute) {
-    if (noteAttributes == null) {
-      noteAttributes = new ArrayList<>();
-    }
-    this.noteAttributes.add(attribute);
-    return this;
-  }
-
   private String email;
   private String currency;
   private DateTime invoiceSentAt;
   private String invoiceUrl;
-
-  @Setter(AccessLevel.NONE)
-  private final List<LineItem> lineItems = new ArrayList<>();
-
-  public DraftOrder addLineItem(LineItem lineItem) {
-    this.lineItems.add(lineItem);
-    return this;
-  }
-
+  private List<LineItem> lineItems;
   private ShippingLine shippingLine;
 
   @JsonIgnore
@@ -88,28 +68,8 @@ public class DraftOrder {
   /**
    * @see codemeans.shopify4j.admin.rest.model.enums.TaxExemption
    */
-  @Setter(AccessLevel.NONE)
   private List<String> taxExemptions;
-
-  private DraftOrder addTaxExemption(String taxExemption) {
-    if (taxExemptions == null) {
-      taxExemptions = new ArrayList<>();
-    }
-    this.taxExemptions.add(taxExemption);
-    return this;
-  }
-
-  @Setter(AccessLevel.NONE)
   private List<TaxLine> taxLines;
-
-  public DraftOrder addTaxLine(TaxLine taxLine) {
-    if (taxLines == null) {
-      taxLines = new ArrayList<>();
-    }
-    taxLines.add(taxLine);
-    return this;
-  }
-
   private AppliedDiscount appliedDiscount;
   private Boolean taxIncluded;
   private BigDecimal totalTax;

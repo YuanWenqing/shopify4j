@@ -4,11 +4,8 @@ import codemeans.shopify4j.admin.rest.annotation.ReadOnly;
 import codemeans.shopify4j.admin.rest.model.metafield.Metafield;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.joda.time.DateTime;
 
@@ -58,15 +55,5 @@ public class ProductVariant {
    * @see codemeans.shopify4j.admin.rest.model.enums.WeightUnit
    */
   private String weightUnit;
-
-  @Setter(AccessLevel.NONE)
   private List<Metafield> metafields;
-
-  public ProductVariant addMetafield(Metafield metafield) {
-    if (metafields == null) {
-      metafields = new ArrayList<>();
-    }
-    metafields.add(metafield);
-    return this;
-  }
 }

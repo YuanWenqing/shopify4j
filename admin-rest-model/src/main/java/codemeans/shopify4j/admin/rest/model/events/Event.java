@@ -17,7 +17,6 @@ import org.joda.time.DateTime;
 @JsonRootName("event")
 public class Event {
 
-  @Setter(AccessLevel.NONE)
   private List<String> arguments;
   private String body;
   private DateTime createdAt;

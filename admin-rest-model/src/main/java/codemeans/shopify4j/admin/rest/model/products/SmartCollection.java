@@ -3,7 +3,6 @@ package codemeans.shopify4j.admin.rest.model.products;
 import codemeans.shopify4j.admin.rest.annotation.ReadOnly;
 import codemeans.shopify4j.admin.rest.annotation.Required;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -28,14 +27,7 @@ public class SmartCollection {
    */
   private String publishedScope;
   @Required
-  private final List<Rule> rules = new ArrayList<>();
-
-  @Required
-  public SmartCollection addRule(Rule rule) {
-    this.rules.add(rule);
-    return this;
-  }
-
+  private List<Rule> rules;
   private Boolean disjunctive;
   /**
    * @see codemeans.shopify4j.admin.rest.model.enums.SortOrder
