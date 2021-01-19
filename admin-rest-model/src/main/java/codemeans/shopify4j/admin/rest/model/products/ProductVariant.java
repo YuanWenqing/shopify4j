@@ -1,5 +1,6 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
+import codemeans.shopify4j.admin.rest.annotation.ReadOnly;
 import codemeans.shopify4j.admin.rest.model.metafield.Metafield;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import java.math.BigDecimal;
@@ -24,7 +25,6 @@ public class ProductVariant {
   /**
    * https://en.wikipedia.org/wiki/ISO_8601
    */
-  @Setter(AccessLevel.NONE)
   private DateTime createdAt;
   private String fulfillmentService;
   private Integer grams;
@@ -36,23 +36,22 @@ public class ProductVariant {
    * @see codemeans.shopify4j.admin.rest.model.enums.InventoryPolicy
    */
   private String inventoryPolicy;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private int inventoryQuantity;
   private String option1;
   private String option2;
   private String option3;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private Integer position;
   private BigDecimal price;
   private Long productId;
   private String sku;
   private Boolean taxable;
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private String title;
   /**
    * https://en.wikipedia.org/wiki/ISO_8601
    */
-  @Setter(AccessLevel.NONE)
   private DateTime updatedAt;
   private Integer weight;
   /**

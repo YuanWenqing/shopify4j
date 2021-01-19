@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
  * @author: yuanwq
  * @date: 2021-01-18
  */
-@Target({ElementType.FIELD})
+@Target({ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface Required {

@@ -1,5 +1,7 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
+import codemeans.shopify4j.admin.rest.annotation.ReadOnly;
+import codemeans.shopify4j.admin.rest.annotation.Required;
 import codemeans.shopify4j.admin.rest.internal.Utils;
 import codemeans.shopify4j.admin.rest.model.metafield.Metafield;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -25,14 +27,16 @@ public class Product {
   /**
    * https://en.wikipedia.org/wiki/ISO_8601
    */
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private DateTime createdAt;
   private String handle;
+  @ReadOnly
   private Long id;
   /**
    * first image, only used for get info from shopify
    */
   @Setter(AccessLevel.NONE)
+  @ReadOnly
   private ProductImage image;
   @Setter(AccessLevel.NONE)
   private List<ProductImage> images;
@@ -99,11 +103,12 @@ public class Product {
   }
 
   private String templateSuffix;
+  @Required
   private String title;
   /**
    * https://en.wikipedia.org/wiki/ISO_8601
    */
-  @Setter(AccessLevel.NONE)
+  @ReadOnly
   private DateTime updatedAt;
   @Setter(AccessLevel.NONE)
   private List<ProductVariant> variants;

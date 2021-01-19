@@ -17,12 +17,10 @@ import org.joda.time.DateTime;
 public class Collect {
 
   private Long collectionId;
-  @Setter(AccessLevel.NONE)
   private DateTime createdAt;
   private Long id;
   private Integer position;
   private Long productId;
   private String sortValue;
-  @Setter(AccessLevel.NONE)
   private DateTime updatedAt;
 }

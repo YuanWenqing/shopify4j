@@ -1,7 +1,6 @@
 package codemeans.shopify4j.admin.rest.model.products;
 
 import codemeans.shopify4j.admin.rest.model.metafield.Metafield;
-import com.fasterxml.jackson.annotation.JsonRootName;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
@@ -12,13 +11,11 @@ import org.joda.time.DateTime;
 
 @Data
 @Accessors(chain = true)
-@JsonRootName("option")
 public class Option {
 
   /**
    * https://en.wikipedia.org/wiki/ISO_8601
    */
-  @Setter(AccessLevel.NONE)
   private DateTime createdAt;
   private Long id;
   private String name;
