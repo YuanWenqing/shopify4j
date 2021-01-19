@@ -15,8 +15,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 @JsonRootName("draft_order_invoice")
-public
-class DraftOrderInvoice {
+public class DraftOrderInvoice {
 
   private String to;
   private String from;
