@@ -5,7 +5,6 @@ import codemeans.shopify4j.admin.rest.model.common.Count;
 import codemeans.shopify4j.admin.rest.model.products.Product;
 import codemeans.shopify4j.admin.rest.model.products.ProductList;
 import codemeans.shopify4j.core.exception.ShopifyServerException;
-import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -41,13 +40,7 @@ public interface ProductApi {
   @Accessors(chain = true)
   class ListReq {
 
-    private final List<Long> ids = new ArrayList<>();
-
-    public ListReq addId(long id) {
-      this.ids.add(id);
-      return this;
-    }
-
+    private List<Long> ids;
     private Integer limit;
     private Long sinceId;
     private String title;
@@ -69,19 +62,8 @@ public interface ProductApi {
      * @see codemeans.shopify4j.admin.rest.model.enums.PublishedStatus
      */
     private String publishedStatus;
-    private final List<String> fields = new ArrayList<>();
-
-    public ListReq addField(String field) {
-      this.fields.add(field);
-      return this;
-    }
-
-    private final List<String> presentmentCurrencies = new ArrayList<>();
-
-    public ListReq addPresentmentCurrency(String presentmentCurrency) {
-      this.presentmentCurrencies.add(presentmentCurrency);
-      return this;
-    }
+    private List<String> fields;
+    private List<String> presentmentCurrencies;
   }
 
   @Data

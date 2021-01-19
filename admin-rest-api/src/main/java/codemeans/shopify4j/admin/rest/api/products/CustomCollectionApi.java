@@ -32,7 +32,7 @@ public interface CustomCollectionApi {
   @Accessors(chain = true)
   class ListReq {
 
-    private final List<Long> ids = new ArrayList<>();
+    private List<Long> ids;
     private Integer limit;
     private Long sinceId;
     private String title;
@@ -46,18 +46,7 @@ public interface CustomCollectionApi {
      * @see codemeans.shopify4j.admin.rest.model.enums.PublishedStatus
      */
     private String publishedStatus;
-    private final List<String> fields = new ArrayList<>();
-
-    public CustomCollectionApi.ListReq addId(long id) {
-      this.ids.add(id);
-      return this;
-    }
-
-    public CustomCollectionApi.ListReq addField(String field) {
-      this.fields.add(field);
-      return this;
-    }
-
+    private List<String> fields;
   }
 
   @Data
