@@ -1,8 +1,9 @@
-# shopify4j
+# Shopify4j
 
 Java SDK for Shopify APIs, including:
 
 * Admin REST API
+* Admin REST API models
 * ...
 
 ## Usage
