@@ -2,8 +2,9 @@
 
 Java SDK for Shopify APIs, including:
 
-* Admin REST API
-* Admin REST API models
+* REST Admin API Models
+* REST Admin API
+* GraphQL Admin Schema
 * ...
 
 ## Usage
@@ -64,7 +65,7 @@ Product = store.products.get(pid).object();
 
 ## APIs
 
-For now, supported apis can be checked in [`ShopifyStore`](./rest-admin-api/src/main/java/codemeans/shopify4j/admin/rest/sdk/ShopifyStore.java)
+For now, supported apis can be checked in [`ShopifyStore`](./rest-admin-api/src/main/java/codemeans/shopify4j/rest/admin/sdk/ShopifyStore.java)
 
 * `store.collects()`
 * `store.collections()`
