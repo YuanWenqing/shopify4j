@@ -1,6 +1,6 @@
 task graphqlGen(type: Exec) {
     workingDir "$projectDir"
-    commandLine 'ruby', 'graphql-gen.rb'
+    commandLine 'ruby', 'codegen.rb'
 }
 clean {
     delete "src/gen/java"
