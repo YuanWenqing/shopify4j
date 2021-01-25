@@ -4,11 +4,13 @@ require 'graphql_java_gen'
 require 'graphql_schema'
 require 'json'
 
+Dir.chdir(__dir__)
+
 introspection_result = File.read("schema/admin-schema@2021-01.json")
 schema = GraphQLSchema.new(JSON.parse(introspection_result))
 
 GraphQLJavaGen.new(schema,
-  package_name: "codemeans.shopify4j.graphql.gen",
+  package_name: "codemeans.shopify4j.admin.graphql.gen",
  nest_under: 'AdminGraphql',
   version: '2021-01',
   custom_scalars: [
@@ -31,4 +33,4 @@ GraphQLJavaGen.new(schema,
       imports: ['org.joda.time.DateTime'],
     )
   ]
-).save_granular("#{Dir.pwd}/src/main/java/codemeans/shopify4j/graphql/gen/")
+).save_granular("#{Dir.pwd}/src/main/java/codemeans/shopify4j/admin/graphql/gen/")
