@@ -3,7 +3,7 @@ build
 gen
 out
 .idea
-rest-admin-api/src/test/resources/store.properties
+store.properties
 
 # Ignore Gradle GUI config
 gradle-app.setting

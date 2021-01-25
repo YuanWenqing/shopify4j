@@ -7,10 +7,10 @@ import codemeans.shopify4j.rest.admin.model.orders.DraftOrder;
 import codemeans.shopify4j.rest.admin.model.orders.DraftOrderInvoice;
 import codemeans.shopify4j.rest.admin.model.orders.DraftOrderList;
 import codemeans.shopify4j.rest.admin.sdk.ShopifyStore;
-import codemeans.shopify4j.rest.core.exception.ShopifyServerException;
-import codemeans.shopify4j.rest.core.http.HttpRequest;
-import codemeans.shopify4j.rest.core.http.HttpResponse;
-import codemeans.shopify4j.rest.core.http.Invoker;
+import codemeans.shopify4j.rest.exception.ShopifyServerException;
+import codemeans.shopify4j.rest.http.HttpRequest;
+import codemeans.shopify4j.rest.http.HttpResponse;
+import codemeans.shopify4j.rest.http.Invoker;
 
 /**
  * @author: yuanwq

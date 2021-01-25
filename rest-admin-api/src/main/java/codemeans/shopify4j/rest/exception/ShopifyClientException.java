@@ -1,4 +1,4 @@
-package codemeans.shopify4j.rest.core.exception;
+package codemeans.shopify4j.rest.exception;
 
 /**
  * fail to invoke request

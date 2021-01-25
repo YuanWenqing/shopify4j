@@ -8,7 +8,7 @@ import codemeans.shopify4j.rest.admin.api.products.CollectApi.ListReq;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.products.Collect;
 import codemeans.shopify4j.rest.admin.model.products.CollectList;
-import codemeans.shopify4j.rest.core.exception.ShopifyServerException;
+import codemeans.shopify4j.rest.exception.ShopifyServerException;
 import org.junit.Test;
 
 /**
