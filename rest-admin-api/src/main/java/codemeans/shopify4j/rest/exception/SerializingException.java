@@ -1,4 +1,4 @@
-package codemeans.shopify4j.rest.core.exception;
+package codemeans.shopify4j.rest.exception;
 
 /**
  * exception in (de)serialization processing

@@ -2,8 +2,8 @@ package codemeans.shopify4j.rest.admin.api.products;
 
 import codemeans.shopify4j.rest.admin.model.products.Collection;
 import codemeans.shopify4j.rest.admin.model.products.ProductList;
-import codemeans.shopify4j.rest.core.exception.ShopifyServerException;
-import codemeans.shopify4j.rest.core.http.HttpResponse;
+import codemeans.shopify4j.rest.exception.ShopifyServerException;
+import codemeans.shopify4j.rest.http.HttpResponse;
 
 /**
  * @author: yuanwq

@@ -7,7 +7,7 @@ import codemeans.shopify4j.rest.admin.api.discounts.PriceRuleApi.ListReq;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.discounts.PriceRule;
 import codemeans.shopify4j.rest.admin.model.discounts.PriceRuleList;
-import codemeans.shopify4j.rest.core.exception.ShopifyServerException;
+import codemeans.shopify4j.rest.exception.ShopifyServerException;
 import org.junit.Test;
 
 /**

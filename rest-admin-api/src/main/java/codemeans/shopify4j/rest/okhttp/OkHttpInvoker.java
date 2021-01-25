@@ -1,14 +1,14 @@
 package codemeans.shopify4j.rest.okhttp;
 
-import codemeans.shopify4j.rest.core.exception.SerializingException;
-import codemeans.shopify4j.rest.core.exception.ShopifyClientException;
-import codemeans.shopify4j.rest.core.exception.ShopifyServerException;
-import codemeans.shopify4j.rest.core.http.HttpRequest;
-import codemeans.shopify4j.rest.core.http.HttpResponse;
-import codemeans.shopify4j.rest.core.http.ICodec;
-import codemeans.shopify4j.rest.core.http.Invoker;
-import codemeans.shopify4j.rest.core.jackson.JacksonCodec;
 import codemeans.shopify4j.rest.core.store.AccessTokenProvider;
+import codemeans.shopify4j.rest.exception.SerializingException;
+import codemeans.shopify4j.rest.exception.ShopifyClientException;
+import codemeans.shopify4j.rest.exception.ShopifyServerException;
+import codemeans.shopify4j.rest.http.HttpRequest;
+import codemeans.shopify4j.rest.http.HttpResponse;
+import codemeans.shopify4j.rest.http.ICodec;
+import codemeans.shopify4j.rest.http.Invoker;
+import codemeans.shopify4j.rest.jackson.JacksonCodec;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;

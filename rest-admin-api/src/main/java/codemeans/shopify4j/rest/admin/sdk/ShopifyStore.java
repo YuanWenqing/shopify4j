@@ -13,9 +13,9 @@ import codemeans.shopify4j.rest.admin.api.products.ProductApi;
 import codemeans.shopify4j.rest.admin.api.products.ProductImageApi;
 import codemeans.shopify4j.rest.admin.api.products.ProductVariantApi;
 import codemeans.shopify4j.rest.admin.api.products.SmartCollectionApi;
-import codemeans.shopify4j.rest.core.exception.ShopifyServerException;
-import codemeans.shopify4j.rest.core.http.Invoker;
 import codemeans.shopify4j.rest.core.store.StoreSetting;
+import codemeans.shopify4j.rest.exception.ShopifyServerException;
+import codemeans.shopify4j.rest.http.Invoker;
 
 /**
  * @author: yuanwq
