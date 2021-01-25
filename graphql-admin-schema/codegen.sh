@@ -13,8 +13,9 @@ schema = GraphQLSchema.new(JSON.parse(introspection_result))
 
 GraphQLJavaGen.new(schema,
   package_name: "codemeans.shopify4j.graphql.admin.types",
- nest_under: 'AdminGraphql',
+  nest_under: 'AdminGraphql',
   version: '2021-01',
+  include_deprecated: true,
   custom_scalars: [
     GraphQLJavaGen::Scalar.new(
       type_name: 'Decimal',
