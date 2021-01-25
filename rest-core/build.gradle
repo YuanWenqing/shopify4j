@@ -17,3 +17,6 @@ dependencies {
     testImplementation("junit:junit:$junitVersion")
 
 }
+
+description "Basic Concepts of Java SDK for Shopify"
+apply from: "$rootDir/publish.gradle"
