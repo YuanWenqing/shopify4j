@@ -124,16 +124,16 @@ subprojects {
 
 }
 
-project(":shopify4j-core") {
+project(":rest-core") {
     description "Basic Concepts of Java SDK for Shopify"
 }
-project(":shopify4j-okhttp") {
+project(":rest-okhttp") {
     description "Default Implementation of Request Invoker for Shopify4j"
 }
-project(":admin-rest-model") {
+project(":rest-admin-model") {
     description "Java Model used for Shopify Admin REST API"
 }
-project(":admin-rest-api") {
+project(":rest-admin-api") {
     description "Java SDK for Shopify Admin REST API"
 }
 

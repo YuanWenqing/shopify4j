@@ -11,9 +11,9 @@ Java SDK for Shopify APIs, including:
 gradle
 
 ```groovy
-implementation("xyz.codemeans.shopify4j:admin-rest-api:1.0")
+implementation("xyz.codemeans.shopify4j:rest-admin-api:1.0")
 // okhttp invoker
-implementation("xyz.codemeans.shopify4j:shopify4j-okhttp:1.0")
+implementation("xyz.codemeans.shopify4j:rest-okhttp:1.0")
 ```
 
 ## Build from source
@@ -64,7 +64,7 @@ Product = store.products.get(pid).object();
 
 ## APIs
 
-For now, supported apis can be checked in [`ShopifyStore`](./admin-rest-api/src/main/java/codemeans/shopify4j/admin/rest/sdk/ShopifyStore.java)
+For now, supported apis can be checked in [`ShopifyStore`](./rest-admin-api/src/main/java/codemeans/shopify4j/admin/rest/sdk/ShopifyStore.java)
 
 * `store.collects()`
 * `store.collections()`
@@ -116,7 +116,7 @@ store.pipeline(new StorePipeline(...));
 
 Invoker is a simple interface to invoke http request.
 
-`OkHttpInvoker` in `shopify4j-okhttp` is the basic implementation based on okhttp3. 
+`OkHttpInvoker` in `rest-okhttp` is the basic implementation based on okhttp3. 
 
 You can customize your implementation on any http library you like.
 
