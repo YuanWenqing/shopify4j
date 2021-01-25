@@ -7,6 +7,9 @@ dependencies {
     api(project(":rest-core"))
     api(project(":rest-admin-model"))
 
+    api("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+    api("com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion")
+
     api("commons-io:commons-io:$commonsIOVersion")
     api("com.squareup.okhttp3:okhttp:$okhttpVersion")
 
