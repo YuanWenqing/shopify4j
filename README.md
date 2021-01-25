@@ -165,6 +165,8 @@ ProductStatus status = ShopifyEnum.asEnum("active", ProductStatus.class);
 
 # Shopify GraphQL
 
+Starter Tutorial: https://www.shopify.com/partners/blog/getting-started-with-graphql
+
 Find admin graphql schema: https://community.shopify.com/c/Shopify-APIs-SDKs/Admin-API-Graphql-shema-endpoint/m-p/837807
 
 Codegen: https://github.com/Shopify/graphql_java_gen/
