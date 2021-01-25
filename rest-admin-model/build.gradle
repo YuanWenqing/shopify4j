@@ -1,0 +1,23 @@
+dependencies {
+    // lombok
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
+    testCompileOnly("org.projectlombok:lombok:$lombokVersion")
+
+//    api(project(":rest-core"))
+
+    // util
+    api("org.apache.commons:commons-lang3:$commonsLang3Version")
+    api("joda-time:joda-time:$jodatimeVersion")
+
+    // json
+    compileOnly("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion")
+
+    // log
+    api("org.slf4j:slf4j-api:$slf4jVersion")
+
+    // test
+    testImplementation("junit:junit:$junitVersion")
+    testImplementation("commons-io:commons-io:$commonsIOVersion")
+    testImplementation(project(":rest-core"))
+}
