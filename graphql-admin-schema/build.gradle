@@ -13,7 +13,7 @@ compileJava.dependsOn("graphqlGen")
 dependencies {
     api("joda-time:joda-time:$jodatimeVersion")
     api("com.shopify.graphql.support:support:$shopifyGraphqlVersion")
-    api("com.google.code.gson:gson:2.8.5")
+    api("com.google.code.gson:gson:$gsonVersion")
 }
 
 description "Shopify Admin GraphQL Types Auto-Generated From Schema"
