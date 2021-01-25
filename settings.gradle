@@ -2,6 +2,8 @@ rootProject.name = "shopify4j"
 
 include 'shopify4j-core'
 include 'shopify4j-okhttp'
-include 'shopify4j-graphql'
 include 'admin-rest-model'
 include 'admin-rest-api'
+
+// graphql
+include 'graphql-admin-schema'
