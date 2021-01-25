@@ -2,10 +2,10 @@ package codemeans.shopify4j.rest.admin.model.customers;
 
 import codemeans.shopify4j.rest.admin.annotation.ReadOnly;
 import codemeans.shopify4j.rest.admin.internal.Utils;
-import codemeans.shopify4j.rest.admin.model.metafield.Metafield;
 import codemeans.shopify4j.rest.admin.model.enums.CustomerState;
 import codemeans.shopify4j.rest.admin.model.enums.MarketingOptInLevel;
 import codemeans.shopify4j.rest.admin.model.enums.TaxExemption;
+import codemeans.shopify4j.rest.admin.model.metafield.Metafield;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;

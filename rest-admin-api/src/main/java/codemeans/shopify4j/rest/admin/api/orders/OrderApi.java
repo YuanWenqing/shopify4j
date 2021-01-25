@@ -1,15 +1,15 @@
 package codemeans.shopify4j.rest.admin.api.orders;
 
 import codemeans.shopify4j.rest.admin.model.common.Count;
-import codemeans.shopify4j.rest.admin.model.orders.Order;
-import codemeans.shopify4j.rest.admin.model.orders.OrderList;
-import codemeans.shopify4j.rest.admin.model.orders.Refund;
-import codemeans.shopify4j.core.exception.ShopifyServerException;
-import codemeans.shopify4j.core.http.HttpResponse;
 import codemeans.shopify4j.rest.admin.model.enums.CancelReason;
 import codemeans.shopify4j.rest.admin.model.enums.FinancialStatus;
 import codemeans.shopify4j.rest.admin.model.enums.OrderListFulfillmentStatus;
 import codemeans.shopify4j.rest.admin.model.enums.OrderStatus;
+import codemeans.shopify4j.rest.admin.model.orders.Order;
+import codemeans.shopify4j.rest.admin.model.orders.OrderList;
+import codemeans.shopify4j.rest.admin.model.orders.Refund;
+import codemeans.shopify4j.rest.core.exception.ShopifyServerException;
+import codemeans.shopify4j.rest.core.http.HttpResponse;
 import java.math.BigDecimal;
 import java.util.List;
 import lombok.Data;

@@ -1,8 +1,8 @@
-package codemeans.shopify4j.core.jackson;
+package codemeans.shopify4j.rest.core.jackson;
 
-import codemeans.shopify4j.core.exception.IllegalDefinitionException;
-import codemeans.shopify4j.core.exception.SerializingException;
-import codemeans.shopify4j.core.http.ICodec;
+import codemeans.shopify4j.rest.core.exception.IllegalDefinitionException;
+import codemeans.shopify4j.rest.core.exception.SerializingException;
+import codemeans.shopify4j.rest.core.http.ICodec;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;

@@ -1,6 +1,6 @@
-package codemeans.shopify4j.okhttp;
+package codemeans.shopify4j.rest.okhttp;
 
-import codemeans.shopify4j.core.http.ShopifyHeaders;
+import codemeans.shopify4j.rest.core.http.ShopifyHeaders;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import okhttp3.Interceptor;

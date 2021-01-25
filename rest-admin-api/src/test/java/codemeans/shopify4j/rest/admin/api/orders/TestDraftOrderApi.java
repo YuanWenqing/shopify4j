@@ -8,7 +8,7 @@ import codemeans.shopify4j.rest.admin.api.orders.DraftOrderApi.ListReq;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.orders.DraftOrder;
 import codemeans.shopify4j.rest.admin.model.orders.DraftOrderList;
-import codemeans.shopify4j.core.exception.ShopifyServerException;
+import codemeans.shopify4j.rest.core.exception.ShopifyServerException;
 import org.junit.Test;
 
 /**

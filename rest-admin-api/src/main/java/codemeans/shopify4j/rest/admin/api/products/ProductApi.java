@@ -2,12 +2,12 @@ package codemeans.shopify4j.rest.admin.api.products;
 
 import codemeans.shopify4j.rest.admin.api.Pipeline;
 import codemeans.shopify4j.rest.admin.model.common.Count;
-import codemeans.shopify4j.rest.admin.model.products.Product;
-import codemeans.shopify4j.rest.admin.model.products.ProductList;
-import codemeans.shopify4j.core.exception.ShopifyServerException;
-import codemeans.shopify4j.core.http.HttpResponse;
 import codemeans.shopify4j.rest.admin.model.enums.ProductStatus;
 import codemeans.shopify4j.rest.admin.model.enums.PublishedStatus;
+import codemeans.shopify4j.rest.admin.model.products.Product;
+import codemeans.shopify4j.rest.admin.model.products.ProductList;
+import codemeans.shopify4j.rest.core.exception.ShopifyServerException;
+import codemeans.shopify4j.rest.core.http.HttpResponse;
 import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;

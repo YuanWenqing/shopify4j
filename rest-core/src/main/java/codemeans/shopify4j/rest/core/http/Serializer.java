@@ -1,6 +1,6 @@
-package codemeans.shopify4j.core.http;
+package codemeans.shopify4j.rest.core.http;
 
-import codemeans.shopify4j.core.exception.SerializingException;
+import codemeans.shopify4j.rest.core.exception.SerializingException;
 
 /**
  * @author: yuanwq

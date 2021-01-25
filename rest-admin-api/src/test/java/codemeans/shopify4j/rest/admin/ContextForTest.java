@@ -2,11 +2,11 @@ package codemeans.shopify4j.rest.admin;
 
 import codemeans.shopify4j.rest.admin.sdk.DefaultShopifyStore;
 import codemeans.shopify4j.rest.admin.sdk.ShopifyStore;
-import codemeans.shopify4j.core.http.Invoker;
-import codemeans.shopify4j.core.store.MemoryStoreSettingStorage;
-import codemeans.shopify4j.core.store.PrivateAppAccessTokenProvider;
-import codemeans.shopify4j.core.store.StoreSetting;
-import codemeans.shopify4j.okhttp.OkHttpInvoker;
+import codemeans.shopify4j.rest.core.http.Invoker;
+import codemeans.shopify4j.rest.core.store.MemoryStoreSettingStorage;
+import codemeans.shopify4j.rest.core.store.PrivateAppAccessTokenProvider;
+import codemeans.shopify4j.rest.core.store.StoreSetting;
+import codemeans.shopify4j.rest.okhttp.OkHttpInvoker;
 import java.io.IOException;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;

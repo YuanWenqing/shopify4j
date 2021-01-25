@@ -1,4 +1,4 @@
-package codemeans.shopify4j.core.store;
+package codemeans.shopify4j.rest.core.store;
 
 /**
  * private app use api password as accessToken: https://shopify.dev/tutorials/authenticate-a-private-app-with-shopify-admin

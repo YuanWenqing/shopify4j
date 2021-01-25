@@ -1,12 +1,12 @@
 package codemeans.shopify4j.rest.admin.api.orders;
 
 import codemeans.shopify4j.rest.admin.model.common.Count;
+import codemeans.shopify4j.rest.admin.model.enums.DraftOrderStatus;
 import codemeans.shopify4j.rest.admin.model.orders.DraftOrder;
 import codemeans.shopify4j.rest.admin.model.orders.DraftOrderInvoice;
 import codemeans.shopify4j.rest.admin.model.orders.DraftOrderList;
-import codemeans.shopify4j.core.exception.ShopifyServerException;
-import codemeans.shopify4j.core.http.HttpResponse;
-import codemeans.shopify4j.rest.admin.model.enums.DraftOrderStatus;
+import codemeans.shopify4j.rest.core.exception.ShopifyServerException;
+import codemeans.shopify4j.rest.core.http.HttpResponse;
 import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;

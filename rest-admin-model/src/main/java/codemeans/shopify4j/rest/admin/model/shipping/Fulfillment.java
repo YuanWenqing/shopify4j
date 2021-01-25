@@ -1,8 +1,8 @@
 package codemeans.shopify4j.rest.admin.model.shipping;
 
-import codemeans.shopify4j.rest.admin.model.orders.LineItem;
 import codemeans.shopify4j.rest.admin.model.enums.FulfillmentStatus;
 import codemeans.shopify4j.rest.admin.model.enums.ShipmentStatus;
+import codemeans.shopify4j.rest.admin.model.orders.LineItem;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import java.util.List;
 import lombok.Data;

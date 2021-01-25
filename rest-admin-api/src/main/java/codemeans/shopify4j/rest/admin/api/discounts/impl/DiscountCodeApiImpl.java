@@ -4,10 +4,10 @@ import codemeans.shopify4j.rest.admin.api.discounts.DiscountCodeApi;
 import codemeans.shopify4j.rest.admin.model.discounts.DiscountCode;
 import codemeans.shopify4j.rest.admin.model.discounts.DiscountCodeList;
 import codemeans.shopify4j.rest.admin.sdk.ShopifyStore;
-import codemeans.shopify4j.core.exception.ShopifyServerException;
-import codemeans.shopify4j.core.http.HttpRequest;
-import codemeans.shopify4j.core.http.HttpResponse;
-import codemeans.shopify4j.core.http.Invoker;
+import codemeans.shopify4j.rest.core.exception.ShopifyServerException;
+import codemeans.shopify4j.rest.core.http.HttpRequest;
+import codemeans.shopify4j.rest.core.http.HttpResponse;
+import codemeans.shopify4j.rest.core.http.Invoker;
 
 /**
  * @author: yuanwq

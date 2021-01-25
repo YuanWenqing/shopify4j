@@ -1,9 +1,9 @@
 package codemeans.shopify4j.rest.admin.model.products;
 
 import codemeans.shopify4j.rest.admin.annotation.ReadOnly;
-import codemeans.shopify4j.rest.admin.model.metafield.Metafield;
 import codemeans.shopify4j.rest.admin.model.enums.InventoryPolicy;
 import codemeans.shopify4j.rest.admin.model.enums.WeightUnit;
+import codemeans.shopify4j.rest.admin.model.metafield.Metafield;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import java.math.BigDecimal;
 import java.util.List;

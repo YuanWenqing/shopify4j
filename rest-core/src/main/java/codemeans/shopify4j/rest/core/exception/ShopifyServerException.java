@@ -1,6 +1,6 @@
-package codemeans.shopify4j.core.exception;
+package codemeans.shopify4j.rest.core.exception;
 
-import codemeans.shopify4j.core.http.HttpResponse;
+import codemeans.shopify4j.rest.core.http.HttpResponse;
 import lombok.Getter;
 
 /**

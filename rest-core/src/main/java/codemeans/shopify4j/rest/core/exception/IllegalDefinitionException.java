@@ -1,4 +1,4 @@
-package codemeans.shopify4j.core.exception;
+package codemeans.shopify4j.rest.core.exception;
 
 /**
  * @author: yuanwq

@@ -1,4 +1,4 @@
-package codemeans.shopify4j.core.http;
+package codemeans.shopify4j.rest.core.http;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
