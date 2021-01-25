@@ -1,0 +1,21 @@
+dependencies {
+    // lombok
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
+    testCompileOnly("org.projectlombok:lombok:$lombokVersion")
+
+    api("org.apache.commons:commons-lang3:$commonsLang3Version")
+//    api("org.apache.commons:commons-collections4:$commonsCollections4Version")
+
+    api("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+    api("com.fasterxml.jackson.datatype:jackson-datatype-joda:$jacksonVersion")
+
+    api("com.shopify.graphql.support:support:$shopifyGraphqlVersion")
+
+    // log
+    api("org.slf4j:slf4j-api:$slf4jVersion")
+
+    // test
+    testImplementation("junit:junit:$junitVersion")
+
+}
