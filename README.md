@@ -161,3 +161,13 @@ If you want to cast a string value in response to an enum value, do like this:
 ProductStatus status = ShopifyEnum.asEnum("active", ProductStatus.class);
 ~~~
 
+
+
+# Shopify GraphQL
+
+Find admin graphql schema: https://community.shopify.com/c/Shopify-APIs-SDKs/Admin-API-Graphql-shema-endpoint/m-p/837807
+
+Codegen: https://github.com/Shopify/graphql_java_gen/
+
+Useful Documenation: https://2fd.github.io/graphdoc/shopify/
+
