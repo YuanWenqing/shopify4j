@@ -12,3 +12,7 @@ dependencies {
     testImplementation("junit:junit:$junitVersion")
 
 }
+
+description "Default Implementation of Request Invoker for Shopify4j"
+apply from: "$rootDir/publish.gradle"
+

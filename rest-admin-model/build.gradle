@@ -21,3 +21,6 @@ dependencies {
     testImplementation("commons-io:commons-io:$commonsIOVersion")
     testImplementation(project(":rest-core"))
 }
+
+description "Java Model used for Shopify Admin REST API"
+apply from: "$rootDir/publish.gradle"
