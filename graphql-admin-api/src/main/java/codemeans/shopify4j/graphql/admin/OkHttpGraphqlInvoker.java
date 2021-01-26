@@ -17,18 +17,18 @@ import okhttp3.Response;
  * @date: 2021-01-26
  */
 @Slf4j
-public class OkhttpGraphqlInvoker implements GraphqlInvoker {
+public class OkHttpGraphqlInvoker implements GraphqlInvoker {
 
   private static final MediaType MEDIA_TYPE_JSON = MediaType
       .parse("application/json; charset=utf-8");
 
   private final OkHttpClient okHttpClient;
 
-  public OkhttpGraphqlInvoker(AccessTokenProvider accessTokenProvider) {
+  public OkHttpGraphqlInvoker(AccessTokenProvider accessTokenProvider) {
     this(createOkHttpClient(accessTokenProvider));
   }
 
-  public OkhttpGraphqlInvoker(OkHttpClient okHttpClient) {
+  public OkHttpGraphqlInvoker(OkHttpClient okHttpClient) {
     this.okHttpClient = okHttpClient;
   }
 
