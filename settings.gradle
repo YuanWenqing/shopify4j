@@ -1,8 +1,8 @@
 rootProject.name = "shopify4j"
 
+include 'shopify4j-core'
+
 // rest
-include 'rest-core'
-include 'rest-okhttp'
 include 'rest-admin-model'
 include 'rest-admin-api'
 

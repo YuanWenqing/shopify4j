@@ -2,8 +2,8 @@ package codemeans.shopify4j.rest.admin.sdk;
 
 import static codemeans.shopify4j.rest.admin.internal.Utils.checkNotNull;
 
-import codemeans.shopify4j.rest.core.store.StoreSetting;
-import codemeans.shopify4j.rest.core.store.StoreSettingStorage;
+import codemeans.shopify4j.core.store.StoreSetting;
+import codemeans.shopify4j.core.store.StoreSettingStorage;
 import codemeans.shopify4j.rest.http.Invoker;
 import lombok.NonNull;
 
