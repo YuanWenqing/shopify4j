@@ -6,5 +6,5 @@ package codemeans.shopify4j.graphql.admin;
  */
 public interface GraphqlInvoker {
 
-  String request(String graphqlEndpoint, String body);
+  String request(String endpoint, String query) throws GraphqlApiException;
 }
