@@ -1,6 +1,5 @@
 package codemeans.shopify4j.graphql.admin;
 
-import codemeans.shopify4j.core.store.StoreSetting;
 import codemeans.shopify4j.graphql.admin.exception.GraphqlApiException;
 import codemeans.shopify4j.graphql.admin.exception.GraphqlMutationException;
 import codemeans.shopify4j.graphql.admin.exception.GraphqlQueryException;
@@ -17,20 +16,27 @@ import com.shopify.graphql.support.SchemaViolationError;
  */
 public class DefaultGraphqlStore implements GraphqlStore {
 
-  private final StoreSetting storeSetting;
+  private final String storeDomain;
+  private final String apiVersion;
   private final String graphqlEndpoint;
   private final GraphqlInvoker invoker;
 
-  public DefaultGraphqlStore(StoreSetting storeSetting, GraphqlInvoker invoker) {
-    this.storeSetting = storeSetting;
+  public DefaultGraphqlStore(String storeDomain, String apiVersion, GraphqlInvoker invoker) {
+    this.storeDomain = storeDomain;
+    this.apiVersion = apiVersion;
     this.graphqlEndpoint = String.format("https://%s/admin/api/%s/graphql.json",
-        storeSetting.getStoreDomain(), storeSetting.getApiVersion());
+        storeDomain, apiVersion);
     this.invoker = invoker;
   }
 
   @Override
-  public StoreSetting getStoreSetting() {
-    return storeSetting;
+  public String getStoreDomain() {
+    return storeDomain;
+  }
+
+  @Override
+  public String getApiVersion() {
+    return apiVersion;
   }
 
   @Override

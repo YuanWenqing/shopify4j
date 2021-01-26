@@ -29,6 +29,6 @@ public class RestStoreFactory implements StoreFactory<RestStore> {
     StoreSetting setting = storeSettingStorage.getStoreSetting(storeDomain);
     checkNotNull(setting, "No Credential for " + storeDomain);
 
-    return new DefaultRestStore(setting, invoker);
+    return new DefaultRestStore(setting.getStoreDomain(), setting.getApiVersion(), invoker);
   }
 }

@@ -27,6 +27,7 @@ public class GraphqlStoreFactory implements StoreFactory<GraphqlStore> {
     if (setting == null) {
       throw new IllegalArgumentException("No Credential for " + storeDomain);
     }
-    return new DefaultGraphqlStore(setting, graphqlInvoker);
+    return new DefaultGraphqlStore(setting.getStoreDomain(), setting.getApiVersion(),
+        graphqlInvoker);
   }
 }

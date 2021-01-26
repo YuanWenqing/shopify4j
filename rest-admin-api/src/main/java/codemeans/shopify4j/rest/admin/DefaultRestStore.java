@@ -1,6 +1,5 @@
 package codemeans.shopify4j.rest.admin;
 
-import codemeans.shopify4j.core.store.StoreSetting;
 import codemeans.shopify4j.rest.admin.api.discounts.DiscountCodeApi;
 import codemeans.shopify4j.rest.admin.api.discounts.DiscountCodeCreationApi;
 import codemeans.shopify4j.rest.admin.api.discounts.PriceRuleApi;
@@ -32,7 +31,8 @@ import codemeans.shopify4j.rest.http.RestInvoker;
  */
 public class DefaultRestStore implements RestStore {
 
-  private final StoreSetting storeSetting;
+  private final String storeDomain;
+  private final String apiVersion;
   private final RestInvoker invoker;
   private final String baseEndpoint;
 
@@ -52,10 +52,10 @@ public class DefaultRestStore implements RestStore {
   private DraftOrderApi draftOrderApi;
   private OrderApi orderApi;
 
-  public DefaultRestStore(StoreSetting storeSetting, RestInvoker invoker) {
-    this.storeSetting = storeSetting;
-    this.baseEndpoint = String.format("https://%s/admin/api/%s", storeSetting.getStoreDomain(),
-        storeSetting.getApiVersion());
+  public DefaultRestStore(String storeDomain, String apiVersion, RestInvoker invoker) {
+    this.storeDomain = storeDomain;
+    this.apiVersion = apiVersion;
+    this.baseEndpoint = String.format("https://%s/admin/api/%s", storeDomain, apiVersion);
     this.invoker = invoker;
     initApis();
   }
@@ -78,8 +78,13 @@ public class DefaultRestStore implements RestStore {
   }
 
   @Override
-  public StoreSetting getStoreSetting() {
-    return storeSetting;
+  public String getStoreDomain() {
+    return storeDomain;
+  }
+
+  @Override
+  public String getApiVersion() {
+    return apiVersion;
   }
 
   @Override

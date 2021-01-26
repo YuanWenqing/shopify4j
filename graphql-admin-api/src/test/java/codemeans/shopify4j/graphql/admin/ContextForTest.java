@@ -1,7 +1,7 @@
 package codemeans.shopify4j.graphql.admin;
 
-import codemeans.shopify4j.core.store.MemoryStoreSettingStorage;
 import codemeans.shopify4j.core.auth.PrivateAppAccessTokenProvider;
+import codemeans.shopify4j.core.store.MemoryStoreSettingStorage;
 import codemeans.shopify4j.core.store.StoreSetting;
 import java.io.IOException;
 import java.io.StringReader;
@@ -24,7 +24,8 @@ public class ContextForTest {
 
   public static final GraphqlInvoker INVOKER = new OkHttpGraphqlInvoker(
       new PrivateAppAccessTokenProvider(STORE_SETTING_STORAGE));
-  public static final GraphqlStore TEST_STORE = new DefaultGraphqlStore(STORE_SETTING, INVOKER);
+  public static final GraphqlStore TEST_STORE = new DefaultGraphqlStore(
+      STORE_SETTING.getStoreDomain(), STORE_SETTING.getApiVersion(), INVOKER);
 
   private static StoreSetting loadStoreSetting(String resourceName) {
     try {
