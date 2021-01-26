@@ -1,6 +1,8 @@
 package codemeans.shopify4j.graphql.admin.exception;
 
 /**
+ * GraphQL api exception
+ *
  * @author: yuanwq
  * @date: 2021-01-26
  */
