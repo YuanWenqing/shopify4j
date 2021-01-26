@@ -27,7 +27,7 @@ public class ContextForTest {
   public static final GraphqlInvoker INVOKER = new OkHttpGraphqlInvoker(
       new PrivateAppAccessTokenProvider(STORE_SETTING_STORAGE));
   public static final StoreFactory<GraphqlStore> FACTORY = CachedStoreFactory
-      .of(new GraphqlStoreFactory(STORE_SETTING_STORAGE, INVOKER));
+      .of(new GraphqlStoreFactory(INVOKER));
   public static final GraphqlStore TEST_STORE = FACTORY.getStore(STORE_SETTING.getStoreDomain());
 
   private static StoreSetting loadStoreSetting(String resourceName) {

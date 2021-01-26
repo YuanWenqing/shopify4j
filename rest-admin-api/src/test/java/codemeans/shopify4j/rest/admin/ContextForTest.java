@@ -29,7 +29,7 @@ public class ContextForTest {
   public static final RestInvoker INVOKER = new OkHttpRestInvoker(
       new PrivateAppAccessTokenProvider(STORE_SETTING_STORAGE));
   public static final StoreFactory<RestStore> FACTORY = CachedStoreFactory
-      .of(new RestStoreFactory(STORE_SETTING_STORAGE, INVOKER));
+      .of(new RestStoreFactory(INVOKER));
   public static final RestStore TEST_STORE = FACTORY.getStore(STORE_SETTING.getStoreDomain());
 
   private static StoreSetting loadStoreSetting(String resourceName) {
