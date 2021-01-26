@@ -3,6 +3,7 @@ package codemeans.shopify4j.graphql.admin;
 import codemeans.shopify4j.core.store.AccessTokenInterceptor;
 import codemeans.shopify4j.core.store.AccessTokenProvider;
 import codemeans.shopify4j.core.store.ShopifyClientException;
+import codemeans.shopify4j.graphql.admin.exception.GraphqlApiException;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;

@@ -1,6 +1,10 @@
 package codemeans.shopify4j.graphql.admin;
 
 import codemeans.shopify4j.core.store.StoreSetting;
+import codemeans.shopify4j.graphql.admin.exception.GraphqlApiException;
+import codemeans.shopify4j.graphql.admin.exception.GraphqlMutationException;
+import codemeans.shopify4j.graphql.admin.exception.GraphqlQueryException;
+import codemeans.shopify4j.graphql.admin.exception.GraphqlSchemaException;
 import codemeans.shopify4j.graphql.admin.types.MutationQuery;
 import codemeans.shopify4j.graphql.admin.types.MutationResponse;
 import codemeans.shopify4j.graphql.admin.types.QueryResponse;
@@ -36,23 +40,33 @@ public class DefaultGraphqlStore implements GraphqlStore {
 
   @Override
   public QueryResponse query(QueryRootQuery query) throws GraphqlApiException {
+    String resp = null;
     try {
-      String body = query.toString();
-      String resp = graphqlInvoker.request(graphqlEndpoint, body);
-      return QueryResponse.fromJson(resp);
+      String queryBody = query.toString();
+      resp = graphqlInvoker.request(graphqlEndpoint, queryBody);
+      QueryResponse response = QueryResponse.fromJson(resp);
+      if (!response.getErrors().isEmpty()) {
+        throw new GraphqlQueryException(query, response);
+      }
+      return response;
     } catch (SchemaViolationError schemaViolationError) {
-      throw new GraphqlApiException(query, schemaViolationError);
+      throw new GraphqlSchemaException(query, resp, schemaViolationError);
     }
   }
 
   @Override
   public MutationResponse mutation(MutationQuery query) throws GraphqlApiException {
+    String resp = null;
     try {
-      String body = query.toString();
-      String resp = graphqlInvoker.request(graphqlEndpoint, body);
-      return MutationResponse.fromJson(resp);
+      String queryBody = query.toString();
+      resp = graphqlInvoker.request(graphqlEndpoint, queryBody);
+      MutationResponse response = MutationResponse.fromJson(resp);
+      if (!response.getErrors().isEmpty()) {
+        throw new GraphqlMutationException(query, response);
+      }
+      return response;
     } catch (SchemaViolationError schemaViolationError) {
-      throw new GraphqlApiException(query, schemaViolationError);
+      throw new GraphqlSchemaException(query, resp, schemaViolationError);
     }
   }
 }

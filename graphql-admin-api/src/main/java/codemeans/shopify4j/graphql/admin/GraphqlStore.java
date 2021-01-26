@@ -1,6 +1,7 @@
 package codemeans.shopify4j.graphql.admin;
 
 import codemeans.shopify4j.core.store.StoreSetting;
+import codemeans.shopify4j.graphql.admin.exception.GraphqlApiException;
 import codemeans.shopify4j.graphql.admin.types.MutationQuery;
 import codemeans.shopify4j.graphql.admin.types.MutationResponse;
 import codemeans.shopify4j.graphql.admin.types.QueryResponse;
