@@ -14,6 +14,7 @@ dependencies {
 
     // test
     testImplementation("junit:junit:$junitVersion")
+    testImplementation("org.apache.logging.log4j:log4j-slf4j-impl:$log4jVersion")
 
 }
 

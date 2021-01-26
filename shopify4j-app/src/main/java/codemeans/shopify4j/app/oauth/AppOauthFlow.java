@@ -6,9 +6,9 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import java.io.IOException;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.FormBody;
 import okhttp3.HttpUrl;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -19,6 +19,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author: yuanwq
  * @date: 2021-01-26
  */
+@Slf4j
 public class AppOauthFlow {
 
   private final OkHttpClient okHttpClient;
@@ -52,7 +53,6 @@ public class AppOauthFlow {
   public OauthAccessToken exchangeAccessToken(PublicApp app, ConfirmRedirect redirect)
       throws IOException {
     String url = String.format("https://%s/admin/oauth/access_token", redirect.getShop());
-    MediaType contentType;
     RequestBody requestBody = new FormBody.Builder()
         .add("client_id", app.getClientId())
         .add("client_secret", app.getClientSecret())
@@ -65,16 +65,19 @@ public class AppOauthFlow {
     String body = null;
     try (Response response = okHttpClient.newCall(request).execute()) {
       body = response.body().string();
+      if (log.isDebugEnabled()) {
+        log.debug("request: {}, app: {}, redirect: {}, response.code={}, response.body: {}",
+            request, app, redirect, response.code(), response.body());
+      }
       if (!response.isSuccessful()) {
         throw new IOException(
-            "fail to exchange access_token, request: " + request + ", app: " + app + ", redirect: "
-                + redirect + ", response.code=" + response.code() + ", response.body: " + body);
+            "fail to exchange access_token, request: " + request + ", response.code=" + response
+                .code() + ", response.body: " + body);
       }
       return objectMapper.readValue(body, OauthAccessToken.class);
     } catch (JsonProcessingException e) {
       throw new IOException(
-          "fail to parse access_token, request: " + request + ", app: " + app + ", redirect: "
-              + redirect + ", response.body: " + body, e);
+          "fail to parse access_token, request: " + request + ", response.body: " + body, e);
     }
   }
 
