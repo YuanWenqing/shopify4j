@@ -11,6 +11,7 @@ dependencies {
     api("com.squareup.okhttp3:okhttp:$okhttpVersion")
 
     api("commons-io:commons-io:$commonsIOVersion")
+    api("commons-codec:commons-codec:$commonsCodecVersion")
 
     // test
     testImplementation("junit:junit:$junitVersion")
