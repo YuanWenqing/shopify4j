@@ -3,8 +3,8 @@ package codemeans.shopify4j.rest.admin;
 import codemeans.shopify4j.core.store.MemoryStoreSettingStorage;
 import codemeans.shopify4j.core.store.PrivateAppAccessTokenProvider;
 import codemeans.shopify4j.core.store.StoreSetting;
-import codemeans.shopify4j.rest.http.Invoker;
-import codemeans.shopify4j.rest.okhttp.OkHttpInvoker;
+import codemeans.shopify4j.rest.http.RestInvoker;
+import codemeans.shopify4j.rest.okhttp.OkHttpRestInvoker;
 import java.io.IOException;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
@@ -24,7 +24,7 @@ public class ContextForTest {
     STORE_SETTING_STORAGE.registerStore(STORE_SETTING);
   }
 
-  public static final Invoker INVOKER = new OkHttpInvoker(
+  public static final RestInvoker INVOKER = new OkHttpRestInvoker(
       new PrivateAppAccessTokenProvider(STORE_SETTING_STORAGE));
   public static final RestStore TEST_STORE = new DefaultRestStore(STORE_SETTING, INVOKER);
 

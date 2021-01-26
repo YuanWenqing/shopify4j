@@ -7,7 +7,7 @@ import codemeans.shopify4j.rest.admin.model.discounts.DiscountCodeList;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
 import codemeans.shopify4j.rest.http.HttpResponseException;
-import codemeans.shopify4j.rest.http.Invoker;
+import codemeans.shopify4j.rest.http.RestInvoker;
 
 /**
  * @author: yuanwq
@@ -16,9 +16,9 @@ import codemeans.shopify4j.rest.http.Invoker;
 public class DiscountCodeApiImpl implements DiscountCodeApi {
 
   private final String baseEndpoint;
-  private final Invoker invoker;
+  private final RestInvoker invoker;
 
-  public DiscountCodeApiImpl(String baseEndpoint, Invoker invoker) {
+  public DiscountCodeApiImpl(String baseEndpoint, RestInvoker invoker) {
     this.baseEndpoint = baseEndpoint;
     this.invoker = invoker;
   }

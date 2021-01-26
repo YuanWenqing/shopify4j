@@ -24,7 +24,7 @@ import codemeans.shopify4j.rest.admin.api.products.impl.ProductApiImpl;
 import codemeans.shopify4j.rest.admin.api.products.impl.ProductImageApiImpl;
 import codemeans.shopify4j.rest.admin.api.products.impl.ProductVariantApiImpl;
 import codemeans.shopify4j.rest.admin.api.products.impl.SmartCollectionApiImpl;
-import codemeans.shopify4j.rest.http.Invoker;
+import codemeans.shopify4j.rest.http.RestInvoker;
 
 /**
  * @author: yuanwq
@@ -33,7 +33,7 @@ import codemeans.shopify4j.rest.http.Invoker;
 public class DefaultRestStore implements RestStore {
 
   private final StoreSetting storeSetting;
-  private final Invoker invoker;
+  private final RestInvoker invoker;
   private final String baseEndpoint;
 
   /*>>>>> discounts <<<<<*/
@@ -52,7 +52,7 @@ public class DefaultRestStore implements RestStore {
   private DraftOrderApi draftOrderApi;
   private OrderApi orderApi;
 
-  public DefaultRestStore(StoreSetting storeSetting, Invoker invoker) {
+  public DefaultRestStore(StoreSetting storeSetting, RestInvoker invoker) {
     this.storeSetting = storeSetting;
     this.baseEndpoint = String.format("https://%s/admin/api/%s", storeSetting.getStoreDomain(),
         storeSetting.getApiVersion());
@@ -88,7 +88,7 @@ public class DefaultRestStore implements RestStore {
   }
 
   @Override
-  public Invoker getInvoker() {
+  public RestInvoker getInvoker() {
     return invoker;
   }
 

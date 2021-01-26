@@ -5,7 +5,7 @@ import static codemeans.shopify4j.rest.admin.internal.Utils.checkNotNull;
 import codemeans.shopify4j.core.store.StoreFactory;
 import codemeans.shopify4j.core.store.StoreSetting;
 import codemeans.shopify4j.core.store.StoreSettingStorage;
-import codemeans.shopify4j.rest.http.Invoker;
+import codemeans.shopify4j.rest.http.RestInvoker;
 import lombok.NonNull;
 
 /**
@@ -15,11 +15,11 @@ import lombok.NonNull;
 public class RestStoreFactory implements StoreFactory<RestStore> {
 
   private final StoreSettingStorage storeSettingStorage;
-  private final Invoker invoker;
+  private final RestInvoker invoker;
 
   public RestStoreFactory(
       @NonNull StoreSettingStorage storeSettingStorage,
-      @NonNull Invoker invoker) {
+      @NonNull RestInvoker invoker) {
     this.storeSettingStorage = storeSettingStorage;
     this.invoker = invoker;
   }

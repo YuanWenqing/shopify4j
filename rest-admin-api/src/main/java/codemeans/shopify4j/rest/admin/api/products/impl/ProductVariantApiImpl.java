@@ -8,7 +8,7 @@ import codemeans.shopify4j.rest.admin.model.products.ProductVariantList;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
 import codemeans.shopify4j.rest.http.HttpResponseException;
-import codemeans.shopify4j.rest.http.Invoker;
+import codemeans.shopify4j.rest.http.RestInvoker;
 
 /**
  * @author: yuanwq
@@ -17,9 +17,9 @@ import codemeans.shopify4j.rest.http.Invoker;
 public class ProductVariantApiImpl implements ProductVariantApi {
 
   private final String baseEndpoint;
-  private final Invoker invoker;
+  private final RestInvoker invoker;
 
-  public ProductVariantApiImpl(String baseEndpoint, Invoker invoker) {
+  public ProductVariantApiImpl(String baseEndpoint, RestInvoker invoker) {
     this.baseEndpoint = baseEndpoint;
     this.invoker = invoker;
   }

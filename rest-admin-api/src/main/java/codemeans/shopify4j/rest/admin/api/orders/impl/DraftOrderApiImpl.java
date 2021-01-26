@@ -10,7 +10,7 @@ import codemeans.shopify4j.rest.admin.model.orders.DraftOrderList;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
 import codemeans.shopify4j.rest.http.HttpResponseException;
-import codemeans.shopify4j.rest.http.Invoker;
+import codemeans.shopify4j.rest.http.RestInvoker;
 
 /**
  * @author: yuanwq
@@ -19,9 +19,9 @@ import codemeans.shopify4j.rest.http.Invoker;
 public class DraftOrderApiImpl implements DraftOrderApi {
 
   private final String baseEndpoint;
-  private final Invoker invoker;
+  private final RestInvoker invoker;
 
-  public DraftOrderApiImpl(String baseEndpoint, Invoker invoker) {
+  public DraftOrderApiImpl(String baseEndpoint, RestInvoker invoker) {
     this.baseEndpoint = baseEndpoint;
     this.invoker = invoker;
   }

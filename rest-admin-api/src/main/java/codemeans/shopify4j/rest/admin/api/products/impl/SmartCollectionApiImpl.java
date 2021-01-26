@@ -8,7 +8,7 @@ import codemeans.shopify4j.rest.admin.model.products.SmartCollectionList;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
 import codemeans.shopify4j.rest.http.HttpResponseException;
-import codemeans.shopify4j.rest.http.Invoker;
+import codemeans.shopify4j.rest.http.RestInvoker;
 
 /**
  * @author: yuanwq
@@ -17,9 +17,9 @@ import codemeans.shopify4j.rest.http.Invoker;
 public class SmartCollectionApiImpl implements SmartCollectionApi {
 
   private final String baseEndpoint;
-  private final Invoker invoker;
+  private final RestInvoker invoker;
 
-  public SmartCollectionApiImpl(String baseEndpoint, Invoker invoker) {
+  public SmartCollectionApiImpl(String baseEndpoint, RestInvoker invoker) {
     this.baseEndpoint = baseEndpoint;
     this.invoker = invoker;
   }

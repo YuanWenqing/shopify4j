@@ -6,7 +6,7 @@ import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
 import codemeans.shopify4j.rest.http.HttpResponseException;
 import codemeans.shopify4j.rest.http.ICodec;
-import codemeans.shopify4j.rest.http.Invoker;
+import codemeans.shopify4j.rest.http.RestInvoker;
 import codemeans.shopify4j.rest.http.SerializingException;
 import codemeans.shopify4j.rest.jackson.JacksonCodec;
 import java.io.IOException;
@@ -24,7 +24,7 @@ import okhttp3.Response;
  * @date: 2021-01-12
  */
 @Slf4j
-public class OkHttpInvoker implements Invoker {
+public class OkHttpRestInvoker implements RestInvoker {
 
   private static final MediaType MEDIA_TYPE_JSON = MediaType
       .parse("application/json; charset=utf-8");
@@ -32,11 +32,11 @@ public class OkHttpInvoker implements Invoker {
   private final OkHttpClient okHttpClient;
   private final ICodec codec;
 
-  public OkHttpInvoker(AccessTokenProvider accessTokenProvider) {
+  public OkHttpRestInvoker(AccessTokenProvider accessTokenProvider) {
     this(createOkHttpClient(accessTokenProvider), JacksonCodec.DEFAULT_INSTANCE);
   }
 
-  public OkHttpInvoker(OkHttpClient okHttpClient, ICodec codec) {
+  public OkHttpRestInvoker(OkHttpClient okHttpClient, ICodec codec) {
     this.okHttpClient = okHttpClient;
     this.codec = codec;
   }
