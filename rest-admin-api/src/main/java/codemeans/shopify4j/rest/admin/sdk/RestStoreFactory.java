@@ -26,9 +26,9 @@ public class RestStoreFactory implements StoreFactory<RestStore> {
 
   @Override
   public RestStore getStore(String storeDomain) {
-    StoreSetting credential = storeSettingStorage.getStoreSetting(storeDomain);
-    checkNotNull(credential, "No Credential for " + storeDomain);
+    StoreSetting setting = storeSettingStorage.getStoreSetting(storeDomain);
+    checkNotNull(setting, "No Credential for " + storeDomain);
 
-    return new DefaultRestStore(credential, invoker);
+    return new DefaultRestStore(setting, invoker);
   }
 }
