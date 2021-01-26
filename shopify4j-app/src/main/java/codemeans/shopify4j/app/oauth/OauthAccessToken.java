@@ -25,10 +25,13 @@ public class OauthAccessToken {
   @JsonIgnore
   @NonNull
   private Set<String> scopeSet = Collections.emptySet();
+
+
   /**
    * seconds
    */
   private Long expiresIn;
+  private String session;
   @JsonIgnore
   @NonNull
   private Set<String> associatedUserScopeSet = Collections.emptySet();
@@ -49,7 +52,7 @@ public class OauthAccessToken {
     return joinScopes(associatedUserScopeSet);
   }
 
-  @JsonProperty("scope")
+  @JsonProperty("associated_user_scope")
   public void setAssociatedUserScope(String scopes) {
     this.associatedUserScopeSet = splitScopes(scopes);
   }

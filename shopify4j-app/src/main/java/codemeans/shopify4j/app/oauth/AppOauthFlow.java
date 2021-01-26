@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import java.io.IOException;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.FormBody;
 import okhttp3.HttpUrl;
@@ -22,7 +23,9 @@ import org.apache.commons.lang3.StringUtils;
 @Slf4j
 public class AppOauthFlow {
 
+  @Getter
   private final OkHttpClient okHttpClient;
+  @Getter
   private final ObjectMapper objectMapper;
 
   public AppOauthFlow() {

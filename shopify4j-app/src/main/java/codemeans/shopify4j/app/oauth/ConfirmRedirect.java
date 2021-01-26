@@ -20,5 +20,8 @@ public class ConfirmRedirect {
    */
   private String shop;
   private String hmac;
-  private String timestamp;
+  /**
+   * seconds
+   */
+  private Long timestamp;
 }
