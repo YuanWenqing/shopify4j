@@ -5,9 +5,9 @@ import codemeans.shopify4j.rest.admin.api.discounts.PriceRuleApi;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.discounts.PriceRule;
 import codemeans.shopify4j.rest.admin.model.discounts.PriceRuleList;
+import codemeans.shopify4j.rest.exception.RestApiException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
-import codemeans.shopify4j.rest.http.RestApiException;
 import codemeans.shopify4j.rest.http.RestInvoker;
 
 /**

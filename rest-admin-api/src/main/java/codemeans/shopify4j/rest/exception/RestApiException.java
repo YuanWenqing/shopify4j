@@ -1,22 +1,12 @@
-package codemeans.shopify4j.rest.http;
-
-import lombok.Getter;
+package codemeans.shopify4j.rest.exception;
 
 /**
- * shopify response with error code
+ * shopify rest api error
  *
  * @author: yuanwq
  * @date: 2021-01-12
  */
 public class RestApiException extends Exception {
-
-  @Getter
-  private HttpResponse response;
-
-  public RestApiException(HttpResponse response) {
-    super(response.toString());
-    this.response = response;
-  }
 
   public RestApiException() {
   }
@@ -32,5 +22,4 @@ public class RestApiException extends Exception {
   public RestApiException(Throwable cause) {
     super(cause);
   }
-
 }

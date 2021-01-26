@@ -3,10 +3,11 @@ package codemeans.shopify4j.rest.okhttp;
 import codemeans.shopify4j.core.store.AccessTokenInterceptor;
 import codemeans.shopify4j.core.store.AccessTokenProvider;
 import codemeans.shopify4j.core.store.ShopifyClientException;
+import codemeans.shopify4j.rest.exception.RestApiException;
+import codemeans.shopify4j.rest.exception.RestResponseException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
 import codemeans.shopify4j.rest.http.ICodec;
-import codemeans.shopify4j.rest.http.RestApiException;
 import codemeans.shopify4j.rest.http.RestInvoker;
 import codemeans.shopify4j.rest.http.SerializingException;
 import codemeans.shopify4j.rest.jackson.JacksonCodec;
@@ -141,7 +142,7 @@ public class OkHttpRestInvoker implements RestInvoker {
         httpResponse.setObject(codec.deserialize(respType, body));
         return httpResponse;
       }
-      throw new RestApiException(httpResponse);
+      throw new RestResponseException(httpResponse);
     } catch (IOException e) {
       throw new ShopifyClientException("fail to invoke request: " + request, e);
     } catch (SerializingException e) {

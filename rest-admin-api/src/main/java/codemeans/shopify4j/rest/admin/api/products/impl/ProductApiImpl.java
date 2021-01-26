@@ -5,9 +5,9 @@ import codemeans.shopify4j.rest.admin.api.products.ProductApi;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.products.Product;
 import codemeans.shopify4j.rest.admin.model.products.ProductList;
+import codemeans.shopify4j.rest.exception.RestApiException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
-import codemeans.shopify4j.rest.http.RestApiException;
 import codemeans.shopify4j.rest.http.RestInvoker;
 
 /**
