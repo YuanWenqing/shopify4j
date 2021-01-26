@@ -1,10 +1,10 @@
-package codemeans.shopify4j.rest.admin.sdk;
+package codemeans.shopify4j.core.store;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * delegate to another {@link StoreFactory} and cache created {@link RestStore}
+ * delegate to another {@link StoreFactory} and cache created {@code Store}
  *
  * @author: yuanwq
  * @date: 2021-01-12
@@ -32,7 +32,7 @@ public class CachedStoreFactory<S> implements StoreFactory<S> {
     return storeMap.get(storeDomain);
   }
 
-  public static CachedStoreFactory of(StoreFactory storeFactory) {
-    return new CachedStoreFactory(storeFactory);
+  public static <S> CachedStoreFactory<S> of(StoreFactory<S> storeFactory) {
+    return new CachedStoreFactory<>(storeFactory);
   }
 }
