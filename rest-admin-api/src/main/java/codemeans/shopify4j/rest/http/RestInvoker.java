@@ -1,5 +1,7 @@
 package codemeans.shopify4j.rest.http;
 
+import codemeans.shopify4j.rest.exception.RestApiException;
+
 /**
  * @author: yuanwq
  * @date: 2021-01-12

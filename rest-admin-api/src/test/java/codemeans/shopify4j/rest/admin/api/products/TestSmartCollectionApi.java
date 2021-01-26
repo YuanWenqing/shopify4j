@@ -8,7 +8,7 @@ import codemeans.shopify4j.rest.admin.api.products.SmartCollectionApi.ListReq;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.products.SmartCollection;
 import codemeans.shopify4j.rest.admin.model.products.SmartCollectionList;
-import codemeans.shopify4j.rest.http.RestApiException;
+import codemeans.shopify4j.rest.exception.RestApiException;
 import org.junit.Test;
 
 /**
