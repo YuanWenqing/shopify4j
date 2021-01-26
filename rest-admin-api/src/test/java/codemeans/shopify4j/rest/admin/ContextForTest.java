@@ -1,7 +1,10 @@
 package codemeans.shopify4j.rest.admin;
 
+import codemeans.shopify4j.core.auth.PrivateAppAdminAccessTokenProvider;
+import codemeans.shopify4j.core.store.CachedStoreFactory;
 import codemeans.shopify4j.core.store.MemoryStoreSettingStorage;
-import codemeans.shopify4j.core.auth.PrivateAppAccessTokenProvider;
+import codemeans.shopify4j.core.store.PrivateApp;
+import codemeans.shopify4j.core.store.StoreFactory;
 import codemeans.shopify4j.core.store.StoreSetting;
 import codemeans.shopify4j.rest.http.RestInvoker;
 import codemeans.shopify4j.rest.okhttp.OkHttpRestInvoker;
@@ -25,8 +28,10 @@ public class ContextForTest {
   }
 
   public static final RestInvoker INVOKER = new OkHttpRestInvoker(
-      new PrivateAppAccessTokenProvider(STORE_SETTING_STORAGE));
-  public static final RestStore TEST_STORE = new DefaultRestStore(STORE_SETTING, INVOKER);
+      new PrivateAppAdminAccessTokenProvider(STORE_SETTING_STORAGE));
+  public static final StoreFactory<RestStore> FACTORY = CachedStoreFactory
+      .of(new RestStoreFactory(INVOKER));
+  public static final RestStore TEST_STORE = FACTORY.getStore(STORE_SETTING.getStoreDomain());
 
   private static StoreSetting loadStoreSetting(String resourceName) {
     try {
@@ -35,9 +40,9 @@ public class ContextForTest {
       properties.load(new StringReader(IOUtils.resourceToString(resourceName,
           StandardCharsets.UTF_8, ContextForTest.class.getClassLoader())));
       setting.setStoreDomain(properties.getProperty("store-domain"));
-      setting.setApiKey(properties.getProperty("api-key"));
-      setting.setApiPassword(properties.getProperty("api-password"));
-      setting.setApiVersion(properties.getProperty("api-version", setting.getApiVersion()));
+      PrivateApp app = new PrivateApp()
+          .setAdminApiPassword(properties.getProperty("private-admin-api-password"));
+      setting.setPrivateApp(app);
       return setting;
     } catch (IOException e) {
       throw new RuntimeException(e);
