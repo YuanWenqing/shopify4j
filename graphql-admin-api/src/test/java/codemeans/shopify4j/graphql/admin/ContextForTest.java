@@ -2,8 +2,6 @@ package codemeans.shopify4j.graphql.admin;
 
 import codemeans.shopify4j.core.store.MemoryStoreSettingStorage;
 import codemeans.shopify4j.core.store.StoreSetting;
-import codemeans.shopify4j.graphql.admin.sdk.DefaultGraphqlStore;
-import codemeans.shopify4j.graphql.admin.sdk.GraphqlStore;
 import java.io.IOException;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
