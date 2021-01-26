@@ -1,13 +1,14 @@
 package codemeans.shopify4j.rest.okhttp;
 
+import codemeans.shopify4j.core.store.AccessTokenInterceptor;
 import codemeans.shopify4j.core.store.AccessTokenProvider;
-import codemeans.shopify4j.rest.exception.SerializingException;
-import codemeans.shopify4j.rest.exception.ShopifyClientException;
-import codemeans.shopify4j.rest.exception.ShopifyServerException;
+import codemeans.shopify4j.core.store.ShopifyClientException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
 import codemeans.shopify4j.rest.http.ICodec;
-import codemeans.shopify4j.rest.http.Invoker;
+import codemeans.shopify4j.rest.http.RestApiException;
+import codemeans.shopify4j.rest.http.RestInvoker;
+import codemeans.shopify4j.rest.http.SerializingException;
 import codemeans.shopify4j.rest.jackson.JacksonCodec;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -24,7 +25,7 @@ import okhttp3.Response;
  * @date: 2021-01-12
  */
 @Slf4j
-public class OkHttpInvoker implements Invoker {
+public class OkHttpRestInvoker implements RestInvoker {
 
   private static final MediaType MEDIA_TYPE_JSON = MediaType
       .parse("application/json; charset=utf-8");
@@ -32,11 +33,11 @@ public class OkHttpInvoker implements Invoker {
   private final OkHttpClient okHttpClient;
   private final ICodec codec;
 
-  public OkHttpInvoker(AccessTokenProvider accessTokenProvider) {
+  public OkHttpRestInvoker(AccessTokenProvider accessTokenProvider) {
     this(createOkHttpClient(accessTokenProvider), JacksonCodec.DEFAULT_INSTANCE);
   }
 
-  public OkHttpInvoker(OkHttpClient okHttpClient, ICodec codec) {
+  public OkHttpRestInvoker(OkHttpClient okHttpClient, ICodec codec) {
     this.okHttpClient = okHttpClient;
     this.codec = codec;
   }
@@ -66,7 +67,7 @@ public class OkHttpInvoker implements Invoker {
 
   @Override
   public <T> HttpResponse<T> get(HttpRequest httpRequest, Class<T> respType)
-      throws ShopifyServerException {
+      throws RestApiException {
     HttpUrl httpUrl = buildHttpUrl(httpRequest);
     Request request = new Request.Builder()
         .url(httpUrl)
@@ -76,7 +77,7 @@ public class OkHttpInvoker implements Invoker {
 
   @Override
   public <T> HttpResponse<T> postJson(HttpRequest httpRequest, Class<T> respType)
-      throws ShopifyServerException {
+      throws RestApiException {
     HttpUrl httpUrl = buildHttpUrl(httpRequest);
     String body;
     try {
@@ -93,7 +94,7 @@ public class OkHttpInvoker implements Invoker {
 
   @Override
   public <T> HttpResponse<T> putJson(HttpRequest httpRequest, Class<T> respType)
-      throws ShopifyServerException {
+      throws RestApiException {
     HttpUrl httpUrl = buildHttpUrl(httpRequest);
     String body;
     try {
@@ -110,7 +111,7 @@ public class OkHttpInvoker implements Invoker {
 
   @Override
   public <T> HttpResponse<T> delete(HttpRequest httpRequest, Class<T> respType)
-      throws ShopifyServerException {
+      throws RestApiException {
     HttpUrl httpUrl = buildHttpUrl(httpRequest);
     Request request = new Request.Builder()
         .url(httpUrl)
@@ -126,7 +127,7 @@ public class OkHttpInvoker implements Invoker {
   }
 
   private <T> HttpResponse<T> invoke(Request request, Class<T> respType)
-      throws ShopifyServerException {
+      throws RestApiException {
     String body = null;
     try (Response response = okHttpClient.newCall(request).execute()) {
       body = response.body().string();
@@ -140,7 +141,7 @@ public class OkHttpInvoker implements Invoker {
         httpResponse.setObject(codec.deserialize(respType, body));
         return httpResponse;
       }
-      throw new ShopifyServerException(httpResponse);
+      throw new RestApiException(httpResponse);
     } catch (IOException e) {
       throw new ShopifyClientException("fail to invoke request: " + request, e);
     } catch (SerializingException e) {

@@ -8,8 +8,8 @@ import codemeans.shopify4j.rest.admin.model.enums.OrderStatus;
 import codemeans.shopify4j.rest.admin.model.orders.Order;
 import codemeans.shopify4j.rest.admin.model.orders.OrderList;
 import codemeans.shopify4j.rest.admin.model.orders.Refund;
-import codemeans.shopify4j.rest.exception.ShopifyServerException;
 import codemeans.shopify4j.rest.http.HttpResponse;
+import codemeans.shopify4j.rest.http.RestApiException;
 import java.math.BigDecimal;
 import java.util.List;
 import lombok.Data;
@@ -22,23 +22,23 @@ import org.joda.time.DateTime;
  */
 public interface OrderApi {
 
-  HttpResponse<OrderList> list(ListReq req) throws ShopifyServerException;
+  HttpResponse<OrderList> list(ListReq req) throws RestApiException;
 
-  HttpResponse<Order> get(long id) throws ShopifyServerException;
+  HttpResponse<Order> get(long id) throws RestApiException;
 
-  HttpResponse<Count> count(CountReq req) throws ShopifyServerException;
+  HttpResponse<Count> count(CountReq req) throws RestApiException;
 
-  HttpResponse<Order> close(long id) throws ShopifyServerException;
+  HttpResponse<Order> close(long id) throws RestApiException;
 
-  HttpResponse<Order> open(long id) throws ShopifyServerException;
+  HttpResponse<Order> open(long id) throws RestApiException;
 
-  HttpResponse<Order> cancel(long id, CancelReq req) throws ShopifyServerException;
+  HttpResponse<Order> cancel(long id, CancelReq req) throws RestApiException;
 
-  HttpResponse<Order> create(Order req) throws ShopifyServerException;
+  HttpResponse<Order> create(Order req) throws RestApiException;
 
-  HttpResponse<Order> update(long id, Order req) throws ShopifyServerException;
+  HttpResponse<Order> update(long id, Order req) throws RestApiException;
 
-  HttpResponse<String> delete(long id) throws ShopifyServerException;
+  HttpResponse<String> delete(long id) throws RestApiException;
 
   @Data
   @Accessors(chain = true)

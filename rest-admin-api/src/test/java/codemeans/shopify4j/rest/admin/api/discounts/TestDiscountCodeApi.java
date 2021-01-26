@@ -5,7 +5,7 @@ import static junit.framework.TestCase.assertEquals;
 import codemeans.shopify4j.rest.admin.ContextForTest;
 import codemeans.shopify4j.rest.admin.model.discounts.DiscountCode;
 import codemeans.shopify4j.rest.admin.model.discounts.DiscountCodeList;
-import codemeans.shopify4j.rest.exception.ShopifyServerException;
+import codemeans.shopify4j.rest.http.RestApiException;
 import org.junit.Test;
 
 /**
@@ -18,7 +18,7 @@ public class TestDiscountCodeApi {
   private final DiscountCodeApi api = ContextForTest.TEST_STORE.discountCodes();
 
   @Test
-  public void testList() throws ShopifyServerException {
+  public void testList() throws RestApiException {
     DiscountCodeList list = api.list(priceRuleId).object();
     System.out.println(list);
 

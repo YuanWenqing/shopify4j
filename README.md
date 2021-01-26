@@ -5,14 +5,18 @@ Java SDK for Shopify APIs, including:
 * REST Admin API Models
 * REST Admin API
 * GraphQL Admin Schema
+* GraphQL Admin API
 * ...
 
 ## Usage
 
-gradle
-
+REST API
 ```groovy
 implementation("xyz.codemeans.shopify4j:rest-admin-api:1.0")
+```
+GraphQL API
+```groovy
+implementation("xyz.codemeans.shopify4j:graphql-admin-api:1.0")
 ```
 
 ## Build from source
@@ -21,6 +25,8 @@ Requirements:
 
 * JDK 8
 * gradle >= 5.6
+* ruby >= 2.3
+* graphql_java_gen
 
 Configure nexus repository in build.gradle: `$HOME/.gradle/gradle.properties` OR `gradle.properteis`
 
@@ -29,15 +35,14 @@ nexus.repo.url=http://your.nexus.host/repository/maven-public/
 nexus.repo.public=http://your.nexus.host/repository/maven-public/
 nexus.repo.release=http://your.nexus.host/repository/maven-releases/
 nexus.repo.snapshot=http://your.nexus.host/repository/maven-snapshots/
-
 nexus.username=your-nexus-username
 nexus.password=your-nexus-password
-
 ```
 
 Then run
-
-	gradle publish -Prelease -Ppub=nexus
+~~~bash
+gradle publish -Prelease -Ppub=nexus
+~~~
 
 ## Release
 
@@ -54,7 +59,7 @@ https://shopify.dev/docs/admin-api/rest/reference
 ```java
 StoreSetting setting = new StoreSetting();
 Invoker invoker = new OkHttpInvoker(AccessTokenProvider.constant(setting.getApiPassword()));
-ShopifyStore store = new DefaultShopifyStore(setting, invoker);
+RestStore store = new DefaultRestStore(setting, invoker);
 
 // get a product
 Product = store.products.get(pid).object();
@@ -63,7 +68,7 @@ Product = store.products.get(pid).object();
 
 ## APIs
 
-For now, supported apis can be checked in [`ShopifyStore`](./rest-admin-api/src/main/java/codemeans/shopify4j/rest/admin/sdk/ShopifyStore.java)
+For now, supported apis can be checked in [`RestStore`](./rest-admin-api/src/main/java/codemeans/shopify4j/rest/admin/RestStore.java)
 
 * `store.collects()`
 * `store.collections()`
@@ -93,7 +98,7 @@ store.products().pipeline(ProductModifyPipeline.create(product));
 More general, if requests cross multiple apis, do pipeline via store
 
 ```java
-class StorePipeline implements Pipeline<ShopifyStore, Product> {
+class StorePipeline implements Pipeline<RestStore, Product> {
   public StorePipeline(...) {
     ...
   }
@@ -103,7 +108,7 @@ class StorePipeline implements Pipeline<ShopifyStore, Product> {
   }
 
   @Override
-  public Product runWith(ShopifyStore store) throws ShopifyServerException {
+  public Product runWith(RestStore store) throws ShopifyServerException {
     ...
   }
 }
@@ -119,9 +124,9 @@ Invoker is a simple interface to invoke http request.
 
 You can customize your implementation on any http library you like.
 
-## ShopifyStoreFactory
+## RestStoreFactory
 
-If you are integrating with multiple shopify stores in one sysmtem, just like we do, `ShopifyStoreFactory` will be very helpful. 
+If you are integrating with multiple shopify stores in one sysmtem, just like we do, `RestStoreFactory` will be very helpful. 
 
 ```java
 MemoryStoreSettingStorage settingStorage = new MemoryStoreSettingStorage();
@@ -130,9 +135,9 @@ settingStorage.registerStore(store2);
 
 Invoker invoker = new OkHttpInvoker(new PrivateAppAccessTokenProvider(settingStorage));
 
-ShopifyStoreFactory storeFactory = new DefaultShopifyStoreFactory(settingStorage, invoker);
+StoreFactory<RestStore> storeFactory = new DefaultRestStoreFactory(settingStorage, invoker);
 // cache created stores, avoiding duplicated creation
-storeFactory = CachedShopifyStoreFactory.of(storeFactory);
+storeFactory = CachedStoreFactory.of(storeFactory);
 
 Product productFromStore1 = storeFactory.getStore(domain1).products().get(pid1).object();
 Product productFromStore2 = storeFactory.getStore(domain2).products().get(pid2).object();

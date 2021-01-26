@@ -1,14 +1,14 @@
 package codemeans.shopify4j.rest.admin.api.products.impl;
 
+import codemeans.shopify4j.rest.admin.RestStore;
 import codemeans.shopify4j.rest.admin.api.products.CollectApi;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.products.Collect;
 import codemeans.shopify4j.rest.admin.model.products.CollectList;
-import codemeans.shopify4j.rest.admin.sdk.RestStore;
-import codemeans.shopify4j.rest.exception.ShopifyServerException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
-import codemeans.shopify4j.rest.http.Invoker;
+import codemeans.shopify4j.rest.http.RestApiException;
+import codemeans.shopify4j.rest.http.RestInvoker;
 
 /**
  * @author: yuanwq
@@ -17,9 +17,9 @@ import codemeans.shopify4j.rest.http.Invoker;
 public class CollectApiImpl implements CollectApi {
 
   private final String baseEndpoint;
-  private final Invoker invoker;
+  private final RestInvoker invoker;
 
-  public CollectApiImpl(String baseEndpoint, Invoker invoker) {
+  public CollectApiImpl(String baseEndpoint, RestInvoker invoker) {
     this.baseEndpoint = baseEndpoint;
     this.invoker = invoker;
   }
@@ -41,34 +41,34 @@ public class CollectApiImpl implements CollectApi {
   }
 
   @Override
-  public HttpResponse<Collect> create(Collect req) throws ShopifyServerException {
+  public HttpResponse<Collect> create(Collect req) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint())
         .setBody(req);
     return invoker.postJson(httpRequest, Collect.class);
   }
 
   @Override
-  public HttpResponse<String> delete(long id) throws ShopifyServerException {
+  public HttpResponse<String> delete(long id) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id));
     return invoker.delete(httpRequest, String.class);
   }
 
   @Override
-  public HttpResponse<CollectList> list(ListReq req) throws ShopifyServerException {
+  public HttpResponse<CollectList> list(ListReq req) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint());
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, CollectList.class);
   }
 
   @Override
-  public HttpResponse<Count> count(CountReq req) throws ShopifyServerException {
+  public HttpResponse<Count> count(CountReq req) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(countEndpoint());
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, Count.class);
   }
 
   @Override
-  public HttpResponse<Collect> get(long id) throws ShopifyServerException {
+  public HttpResponse<Collect> get(long id) throws RestApiException {
     return invoker.get(singleEndpoint(id), Collect.class);
   }
 

@@ -6,8 +6,8 @@ import codemeans.shopify4j.rest.admin.model.enums.ProductStatus;
 import codemeans.shopify4j.rest.admin.model.enums.PublishedStatus;
 import codemeans.shopify4j.rest.admin.model.products.Product;
 import codemeans.shopify4j.rest.admin.model.products.ProductList;
-import codemeans.shopify4j.rest.exception.ShopifyServerException;
 import codemeans.shopify4j.rest.http.HttpResponse;
+import codemeans.shopify4j.rest.http.RestApiException;
 import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -19,19 +19,19 @@ import org.joda.time.DateTime;
  */
 public interface ProductApi {
 
-  HttpResponse<ProductList> list(ListReq req) throws ShopifyServerException;
+  HttpResponse<ProductList> list(ListReq req) throws RestApiException;
 
-  HttpResponse<Count> count(CountReq req) throws ShopifyServerException;
+  HttpResponse<Count> count(CountReq req) throws RestApiException;
 
-  HttpResponse<Product> get(long id) throws ShopifyServerException;
+  HttpResponse<Product> get(long id) throws RestApiException;
 
-  HttpResponse<Product> create(Product req) throws ShopifyServerException;
+  HttpResponse<Product> create(Product req) throws RestApiException;
 
-  HttpResponse<Product> update(long id, Product req) throws ShopifyServerException;
+  HttpResponse<Product> update(long id, Product req) throws RestApiException;
 
-  HttpResponse<String> delete(long id) throws ShopifyServerException;
+  HttpResponse<String> delete(long id) throws RestApiException;
 
-  default <R> R pipeline(ProductPipeline<R> pipeline) throws ShopifyServerException {
+  default <R> R pipeline(ProductPipeline<R> pipeline) throws RestApiException {
     return pipeline.runWith(this);
   }
 

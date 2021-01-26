@@ -1,6 +1,6 @@
 package codemeans.shopify4j.rest.admin.api;
 
-import codemeans.shopify4j.rest.exception.ShopifyServerException;
+import codemeans.shopify4j.rest.http.RestApiException;
 
 /**
  * @author: yuanwq
@@ -13,5 +13,5 @@ public interface Pipeline<API, R> {
    */
   Class<R> typeOfR();
 
-  R runWith(API api) throws ShopifyServerException;
+  R runWith(API api) throws RestApiException;
 }

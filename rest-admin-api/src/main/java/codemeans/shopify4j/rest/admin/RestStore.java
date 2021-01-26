@@ -1,5 +1,6 @@
-package codemeans.shopify4j.rest.admin.sdk;
+package codemeans.shopify4j.rest.admin;
 
+import codemeans.shopify4j.core.store.StoreSetting;
 import codemeans.shopify4j.rest.admin.api.Pipeline;
 import codemeans.shopify4j.rest.admin.api.discounts.DiscountCodeApi;
 import codemeans.shopify4j.rest.admin.api.discounts.DiscountCodeCreationApi;
@@ -13,9 +14,8 @@ import codemeans.shopify4j.rest.admin.api.products.ProductApi;
 import codemeans.shopify4j.rest.admin.api.products.ProductImageApi;
 import codemeans.shopify4j.rest.admin.api.products.ProductVariantApi;
 import codemeans.shopify4j.rest.admin.api.products.SmartCollectionApi;
-import codemeans.shopify4j.core.store.StoreSetting;
-import codemeans.shopify4j.rest.exception.ShopifyServerException;
-import codemeans.shopify4j.rest.http.Invoker;
+import codemeans.shopify4j.rest.http.RestApiException;
+import codemeans.shopify4j.rest.http.RestInvoker;
 
 /**
  * @author: yuanwq
@@ -34,9 +34,9 @@ public interface RestStore {
    */
   String getBaseEndpoint();
 
-  Invoker getInvoker();
+  RestInvoker getInvoker();
 
-  default <R> R pipeline(Pipeline<RestStore, R> pipeline) throws ShopifyServerException {
+  default <R> R pipeline(Pipeline<RestStore, R> pipeline) throws RestApiException {
     return pipeline.runWith(this);
   }
 

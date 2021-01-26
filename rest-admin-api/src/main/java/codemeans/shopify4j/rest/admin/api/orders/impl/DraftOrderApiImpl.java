@@ -1,16 +1,16 @@
 package codemeans.shopify4j.rest.admin.api.orders.impl;
 
+import codemeans.shopify4j.rest.admin.RestStore;
 import codemeans.shopify4j.rest.admin.api.orders.DraftOrderApi;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.common.Empty;
 import codemeans.shopify4j.rest.admin.model.orders.DraftOrder;
 import codemeans.shopify4j.rest.admin.model.orders.DraftOrderInvoice;
 import codemeans.shopify4j.rest.admin.model.orders.DraftOrderList;
-import codemeans.shopify4j.rest.admin.sdk.RestStore;
-import codemeans.shopify4j.rest.exception.ShopifyServerException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
-import codemeans.shopify4j.rest.http.Invoker;
+import codemeans.shopify4j.rest.http.RestApiException;
+import codemeans.shopify4j.rest.http.RestInvoker;
 
 /**
  * @author: yuanwq
@@ -19,9 +19,9 @@ import codemeans.shopify4j.rest.http.Invoker;
 public class DraftOrderApiImpl implements DraftOrderApi {
 
   private final String baseEndpoint;
-  private final Invoker invoker;
+  private final RestInvoker invoker;
 
-  public DraftOrderApiImpl(String baseEndpoint, Invoker invoker) {
+  public DraftOrderApiImpl(String baseEndpoint, RestInvoker invoker) {
     this.baseEndpoint = baseEndpoint;
     this.invoker = invoker;
   }
@@ -47,53 +47,53 @@ public class DraftOrderApiImpl implements DraftOrderApi {
   }
 
   @Override
-  public HttpResponse<DraftOrderList> list(ListReq req) throws ShopifyServerException {
+  public HttpResponse<DraftOrderList> list(ListReq req) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint());
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, DraftOrderList.class);
   }
 
   @Override
-  public HttpResponse<Count> count(CountReq req) throws ShopifyServerException {
+  public HttpResponse<Count> count(CountReq req) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(countEndpoint());
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, Count.class);
   }
 
   @Override
-  public HttpResponse<DraftOrder> get(long id) throws ShopifyServerException {
+  public HttpResponse<DraftOrder> get(long id) throws RestApiException {
     return invoker.get(singleEndpoint(id), DraftOrder.class);
   }
 
   @Override
-  public HttpResponse<DraftOrder> create(DraftOrder req) throws ShopifyServerException {
+  public HttpResponse<DraftOrder> create(DraftOrder req) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint())
         .setBody(req);
     return invoker.postJson(httpRequest, DraftOrder.class);
   }
 
   @Override
-  public HttpResponse<DraftOrder> update(long id, DraftOrder req) throws ShopifyServerException {
+  public HttpResponse<DraftOrder> update(long id, DraftOrder req) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id))
         .setBody(req);
     return invoker.putJson(httpRequest, DraftOrder.class);
   }
 
   @Override
-  public HttpResponse<String> delete(long id) throws ShopifyServerException {
+  public HttpResponse<String> delete(long id) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id));
     return invoker.delete(httpRequest, String.class);
   }
 
   @Override
-  public HttpResponse<DraftOrder> sendInvoice(long id, DraftOrderInvoice req) throws ShopifyServerException {
+  public HttpResponse<DraftOrder> sendInvoice(long id, DraftOrderInvoice req) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(singleOperationEndpoint(id, "send_invoice"));
     httpRequest.setBody(req);
     return invoker.postJson(httpRequest, DraftOrder.class);
   }
 
   @Override
-  public HttpResponse<DraftOrder> complete(long id, Boolean paymentPending) throws ShopifyServerException {
+  public HttpResponse<DraftOrder> complete(long id, Boolean paymentPending) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(singleOperationEndpoint(id, "close"))
         .setBody(Empty.INSTANCE);
     if (paymentPending != null) {

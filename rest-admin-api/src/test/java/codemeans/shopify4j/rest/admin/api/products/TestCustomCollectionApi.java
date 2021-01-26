@@ -8,7 +8,7 @@ import codemeans.shopify4j.rest.admin.api.products.CustomCollectionApi.ListReq;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.products.CustomCollection;
 import codemeans.shopify4j.rest.admin.model.products.CustomCollectionList;
-import codemeans.shopify4j.rest.exception.ShopifyServerException;
+import codemeans.shopify4j.rest.http.RestApiException;
 import org.junit.Test;
 
 /**
@@ -20,14 +20,14 @@ public class TestCustomCollectionApi {
   private final CustomCollectionApi api = ContextForTest.TEST_STORE.customCollections();
 
   @Test
-  public void testCount() throws ShopifyServerException {
+  public void testCount() throws RestApiException {
     CountReq countReq = new CountReq();
     Count count = api.count(countReq).object();
     System.out.println(count);
   }
 
   @Test
-  public void testList() throws ShopifyServerException {
+  public void testList() throws RestApiException {
     ListReq listReq = new ListReq();
     CustomCollectionList customCollectionList = api.list(listReq).object();
     System.out.println(customCollectionList);

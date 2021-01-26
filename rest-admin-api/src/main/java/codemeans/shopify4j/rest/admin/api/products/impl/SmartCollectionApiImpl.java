@@ -1,14 +1,14 @@
 package codemeans.shopify4j.rest.admin.api.products.impl;
 
+import codemeans.shopify4j.rest.admin.RestStore;
 import codemeans.shopify4j.rest.admin.api.products.SmartCollectionApi;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.products.SmartCollection;
 import codemeans.shopify4j.rest.admin.model.products.SmartCollectionList;
-import codemeans.shopify4j.rest.admin.sdk.RestStore;
-import codemeans.shopify4j.rest.exception.ShopifyServerException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
-import codemeans.shopify4j.rest.http.Invoker;
+import codemeans.shopify4j.rest.http.RestApiException;
+import codemeans.shopify4j.rest.http.RestInvoker;
 
 /**
  * @author: yuanwq
@@ -17,9 +17,9 @@ import codemeans.shopify4j.rest.http.Invoker;
 public class SmartCollectionApiImpl implements SmartCollectionApi {
 
   private final String baseEndpoint;
-  private final Invoker invoker;
+  private final RestInvoker invoker;
 
-  public SmartCollectionApiImpl(String baseEndpoint, Invoker invoker) {
+  public SmartCollectionApiImpl(String baseEndpoint, RestInvoker invoker) {
     this.baseEndpoint = baseEndpoint;
     this.invoker = invoker;
   }
@@ -41,40 +41,40 @@ public class SmartCollectionApiImpl implements SmartCollectionApi {
   }
 
   @Override
-  public HttpResponse<SmartCollectionList> list(ListReq req) throws ShopifyServerException {
+  public HttpResponse<SmartCollectionList> list(ListReq req) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint());
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, SmartCollectionList.class);
   }
 
   @Override
-  public HttpResponse<Count> count(CountReq req) throws ShopifyServerException {
+  public HttpResponse<Count> count(CountReq req) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(countEndpoint());
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, Count.class);
   }
 
   @Override
-  public HttpResponse<SmartCollection> get(long id) throws ShopifyServerException {
+  public HttpResponse<SmartCollection> get(long id) throws RestApiException {
     return invoker.get(singleEndpoint(id), SmartCollection.class);
   }
 
   @Override
-  public HttpResponse<SmartCollection> create(SmartCollection req) throws ShopifyServerException {
+  public HttpResponse<SmartCollection> create(SmartCollection req) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint())
         .setBody(req);
     return invoker.postJson(httpRequest, SmartCollection.class);
   }
 
   @Override
-  public HttpResponse<SmartCollection> update(long id, SmartCollection req) throws ShopifyServerException {
+  public HttpResponse<SmartCollection> update(long id, SmartCollection req) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id))
         .setBody(req);
     return invoker.putJson(httpRequest, SmartCollection.class);
   }
 
   @Override
-  public HttpResponse<String> delete(long id) throws ShopifyServerException {
+  public HttpResponse<String> delete(long id) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id));
     return invoker.delete(httpRequest, String.class);
   }

@@ -7,7 +7,7 @@ import codemeans.shopify4j.rest.admin.api.discounts.PriceRuleApi.ListReq;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.discounts.PriceRule;
 import codemeans.shopify4j.rest.admin.model.discounts.PriceRuleList;
-import codemeans.shopify4j.rest.exception.ShopifyServerException;
+import codemeans.shopify4j.rest.http.RestApiException;
 import org.junit.Test;
 
 /**
@@ -19,13 +19,13 @@ public class TestPriceRuleApi {
   private final PriceRuleApi api = ContextForTest.TEST_STORE.priceRules();
 
   @Test
-  public void testCount() throws ShopifyServerException {
+  public void testCount() throws RestApiException {
     Count count = api.count().object();
     System.out.println(count);
   }
 
   @Test
-  public void testList() throws ShopifyServerException {
+  public void testList() throws RestApiException {
     ListReq listReq = new ListReq();
     PriceRuleList priceRuleList = api.list(listReq).object();
     System.out.println(priceRuleList);

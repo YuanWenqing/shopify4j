@@ -1,8 +1,7 @@
 package codemeans.shopify4j.rest.jackson;
 
-import codemeans.shopify4j.rest.exception.IllegalDefinitionException;
-import codemeans.shopify4j.rest.exception.SerializingException;
 import codemeans.shopify4j.rest.http.ICodec;
+import codemeans.shopify4j.rest.http.SerializingException;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -90,7 +89,7 @@ public class JacksonCodec implements ICodec {
       }
       String value;
       if (entry.getValue().isObject()) {
-        throw new IllegalDefinitionException(entry.getKey(), entry.getValue(),
+        throw new IllegalFieldException(entry.getKey(), entry.getValue(),
             "Unhandled Object type");
       } else if (entry.getValue().isArray()) {
         value = StringUtils.join(entry.getValue().elements(), COMMA);

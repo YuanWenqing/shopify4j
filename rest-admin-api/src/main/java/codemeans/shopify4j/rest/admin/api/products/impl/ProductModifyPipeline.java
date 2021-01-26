@@ -5,7 +5,7 @@ import codemeans.shopify4j.rest.admin.api.products.ProductApi.ProductPipeline;
 import codemeans.shopify4j.rest.admin.model.products.Product;
 import codemeans.shopify4j.rest.admin.model.products.ProductImage;
 import codemeans.shopify4j.rest.admin.model.products.ProductVariant;
-import codemeans.shopify4j.rest.exception.ShopifyServerException;
+import codemeans.shopify4j.rest.http.RestApiException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -52,7 +52,7 @@ public abstract class ProductModifyPipeline implements ProductPipeline<Product> 
   }
 
   @Override
-  public Product runWith(ProductApi api) throws ShopifyServerException {
+  public Product runWith(ProductApi api) throws RestApiException {
     Product modifiedProduct = modifyProduct(api, modifyReq);
     modifiedProduct = updateVariantImage(api, modifiedProduct);
     return modifiedProduct;
@@ -62,10 +62,10 @@ public abstract class ProductModifyPipeline implements ProductPipeline<Product> 
    * create or update product
    */
   protected abstract Product modifyProduct(ProductApi api,
-      Product modifyReq) throws ShopifyServerException;
+      Product modifyReq) throws RestApiException;
 
   protected Product updateVariantImage(ProductApi api, Product modifiedProduct)
-      throws ShopifyServerException {
+      throws RestApiException {
     if (!variantPositionToImagePosition.isEmpty()
         && modifiedProduct.getImages() != null
         && modifiedProduct.getVariants() != null) {
@@ -117,7 +117,7 @@ public abstract class ProductModifyPipeline implements ProductPipeline<Product> 
 
     @Override
     protected Product modifyProduct(ProductApi api, Product modifyReq)
-        throws ShopifyServerException {
+        throws RestApiException {
       return api.create(modifyReq).object();
     }
   }
@@ -130,7 +130,7 @@ public abstract class ProductModifyPipeline implements ProductPipeline<Product> 
 
     @Override
     protected Product modifyProduct(ProductApi api, Product modifyReq)
-        throws ShopifyServerException {
+        throws RestApiException {
       return api.update(modifyReq.getId(), modifyReq).object();
     }
   }

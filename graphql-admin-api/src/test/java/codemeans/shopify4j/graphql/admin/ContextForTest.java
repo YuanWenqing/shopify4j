@@ -1,10 +1,7 @@
-package codemeans.shopify4j.rest.admin;
+package codemeans.shopify4j.graphql.admin;
 
 import codemeans.shopify4j.core.store.MemoryStoreSettingStorage;
-import codemeans.shopify4j.core.store.PrivateAppAccessTokenProvider;
 import codemeans.shopify4j.core.store.StoreSetting;
-import codemeans.shopify4j.rest.http.RestInvoker;
-import codemeans.shopify4j.rest.okhttp.OkHttpRestInvoker;
 import java.io.IOException;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
@@ -24,9 +21,7 @@ public class ContextForTest {
     STORE_SETTING_STORAGE.registerStore(STORE_SETTING);
   }
 
-  public static final RestInvoker INVOKER = new OkHttpRestInvoker(
-      new PrivateAppAccessTokenProvider(STORE_SETTING_STORAGE));
-  public static final RestStore TEST_STORE = new DefaultRestStore(STORE_SETTING, INVOKER);
+  public static final GraphqlStore TEST_STORE = new DefaultGraphqlStore(STORE_SETTING);
 
   private static StoreSetting loadStoreSetting(String resourceName) {
     try {
