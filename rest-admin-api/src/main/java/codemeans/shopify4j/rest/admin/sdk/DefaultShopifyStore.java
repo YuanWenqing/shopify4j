@@ -23,7 +23,7 @@ import codemeans.shopify4j.rest.admin.api.products.impl.ProductApiImpl;
 import codemeans.shopify4j.rest.admin.api.products.impl.ProductImageApiImpl;
 import codemeans.shopify4j.rest.admin.api.products.impl.ProductVariantApiImpl;
 import codemeans.shopify4j.rest.admin.api.products.impl.SmartCollectionApiImpl;
-import codemeans.shopify4j.rest.core.store.StoreSetting;
+import codemeans.shopify4j.core.store.StoreSetting;
 import codemeans.shopify4j.rest.http.Invoker;
 
 /**
