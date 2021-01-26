@@ -8,5 +8,5 @@ import codemeans.shopify4j.graphql.admin.exception.GraphqlApiException;
  */
 public interface GraphqlInvoker {
 
-  String request(String endpoint, String query) throws GraphqlApiException;
+  String request(String endpoint, String requestBody) throws GraphqlApiException;
 }

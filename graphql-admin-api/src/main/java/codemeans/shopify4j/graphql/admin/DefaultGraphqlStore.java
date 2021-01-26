@@ -45,7 +45,7 @@ public class DefaultGraphqlStore implements GraphqlStore {
       String queryBody = query.toString();
       resp = invoker.request(graphqlEndpoint, queryBody);
       QueryResponse response = QueryResponse.fromJson(resp);
-      if (!response.getErrors().isEmpty()) {
+      if (response.getErrors() != null && !response.getErrors().isEmpty()) {
         throw new GraphqlQueryException(query, response);
       }
       return response;
@@ -61,7 +61,7 @@ public class DefaultGraphqlStore implements GraphqlStore {
       String queryBody = query.toString();
       resp = invoker.request(graphqlEndpoint, queryBody);
       MutationResponse response = MutationResponse.fromJson(resp);
-      if (!response.getErrors().isEmpty()) {
+      if (response.getErrors() != null && !response.getErrors().isEmpty()) {
         throw new GraphqlMutationException(query, response);
       }
       return response;

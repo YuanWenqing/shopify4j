@@ -20,8 +20,8 @@ import okhttp3.Response;
 @Slf4j
 public class OkHttpGraphqlInvoker implements GraphqlInvoker {
 
-  private static final MediaType MEDIA_TYPE_JSON = MediaType
-      .parse("application/json; charset=utf-8");
+  private static final MediaType MEDIA_TYPE_GRAPHQL = MediaType
+      .parse("application/graphql; charset=utf-8");
 
   private final OkHttpClient okHttpClient;
 
@@ -46,20 +46,22 @@ public class OkHttpGraphqlInvoker implements GraphqlInvoker {
   }
 
   @Override
-  public String request(String endpoint, String query) throws GraphqlApiException {
+  public String request(String endpoint, String requestBody) throws GraphqlApiException {
     Request request = new Request.Builder().url(endpoint)
-        .post(RequestBody.create(MEDIA_TYPE_JSON, query))
+        .post(RequestBody.create(MEDIA_TYPE_GRAPHQL, requestBody))
         .build();
     try (Response response = okHttpClient.newCall(request).execute()) {
       String body = response.body().string();
       if (log.isDebugEnabled()) {
         log.debug("request: {}, request.body={}, response.code={}, response.body={}",
-            request, query, response.code(), body);
+            request, requestBody, response.code(), body);
       }
       if (response.isSuccessful()) {
         return body;
       }
-      throw new GraphqlApiException("endpoint=" + endpoint + ", query: " + query);
+      throw new GraphqlApiException(
+          "request=" + request + ", query: " + requestBody + ", response.code=" + response.code()
+              + ", response.body=" + body);
     } catch (IOException e) {
       throw new ShopifyClientException("fail to invoke request: " + request, e);
     }
