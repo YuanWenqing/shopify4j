@@ -1,8 +1,8 @@
 package codemeans.shopify4j.graphql.admin;
 
-import codemeans.shopify4j.core.store.AccessTokenInterceptor;
-import codemeans.shopify4j.core.store.AccessTokenProvider;
-import codemeans.shopify4j.core.store.ShopifyClientException;
+import codemeans.shopify4j.core.auth.AccessTokenInterceptor;
+import codemeans.shopify4j.core.auth.AccessTokenProvider;
+import codemeans.shopify4j.core.exception.ShopifyClientException;
 import codemeans.shopify4j.graphql.admin.exception.GraphqlApiException;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;

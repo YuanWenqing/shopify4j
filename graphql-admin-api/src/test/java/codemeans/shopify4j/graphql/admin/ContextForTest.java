@@ -1,7 +1,7 @@
 package codemeans.shopify4j.graphql.admin;
 
 import codemeans.shopify4j.core.store.MemoryStoreSettingStorage;
-import codemeans.shopify4j.core.store.PrivateAppAccessTokenProvider;
+import codemeans.shopify4j.core.auth.PrivateAppAccessTokenProvider;
 import codemeans.shopify4j.core.store.StoreSetting;
 import java.io.IOException;
 import java.io.StringReader;
