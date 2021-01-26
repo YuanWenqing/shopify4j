@@ -19,13 +19,13 @@ public class DefaultGraphqlStore implements GraphqlStore {
 
   private final StoreSetting storeSetting;
   private final String graphqlEndpoint;
-  private final GraphqlInvoker graphqlInvoker;
+  private final GraphqlInvoker invoker;
 
-  public DefaultGraphqlStore(StoreSetting storeSetting, GraphqlInvoker graphqlInvoker) {
+  public DefaultGraphqlStore(StoreSetting storeSetting, GraphqlInvoker invoker) {
     this.storeSetting = storeSetting;
     this.graphqlEndpoint = String.format("https://%s/admin/api/%s/graphql.json",
         storeSetting.getStoreDomain(), storeSetting.getApiVersion());
-    this.graphqlInvoker = graphqlInvoker;
+    this.invoker = invoker;
   }
 
   @Override
@@ -43,7 +43,7 @@ public class DefaultGraphqlStore implements GraphqlStore {
     String resp = null;
     try {
       String queryBody = query.toString();
-      resp = graphqlInvoker.request(graphqlEndpoint, queryBody);
+      resp = invoker.request(graphqlEndpoint, queryBody);
       QueryResponse response = QueryResponse.fromJson(resp);
       if (!response.getErrors().isEmpty()) {
         throw new GraphqlQueryException(query, response);
@@ -59,7 +59,7 @@ public class DefaultGraphqlStore implements GraphqlStore {
     String resp = null;
     try {
       String queryBody = query.toString();
-      resp = graphqlInvoker.request(graphqlEndpoint, queryBody);
+      resp = invoker.request(graphqlEndpoint, queryBody);
       MutationResponse response = MutationResponse.fromJson(resp);
       if (!response.getErrors().isEmpty()) {
         throw new GraphqlMutationException(query, response);

@@ -13,9 +13,12 @@ import lombok.NonNull;
 public class GraphqlStoreFactory implements StoreFactory<GraphqlStore> {
 
   private final StoreSettingStorage storeSettingStorage;
+  private final GraphqlInvoker graphqlInvoker;
 
-  public GraphqlStoreFactory(@NonNull StoreSettingStorage storeSettingStorage) {
+  public GraphqlStoreFactory(@NonNull StoreSettingStorage storeSettingStorage,
+      @NonNull GraphqlInvoker graphqlInvoker) {
     this.storeSettingStorage = storeSettingStorage;
+    this.graphqlInvoker = graphqlInvoker;
   }
 
   @Override
@@ -24,6 +27,6 @@ public class GraphqlStoreFactory implements StoreFactory<GraphqlStore> {
     if (setting == null) {
       throw new IllegalArgumentException("No Credential for " + storeDomain);
     }
-    return new DefaultGraphqlStore(setting);
+    return new DefaultGraphqlStore(setting, graphqlInvoker);
   }
 }
