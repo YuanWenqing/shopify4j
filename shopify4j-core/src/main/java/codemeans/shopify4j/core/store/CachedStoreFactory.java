@@ -2,6 +2,7 @@ package codemeans.shopify4j.core.store;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import lombok.Getter;
 
 /**
  * delegate to another {@link StoreFactory} and cache created {@code Store}
@@ -11,6 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class CachedStoreFactory<S> implements StoreFactory<S> {
 
+  @Getter
   private final StoreFactory<S> delegate;
 
   private final Map<String, S> storeMap = new ConcurrentHashMap<>();

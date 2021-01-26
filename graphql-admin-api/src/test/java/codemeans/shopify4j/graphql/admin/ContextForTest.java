@@ -1,7 +1,9 @@
 package codemeans.shopify4j.graphql.admin;
 
 import codemeans.shopify4j.core.auth.PrivateAppAccessTokenProvider;
+import codemeans.shopify4j.core.store.CachedStoreFactory;
 import codemeans.shopify4j.core.store.MemoryStoreSettingStorage;
+import codemeans.shopify4j.core.store.StoreFactory;
 import codemeans.shopify4j.core.store.StoreSetting;
 import java.io.IOException;
 import java.io.StringReader;
@@ -24,8 +26,9 @@ public class ContextForTest {
 
   public static final GraphqlInvoker INVOKER = new OkHttpGraphqlInvoker(
       new PrivateAppAccessTokenProvider(STORE_SETTING_STORAGE));
-  public static final GraphqlStore TEST_STORE = new DefaultGraphqlStore(
-      STORE_SETTING.getStoreDomain(), STORE_SETTING.getApiVersion(), INVOKER);
+  public static final StoreFactory<GraphqlStore> FACTORY = CachedStoreFactory
+      .of(new GraphqlStoreFactory(STORE_SETTING_STORAGE, INVOKER));
+  public static final GraphqlStore TEST_STORE = FACTORY.getStore(STORE_SETTING.getStoreDomain());
 
   private static StoreSetting loadStoreSetting(String resourceName) {
     try {
@@ -36,7 +39,6 @@ public class ContextForTest {
       setting.setStoreDomain(properties.getProperty("store-domain"));
       setting.setApiKey(properties.getProperty("api-key"));
       setting.setApiPassword(properties.getProperty("api-password"));
-      setting.setApiVersion(properties.getProperty("api-version", setting.getApiVersion()));
       return setting;
     } catch (IOException e) {
       throw new RuntimeException(e);

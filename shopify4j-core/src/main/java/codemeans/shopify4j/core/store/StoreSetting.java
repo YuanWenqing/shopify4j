@@ -13,7 +13,6 @@ public class StoreSetting {
    * store domain, format like {@code your-shop.myshopify.com}
    */
   private String storeDomain;
-  private String apiVersion = "2021-01";
   private String apiKey;
   private String apiPassword;
 
