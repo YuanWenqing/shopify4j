@@ -1,8 +1,5 @@
-package codemeans.shopify4j.graphql.admin;
+package codemeans.shopify4j.core.store;
 
-import codemeans.shopify4j.core.store.AccessTokenProvider;
-import codemeans.shopify4j.core.store.ShopifyClientException;
-import codemeans.shopify4j.core.store.ShopifyHeaders;
 import java.io.IOException;
 import okhttp3.Interceptor;
 import okhttp3.Request;
