@@ -2,8 +2,8 @@ package codemeans.shopify4j.rest.admin.api.products;
 
 import codemeans.shopify4j.rest.admin.model.products.Collection;
 import codemeans.shopify4j.rest.admin.model.products.ProductList;
-import codemeans.shopify4j.rest.exception.ShopifyServerException;
 import codemeans.shopify4j.rest.http.HttpResponse;
+import codemeans.shopify4j.rest.http.HttpResponseException;
 
 /**
  * @author: yuanwq
@@ -11,8 +11,8 @@ import codemeans.shopify4j.rest.http.HttpResponse;
  */
 public interface CollectionApi {
 
-  HttpResponse<Collection> get(long id) throws ShopifyServerException;
+  HttpResponse<Collection> get(long id) throws HttpResponseException;
 
-  HttpResponse<ProductList> products(long id, Integer limit) throws ShopifyServerException;
+  HttpResponse<ProductList> products(long id, Integer limit) throws HttpResponseException;
 
 }

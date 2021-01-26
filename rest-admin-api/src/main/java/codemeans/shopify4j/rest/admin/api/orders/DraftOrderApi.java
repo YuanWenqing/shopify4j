@@ -5,8 +5,8 @@ import codemeans.shopify4j.rest.admin.model.enums.DraftOrderStatus;
 import codemeans.shopify4j.rest.admin.model.orders.DraftOrder;
 import codemeans.shopify4j.rest.admin.model.orders.DraftOrderInvoice;
 import codemeans.shopify4j.rest.admin.model.orders.DraftOrderList;
-import codemeans.shopify4j.rest.exception.ShopifyServerException;
 import codemeans.shopify4j.rest.http.HttpResponse;
+import codemeans.shopify4j.rest.http.HttpResponseException;
 import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -18,21 +18,21 @@ import org.joda.time.DateTime;
  */
 public interface DraftOrderApi {
 
-  HttpResponse<DraftOrder> create(DraftOrder req) throws ShopifyServerException;
+  HttpResponse<DraftOrder> create(DraftOrder req) throws HttpResponseException;
 
-  HttpResponse<DraftOrder> update(long id, DraftOrder req) throws ShopifyServerException;
+  HttpResponse<DraftOrder> update(long id, DraftOrder req) throws HttpResponseException;
 
-  HttpResponse<DraftOrderList> list(ListReq req) throws ShopifyServerException;
+  HttpResponse<DraftOrderList> list(ListReq req) throws HttpResponseException;
 
-  HttpResponse<DraftOrder> get(long id) throws ShopifyServerException;
+  HttpResponse<DraftOrder> get(long id) throws HttpResponseException;
 
-  HttpResponse<Count> count(CountReq req) throws ShopifyServerException;
+  HttpResponse<Count> count(CountReq req) throws HttpResponseException;
 
-  HttpResponse<DraftOrder> sendInvoice(long id, DraftOrderInvoice req) throws ShopifyServerException;
+  HttpResponse<DraftOrder> sendInvoice(long id, DraftOrderInvoice req) throws HttpResponseException;
 
-  HttpResponse<String> delete(long id) throws ShopifyServerException;
+  HttpResponse<String> delete(long id) throws HttpResponseException;
 
-  HttpResponse<DraftOrder> complete(long id, Boolean paymentPending) throws ShopifyServerException;
+  HttpResponse<DraftOrder> complete(long id, Boolean paymentPending) throws HttpResponseException;
 
   @Data
   @Accessors(chain = true)

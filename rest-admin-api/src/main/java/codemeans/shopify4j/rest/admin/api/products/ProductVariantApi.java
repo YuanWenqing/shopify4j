@@ -3,8 +3,8 @@ package codemeans.shopify4j.rest.admin.api.products;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.products.ProductVariant;
 import codemeans.shopify4j.rest.admin.model.products.ProductVariantList;
-import codemeans.shopify4j.rest.exception.ShopifyServerException;
 import codemeans.shopify4j.rest.http.HttpResponse;
+import codemeans.shopify4j.rest.http.HttpResponseException;
 import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -16,17 +16,17 @@ import lombok.experimental.Accessors;
 public interface ProductVariantApi {
 
   HttpResponse<ProductVariantList> list(long productId, ProductVariantApi.ListReq req)
-      throws ShopifyServerException;
+      throws HttpResponseException;
 
-  HttpResponse<Count> count(long productId) throws ShopifyServerException;
+  HttpResponse<Count> count(long productId) throws HttpResponseException;
 
-  HttpResponse<ProductVariant> get(long variantId) throws ShopifyServerException;
+  HttpResponse<ProductVariant> get(long variantId) throws HttpResponseException;
 
-  HttpResponse<ProductVariant> create(long productId, ProductVariant req) throws ShopifyServerException;
+  HttpResponse<ProductVariant> create(long productId, ProductVariant req) throws HttpResponseException;
 
-  HttpResponse<ProductVariant> update(long id, ProductVariant req) throws ShopifyServerException;
+  HttpResponse<ProductVariant> update(long id, ProductVariant req) throws HttpResponseException;
 
-  HttpResponse<String> delete(long productId, long variantId) throws ShopifyServerException;
+  HttpResponse<String> delete(long productId, long variantId) throws HttpResponseException;
 
   @Data
   @Accessors(chain = true)

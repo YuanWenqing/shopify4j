@@ -6,7 +6,7 @@ import codemeans.shopify4j.rest.admin.ContextForTest;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.products.ProductVariant;
 import codemeans.shopify4j.rest.admin.model.products.ProductVariantList;
-import codemeans.shopify4j.rest.exception.ShopifyServerException;
+import codemeans.shopify4j.rest.http.HttpResponseException;
 import org.junit.Test;
 
 /**
@@ -20,13 +20,13 @@ public class TestProductVariantApi {
   private final Long productId = 5496978866341L;
 
   @Test
-  public void testCount() throws ShopifyServerException {
+  public void testCount() throws HttpResponseException {
     Count count = api.count(productId).object();
     System.out.println(count);
   }
 
   @Test
-  public void testList() throws ShopifyServerException {
+  public void testList() throws HttpResponseException {
     ProductVariantList productVariantList = api.list(productId, new ProductVariantApi.ListReq()).object();
     System.out.println(productVariantList);
     ProductVariant expect = productVariantList.getVariants().get(0);

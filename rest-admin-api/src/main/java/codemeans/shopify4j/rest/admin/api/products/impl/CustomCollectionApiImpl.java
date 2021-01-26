@@ -5,9 +5,9 @@ import codemeans.shopify4j.rest.admin.api.products.CustomCollectionApi;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.products.CustomCollection;
 import codemeans.shopify4j.rest.admin.model.products.CustomCollectionList;
-import codemeans.shopify4j.rest.exception.ShopifyServerException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
+import codemeans.shopify4j.rest.http.HttpResponseException;
 import codemeans.shopify4j.rest.http.Invoker;
 
 /**
@@ -41,40 +41,40 @@ public class CustomCollectionApiImpl implements CustomCollectionApi {
   }
 
   @Override
-  public HttpResponse<CustomCollectionList> list(ListReq req) throws ShopifyServerException {
+  public HttpResponse<CustomCollectionList> list(ListReq req) throws HttpResponseException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint());
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, CustomCollectionList.class);
   }
 
   @Override
-  public HttpResponse<Count> count(CountReq req) throws ShopifyServerException {
+  public HttpResponse<Count> count(CountReq req) throws HttpResponseException {
     HttpRequest httpRequest = HttpRequest.of(countEndpoint());
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, Count.class);
   }
 
   @Override
-  public HttpResponse<CustomCollection> get(long id) throws ShopifyServerException {
+  public HttpResponse<CustomCollection> get(long id) throws HttpResponseException {
     return invoker.get(singleEndpoint(id), CustomCollection.class);
   }
 
   @Override
-  public HttpResponse<CustomCollection> create(CustomCollection req) throws ShopifyServerException {
+  public HttpResponse<CustomCollection> create(CustomCollection req) throws HttpResponseException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint())
         .setBody(req);
     return invoker.postJson(httpRequest, CustomCollection.class);
   }
 
   @Override
-  public HttpResponse<CustomCollection> update(long id, CustomCollection req) throws ShopifyServerException {
+  public HttpResponse<CustomCollection> update(long id, CustomCollection req) throws HttpResponseException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id))
         .setBody(req);
     return invoker.putJson(httpRequest, CustomCollection.class);
   }
 
   @Override
-  public HttpResponse<String> delete(long id) throws ShopifyServerException {
+  public HttpResponse<String> delete(long id) throws HttpResponseException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id));
     return invoker.delete(httpRequest, String.class);
   }

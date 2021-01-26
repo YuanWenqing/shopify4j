@@ -7,9 +7,9 @@ import codemeans.shopify4j.rest.admin.model.common.Empty;
 import codemeans.shopify4j.rest.admin.model.orders.DraftOrder;
 import codemeans.shopify4j.rest.admin.model.orders.DraftOrderInvoice;
 import codemeans.shopify4j.rest.admin.model.orders.DraftOrderList;
-import codemeans.shopify4j.rest.exception.ShopifyServerException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
+import codemeans.shopify4j.rest.http.HttpResponseException;
 import codemeans.shopify4j.rest.http.Invoker;
 
 /**
@@ -47,53 +47,53 @@ public class DraftOrderApiImpl implements DraftOrderApi {
   }
 
   @Override
-  public HttpResponse<DraftOrderList> list(ListReq req) throws ShopifyServerException {
+  public HttpResponse<DraftOrderList> list(ListReq req) throws HttpResponseException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint());
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, DraftOrderList.class);
   }
 
   @Override
-  public HttpResponse<Count> count(CountReq req) throws ShopifyServerException {
+  public HttpResponse<Count> count(CountReq req) throws HttpResponseException {
     HttpRequest httpRequest = HttpRequest.of(countEndpoint());
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, Count.class);
   }
 
   @Override
-  public HttpResponse<DraftOrder> get(long id) throws ShopifyServerException {
+  public HttpResponse<DraftOrder> get(long id) throws HttpResponseException {
     return invoker.get(singleEndpoint(id), DraftOrder.class);
   }
 
   @Override
-  public HttpResponse<DraftOrder> create(DraftOrder req) throws ShopifyServerException {
+  public HttpResponse<DraftOrder> create(DraftOrder req) throws HttpResponseException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint())
         .setBody(req);
     return invoker.postJson(httpRequest, DraftOrder.class);
   }
 
   @Override
-  public HttpResponse<DraftOrder> update(long id, DraftOrder req) throws ShopifyServerException {
+  public HttpResponse<DraftOrder> update(long id, DraftOrder req) throws HttpResponseException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id))
         .setBody(req);
     return invoker.putJson(httpRequest, DraftOrder.class);
   }
 
   @Override
-  public HttpResponse<String> delete(long id) throws ShopifyServerException {
+  public HttpResponse<String> delete(long id) throws HttpResponseException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id));
     return invoker.delete(httpRequest, String.class);
   }
 
   @Override
-  public HttpResponse<DraftOrder> sendInvoice(long id, DraftOrderInvoice req) throws ShopifyServerException {
+  public HttpResponse<DraftOrder> sendInvoice(long id, DraftOrderInvoice req) throws HttpResponseException {
     HttpRequest httpRequest = HttpRequest.of(singleOperationEndpoint(id, "send_invoice"));
     httpRequest.setBody(req);
     return invoker.postJson(httpRequest, DraftOrder.class);
   }
 
   @Override
-  public HttpResponse<DraftOrder> complete(long id, Boolean paymentPending) throws ShopifyServerException {
+  public HttpResponse<DraftOrder> complete(long id, Boolean paymentPending) throws HttpResponseException {
     HttpRequest httpRequest = HttpRequest.of(singleOperationEndpoint(id, "close"))
         .setBody(Empty.INSTANCE);
     if (paymentPending != null) {

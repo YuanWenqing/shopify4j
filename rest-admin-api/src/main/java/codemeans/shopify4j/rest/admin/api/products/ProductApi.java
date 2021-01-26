@@ -6,8 +6,8 @@ import codemeans.shopify4j.rest.admin.model.enums.ProductStatus;
 import codemeans.shopify4j.rest.admin.model.enums.PublishedStatus;
 import codemeans.shopify4j.rest.admin.model.products.Product;
 import codemeans.shopify4j.rest.admin.model.products.ProductList;
-import codemeans.shopify4j.rest.exception.ShopifyServerException;
 import codemeans.shopify4j.rest.http.HttpResponse;
+import codemeans.shopify4j.rest.http.HttpResponseException;
 import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -19,19 +19,19 @@ import org.joda.time.DateTime;
  */
 public interface ProductApi {
 
-  HttpResponse<ProductList> list(ListReq req) throws ShopifyServerException;
+  HttpResponse<ProductList> list(ListReq req) throws HttpResponseException;
 
-  HttpResponse<Count> count(CountReq req) throws ShopifyServerException;
+  HttpResponse<Count> count(CountReq req) throws HttpResponseException;
 
-  HttpResponse<Product> get(long id) throws ShopifyServerException;
+  HttpResponse<Product> get(long id) throws HttpResponseException;
 
-  HttpResponse<Product> create(Product req) throws ShopifyServerException;
+  HttpResponse<Product> create(Product req) throws HttpResponseException;
 
-  HttpResponse<Product> update(long id, Product req) throws ShopifyServerException;
+  HttpResponse<Product> update(long id, Product req) throws HttpResponseException;
 
-  HttpResponse<String> delete(long id) throws ShopifyServerException;
+  HttpResponse<String> delete(long id) throws HttpResponseException;
 
-  default <R> R pipeline(ProductPipeline<R> pipeline) throws ShopifyServerException {
+  default <R> R pipeline(ProductPipeline<R> pipeline) throws HttpResponseException {
     return pipeline.runWith(this);
   }
 

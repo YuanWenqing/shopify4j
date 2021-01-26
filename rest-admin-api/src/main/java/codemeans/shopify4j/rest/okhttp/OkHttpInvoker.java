@@ -1,13 +1,13 @@
 package codemeans.shopify4j.rest.okhttp;
 
 import codemeans.shopify4j.core.store.AccessTokenProvider;
-import codemeans.shopify4j.rest.exception.SerializingException;
 import codemeans.shopify4j.rest.exception.ShopifyClientException;
-import codemeans.shopify4j.rest.exception.ShopifyServerException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
+import codemeans.shopify4j.rest.http.HttpResponseException;
 import codemeans.shopify4j.rest.http.ICodec;
 import codemeans.shopify4j.rest.http.Invoker;
+import codemeans.shopify4j.rest.http.SerializingException;
 import codemeans.shopify4j.rest.jackson.JacksonCodec;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -66,7 +66,7 @@ public class OkHttpInvoker implements Invoker {
 
   @Override
   public <T> HttpResponse<T> get(HttpRequest httpRequest, Class<T> respType)
-      throws ShopifyServerException {
+      throws HttpResponseException {
     HttpUrl httpUrl = buildHttpUrl(httpRequest);
     Request request = new Request.Builder()
         .url(httpUrl)
@@ -76,7 +76,7 @@ public class OkHttpInvoker implements Invoker {
 
   @Override
   public <T> HttpResponse<T> postJson(HttpRequest httpRequest, Class<T> respType)
-      throws ShopifyServerException {
+      throws HttpResponseException {
     HttpUrl httpUrl = buildHttpUrl(httpRequest);
     String body;
     try {
@@ -93,7 +93,7 @@ public class OkHttpInvoker implements Invoker {
 
   @Override
   public <T> HttpResponse<T> putJson(HttpRequest httpRequest, Class<T> respType)
-      throws ShopifyServerException {
+      throws HttpResponseException {
     HttpUrl httpUrl = buildHttpUrl(httpRequest);
     String body;
     try {
@@ -110,7 +110,7 @@ public class OkHttpInvoker implements Invoker {
 
   @Override
   public <T> HttpResponse<T> delete(HttpRequest httpRequest, Class<T> respType)
-      throws ShopifyServerException {
+      throws HttpResponseException {
     HttpUrl httpUrl = buildHttpUrl(httpRequest);
     Request request = new Request.Builder()
         .url(httpUrl)
@@ -126,7 +126,7 @@ public class OkHttpInvoker implements Invoker {
   }
 
   private <T> HttpResponse<T> invoke(Request request, Class<T> respType)
-      throws ShopifyServerException {
+      throws HttpResponseException {
     String body = null;
     try (Response response = okHttpClient.newCall(request).execute()) {
       body = response.body().string();
@@ -140,7 +140,7 @@ public class OkHttpInvoker implements Invoker {
         httpResponse.setObject(codec.deserialize(respType, body));
         return httpResponse;
       }
-      throw new ShopifyServerException(httpResponse);
+      throw new HttpResponseException(httpResponse);
     } catch (IOException e) {
       throw new ShopifyClientException("fail to invoke request: " + request, e);
     } catch (SerializingException e) {

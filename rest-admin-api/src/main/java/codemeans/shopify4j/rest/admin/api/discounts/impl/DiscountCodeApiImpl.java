@@ -4,9 +4,9 @@ import codemeans.shopify4j.rest.admin.RestStore;
 import codemeans.shopify4j.rest.admin.api.discounts.DiscountCodeApi;
 import codemeans.shopify4j.rest.admin.model.discounts.DiscountCode;
 import codemeans.shopify4j.rest.admin.model.discounts.DiscountCodeList;
-import codemeans.shopify4j.rest.exception.ShopifyServerException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
+import codemeans.shopify4j.rest.http.HttpResponseException;
 import codemeans.shopify4j.rest.http.Invoker;
 
 /**
@@ -41,19 +41,19 @@ public class DiscountCodeApiImpl implements DiscountCodeApi {
   }
 
   @Override
-  public HttpResponse<DiscountCodeList> list(long priceRuleId) throws ShopifyServerException {
+  public HttpResponse<DiscountCodeList> list(long priceRuleId) throws HttpResponseException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint(priceRuleId));
     return invoker.get(httpRequest, DiscountCodeList.class);
   }
 
   @Override
   public HttpResponse<DiscountCode> get(long priceRuleId, long imageId)
-      throws ShopifyServerException {
+      throws HttpResponseException {
     return invoker.get(singleEndpoint(priceRuleId, imageId), DiscountCode.class);
   }
 
   @Override
-  public HttpResponse<DiscountCode> lookup(String code) throws ShopifyServerException {
+  public HttpResponse<DiscountCode> lookup(String code) throws HttpResponseException {
     HttpRequest httpRequest = HttpRequest.of(lookupEndpoint());
     httpRequest.addQuery("code", code);
     return invoker.get(httpRequest, DiscountCode.class);
@@ -61,7 +61,7 @@ public class DiscountCodeApiImpl implements DiscountCodeApi {
 
   @Override
   public HttpResponse<DiscountCode> create(long priceRuleId, DiscountCode req)
-      throws ShopifyServerException {
+      throws HttpResponseException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint(priceRuleId))
         .setBody(req);
     return invoker.postJson(httpRequest, DiscountCode.class);
@@ -69,14 +69,14 @@ public class DiscountCodeApiImpl implements DiscountCodeApi {
 
   @Override
   public HttpResponse<DiscountCode> update(long priceRuleId, long imageId, DiscountCode req)
-      throws ShopifyServerException {
+      throws HttpResponseException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(priceRuleId, imageId))
         .setBody(req);
     return invoker.putJson(httpRequest, DiscountCode.class);
   }
 
   @Override
-  public HttpResponse<String> delete(long priceRuleId, long imageId) throws ShopifyServerException {
+  public HttpResponse<String> delete(long priceRuleId, long imageId) throws HttpResponseException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(priceRuleId, imageId));
     return invoker.delete(httpRequest, String.class);
   }
