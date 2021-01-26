@@ -10,8 +10,6 @@ Java SDK for Shopify APIs, including:
 
 ## Usage
 
-gradle
-
 REST API
 ```groovy
 implementation("xyz.codemeans.shopify4j:rest-admin-api:1.0")
