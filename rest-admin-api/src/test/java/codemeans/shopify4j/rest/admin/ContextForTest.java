@@ -1,7 +1,5 @@
 package codemeans.shopify4j.rest.admin;
 
-import codemeans.shopify4j.rest.admin.sdk.DefaultRestStore;
-import codemeans.shopify4j.rest.admin.sdk.RestStore;
 import codemeans.shopify4j.core.store.MemoryStoreSettingStorage;
 import codemeans.shopify4j.core.store.PrivateAppAccessTokenProvider;
 import codemeans.shopify4j.core.store.StoreSetting;

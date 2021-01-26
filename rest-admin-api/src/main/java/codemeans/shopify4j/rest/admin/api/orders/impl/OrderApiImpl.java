@@ -1,11 +1,11 @@
 package codemeans.shopify4j.rest.admin.api.orders.impl;
 
+import codemeans.shopify4j.rest.admin.RestStore;
 import codemeans.shopify4j.rest.admin.api.orders.OrderApi;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.common.Empty;
 import codemeans.shopify4j.rest.admin.model.orders.Order;
 import codemeans.shopify4j.rest.admin.model.orders.OrderList;
-import codemeans.shopify4j.rest.admin.sdk.RestStore;
 import codemeans.shopify4j.rest.exception.ShopifyServerException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;

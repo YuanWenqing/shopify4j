@@ -1,4 +1,4 @@
-package codemeans.shopify4j.rest.admin.sdk;
+package codemeans.shopify4j.rest.admin;
 
 import static codemeans.shopify4j.rest.admin.internal.Utils.checkNotNull;
 
