@@ -16,7 +16,7 @@ public class GraphqlQueryException extends GraphqlApiException {
   private QueryResponse response;
 
   public GraphqlQueryException(QueryRootQuery query, QueryResponse response) {
-    super("Query: " + query + ", Response: " + response);
+    super("Query: " + query + ", Response: " + response.toJson());
     this.query = query;
     this.response = response;
   }

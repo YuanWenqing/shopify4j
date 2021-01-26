@@ -16,7 +16,7 @@ public class GraphqlMutationException extends GraphqlApiException {
   private MutationResponse response;
 
   public GraphqlMutationException(MutationQuery query, MutationResponse response) {
-    super("Query: " + query + ", Response: " + response);
+    super("Query: " + query + ", Response: " + response.toJson());
     this.query = query;
     this.response = response;
   }
