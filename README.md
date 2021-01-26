@@ -44,13 +44,36 @@ Then run
 gradle publish -Prelease -Ppub=nexus
 ~~~
 
+## Multi-Stores
+
+If you are integrating with multiple shopify stores in one sysmtem, just like we do, `StoreFactory` will be very helpful.
+
+If information of your stores is saved in some persistent database, you can just implement a `StoreSettingStorage` to retrieve data and build out a `StoreSetting`.
+
+Here is an example for REST & GraphQL API:
+
+```java
+StoreSettingStorage settingStorage = ...;
+
+// REST
+RestInvoker invoker = new OkHttpRestInvoker(new PrivateAppAccessTokenProvider(settingStorage));
+StoreFactory<RestStore> storeFactory = new DefaultRestStoreFactory(settingStorage, invoker);
+storeFactory = CachedStoreFactory.of(storeFactory); // cache created stores, avoiding duplicated creation
+RestStore Store1 = storeFactory.getStore(domain1);
+...
+
+// graphql
+GraphqlInvoker invoker = new OkHttpGraphqlInvoker(new PrivateAppAccessTokenProvider(settingStorage));
+StoreFactory<GraphqlStore> storeFactory = new DefaultGraphqlStoreFactory(settingStorage, invoker);
+storeFactory = CachedStoreFactory.of(storeFactory); // cache created stores, avoiding duplicated creation
+GraphqlStore Store1 = storeFactory.getStore(domain1);
+...
+
+```
+
 ## Release
 
 Please see release notes:  <https://github.com/YuanWenqing/shopify4j/releases>
-
-## Reference
-
-https://shopify.dev/docs/admin-api/rest/reference
 
 # Admin Rest API
 
@@ -58,12 +81,11 @@ https://shopify.dev/docs/admin-api/rest/reference
 
 ```java
 StoreSetting setting = new StoreSetting();
-Invoker invoker = new OkHttpInvoker(AccessTokenProvider.constant(setting.getApiPassword()));
+RestInvoker invoker = new OkHttpRestInvoker(AccessTokenProvider.constant(setting.getApiPassword()));
 RestStore store = new DefaultRestStore(setting, invoker);
 
 // get a product
-Product = store.products.get(pid).object();
-...
+Product product = store.products.get(pid).object();
 ```
 
 ## APIs
@@ -116,34 +138,13 @@ class StorePipeline implements Pipeline<RestStore, Product> {
 store.pipeline(new StorePipeline(...));
 ```
 
-## Invoker
+## RestInvoker
 
-Invoker is a simple interface to invoke http request.
+`RestInvoker` is a simple interface to invoke REST http request.
 
-`OkHttpInvoker` is the basic implementation based on okhttp3. 
+`OkHttpRestInvoker` is the basic implementation based on okhttp3. 
 
 You can customize your implementation on any http library you like.
-
-## RestStoreFactory
-
-If you are integrating with multiple shopify stores in one sysmtem, just like we do, `RestStoreFactory` will be very helpful. 
-
-```java
-MemoryStoreSettingStorage settingStorage = new MemoryStoreSettingStorage();
-settingStorage.registerStore(store1);
-settingStorage.registerStore(store2);
-
-Invoker invoker = new OkHttpInvoker(new PrivateAppAccessTokenProvider(settingStorage));
-
-StoreFactory<RestStore> storeFactory = new DefaultRestStoreFactory(settingStorage, invoker);
-// cache created stores, avoiding duplicated creation
-storeFactory = CachedStoreFactory.of(storeFactory);
-
-Product productFromStore1 = storeFactory.getStore(domain1).products().get(pid1).object();
-Product productFromStore2 = storeFactory.getStore(domain2).products().get(pid2).object();
-```
-
-If information of your stores is saved in some persistent database, you can just implement another `StoreSettingStorage` to retrieve data and build out a `StoreSetting`.
 
 ## (De)serialization
 
@@ -165,15 +166,43 @@ If you want to cast a string value in response to an enum value, do like this:
 ProductStatus status = ShopifyEnum.asEnum("active", ProductStatus.class);
 ~~~
 
+## Reference
 
+* API Documentation: https://shopify.dev/docs/admin-api/rest/reference
 
 # Shopify GraphQL
 
-Starter Tutorial: https://www.shopify.com/partners/blog/getting-started-with-graphql
+## QuickStart
 
-Find admin graphql schema: https://community.shopify.com/c/Shopify-APIs-SDKs/Admin-API-Graphql-shema-endpoint/m-p/837807
+~~~java
+StoreSetting setting = new StoreSetting();
+GraphqlInvoker invoker = new OkHttpGraphqlInvoker(AccessTokenProvider.constant(setting.getApiPassword()));
+GraphqlStore store = new DefaultGraphqlStore(setting, invoker);
 
-Codegen: https://github.com/Shopify/graphql_java_gen/
+// get a product with: title, handle ...
+QueryRootQuery queryRootQuery = Operations.query(
+    query -> query.product(id,
+        product -> product.title()
+            .handle()
+            ...));
+Product product = store.query(queryRootQuery).getData().getProduct();
+~~~
 
-Useful Documenation: https://2fd.github.io/graphdoc/shopify/
+## GraphqlInvoker
+
+`GraphqlInvoker` is a simple interface to invoke GraphQL http request.
+
+`OkHttpGraphqlInvoker` is the basic implementation based on okhttp3. 
+
+You can customize your implementation on any http library you like.
+
+## Refercence
+
+* API Documentation: https://shopify.dev/docs/admin-api/graphql/reference
+* Starter Tutorial: https://www.shopify.com/partners/blog/getting-started-with-graphql
+
+* Codegen: https://github.com/Shopify/graphql_java_gen/
+* Find admin graphql schema: https://community.shopify.com/c/Shopify-APIs-SDKs/Admin-API-Graphql-shema-endpoint/m-p/837807
+
+* Useful Documenation: https://2fd.github.io/graphdoc/shopify/
 
