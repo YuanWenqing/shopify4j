@@ -6,6 +6,6 @@ package codemeans.shopify4j.core.store;
  */
 public interface StoreSettingStorage {
 
-  StoreSetting getStoreSetting(String storeDomain);
+  StoreSetting getStoreSetting(String myshopifyDomain);
 
 }

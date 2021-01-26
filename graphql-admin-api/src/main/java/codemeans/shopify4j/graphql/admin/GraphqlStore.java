@@ -12,7 +12,7 @@ import codemeans.shopify4j.graphql.admin.types.QueryRootQuery;
  */
 public interface GraphqlStore {
 
-  String getStoreDomain();
+  String getMyshopifyDomain();
 
   String getApiVersion();
 

@@ -6,6 +6,6 @@ package codemeans.shopify4j.core.store;
  */
 public interface StoreFactory<S> {
 
-  S getStore(String storeDomain);
+  S getStore(String myshopifyDomain);
 
 }

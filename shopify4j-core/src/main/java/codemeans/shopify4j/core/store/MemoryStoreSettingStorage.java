@@ -20,13 +20,13 @@ public class MemoryStoreSettingStorage implements StoreSettingStorage {
   }
 
   public MemoryStoreSettingStorage registerStore(StoreSetting storeSetting) {
-    storeSettingMap.put(storeSetting.getStoreDomain(), storeSetting);
+    storeSettingMap.put(storeSetting.getMyshopifyDomain(), storeSetting);
     return this;
   }
 
   @Override
-  public StoreSetting getStoreSetting(String storeDomain) {
-    return storeSettingMap.get(storeDomain);
+  public StoreSetting getStoreSetting(String myshopifyDomain) {
+    return storeSettingMap.get(myshopifyDomain);
   }
 
 }

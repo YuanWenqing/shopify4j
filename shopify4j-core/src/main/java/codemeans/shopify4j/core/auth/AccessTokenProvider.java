@@ -6,9 +6,9 @@ package codemeans.shopify4j.core.auth;
  */
 public interface AccessTokenProvider {
 
-  String getAccessToken(String storeDomain);
+  String getAccessToken(String myshopifyDomain);
 
   static AccessTokenProvider constant(String accessToken) {
-    return storeDomain -> accessToken;
+    return myshopifyDomain -> accessToken;
   }
 }

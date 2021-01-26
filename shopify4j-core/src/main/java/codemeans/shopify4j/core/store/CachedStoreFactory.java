@@ -22,16 +22,16 @@ public class CachedStoreFactory<S> implements StoreFactory<S> {
   }
 
   @Override
-  public S getStore(String storeDomain) {
-    if (!storeMap.containsKey(storeDomain)) {
-      synchronized (storeDomain.intern()) {
-        if (!storeMap.containsKey(storeDomain)) {
-          S store = delegate.getStore(storeDomain);
-          storeMap.put(storeDomain, store);
+  public S getStore(String myshopifyDomain) {
+    if (!storeMap.containsKey(myshopifyDomain)) {
+      synchronized (myshopifyDomain.intern()) {
+        if (!storeMap.containsKey(myshopifyDomain)) {
+          S store = delegate.getStore(myshopifyDomain);
+          storeMap.put(myshopifyDomain, store);
         }
       }
     }
-    return storeMap.get(storeDomain);
+    return storeMap.get(myshopifyDomain);
   }
 
   public static <S> CachedStoreFactory<S> of(StoreFactory<S> storeFactory) {

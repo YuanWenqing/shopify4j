@@ -22,7 +22,7 @@ import codemeans.shopify4j.rest.http.RestInvoker;
  */
 public interface RestStore {
 
-  String getStoreDomain();
+  String getMyshopifyDomain();
 
   String getApiVersion();
 
