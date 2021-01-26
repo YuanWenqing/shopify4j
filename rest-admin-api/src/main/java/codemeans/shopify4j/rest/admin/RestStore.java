@@ -14,7 +14,7 @@ import codemeans.shopify4j.rest.admin.api.products.ProductApi;
 import codemeans.shopify4j.rest.admin.api.products.ProductImageApi;
 import codemeans.shopify4j.rest.admin.api.products.ProductVariantApi;
 import codemeans.shopify4j.rest.admin.api.products.SmartCollectionApi;
-import codemeans.shopify4j.rest.http.HttpResponseException;
+import codemeans.shopify4j.rest.http.RestApiException;
 import codemeans.shopify4j.rest.http.RestInvoker;
 
 /**
@@ -36,7 +36,7 @@ public interface RestStore {
 
   RestInvoker getInvoker();
 
-  default <R> R pipeline(Pipeline<RestStore, R> pipeline) throws HttpResponseException {
+  default <R> R pipeline(Pipeline<RestStore, R> pipeline) throws RestApiException {
     return pipeline.runWith(this);
   }
 

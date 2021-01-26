@@ -7,7 +7,7 @@ import codemeans.shopify4j.rest.admin.model.products.ProductVariant;
 import codemeans.shopify4j.rest.admin.model.products.ProductVariantList;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
-import codemeans.shopify4j.rest.http.HttpResponseException;
+import codemeans.shopify4j.rest.http.RestApiException;
 import codemeans.shopify4j.rest.http.RestInvoker;
 
 /**
@@ -45,38 +45,38 @@ public class ProductVariantApiImpl implements ProductVariantApi {
   }
 
   @Override
-  public HttpResponse<ProductVariantList> list(long productId, ListReq req) throws HttpResponseException {
+  public HttpResponse<ProductVariantList> list(long productId, ListReq req) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint(productId));
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, ProductVariantList.class);
   }
 
   @Override
-  public HttpResponse<Count> count(long productId) throws HttpResponseException {
+  public HttpResponse<Count> count(long productId) throws RestApiException {
     return invoker.get(countEndpoint(productId), Count.class);
   }
 
   @Override
-  public HttpResponse<ProductVariant> get(long variantId) throws HttpResponseException {
+  public HttpResponse<ProductVariant> get(long variantId) throws RestApiException {
     return invoker.get(singleEndpoint(variantId), ProductVariant.class);
   }
 
   @Override
-  public HttpResponse<ProductVariant> create(long productId, ProductVariant req) throws HttpResponseException {
+  public HttpResponse<ProductVariant> create(long productId, ProductVariant req) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint(productId))
         .setBody(req);
     return invoker.postJson(httpRequest, ProductVariant.class);
   }
 
   @Override
-  public HttpResponse<ProductVariant> update(long id, ProductVariant req) throws HttpResponseException {
+  public HttpResponse<ProductVariant> update(long id, ProductVariant req) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(id))
         .setBody(req);
     return invoker.putJson(httpRequest, ProductVariant.class);
   }
 
   @Override
-  public HttpResponse<String> delete(long productId, long variantId) throws HttpResponseException {
+  public HttpResponse<String> delete(long productId, long variantId) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(boundedSingleEndpoint(productId, variantId));
     return invoker.delete(httpRequest, String.class);
   }

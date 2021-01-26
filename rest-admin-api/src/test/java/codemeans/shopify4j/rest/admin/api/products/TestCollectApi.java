@@ -8,7 +8,7 @@ import codemeans.shopify4j.rest.admin.api.products.CollectApi.ListReq;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.products.Collect;
 import codemeans.shopify4j.rest.admin.model.products.CollectList;
-import codemeans.shopify4j.rest.http.HttpResponseException;
+import codemeans.shopify4j.rest.http.RestApiException;
 import org.junit.Test;
 
 /**
@@ -20,14 +20,14 @@ public class TestCollectApi {
   private final CollectApi api = ContextForTest.TEST_STORE.collects();
 
   @Test
-  public void testCount() throws HttpResponseException {
+  public void testCount() throws RestApiException {
     CountReq countReq = new CountReq();
     Count count = api.count(countReq).object();
     System.out.println(count);
   }
 
   @Test
-  public void testList() throws HttpResponseException {
+  public void testList() throws RestApiException {
     ListReq listReq = new ListReq();
     CollectList collectList = api.list(listReq).object();
     System.out.println(collectList);

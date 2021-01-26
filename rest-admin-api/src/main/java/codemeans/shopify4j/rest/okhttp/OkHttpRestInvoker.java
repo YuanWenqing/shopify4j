@@ -5,8 +5,8 @@ import codemeans.shopify4j.core.store.AccessTokenProvider;
 import codemeans.shopify4j.core.store.ShopifyClientException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
-import codemeans.shopify4j.rest.http.HttpResponseException;
 import codemeans.shopify4j.rest.http.ICodec;
+import codemeans.shopify4j.rest.http.RestApiException;
 import codemeans.shopify4j.rest.http.RestInvoker;
 import codemeans.shopify4j.rest.http.SerializingException;
 import codemeans.shopify4j.rest.jackson.JacksonCodec;
@@ -67,7 +67,7 @@ public class OkHttpRestInvoker implements RestInvoker {
 
   @Override
   public <T> HttpResponse<T> get(HttpRequest httpRequest, Class<T> respType)
-      throws HttpResponseException {
+      throws RestApiException {
     HttpUrl httpUrl = buildHttpUrl(httpRequest);
     Request request = new Request.Builder()
         .url(httpUrl)
@@ -77,7 +77,7 @@ public class OkHttpRestInvoker implements RestInvoker {
 
   @Override
   public <T> HttpResponse<T> postJson(HttpRequest httpRequest, Class<T> respType)
-      throws HttpResponseException {
+      throws RestApiException {
     HttpUrl httpUrl = buildHttpUrl(httpRequest);
     String body;
     try {
@@ -94,7 +94,7 @@ public class OkHttpRestInvoker implements RestInvoker {
 
   @Override
   public <T> HttpResponse<T> putJson(HttpRequest httpRequest, Class<T> respType)
-      throws HttpResponseException {
+      throws RestApiException {
     HttpUrl httpUrl = buildHttpUrl(httpRequest);
     String body;
     try {
@@ -111,7 +111,7 @@ public class OkHttpRestInvoker implements RestInvoker {
 
   @Override
   public <T> HttpResponse<T> delete(HttpRequest httpRequest, Class<T> respType)
-      throws HttpResponseException {
+      throws RestApiException {
     HttpUrl httpUrl = buildHttpUrl(httpRequest);
     Request request = new Request.Builder()
         .url(httpUrl)
@@ -127,7 +127,7 @@ public class OkHttpRestInvoker implements RestInvoker {
   }
 
   private <T> HttpResponse<T> invoke(Request request, Class<T> respType)
-      throws HttpResponseException {
+      throws RestApiException {
     String body = null;
     try (Response response = okHttpClient.newCall(request).execute()) {
       body = response.body().string();
@@ -141,7 +141,7 @@ public class OkHttpRestInvoker implements RestInvoker {
         httpResponse.setObject(codec.deserialize(respType, body));
         return httpResponse;
       }
-      throw new HttpResponseException(httpResponse);
+      throw new RestApiException(httpResponse);
     } catch (IOException e) {
       throw new ShopifyClientException("fail to invoke request: " + request, e);
     } catch (SerializingException e) {

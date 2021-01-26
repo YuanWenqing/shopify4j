@@ -5,7 +5,7 @@ import codemeans.shopify4j.rest.admin.model.enums.PublishedStatus;
 import codemeans.shopify4j.rest.admin.model.products.CustomCollection;
 import codemeans.shopify4j.rest.admin.model.products.CustomCollectionList;
 import codemeans.shopify4j.rest.http.HttpResponse;
-import codemeans.shopify4j.rest.http.HttpResponseException;
+import codemeans.shopify4j.rest.http.RestApiException;
 import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -17,17 +17,17 @@ import org.joda.time.DateTime;
  */
 public interface CustomCollectionApi {
 
-  HttpResponse<CustomCollectionList> list(CustomCollectionApi.ListReq req) throws HttpResponseException;
+  HttpResponse<CustomCollectionList> list(CustomCollectionApi.ListReq req) throws RestApiException;
 
-  HttpResponse<Count> count(CustomCollectionApi.CountReq req) throws HttpResponseException;
+  HttpResponse<Count> count(CustomCollectionApi.CountReq req) throws RestApiException;
 
-  HttpResponse<CustomCollection> get(long id) throws HttpResponseException;
+  HttpResponse<CustomCollection> get(long id) throws RestApiException;
 
-  HttpResponse<CustomCollection> create(CustomCollection req) throws HttpResponseException;
+  HttpResponse<CustomCollection> create(CustomCollection req) throws RestApiException;
 
-  HttpResponse<CustomCollection> update(long id, CustomCollection req) throws HttpResponseException;
+  HttpResponse<CustomCollection> update(long id, CustomCollection req) throws RestApiException;
 
-  HttpResponse<String> delete(long id) throws HttpResponseException;
+  HttpResponse<String> delete(long id) throws RestApiException;
 
   @Data
   @Accessors(chain = true)

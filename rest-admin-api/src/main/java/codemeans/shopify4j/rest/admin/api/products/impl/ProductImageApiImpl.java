@@ -7,7 +7,7 @@ import codemeans.shopify4j.rest.admin.model.products.ProductImage;
 import codemeans.shopify4j.rest.admin.model.products.ProductImageList;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
-import codemeans.shopify4j.rest.http.HttpResponseException;
+import codemeans.shopify4j.rest.http.RestApiException;
 import codemeans.shopify4j.rest.http.RestInvoker;
 
 /**
@@ -41,14 +41,14 @@ public class ProductImageApiImpl implements ProductImageApi {
   }
 
   @Override
-  public HttpResponse<ProductImageList> list(long productId, ListReq req) throws HttpResponseException {
+  public HttpResponse<ProductImageList> list(long productId, ListReq req) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint(productId));
     httpRequest.addQueries(invoker.getCodec().asQueryMap(req));
     return invoker.get(httpRequest, ProductImageList.class);
   }
 
   @Override
-  public HttpResponse<Count> count(long productId, Long imageSinceId) throws HttpResponseException {
+  public HttpResponse<Count> count(long productId, Long imageSinceId) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(countEndpoint(productId));
     if (imageSinceId != null) {
       httpRequest.addQuery("since_id", imageSinceId.toString());
@@ -57,12 +57,12 @@ public class ProductImageApiImpl implements ProductImageApi {
   }
 
   @Override
-  public HttpResponse<ProductImage> get(long productId, long imageId) throws HttpResponseException {
+  public HttpResponse<ProductImage> get(long productId, long imageId) throws RestApiException {
     return invoker.get(singleEndpoint(productId, imageId), ProductImage.class);
   }
 
   @Override
-  public HttpResponse<ProductImage> create(long productId, ProductImage req) throws HttpResponseException {
+  public HttpResponse<ProductImage> create(long productId, ProductImage req) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(resourcesEndpoint(productId))
         .setBody(req);
     return invoker.postJson(httpRequest, ProductImage.class);
@@ -70,14 +70,14 @@ public class ProductImageApiImpl implements ProductImageApi {
 
   @Override
   public HttpResponse<ProductImage> update(long productId, long imageId, ProductImage req)
-      throws HttpResponseException {
+      throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(productId, imageId))
         .setBody(req);
     return invoker.putJson(httpRequest, ProductImage.class);
   }
 
   @Override
-  public HttpResponse<String> delete(long productId, long imageId) throws HttpResponseException {
+  public HttpResponse<String> delete(long productId, long imageId) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(singleEndpoint(productId, imageId));
     return invoker.delete(httpRequest, String.class);
   }

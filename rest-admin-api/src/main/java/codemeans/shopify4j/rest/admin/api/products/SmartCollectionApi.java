@@ -5,7 +5,7 @@ import codemeans.shopify4j.rest.admin.model.enums.PublishedStatus;
 import codemeans.shopify4j.rest.admin.model.products.SmartCollection;
 import codemeans.shopify4j.rest.admin.model.products.SmartCollectionList;
 import codemeans.shopify4j.rest.http.HttpResponse;
-import codemeans.shopify4j.rest.http.HttpResponseException;
+import codemeans.shopify4j.rest.http.RestApiException;
 import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -17,17 +17,17 @@ import org.joda.time.DateTime;
  */
 public interface SmartCollectionApi {
 
-  HttpResponse<SmartCollectionList> list(SmartCollectionApi.ListReq req) throws HttpResponseException;
+  HttpResponse<SmartCollectionList> list(SmartCollectionApi.ListReq req) throws RestApiException;
 
-  HttpResponse<Count> count(SmartCollectionApi.CountReq req) throws HttpResponseException;
+  HttpResponse<Count> count(SmartCollectionApi.CountReq req) throws RestApiException;
 
-  HttpResponse<SmartCollection> get(long id) throws HttpResponseException;
+  HttpResponse<SmartCollection> get(long id) throws RestApiException;
 
-  HttpResponse<SmartCollection> create(SmartCollection req) throws HttpResponseException;
+  HttpResponse<SmartCollection> create(SmartCollection req) throws RestApiException;
 
-  HttpResponse<SmartCollection> update(long id, SmartCollection req) throws HttpResponseException;
+  HttpResponse<SmartCollection> update(long id, SmartCollection req) throws RestApiException;
 
-  HttpResponse<String> delete(long id) throws HttpResponseException;
+  HttpResponse<String> delete(long id) throws RestApiException;
 
   @Data
   @Accessors(chain = true)

@@ -8,28 +8,28 @@ import lombok.Getter;
  * @author: yuanwq
  * @date: 2021-01-12
  */
-public class HttpResponseException extends Exception {
+public class RestApiException extends Exception {
 
   @Getter
   private HttpResponse response;
 
-  public HttpResponseException(HttpResponse response) {
+  public RestApiException(HttpResponse response) {
     super(response.toString());
     this.response = response;
   }
 
-  public HttpResponseException() {
+  public RestApiException() {
   }
 
-  public HttpResponseException(String message) {
+  public RestApiException(String message) {
     super(message);
   }
 
-  public HttpResponseException(String message, Throwable cause) {
+  public RestApiException(String message, Throwable cause) {
     super(message, cause);
   }
 
-  public HttpResponseException(Throwable cause) {
+  public RestApiException(Throwable cause) {
     super(cause);
   }
 

@@ -4,7 +4,7 @@ import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.products.Collect;
 import codemeans.shopify4j.rest.admin.model.products.CollectList;
 import codemeans.shopify4j.rest.http.HttpResponse;
-import codemeans.shopify4j.rest.http.HttpResponseException;
+import codemeans.shopify4j.rest.http.RestApiException;
 import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -15,15 +15,15 @@ import lombok.experimental.Accessors;
  */
 public interface CollectApi {
 
-  HttpResponse<Collect> create(Collect collect) throws HttpResponseException;
+  HttpResponse<Collect> create(Collect collect) throws RestApiException;
 
-  HttpResponse<String> delete(long id) throws HttpResponseException;
+  HttpResponse<String> delete(long id) throws RestApiException;
 
-  HttpResponse<Collect> get(long id) throws HttpResponseException;
+  HttpResponse<Collect> get(long id) throws RestApiException;
 
-  HttpResponse<Count> count(CountReq req) throws HttpResponseException;
+  HttpResponse<Count> count(CountReq req) throws RestApiException;
 
-  HttpResponse<CollectList> list(ListReq req) throws HttpResponseException;
+  HttpResponse<CollectList> list(ListReq req) throws RestApiException;
 
   @Data
   @Accessors(chain = true)

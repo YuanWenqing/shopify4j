@@ -9,7 +9,7 @@ import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.enums.OrderStatus;
 import codemeans.shopify4j.rest.admin.model.orders.Order;
 import codemeans.shopify4j.rest.admin.model.orders.OrderList;
-import codemeans.shopify4j.rest.http.HttpResponseException;
+import codemeans.shopify4j.rest.http.RestApiException;
 import org.junit.Test;
 
 /**
@@ -21,7 +21,7 @@ public class TestOrderApi {
   private final OrderApi api = ContextForTest.TEST_STORE.orders();
 
   @Test
-  public void testCount() throws HttpResponseException {
+  public void testCount() throws RestApiException {
     CountReq countReq = new CountReq()
         .setStatus(OrderStatus.any.shopifyValue());
     Count count = api.count(countReq).object();
@@ -29,7 +29,7 @@ public class TestOrderApi {
   }
 
   @Test
-  public void testList() throws HttpResponseException {
+  public void testList() throws RestApiException {
     ListReq listReq = new ListReq()
         .setStatus(OrderStatus.any.shopifyValue());
     OrderList orderList = api.list(listReq).object();

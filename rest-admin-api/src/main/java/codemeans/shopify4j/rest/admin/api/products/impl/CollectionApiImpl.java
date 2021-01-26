@@ -6,7 +6,7 @@ import codemeans.shopify4j.rest.admin.model.products.Collection;
 import codemeans.shopify4j.rest.admin.model.products.ProductList;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
-import codemeans.shopify4j.rest.http.HttpResponseException;
+import codemeans.shopify4j.rest.http.RestApiException;
 import codemeans.shopify4j.rest.http.RestInvoker;
 
 /**
@@ -36,12 +36,12 @@ public class CollectionApiImpl implements CollectionApi {
   }
 
   @Override
-  public HttpResponse<Collection> get(long id) throws HttpResponseException {
+  public HttpResponse<Collection> get(long id) throws RestApiException {
     return invoker.get(singleEndpoint(id), Collection.class);
   }
 
   @Override
-  public HttpResponse<ProductList> products(long id, Integer limit) throws HttpResponseException {
+  public HttpResponse<ProductList> products(long id, Integer limit) throws RestApiException {
     HttpRequest httpRequest = HttpRequest.of(productsEndpoint(id));
     if (limit != null) {
       httpRequest.addQuery("limit", limit.toString());

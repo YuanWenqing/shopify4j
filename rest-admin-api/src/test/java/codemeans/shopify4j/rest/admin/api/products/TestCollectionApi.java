@@ -8,7 +8,7 @@ import codemeans.shopify4j.rest.admin.model.products.Collect;
 import codemeans.shopify4j.rest.admin.model.products.CollectList;
 import codemeans.shopify4j.rest.admin.model.products.Collection;
 import codemeans.shopify4j.rest.admin.model.products.ProductList;
-import codemeans.shopify4j.rest.http.HttpResponseException;
+import codemeans.shopify4j.rest.http.RestApiException;
 import org.junit.Test;
 
 /**
@@ -21,7 +21,7 @@ public class TestCollectionApi {
   private final CollectionApi api = ContextForTest.TEST_STORE.collections();
 
   @Test
-  public void test() throws HttpResponseException {
+  public void test() throws RestApiException {
     ListReq listReq = new ListReq();
     CollectList collectList = collectApi.list(listReq).object();
     System.out.println(collectList);

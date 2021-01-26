@@ -11,30 +11,30 @@ public interface RestInvoker {
   /**
    * http GET
    */
-  default <T> HttpResponse<T> get(String url, Class<T> respType) throws HttpResponseException {
+  default <T> HttpResponse<T> get(String url, Class<T> respType) throws RestApiException {
     return get(HttpRequest.of(url), respType);
   }
 
   /**
    * http GET
    */
-  <T> HttpResponse<T> get(HttpRequest httpRequest, Class<T> respType) throws HttpResponseException;
+  <T> HttpResponse<T> get(HttpRequest httpRequest, Class<T> respType) throws RestApiException;
 
   /**
    * http POST and {@code content-type=application/json}
    */
   <T> HttpResponse<T> postJson(HttpRequest httpRequest, Class<T> respType)
-      throws HttpResponseException;
+      throws RestApiException;
 
   /**
    * http PUT and {@code content-type=application/json}
    */
   <T> HttpResponse<T> putJson(HttpRequest httpRequest, Class<T> respType)
-      throws HttpResponseException;
+      throws RestApiException;
 
   /**
    * http DELETE
    */
   <T> HttpResponse<T> delete(HttpRequest httpRequest, Class<T> respType)
-      throws HttpResponseException;
+      throws RestApiException;
 }
