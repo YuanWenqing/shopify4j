@@ -13,8 +13,6 @@ gradle
 
 ```groovy
 implementation("xyz.codemeans.shopify4j:rest-admin-api:1.0")
-// okhttp invoker
-implementation("xyz.codemeans.shopify4j:rest-okhttp:1.0")
 ```
 
 ## Build from source
@@ -117,7 +115,7 @@ store.pipeline(new StorePipeline(...));
 
 Invoker is a simple interface to invoke http request.
 
-`OkHttpInvoker` in `rest-okhttp` is the basic implementation based on okhttp3. 
+`OkHttpInvoker` is the basic implementation based on okhttp3. 
 
 You can customize your implementation on any http library you like.
 
