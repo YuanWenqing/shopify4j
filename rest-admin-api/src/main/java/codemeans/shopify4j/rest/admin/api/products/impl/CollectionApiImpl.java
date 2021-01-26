@@ -3,7 +3,7 @@ package codemeans.shopify4j.rest.admin.api.products.impl;
 import codemeans.shopify4j.rest.admin.api.products.CollectionApi;
 import codemeans.shopify4j.rest.admin.model.products.Collection;
 import codemeans.shopify4j.rest.admin.model.products.ProductList;
-import codemeans.shopify4j.rest.admin.sdk.ShopifyStore;
+import codemeans.shopify4j.rest.admin.sdk.RestStore;
 import codemeans.shopify4j.rest.exception.ShopifyServerException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
@@ -23,7 +23,7 @@ public class CollectionApiImpl implements CollectionApi {
     this.invoker = invoker;
   }
 
-  public static CollectionApi of(ShopifyStore store) {
+  public static CollectionApi of(RestStore store) {
     return new CollectionApiImpl(store.getBaseEndpoint(), store.getInvoker());
   }
 

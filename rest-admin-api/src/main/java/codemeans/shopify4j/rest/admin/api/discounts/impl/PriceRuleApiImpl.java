@@ -4,7 +4,7 @@ import codemeans.shopify4j.rest.admin.api.discounts.PriceRuleApi;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.discounts.PriceRule;
 import codemeans.shopify4j.rest.admin.model.discounts.PriceRuleList;
-import codemeans.shopify4j.rest.admin.sdk.ShopifyStore;
+import codemeans.shopify4j.rest.admin.sdk.RestStore;
 import codemeans.shopify4j.rest.exception.ShopifyServerException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
@@ -24,7 +24,7 @@ public class PriceRuleApiImpl implements PriceRuleApi {
     this.invoker = invoker;
   }
 
-  public static PriceRuleApi of(ShopifyStore store) {
+  public static PriceRuleApi of(RestStore store) {
     return new PriceRuleApiImpl(store.getBaseEndpoint(), store.getInvoker());
   }
 

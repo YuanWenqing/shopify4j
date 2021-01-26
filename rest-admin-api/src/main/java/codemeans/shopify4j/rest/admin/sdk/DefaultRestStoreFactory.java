@@ -11,12 +11,12 @@ import lombok.NonNull;
  * @author: yuanwq
  * @date: 2021-01-12
  */
-public class DefaultShopifyStoreFactory implements ShopifyStoreFactory {
+public class DefaultRestStoreFactory implements RestStoreFactory {
 
   private final StoreSettingStorage storeSettingStorage;
   private final Invoker invoker;
 
-  public DefaultShopifyStoreFactory(
+  public DefaultRestStoreFactory(
       @NonNull StoreSettingStorage storeSettingStorage,
       @NonNull Invoker invoker) {
     this.storeSettingStorage = storeSettingStorage;
@@ -24,10 +24,10 @@ public class DefaultShopifyStoreFactory implements ShopifyStoreFactory {
   }
 
   @Override
-  public ShopifyStore getStore(String storeDomain) {
+  public RestStore getStore(String storeDomain) {
     StoreSetting credential = storeSettingStorage.getStoreSetting(storeDomain);
     checkNotNull(credential, "No Credential for " + storeDomain);
 
-    return new DefaultShopifyStore(credential, invoker);
+    return new DefaultRestStore(credential, invoker);
   }
 }

@@ -4,7 +4,7 @@ import codemeans.shopify4j.rest.admin.api.products.CollectApi;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.products.Collect;
 import codemeans.shopify4j.rest.admin.model.products.CollectList;
-import codemeans.shopify4j.rest.admin.sdk.ShopifyStore;
+import codemeans.shopify4j.rest.admin.sdk.RestStore;
 import codemeans.shopify4j.rest.exception.ShopifyServerException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
@@ -24,7 +24,7 @@ public class CollectApiImpl implements CollectApi {
     this.invoker = invoker;
   }
 
-  public static CollectApi of(ShopifyStore store) {
+  public static CollectApi of(RestStore store) {
     return new CollectApiImpl(store.getBaseEndpoint(), store.getInvoker());
   }
 

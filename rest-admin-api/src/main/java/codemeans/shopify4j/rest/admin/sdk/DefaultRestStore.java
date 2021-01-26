@@ -30,7 +30,7 @@ import codemeans.shopify4j.rest.http.Invoker;
  * @author: yuanwq
  * @date: 2021-01-12
  */
-public class DefaultShopifyStore implements ShopifyStore {
+public class DefaultRestStore implements RestStore {
 
   private final StoreSetting storeSetting;
   private final Invoker invoker;
@@ -52,7 +52,7 @@ public class DefaultShopifyStore implements ShopifyStore {
   private DraftOrderApi draftOrderApi;
   private OrderApi orderApi;
 
-  public DefaultShopifyStore(StoreSetting storeSetting, Invoker invoker) {
+  public DefaultRestStore(StoreSetting storeSetting, Invoker invoker) {
     this.storeSetting = storeSetting;
     this.baseEndpoint = String.format("https://%s/admin/api/%s", storeSetting.getStoreDomain(),
         storeSetting.getApiVersion());

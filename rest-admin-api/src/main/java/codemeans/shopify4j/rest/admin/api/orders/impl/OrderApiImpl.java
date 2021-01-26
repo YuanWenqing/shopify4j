@@ -5,7 +5,7 @@ import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.common.Empty;
 import codemeans.shopify4j.rest.admin.model.orders.Order;
 import codemeans.shopify4j.rest.admin.model.orders.OrderList;
-import codemeans.shopify4j.rest.admin.sdk.ShopifyStore;
+import codemeans.shopify4j.rest.admin.sdk.RestStore;
 import codemeans.shopify4j.rest.exception.ShopifyServerException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
@@ -25,7 +25,7 @@ public class OrderApiImpl implements OrderApi {
     this.invoker = invoker;
   }
 
-  public static OrderApi of(ShopifyStore store) {
+  public static OrderApi of(RestStore store) {
     return new OrderApiImpl(store.getBaseEndpoint(), store.getInvoker());
   }
 

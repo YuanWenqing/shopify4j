@@ -21,7 +21,7 @@ import codemeans.shopify4j.rest.http.Invoker;
  * @author: yuanwq
  * @date: 2021-01-12
  */
-public interface ShopifyStore {
+public interface RestStore {
 
   StoreSetting getStoreSetting();
 
@@ -36,7 +36,7 @@ public interface ShopifyStore {
 
   Invoker getInvoker();
 
-  default <R> R pipeline(Pipeline<ShopifyStore, R> pipeline) throws ShopifyServerException {
+  default <R> R pipeline(Pipeline<RestStore, R> pipeline) throws ShopifyServerException {
     return pipeline.runWith(this);
   }
 
