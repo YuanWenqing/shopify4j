@@ -25,7 +25,7 @@ public class DefaultGraphqlStorefront implements GraphqlStorefront {
   public DefaultGraphqlStorefront(String myshopifyDomain, String apiVersion, GraphqlInvoker invoker) {
     this.myshopifyDomain = myshopifyDomain;
     this.apiVersion = apiVersion;
-    this.graphqlEndpoint = String.format("https://%s/admin/api/%s/graphql.json",
+    this.graphqlEndpoint = String.format("https://%s/api/%s/graphql.json",
         myshopifyDomain, apiVersion);
     this.invoker = invoker;
   }

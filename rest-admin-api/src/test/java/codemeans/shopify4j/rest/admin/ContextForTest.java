@@ -24,7 +24,7 @@ public class ContextForTest {
     STORE_SETTING_STORAGE.registerStore(STORE_SETTING);
   }
 
-  public static final RestInvoker INVOKER = new OkHttpRestInvoker(
+  public static final RestInvoker INVOKER = OkHttpRestInvoker.admin(
       new PrivateAppAdminAccessTokenProvider(STORE_SETTING_STORAGE));
   public static final StoreFactory<RestAdmin> FACTORY = CachedStoreFactory
       .of(new RestAdminFactory(INVOKER));

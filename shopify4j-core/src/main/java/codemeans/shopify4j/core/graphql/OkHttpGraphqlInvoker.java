@@ -25,15 +25,21 @@ public class OkHttpGraphqlInvoker implements GraphqlInvoker {
 
   private final OkHttpClient okHttpClient;
 
-  public OkHttpGraphqlInvoker(AccessTokenProvider accessTokenProvider) {
-    this(createOkHttpClient(accessTokenProvider));
+  public static OkHttpGraphqlInvoker admin(AccessTokenProvider accessTokenProvider) {
+    return new OkHttpGraphqlInvoker(
+        createOkHttpClient(AccessTokenInterceptor.admin(accessTokenProvider)));
+  }
+
+  public static OkHttpGraphqlInvoker storefront(AccessTokenProvider accessTokenProvider) {
+    return new OkHttpGraphqlInvoker(
+        createOkHttpClient(AccessTokenInterceptor.storefront(accessTokenProvider)));
   }
 
   public OkHttpGraphqlInvoker(OkHttpClient okHttpClient) {
     this.okHttpClient = okHttpClient;
   }
 
-  public static OkHttpClient createOkHttpClient(AccessTokenProvider accessTokenProvider) {
+  public static OkHttpClient createOkHttpClient(AccessTokenInterceptor accessTokenInterceptor) {
     OkHttpClient.Builder builder = new OkHttpClient.Builder();
     // timeout
     builder.connectTimeout(60, TimeUnit.SECONDS)
@@ -41,7 +47,7 @@ public class OkHttpGraphqlInvoker implements GraphqlInvoker {
         .readTimeout(60, TimeUnit.SECONDS);
     builder.followRedirects(true);
     // interceptor
-    builder.addInterceptor(AccessTokenInterceptor.admin(accessTokenProvider));
+    builder.addInterceptor(accessTokenInterceptor);
     return builder.build();
   }
 

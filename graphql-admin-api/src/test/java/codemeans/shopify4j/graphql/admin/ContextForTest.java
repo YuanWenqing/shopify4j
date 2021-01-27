@@ -24,7 +24,7 @@ public class ContextForTest {
     STORE_SETTING_STORAGE.registerStore(STORE_SETTING);
   }
 
-  public static final GraphqlInvoker INVOKER = new OkHttpGraphqlInvoker(
+  public static final GraphqlInvoker INVOKER = OkHttpGraphqlInvoker.admin(
       new PrivateAppAdminAccessTokenProvider(STORE_SETTING_STORAGE));
   public static final StoreFactory<GraphqlAdmin> FACTORY = CachedStoreFactory
       .of(new GraphqlAdminFactory(INVOKER));

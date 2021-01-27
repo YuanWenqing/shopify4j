@@ -1,6 +1,6 @@
 package codemeans.shopify4j.graphql.storefront;
 
-import codemeans.shopify4j.core.auth.PrivateAppAdminAccessTokenProvider;
+import codemeans.shopify4j.core.auth.PrivateAppStorefrontAccessTokenProvider;
 import codemeans.shopify4j.core.graphql.GraphqlInvoker;
 import codemeans.shopify4j.core.graphql.OkHttpGraphqlInvoker;
 import codemeans.shopify4j.core.store.CachedStoreFactory;
@@ -24,8 +24,8 @@ public class ContextForTest {
     STORE_SETTING_STORAGE.registerStore(STORE_SETTING);
   }
 
-  public static final GraphqlInvoker INVOKER = new OkHttpGraphqlInvoker(
-      new PrivateAppAdminAccessTokenProvider(STORE_SETTING_STORAGE));
+  public static final GraphqlInvoker INVOKER = OkHttpGraphqlInvoker.storefront(
+      new PrivateAppStorefrontAccessTokenProvider(STORE_SETTING_STORAGE));
   public static final StoreFactory<GraphqlStorefront> FACTORY = CachedStoreFactory
       .of(new GraphqlStorefrontFactory(INVOKER));
   public static final GraphqlStorefront TEST_STORE = FACTORY
