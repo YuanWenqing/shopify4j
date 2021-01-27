@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * @author: yuanwq
  * @date: 2020-08-26
  */
 @Data
+@Accessors(chain = true)
 public class StoreSetting {
 
   /**
