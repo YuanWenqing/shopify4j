@@ -1,5 +1,6 @@
 package codemeans.shopify4j.app.oauth;
 
+import codemeans.shopify4j.core.store.AdminAccessScope;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Arrays;
@@ -24,7 +25,7 @@ public class OauthAccessToken {
   private String accessToken;
   @JsonIgnore
   @NonNull
-  private Set<String> scopeSet = Collections.emptySet();
+  private Set<AdminAccessScope> scopeSet = Collections.emptySet();
 
   /*>>>>> below is fields for online access_mode <<<<<*/
 
@@ -35,7 +36,7 @@ public class OauthAccessToken {
   private String session;
   @JsonIgnore
   @NonNull
-  private Set<String> associatedUserScopeSet = Collections.emptySet();
+  private Set<AdminAccessScope> associatedUserScopeSet = Collections.emptySet();
   private AssociatedUser associatedUser;
 
   @JsonIgnore
@@ -58,15 +59,16 @@ public class OauthAccessToken {
     this.associatedUserScopeSet = splitScopes(scopes);
   }
 
-  private static String joinScopes(Collection<String> scopes) {
+  private static String joinScopes(Collection<AdminAccessScope> scopes) {
     return StringUtils.join(scopes, ",");
   }
 
-  private static LinkedHashSet<String> splitScopes(String scopes) {
+  private static LinkedHashSet<AdminAccessScope> splitScopes(String scopes) {
     scopes = StringUtils.defaultString(scopes);
     return new LinkedHashSet<>(Arrays.stream(scopes.split(","))
         .filter(StringUtils::isNotBlank)
         .map(String::trim)
+        .map(AdminAccessScope::valueOf)
         .collect(Collectors.toList()));
   }
 

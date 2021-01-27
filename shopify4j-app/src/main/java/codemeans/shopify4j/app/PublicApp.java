@@ -1,5 +1,6 @@
 package codemeans.shopify4j.app;
 
+import codemeans.shopify4j.core.store.AdminAccessScope;
 import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -18,7 +19,7 @@ public class PublicApp {
   /**
    * app required scopes
    */
-  private List<String> scopes;
+  private List<AdminAccessScope> scopes;
 
 
 }
