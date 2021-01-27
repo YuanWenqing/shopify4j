@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class AuthorizationCodeReq {
+public class AuthorizationReq {
 
   private String myshopifyDomain;
   private String state;

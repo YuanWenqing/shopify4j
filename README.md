@@ -6,6 +6,7 @@ Java SDK for Shopify APIs, including:
 * GraphQL Admin API
 * GraphQL Storefront Schema
 * GraphQL Storefront API
+* Shopify APP
 * REST Admin API Models
 * REST Admin API
 * ...
@@ -25,6 +26,11 @@ implementation("xyz.codemeans.shopify4j:graphql-storefront-api:1.0")
 REST API
 ```groovy
 implementation("xyz.codemeans.shopify4j:rest-admin-api:1.0")
+```
+
+Shopify APP
+```groovy
+implementation("xyz.codemeans.shopify4j:shopify4j-app:1.0")
 ```
 
 ## Build from source
@@ -202,4 +208,12 @@ ProductStatus status = ShopifyEnum.asEnum("active", ProductStatus.class);
 ## Reference
 
 * API Documentation: https://shopify.dev/docs/admin-api/rest/reference
+
+## Shopify APP
+
+Defination of APP and handle oauth
+
+## Reference
+
+* Shopify Oauth flow: https://shopify.dev/tutorials/authenticate-with-oauth
 

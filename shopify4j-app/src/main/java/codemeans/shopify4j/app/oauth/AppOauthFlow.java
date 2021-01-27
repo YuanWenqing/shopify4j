@@ -37,7 +37,7 @@ public class AppOauthFlow {
     this.objectMapper = objectMapper;
   }
 
-  public String authorizationUrl(PublicApp app, AuthorizationCodeReq req) {
+  public String authorizationUrl(PublicApp app, AuthorizationReq req) {
     HttpUrl.Builder builder = HttpUrl
         .parse(String.format("https://%s/admin/oauth/authorize", req.getMyshopifyDomain()))
         .newBuilder();
@@ -53,13 +53,13 @@ public class AppOauthFlow {
     return builder.toString();
   }
 
-  public OauthAccessToken exchangeAccessToken(PublicApp app, ConfirmRedirect redirect)
+  public OauthAccessToken exchangeAccessToken(PublicApp app, ConfirmRedirection redirection)
       throws IOException {
-    String url = String.format("https://%s/admin/oauth/access_token", redirect.getShop());
+    String url = String.format("https://%s/admin/oauth/access_token", redirection.getShop());
     RequestBody requestBody = new FormBody.Builder()
         .add("client_id", app.getClientId())
         .add("client_secret", app.getClientSecret())
-        .add("code", redirect.getCode())
+        .add("code", redirection.getCode())
         .build();
     Request request = new Request.Builder()
         .url(url)
@@ -69,8 +69,8 @@ public class AppOauthFlow {
     try (Response response = okHttpClient.newCall(request).execute()) {
       body = response.body().string();
       if (log.isDebugEnabled()) {
-        log.debug("request: {}, app: {}, redirect: {}, response.code={}, response.body: {}",
-            request, app, redirect, response.code(), response.body());
+        log.debug("request: {}, app: {}, redirection: {}, response.code={}, response.body: {}",
+            request, app, redirection, response.code(), response.body());
       }
       if (!response.isSuccessful()) {
         throw new IOException(
