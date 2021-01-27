@@ -16,5 +16,5 @@ dependencies {
     api("com.google.code.gson:gson:$gsonVersion")
 }
 
-description "Shopify Admin GraphQL Types Auto-Generated From Schema"
+description "Shopify Storefront GraphQL Types Auto-Generated From Schema"
 apply from: "$rootDir/publish.gradle"

@@ -10,4 +10,5 @@ include 'rest-admin-api'
 // graphql
 include 'graphql-admin-schema'
 include 'graphql-admin-api'
+include 'graphql-storefront-schema'
 
