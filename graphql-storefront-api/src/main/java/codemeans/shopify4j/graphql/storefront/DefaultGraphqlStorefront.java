@@ -22,7 +22,8 @@ public class DefaultGraphqlStorefront implements GraphqlStorefront {
   private final String graphqlEndpoint;
   private final GraphqlInvoker invoker;
 
-  public DefaultGraphqlStorefront(String myshopifyDomain, String apiVersion, GraphqlInvoker invoker) {
+  public DefaultGraphqlStorefront(String myshopifyDomain, String apiVersion,
+      GraphqlInvoker invoker) {
     this.myshopifyDomain = myshopifyDomain;
     this.apiVersion = apiVersion;
     this.graphqlEndpoint = String.format("https://%s/api/%s/graphql.json",
@@ -43,6 +44,11 @@ public class DefaultGraphqlStorefront implements GraphqlStorefront {
   @Override
   public String getGraphqlEndpoint() {
     return graphqlEndpoint;
+  }
+
+  @Override
+  public String request(String query) throws GraphqlApiException {
+    return invoker.request(graphqlEndpoint, query);
   }
 
   @Override

@@ -18,6 +18,11 @@ public interface GraphqlAdmin {
 
   String getGraphqlEndpoint();
 
+  /**
+   * 原始请求
+   */
+  String request(String query) throws GraphqlApiException;
+
   QueryResponse query(QueryRootQuery query) throws GraphqlApiException;
 
   MutationResponse mutation(MutationQuery query) throws GraphqlApiException;

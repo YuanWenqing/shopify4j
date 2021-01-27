@@ -46,6 +46,11 @@ public class DefaultGraphqlAdmin implements GraphqlAdmin {
   }
 
   @Override
+  public String request(String query) throws GraphqlApiException {
+    return invoker.request(graphqlEndpoint, query);
+  }
+
+  @Override
   public QueryResponse query(QueryRootQuery query) throws GraphqlApiException {
     String resp = null;
     try {
