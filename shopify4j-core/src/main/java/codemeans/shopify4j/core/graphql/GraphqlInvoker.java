@@ -1,4 +1,4 @@
-package codemeans.shopify4j.graphql.admin;
+package codemeans.shopify4j.core.graphql;
 
 import codemeans.shopify4j.core.exception.GraphqlApiException;
 

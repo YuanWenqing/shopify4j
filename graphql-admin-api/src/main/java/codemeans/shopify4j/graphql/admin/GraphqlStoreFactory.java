@@ -1,6 +1,7 @@
 package codemeans.shopify4j.graphql.admin;
 
 
+import codemeans.shopify4j.core.graphql.GraphqlInvoker;
 import codemeans.shopify4j.core.store.StoreFactory;
 import lombok.Data;
 import lombok.NonNull;
