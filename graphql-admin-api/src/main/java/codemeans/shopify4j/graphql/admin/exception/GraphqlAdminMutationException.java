@@ -9,14 +9,14 @@ import lombok.Getter;
  * @author: yuanwq
  * @date: 2021-01-26
  */
-public class GraphqlMutationException extends GraphqlApiException {
+public class GraphqlAdminMutationException extends GraphqlApiException {
 
   @Getter
   private MutationQuery query;
   @Getter
   private MutationResponse response;
 
-  public GraphqlMutationException(MutationQuery query, MutationResponse response) {
+  public GraphqlAdminMutationException(MutationQuery query, MutationResponse response) {
     super("Query: " + query + ", Response: " + response.toJson());
     this.query = query;
     this.response = response;

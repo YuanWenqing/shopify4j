@@ -29,9 +29,9 @@ public class ContextForTest {
 
   public static final GraphqlInvoker INVOKER = new OkHttpGraphqlInvoker(
       new PrivateAppAdminAccessTokenProvider(STORE_SETTING_STORAGE));
-  public static final StoreFactory<GraphqlStore> FACTORY = CachedStoreFactory
-      .of(new GraphqlStoreFactory(INVOKER));
-  public static final GraphqlStore TEST_STORE = FACTORY.getStore(STORE_SETTING.getMyshopifyDomain());
+  public static final StoreFactory<GraphqlAdmin> FACTORY = CachedStoreFactory
+      .of(new GraphqlAdminFactory(INVOKER));
+  public static final GraphqlAdmin TEST_STORE = FACTORY.getStore(STORE_SETTING.getMyshopifyDomain());
 
   private static StoreSetting loadStoreSetting(String resourceName) {
     try {
