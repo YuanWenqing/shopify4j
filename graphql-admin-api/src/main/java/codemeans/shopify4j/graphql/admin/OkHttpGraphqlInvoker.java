@@ -41,7 +41,7 @@ public class OkHttpGraphqlInvoker implements GraphqlInvoker {
         .readTimeout(60, TimeUnit.SECONDS);
     builder.followRedirects(true);
     // interceptor
-    builder.addInterceptor(new AccessTokenInterceptor(accessTokenProvider));
+    builder.addInterceptor(AccessTokenInterceptor.admin(accessTokenProvider));
     return builder.build();
   }
 

@@ -6,7 +6,8 @@ package codemeans.shopify4j.core.store;
  */
 public interface ShopifyHeaders {
 
-  String ACCESS_TOKEN = "X-Shopify-Access-Token";
+  String ADMIN_ACCESS_TOKEN = "X-Shopify-Access-Token";
+  String STOREFRONT_ACCESS_TOKEN = "X-Shopify-Storefront-Access-Token";
   String API_VERSION = "X-Shopify-API-Version";
   String API_DEPRECATED_REASON = "X-Shopify-API-Deprecated-Reason";
   String API_CALL_LIMIT = "X-Shopify-Shop-Api-Call-Limit";
