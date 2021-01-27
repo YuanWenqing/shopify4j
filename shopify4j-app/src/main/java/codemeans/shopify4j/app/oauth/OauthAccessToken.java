@@ -26,6 +26,7 @@ public class OauthAccessToken {
   @NonNull
   private Set<String> scopeSet = Collections.emptySet();
 
+  /*>>>>> below is fields for online access_mode <<<<<*/
 
   /**
    * seconds

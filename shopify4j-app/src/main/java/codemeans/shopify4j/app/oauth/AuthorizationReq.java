@@ -13,7 +13,10 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class AuthorizationReq {
 
-  private String myshopifyDomain;
+  /**
+   * myshopify domain of store ending with {@code .myshopify.com}
+   */
+  private String shop;
   private String state;
   /**
    * default offline if blank; set to {@code per-user} for online

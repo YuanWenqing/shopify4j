@@ -39,7 +39,7 @@ public class AppOauthFlow {
 
   public String authorizationUrl(PublicApp app, AuthorizationReq req) {
     HttpUrl.Builder builder = HttpUrl
-        .parse(String.format("https://%s/admin/oauth/authorize", req.getMyshopifyDomain()))
+        .parse(String.format("https://%s/admin/oauth/authorize", req.getShop()))
         .newBuilder();
     builder.setQueryParameter("client_id", app.getClientId())
         .setQueryParameter("scope", StringUtils.join(app.getScopes(), ","))
