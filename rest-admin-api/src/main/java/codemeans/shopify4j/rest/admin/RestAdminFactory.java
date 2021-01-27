@@ -1,5 +1,6 @@
 package codemeans.shopify4j.rest.admin;
 
+import codemeans.shopify4j.core.store.CachedStoreFactory;
 import codemeans.shopify4j.core.store.StoreFactory;
 import codemeans.shopify4j.rest.http.RestInvoker;
 import lombok.Data;
@@ -23,4 +24,16 @@ public class RestAdminFactory implements StoreFactory<RestAdmin> {
   public RestAdmin getStore(String myshopifyDomain) {
     return new DefaultRestAdmin(myshopifyDomain, apiVersion, invoker);
   }
+
+  public CachedRestAdminFactory cached() {
+    return new CachedRestAdminFactory(this);
+  }
+
+  public static class CachedRestAdminFactory extends CachedStoreFactory<RestAdmin> {
+
+    protected CachedRestAdminFactory(StoreFactory delegate) {
+      super(delegate);
+    }
+  }
+
 }

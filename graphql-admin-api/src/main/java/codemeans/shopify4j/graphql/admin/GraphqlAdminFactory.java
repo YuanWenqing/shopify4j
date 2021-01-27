@@ -2,6 +2,7 @@ package codemeans.shopify4j.graphql.admin;
 
 
 import codemeans.shopify4j.core.graphql.GraphqlInvoker;
+import codemeans.shopify4j.core.store.CachedStoreFactory;
 import codemeans.shopify4j.core.store.StoreFactory;
 import lombok.Data;
 import lombok.NonNull;
@@ -24,4 +25,16 @@ public class GraphqlAdminFactory implements StoreFactory<GraphqlAdmin> {
   public GraphqlAdmin getStore(String myshopifyDomain) {
     return new DefaultGraphqlAdmin(myshopifyDomain, apiVersion, graphqlInvoker);
   }
+
+  public CachedGraphqlAdminFactory cached() {
+    return new CachedGraphqlAdminFactory(this);
+  }
+
+  public static class CachedGraphqlAdminFactory extends CachedStoreFactory<GraphqlAdmin> {
+
+    protected CachedGraphqlAdminFactory(StoreFactory delegate) {
+      super(delegate);
+    }
+  }
+
 }

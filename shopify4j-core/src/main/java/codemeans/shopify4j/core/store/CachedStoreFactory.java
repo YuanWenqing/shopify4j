@@ -17,7 +17,7 @@ public class CachedStoreFactory<S> implements StoreFactory<S> {
 
   private final Map<String, S> storeMap = new ConcurrentHashMap<>();
 
-  private CachedStoreFactory(StoreFactory delegate) {
+  protected CachedStoreFactory(StoreFactory delegate) {
     this.delegate = delegate;
   }
 
