@@ -2,21 +2,29 @@
 
 Java SDK for Shopify APIs, including:
 
-* REST Admin API Models
-* REST Admin API
 * GraphQL Admin Schema
 * GraphQL Admin API
+* GraphQL Storefront Schema
+* GraphQL Storefront API
+* REST Admin API Models
+* REST Admin API
 * ...
 
 ## Usage
 
+GraphQL Admin API
+```groovy
+implementation("xyz.codemeans.shopify4j:graphql-admin-api:1.0")
+```
+
+GraphQL Storefront API
+```groovy
+implementation("xyz.codemeans.shopify4j:graphql-storefront-api:1.0")
+```
+
 REST API
 ```groovy
 implementation("xyz.codemeans.shopify4j:rest-admin-api:1.0")
-```
-GraphQL API
-```groovy
-implementation("xyz.codemeans.shopify4j:graphql-admin-api:1.0")
 ```
 
 ## Build from source
@@ -55,34 +63,59 @@ Here is an example for REST & GraphQL API:
 ```java
 StoreSettingStorage settingStorage = ...;
 
-// REST
-RestInvoker invoker = new OkHttpRestInvoker(new PrivateAppAccessTokenProvider(settingStorage));
-StoreFactory<RestStore> storeFactory = new DefaultRestStoreFactory(settingStorage, invoker);
+GraphqlInvoker invoker = new OkHttpGraphqlInvoker(new PrivateAppAdminAccessTokenProvider(settingStorage));
+StoreFactory<GraphqlAdmin> storeFactory = new DefaultGraphqlAdminFactory(settingStorage, invoker);
 storeFactory = CachedStoreFactory.of(storeFactory); // cache created stores, avoiding duplicated creation
-RestStore Store1 = storeFactory.getStore(domain1);
-...
-
-// graphql
-GraphqlInvoker invoker = new OkHttpGraphqlInvoker(new PrivateAppAccessTokenProvider(settingStorage));
-StoreFactory<GraphqlStore> storeFactory = new DefaultGraphqlStoreFactory(settingStorage, invoker);
-storeFactory = CachedStoreFactory.of(storeFactory); // cache created stores, avoiding duplicated creation
-GraphqlStore Store1 = storeFactory.getStore(domain1);
-...
-
+GraphqlAdmin store1 = storeFactory.getStore(domain1);
 ```
 
 ## Release
 
 Please see release notes:  <https://github.com/YuanWenqing/shopify4j/releases>
 
+# Shopify GraphQL
+
+## QuickStart
+
+~~~java
+StoreSetting setting = ...;
+GraphqlInvoker invoker = new OkHttpGraphqlInvoker(AccessTokenProvider.constant(setting.getPrivateApp().getAdminApiPassword()));
+GraphqlAdmin admin = new DefaultGraphqlAdmin(setting, invoker);
+
+// get a product with: title, handle ...
+QueryRootQuery queryRootQuery = Operations.query(
+    query -> query.product(id,
+        product -> product.title()
+            .handle()
+            ...));
+Product product = admin.query(queryRootQuery).getData().getProduct();
+~~~
+
+## GraphqlInvoker
+
+`GraphqlInvoker` is a simple interface to invoke GraphQL http request.
+
+`OkHttpGraphqlInvoker` is the basic implementation based on okhttp3. 
+
+You can customize your implementation on any http library you like.
+
+## Reference
+
+* GraphQL Admin API Documentation: https://shopify.dev/docs/admin-api/graphql/reference
+* GraphQL Storefront API Documentation: https://shopify.dev/docs/storefront-api/reference
+* Starter Tutorial: https://www.shopify.com/partners/blog/getting-started-with-graphql
+* Codegen: https://github.com/Shopify/graphql_java_gen/
+* Find GraphQL schema: https://community.shopify.com/c/Shopify-APIs-SDKs/Admin-API-Graphql-shema-endpoint/m-p/837807
+* Useful Documenation: https://2fd.github.io/graphdoc/shopify/
+
 # Admin Rest API
 
 ## Quickstart
 
 ```java
-StoreSetting setting = new StoreSetting();
-RestInvoker invoker = new OkHttpRestInvoker(AccessTokenProvider.constant(setting.getApiPassword()));
-RestStore store = new DefaultRestStore(setting, invoker);
+StoreSetting setting = ...;
+RestInvoker invoker = new OkHttpRestInvoker(AccessTokenProvider.constant(setting.getPrivateApp().getAdminApiPassword()));
+RestAdmin store = new DefaultRestAdmin(setting, invoker);
 
 // get a product
 Product product = store.products.get(pid).object();
@@ -90,7 +123,7 @@ Product product = store.products.get(pid).object();
 
 ## APIs
 
-For now, supported apis can be checked in [`RestStore`](./rest-admin-api/src/main/java/codemeans/shopify4j/rest/admin/RestStore.java)
+For now, supported apis can be checked in [`RestAdmin`](./rest-admin-api/src/main/java/codemeans/shopify4j/rest/admin/RestAdmin.java)
 
 * `store.collects()`
 * `store.collections()`
@@ -120,7 +153,7 @@ store.products().pipeline(ProductModifyPipeline.create(product));
 More general, if requests cross multiple apis, do pipeline via store
 
 ```java
-class StorePipeline implements Pipeline<RestStore, Product> {
+class StorePipeline implements Pipeline<RestAdmin, Product> {
   public StorePipeline(...) {
     ...
   }
@@ -130,7 +163,7 @@ class StorePipeline implements Pipeline<RestStore, Product> {
   }
 
   @Override
-  public Product runWith(RestStore store) throws ShopifyServerException {
+  public Product runWith(RestAdmin store) throws ShopifyServerException {
     ...
   }
 }
@@ -169,40 +202,4 @@ ProductStatus status = ShopifyEnum.asEnum("active", ProductStatus.class);
 ## Reference
 
 * API Documentation: https://shopify.dev/docs/admin-api/rest/reference
-
-# Shopify GraphQL
-
-## QuickStart
-
-~~~java
-StoreSetting setting = new StoreSetting();
-GraphqlInvoker invoker = new OkHttpGraphqlInvoker(AccessTokenProvider.constant(setting.getApiPassword()));
-GraphqlStore store = new DefaultGraphqlStore(setting, invoker);
-
-// get a product with: title, handle ...
-QueryRootQuery queryRootQuery = Operations.query(
-    query -> query.product(id,
-        product -> product.title()
-            .handle()
-            ...));
-Product product = store.query(queryRootQuery).getData().getProduct();
-~~~
-
-## GraphqlInvoker
-
-`GraphqlInvoker` is a simple interface to invoke GraphQL http request.
-
-`OkHttpGraphqlInvoker` is the basic implementation based on okhttp3. 
-
-You can customize your implementation on any http library you like.
-
-## Refercence
-
-* API Documentation: https://shopify.dev/docs/admin-api/graphql/reference
-* Starter Tutorial: https://www.shopify.com/partners/blog/getting-started-with-graphql
-
-* Codegen: https://github.com/Shopify/graphql_java_gen/
-* Find admin graphql schema: https://community.shopify.com/c/Shopify-APIs-SDKs/Admin-API-Graphql-shema-endpoint/m-p/837807
-
-* Useful Documenation: https://2fd.github.io/graphdoc/shopify/
 
