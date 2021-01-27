@@ -43,7 +43,7 @@ public class AppOauthFlow {
         .newBuilder();
     builder.setQueryParameter("client_id", app.getClientId())
         .setQueryParameter("scope", StringUtils.join(app.getScopes(), ","))
-        .setQueryParameter("redirect_uri", app.getRedirectUri());
+        .setQueryParameter("redirect_uri", req.getRedirectUri());
     if (StringUtils.isNotBlank(req.getState())) {
       builder.setQueryParameter("state", req.getState());
     }

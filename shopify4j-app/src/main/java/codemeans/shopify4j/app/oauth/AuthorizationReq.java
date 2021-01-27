@@ -17,6 +17,7 @@ public class AuthorizationReq {
    * myshopify domain of store ending with {@code .myshopify.com}
    */
   private String shop;
+  private String redirectUri;
   private String state;
   /**
    * default offline if blank; set to {@code per-user} for online

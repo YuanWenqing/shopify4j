@@ -15,7 +15,6 @@ public class PublicApp {
 
   private String clientId;
   private String clientSecret;
-  private String redirectUri;
   /**
    * app required scopes
    */
