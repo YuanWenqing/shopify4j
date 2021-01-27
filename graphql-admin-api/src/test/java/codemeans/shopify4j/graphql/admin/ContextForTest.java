@@ -29,7 +29,7 @@ public class ContextForTest {
       new PrivateAppAdminAccessTokenProvider(STORE_SETTING_STORAGE));
   public static final StoreFactory<GraphqlStore> FACTORY = CachedStoreFactory
       .of(new GraphqlStoreFactory(INVOKER));
-  public static final GraphqlStore TEST_STORE = FACTORY.getStore(STORE_SETTING.getStoreDomain());
+  public static final GraphqlStore TEST_STORE = FACTORY.getStore(STORE_SETTING.getMyshopifyDomain());
 
   private static StoreSetting loadStoreSetting(String resourceName) {
     try {
@@ -37,7 +37,7 @@ public class ContextForTest {
       Properties properties = new Properties();
       properties.load(new StringReader(IOUtils.resourceToString(resourceName,
           StandardCharsets.UTF_8, ContextForTest.class.getClassLoader())));
-      setting.setStoreDomain(properties.getProperty("store-domain"));
+      setting.setMyshopifyDomain(properties.getProperty("myshopify-domain"));
       PrivateApp app = new PrivateApp()
           .setAdminApiPassword(properties.getProperty("private-admin-api-password"));
       setting.setPrivateApp(app);

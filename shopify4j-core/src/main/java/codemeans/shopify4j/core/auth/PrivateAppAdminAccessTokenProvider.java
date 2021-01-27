@@ -18,8 +18,8 @@ public class PrivateAppAdminAccessTokenProvider implements AccessTokenProvider {
   }
 
   @Override
-  public String getAccessToken(String storeDomain) {
-    StoreSetting setting = settingStorage.getStoreSetting(storeDomain);
+  public String getAccessToken(String myshopifyDomain) {
+    StoreSetting setting = settingStorage.getStoreSetting(myshopifyDomain);
     if (setting != null && setting.getPrivateApp() != null) {
       return setting.getPrivateApp().getAdminApiPassword();
     }

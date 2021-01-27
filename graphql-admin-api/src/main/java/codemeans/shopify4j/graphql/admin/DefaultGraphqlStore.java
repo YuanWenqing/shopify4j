@@ -16,22 +16,22 @@ import com.shopify.graphql.support.SchemaViolationError;
  */
 public class DefaultGraphqlStore implements GraphqlStore {
 
-  private final String storeDomain;
+  private final String myshopifyDomain;
   private final String apiVersion;
   private final String graphqlEndpoint;
   private final GraphqlInvoker invoker;
 
-  public DefaultGraphqlStore(String storeDomain, String apiVersion, GraphqlInvoker invoker) {
-    this.storeDomain = storeDomain;
+  public DefaultGraphqlStore(String myshopifyDomain, String apiVersion, GraphqlInvoker invoker) {
+    this.myshopifyDomain = myshopifyDomain;
     this.apiVersion = apiVersion;
     this.graphqlEndpoint = String.format("https://%s/admin/api/%s/graphql.json",
-        storeDomain, apiVersion);
+        myshopifyDomain, apiVersion);
     this.invoker = invoker;
   }
 
   @Override
-  public String getStoreDomain() {
-    return storeDomain;
+  public String getMyshopifyDomain() {
+    return myshopifyDomain;
   }
 
   @Override

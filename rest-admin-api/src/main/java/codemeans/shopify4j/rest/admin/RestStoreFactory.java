@@ -20,7 +20,7 @@ public class RestStoreFactory implements StoreFactory<RestStore> {
   }
 
   @Override
-  public RestStore getStore(String storeDomain) {
-    return new DefaultRestStore(storeDomain, apiVersion, invoker);
+  public RestStore getStore(String myshopifyDomain) {
+    return new DefaultRestStore(myshopifyDomain, apiVersion, invoker);
   }
 }

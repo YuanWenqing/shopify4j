@@ -53,7 +53,7 @@ public class OkHttpRestInvoker implements RestInvoker {
     builder.followRedirects(false);
     // interceptor
     builder.addInterceptor(new SeeOtherInterceptor())
-        .addInterceptor(new AccessTokenInterceptor(accessTokenProvider));
+        .addInterceptor(AccessTokenInterceptor.admin(accessTokenProvider));
     return builder.build();
   }
 

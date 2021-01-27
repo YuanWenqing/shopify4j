@@ -20,7 +20,7 @@ public class GraphqlStoreFactory implements StoreFactory<GraphqlStore> {
   }
 
   @Override
-  public GraphqlStore getStore(String storeDomain) {
-    return new DefaultGraphqlStore(storeDomain, apiVersion, graphqlInvoker);
+  public GraphqlStore getStore(String myshopifyDomain) {
+    return new DefaultGraphqlStore(myshopifyDomain, apiVersion, graphqlInvoker);
   }
 }

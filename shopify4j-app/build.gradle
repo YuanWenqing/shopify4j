@@ -5,11 +5,13 @@ dependencies {
     testCompileOnly("org.projectlombok:lombok:$lombokVersion")
 
     api(project(":shopify4j-core"))
-    api(project(":graphql-admin-schema"))
+
+    api("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
 
     api("com.squareup.okhttp3:okhttp:$okhttpVersion")
 
     api("commons-io:commons-io:$commonsIOVersion")
+    api("commons-codec:commons-codec:$commonsCodecVersion")
 
     // test
     testImplementation("junit:junit:$junitVersion")
@@ -17,5 +19,5 @@ dependencies {
 
 }
 
-description "Java SDK for Shopify Admin GraphQL API"
+description "Java SDK for Shopify APP Development"
 apply from: "$rootDir/publish.gradle"

@@ -14,9 +14,11 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class AccessTokenInterceptor implements Interceptor {
 
+  private final String tokenHeader;
   private final AccessTokenProvider accessTokenProvider;
 
-  public AccessTokenInterceptor(AccessTokenProvider accessTokenProvider) {
+  public AccessTokenInterceptor(String tokenHeader, AccessTokenProvider accessTokenProvider) {
+    this.tokenHeader = tokenHeader;
     this.accessTokenProvider = accessTokenProvider;
   }
 
@@ -28,8 +30,16 @@ public class AccessTokenInterceptor implements Interceptor {
       throw new ShopifyClientException("blank accessToken, request: " + request);
     }
     request = request.newBuilder()
-        .addHeader(ShopifyHeaders.ACCESS_TOKEN, accessToken)
+        .addHeader(tokenHeader, accessToken)
         .build();
     return chain.proceed(request);
+  }
+
+  public static AccessTokenInterceptor admin(AccessTokenProvider accessTokenProvider) {
+    return new AccessTokenInterceptor(ShopifyHeaders.ADMIN_ACCESS_TOKEN, accessTokenProvider);
+  }
+
+  public static AccessTokenInterceptor storefront(AccessTokenProvider accessTokenProvider) {
+    return new AccessTokenInterceptor(ShopifyHeaders.STOREFRONT_ACCESS_TOKEN, accessTokenProvider);
   }
 }
