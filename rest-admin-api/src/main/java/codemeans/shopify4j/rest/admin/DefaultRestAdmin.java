@@ -29,7 +29,7 @@ import codemeans.shopify4j.rest.http.RestInvoker;
  * @author: yuanwq
  * @date: 2021-01-12
  */
-public class DefaultRestStore implements RestStore {
+public class DefaultRestAdmin implements RestAdmin {
 
   private final String myshopifyDomain;
   private final String apiVersion;
@@ -52,7 +52,7 @@ public class DefaultRestStore implements RestStore {
   private DraftOrderApi draftOrderApi;
   private OrderApi orderApi;
 
-  public DefaultRestStore(String myshopifyDomain, String apiVersion, RestInvoker invoker) {
+  public DefaultRestAdmin(String myshopifyDomain, String apiVersion, RestInvoker invoker) {
     this.myshopifyDomain = myshopifyDomain;
     this.apiVersion = apiVersion;
     this.baseEndpoint = String.format("https://%s/admin/api/%s", myshopifyDomain, apiVersion);

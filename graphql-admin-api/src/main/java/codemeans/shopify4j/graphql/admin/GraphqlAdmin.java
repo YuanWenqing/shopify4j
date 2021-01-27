@@ -1,6 +1,6 @@
 package codemeans.shopify4j.graphql.admin;
 
-import codemeans.shopify4j.graphql.admin.exception.GraphqlApiException;
+import codemeans.shopify4j.core.exception.GraphqlApiException;
 import codemeans.shopify4j.graphql.admin.types.MutationQuery;
 import codemeans.shopify4j.graphql.admin.types.MutationResponse;
 import codemeans.shopify4j.graphql.admin.types.QueryResponse;
@@ -10,7 +10,7 @@ import codemeans.shopify4j.graphql.admin.types.QueryRootQuery;
  * @author: yuanwq
  * @date: 2021-01-26
  */
-public interface GraphqlStore {
+public interface GraphqlAdmin {
 
   String getMyshopifyDomain();
 

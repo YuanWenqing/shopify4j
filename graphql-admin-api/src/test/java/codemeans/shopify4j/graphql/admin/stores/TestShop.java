@@ -2,7 +2,7 @@ package codemeans.shopify4j.graphql.admin.stores;
 
 import static codemeans.shopify4j.graphql.admin.ContextForTest.TEST_STORE;
 
-import codemeans.shopify4j.graphql.admin.exception.GraphqlApiException;
+import codemeans.shopify4j.core.exception.GraphqlApiException;
 import codemeans.shopify4j.graphql.admin.types.Operations;
 import codemeans.shopify4j.graphql.admin.types.QueryResponse;
 import codemeans.shopify4j.graphql.admin.types.QueryRootQuery;

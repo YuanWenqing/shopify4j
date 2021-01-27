@@ -1,9 +1,10 @@
 package codemeans.shopify4j.graphql.admin;
 
-import codemeans.shopify4j.graphql.admin.exception.GraphqlApiException;
-import codemeans.shopify4j.graphql.admin.exception.GraphqlMutationException;
-import codemeans.shopify4j.graphql.admin.exception.GraphqlQueryException;
-import codemeans.shopify4j.graphql.admin.exception.GraphqlSchemaException;
+import codemeans.shopify4j.core.exception.GraphqlApiException;
+import codemeans.shopify4j.core.graphql.GraphqlInvoker;
+import codemeans.shopify4j.graphql.admin.exception.GraphqlAdminMutationException;
+import codemeans.shopify4j.graphql.admin.exception.GraphqlAdminQueryException;
+import codemeans.shopify4j.graphql.admin.exception.GraphqlAdminSchemaException;
 import codemeans.shopify4j.graphql.admin.types.MutationQuery;
 import codemeans.shopify4j.graphql.admin.types.MutationResponse;
 import codemeans.shopify4j.graphql.admin.types.QueryResponse;
@@ -14,14 +15,14 @@ import com.shopify.graphql.support.SchemaViolationError;
  * @author: yuanwq
  * @date: 2021-01-26
  */
-public class DefaultGraphqlStore implements GraphqlStore {
+public class DefaultGraphqlAdmin implements GraphqlAdmin {
 
   private final String myshopifyDomain;
   private final String apiVersion;
   private final String graphqlEndpoint;
   private final GraphqlInvoker invoker;
 
-  public DefaultGraphqlStore(String myshopifyDomain, String apiVersion, GraphqlInvoker invoker) {
+  public DefaultGraphqlAdmin(String myshopifyDomain, String apiVersion, GraphqlInvoker invoker) {
     this.myshopifyDomain = myshopifyDomain;
     this.apiVersion = apiVersion;
     this.graphqlEndpoint = String.format("https://%s/admin/api/%s/graphql.json",
@@ -52,11 +53,11 @@ public class DefaultGraphqlStore implements GraphqlStore {
       resp = invoker.request(graphqlEndpoint, queryBody);
       QueryResponse response = QueryResponse.fromJson(resp);
       if (response.getErrors() != null && !response.getErrors().isEmpty()) {
-        throw new GraphqlQueryException(query, response);
+        throw new GraphqlAdminQueryException(query, response);
       }
       return response;
     } catch (SchemaViolationError schemaViolationError) {
-      throw new GraphqlSchemaException(query, resp, schemaViolationError);
+      throw new GraphqlAdminSchemaException(query, resp, schemaViolationError);
     }
   }
 
@@ -68,11 +69,11 @@ public class DefaultGraphqlStore implements GraphqlStore {
       resp = invoker.request(graphqlEndpoint, queryBody);
       MutationResponse response = MutationResponse.fromJson(resp);
       if (response.getErrors() != null && !response.getErrors().isEmpty()) {
-        throw new GraphqlMutationException(query, response);
+        throw new GraphqlAdminMutationException(query, response);
       }
       return response;
     } catch (SchemaViolationError schemaViolationError) {
-      throw new GraphqlSchemaException(query, resp, schemaViolationError);
+      throw new GraphqlAdminSchemaException(query, resp, schemaViolationError);
     }
   }
 }

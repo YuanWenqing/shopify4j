@@ -1,11 +1,11 @@
 package codemeans.shopify4j.rest.admin.api.products.impl;
 
-import codemeans.shopify4j.rest.admin.RestStore;
+import codemeans.shopify4j.core.exception.RestApiException;
+import codemeans.shopify4j.rest.admin.RestAdmin;
 import codemeans.shopify4j.rest.admin.api.products.CustomCollectionApi;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.products.CustomCollection;
 import codemeans.shopify4j.rest.admin.model.products.CustomCollectionList;
-import codemeans.shopify4j.rest.exception.RestApiException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
 import codemeans.shopify4j.rest.http.RestInvoker;
@@ -24,7 +24,7 @@ public class CustomCollectionApiImpl implements CustomCollectionApi {
     this.invoker = invoker;
   }
 
-  public static CustomCollectionApi of(RestStore store) {
+  public static CustomCollectionApi of(RestAdmin store) {
     return new CustomCollectionApiImpl(store.getBaseEndpoint(), store.getInvoker());
   }
 

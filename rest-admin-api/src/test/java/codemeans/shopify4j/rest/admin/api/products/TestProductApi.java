@@ -1,12 +1,12 @@
 package codemeans.shopify4j.rest.admin.api.products;
 
+import codemeans.shopify4j.core.exception.RestApiException;
 import codemeans.shopify4j.rest.admin.ContextForTest;
 import codemeans.shopify4j.rest.admin.api.products.ProductApi.CountReq;
 import codemeans.shopify4j.rest.admin.api.products.ProductApi.ListReq;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.products.Product;
 import codemeans.shopify4j.rest.admin.model.products.ProductList;
-import codemeans.shopify4j.rest.exception.RestApiException;
 import org.junit.Test;
 
 /**

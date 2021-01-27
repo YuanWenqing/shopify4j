@@ -1,6 +1,7 @@
 package codemeans.shopify4j.graphql.admin;
 
 
+import codemeans.shopify4j.core.graphql.GraphqlInvoker;
 import codemeans.shopify4j.core.store.StoreFactory;
 import lombok.Data;
 import lombok.NonNull;
@@ -10,17 +11,17 @@ import lombok.NonNull;
  * @date: 2021-01-12
  */
 @Data
-public class GraphqlStoreFactory implements StoreFactory<GraphqlStore> {
+public class GraphqlAdminFactory implements StoreFactory<GraphqlAdmin> {
 
   private final GraphqlInvoker graphqlInvoker;
   private String apiVersion = "2021-01";
 
-  public GraphqlStoreFactory(@NonNull GraphqlInvoker graphqlInvoker) {
+  public GraphqlAdminFactory(@NonNull GraphqlInvoker graphqlInvoker) {
     this.graphqlInvoker = graphqlInvoker;
   }
 
   @Override
-  public GraphqlStore getStore(String myshopifyDomain) {
-    return new DefaultGraphqlStore(myshopifyDomain, apiVersion, graphqlInvoker);
+  public GraphqlAdmin getStore(String myshopifyDomain) {
+    return new DefaultGraphqlAdmin(myshopifyDomain, apiVersion, graphqlInvoker);
   }
 }

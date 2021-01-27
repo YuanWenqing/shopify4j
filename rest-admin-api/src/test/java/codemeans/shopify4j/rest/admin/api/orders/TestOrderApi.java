@@ -2,6 +2,7 @@ package codemeans.shopify4j.rest.admin.api.orders;
 
 import static junit.framework.TestCase.assertEquals;
 
+import codemeans.shopify4j.core.exception.RestApiException;
 import codemeans.shopify4j.rest.admin.ContextForTest;
 import codemeans.shopify4j.rest.admin.api.orders.OrderApi.CountReq;
 import codemeans.shopify4j.rest.admin.api.orders.OrderApi.ListReq;
@@ -9,7 +10,6 @@ import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.enums.OrderStatus;
 import codemeans.shopify4j.rest.admin.model.orders.Order;
 import codemeans.shopify4j.rest.admin.model.orders.OrderList;
-import codemeans.shopify4j.rest.exception.RestApiException;
 import org.junit.Test;
 
 /**

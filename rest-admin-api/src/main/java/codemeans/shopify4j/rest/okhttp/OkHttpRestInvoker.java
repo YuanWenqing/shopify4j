@@ -2,8 +2,8 @@ package codemeans.shopify4j.rest.okhttp;
 
 import codemeans.shopify4j.core.auth.AccessTokenInterceptor;
 import codemeans.shopify4j.core.auth.AccessTokenProvider;
+import codemeans.shopify4j.core.exception.RestApiException;
 import codemeans.shopify4j.core.exception.ShopifyClientException;
-import codemeans.shopify4j.rest.exception.RestApiException;
 import codemeans.shopify4j.rest.exception.RestResponseException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
@@ -34,8 +34,10 @@ public class OkHttpRestInvoker implements RestInvoker {
   private final OkHttpClient okHttpClient;
   private final ICodec codec;
 
-  public OkHttpRestInvoker(AccessTokenProvider accessTokenProvider) {
-    this(createOkHttpClient(accessTokenProvider), JacksonCodec.DEFAULT_INSTANCE);
+  public static OkHttpRestInvoker admin(AccessTokenProvider accessTokenProvider) {
+    return new OkHttpRestInvoker(
+        createOkHttpClient(AccessTokenInterceptor.admin(accessTokenProvider)),
+        JacksonCodec.DEFAULT_INSTANCE);
   }
 
   public OkHttpRestInvoker(OkHttpClient okHttpClient, ICodec codec) {
@@ -43,7 +45,7 @@ public class OkHttpRestInvoker implements RestInvoker {
     this.codec = codec;
   }
 
-  public static OkHttpClient createOkHttpClient(AccessTokenProvider accessTokenProvider) {
+  public static OkHttpClient createOkHttpClient(AccessTokenInterceptor accessTokenInterceptor) {
     OkHttpClient.Builder builder = new OkHttpClient.Builder();
     // timeout
     builder.connectTimeout(60, TimeUnit.SECONDS)
@@ -53,7 +55,7 @@ public class OkHttpRestInvoker implements RestInvoker {
     builder.followRedirects(false);
     // interceptor
     builder.addInterceptor(new SeeOtherInterceptor())
-        .addInterceptor(AccessTokenInterceptor.admin(accessTokenProvider));
+        .addInterceptor(accessTokenInterceptor);
     return builder.build();
   }
 

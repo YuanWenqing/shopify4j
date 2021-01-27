@@ -1,11 +1,11 @@
 package codemeans.shopify4j.rest.admin.api.products.impl;
 
-import codemeans.shopify4j.rest.admin.RestStore;
+import codemeans.shopify4j.core.exception.RestApiException;
+import codemeans.shopify4j.rest.admin.RestAdmin;
 import codemeans.shopify4j.rest.admin.api.products.ProductApi;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.products.Product;
 import codemeans.shopify4j.rest.admin.model.products.ProductList;
-import codemeans.shopify4j.rest.exception.RestApiException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
 import codemeans.shopify4j.rest.http.RestInvoker;
@@ -24,7 +24,7 @@ public class ProductApiImpl implements ProductApi {
     this.invoker = invoker;
   }
 
-  public static ProductApi of(RestStore store) {
+  public static ProductApi of(RestAdmin store) {
     return new ProductApiImpl(store.getBaseEndpoint(), store.getInvoker());
   }
 

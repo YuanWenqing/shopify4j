@@ -3,16 +3,13 @@ package codemeans.shopify4j.rest.admin;
 import codemeans.shopify4j.core.auth.PrivateAppAdminAccessTokenProvider;
 import codemeans.shopify4j.core.store.CachedStoreFactory;
 import codemeans.shopify4j.core.store.MemoryStoreSettingStorage;
-import codemeans.shopify4j.core.store.PrivateApp;
 import codemeans.shopify4j.core.store.StoreFactory;
 import codemeans.shopify4j.core.store.StoreSetting;
 import codemeans.shopify4j.rest.http.RestInvoker;
 import codemeans.shopify4j.rest.okhttp.OkHttpRestInvoker;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.StringReader;
-import java.nio.charset.StandardCharsets;
-import java.util.Properties;
-import org.apache.commons.io.IOUtils;
 
 /**
  * @author: yuanwq
@@ -20,33 +17,26 @@ import org.apache.commons.io.IOUtils;
  */
 public class ContextForTest {
 
-  public static final StoreSetting STORE_SETTING = loadStoreSetting("store.properties");
+  public static final StoreSetting STORE_SETTING = loadTestStore();
   public static final MemoryStoreSettingStorage STORE_SETTING_STORAGE = new MemoryStoreSettingStorage();
 
   static {
     STORE_SETTING_STORAGE.registerStore(STORE_SETTING);
   }
 
-  public static final RestInvoker INVOKER = new OkHttpRestInvoker(
+  public static final RestInvoker INVOKER = OkHttpRestInvoker.admin(
       new PrivateAppAdminAccessTokenProvider(STORE_SETTING_STORAGE));
-  public static final StoreFactory<RestStore> FACTORY = CachedStoreFactory
-      .of(new RestStoreFactory(INVOKER));
-  public static final RestStore TEST_STORE = FACTORY.getStore(STORE_SETTING.getMyshopifyDomain());
+  public static final StoreFactory<RestAdmin> FACTORY = CachedStoreFactory
+      .of(new RestAdminFactory(INVOKER));
+  public static final RestAdmin TEST_STORE = FACTORY.getStore(STORE_SETTING.getMyshopifyDomain());
 
-  private static StoreSetting loadStoreSetting(String resourceName) {
-    try {
-      StoreSetting setting = new StoreSetting();
-      Properties properties = new Properties();
-      properties.load(new StringReader(IOUtils.resourceToString(resourceName,
-          StandardCharsets.UTF_8, ContextForTest.class.getClassLoader())));
-      setting.setMyshopifyDomain(properties.getProperty("myshopify-domain"));
-      PrivateApp app = new PrivateApp()
-          .setAdminApiPassword(properties.getProperty("private-admin-api-password"));
-      setting.setPrivateApp(app);
-      return setting;
+  private static StoreSetting loadTestStore() {
+    File workdir = new File(System.getProperty("user.dir")).getParentFile();
+    File propertiesFile = new File(workdir, "store.properties");
+    try (FileInputStream inputStream = new FileInputStream(propertiesFile)) {
+      return StoreSetting.load(inputStream);
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
-
   }
 }
