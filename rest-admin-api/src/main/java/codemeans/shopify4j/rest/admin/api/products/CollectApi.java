@@ -3,7 +3,7 @@ package codemeans.shopify4j.rest.admin.api.products;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.products.Collect;
 import codemeans.shopify4j.rest.admin.model.products.CollectList;
-import codemeans.shopify4j.rest.exception.RestApiException;
+import codemeans.shopify4j.core.exception.RestApiException;
 import codemeans.shopify4j.rest.http.HttpResponse;
 import java.util.List;
 import lombok.Data;

@@ -1,5 +1,6 @@
 package codemeans.shopify4j.graphql.admin.exception;
 
+import codemeans.shopify4j.core.exception.GraphqlApiException;
 import com.shopify.graphql.support.Query;
 import com.shopify.graphql.support.SchemaViolationError;
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package codemeans.shopify4j.graphql.admin;
 
-import codemeans.shopify4j.graphql.admin.exception.GraphqlApiException;
+import codemeans.shopify4j.core.exception.GraphqlApiException;
 
 /**
  * @author: yuanwq

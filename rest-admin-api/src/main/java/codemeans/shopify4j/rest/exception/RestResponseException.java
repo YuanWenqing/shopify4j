@@ -1,5 +1,6 @@
 package codemeans.shopify4j.rest.exception;
 
+import codemeans.shopify4j.core.exception.RestApiException;
 import codemeans.shopify4j.rest.http.HttpResponse;
 import lombok.Getter;
 

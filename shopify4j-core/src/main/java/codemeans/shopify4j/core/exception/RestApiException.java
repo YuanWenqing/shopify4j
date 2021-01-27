@@ -1,6 +1,4 @@
-package codemeans.shopify4j.rest.exception;
-
-import codemeans.shopify4j.core.exception.ShopifyApiException;
+package codemeans.shopify4j.core.exception;
 
 /**
  * shopify rest api error

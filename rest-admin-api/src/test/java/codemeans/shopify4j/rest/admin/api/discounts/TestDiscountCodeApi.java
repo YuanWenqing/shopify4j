@@ -5,7 +5,7 @@ import static junit.framework.TestCase.assertEquals;
 import codemeans.shopify4j.rest.admin.ContextForTest;
 import codemeans.shopify4j.rest.admin.model.discounts.DiscountCode;
 import codemeans.shopify4j.rest.admin.model.discounts.DiscountCodeList;
-import codemeans.shopify4j.rest.exception.RestApiException;
+import codemeans.shopify4j.core.exception.RestApiException;
 import org.junit.Test;
 
 /**

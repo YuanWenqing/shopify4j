@@ -1,6 +1,8 @@
 package codemeans.shopify4j.core.exception;
 
 /**
+ * shopify api error base
+ *
  * @author: yuanwq
  * @date: 2021-01-27
  */

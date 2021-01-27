@@ -7,7 +7,7 @@ import codemeans.shopify4j.rest.admin.model.common.Empty;
 import codemeans.shopify4j.rest.admin.model.orders.DraftOrder;
 import codemeans.shopify4j.rest.admin.model.orders.DraftOrderInvoice;
 import codemeans.shopify4j.rest.admin.model.orders.DraftOrderList;
-import codemeans.shopify4j.rest.exception.RestApiException;
+import codemeans.shopify4j.core.exception.RestApiException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
 import codemeans.shopify4j.rest.http.RestInvoker;

@@ -5,7 +5,7 @@ import codemeans.shopify4j.rest.admin.api.products.ProductVariantApi;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.products.ProductVariant;
 import codemeans.shopify4j.rest.admin.model.products.ProductVariantList;
-import codemeans.shopify4j.rest.exception.RestApiException;
+import codemeans.shopify4j.core.exception.RestApiException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
 import codemeans.shopify4j.rest.http.RestInvoker;

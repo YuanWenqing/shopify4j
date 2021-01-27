@@ -13,7 +13,7 @@ import codemeans.shopify4j.rest.admin.api.products.ProductApi;
 import codemeans.shopify4j.rest.admin.api.products.ProductImageApi;
 import codemeans.shopify4j.rest.admin.api.products.ProductVariantApi;
 import codemeans.shopify4j.rest.admin.api.products.SmartCollectionApi;
-import codemeans.shopify4j.rest.exception.RestApiException;
+import codemeans.shopify4j.core.exception.RestApiException;
 import codemeans.shopify4j.rest.http.RestInvoker;
 
 /**

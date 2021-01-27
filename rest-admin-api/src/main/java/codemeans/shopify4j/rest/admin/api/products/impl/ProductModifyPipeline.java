@@ -5,7 +5,7 @@ import codemeans.shopify4j.rest.admin.api.products.ProductApi.ProductPipeline;
 import codemeans.shopify4j.rest.admin.model.products.Product;
 import codemeans.shopify4j.rest.admin.model.products.ProductImage;
 import codemeans.shopify4j.rest.admin.model.products.ProductVariant;
-import codemeans.shopify4j.rest.exception.RestApiException;
+import codemeans.shopify4j.core.exception.RestApiException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;

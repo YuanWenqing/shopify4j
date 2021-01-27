@@ -6,7 +6,7 @@ import codemeans.shopify4j.rest.admin.ContextForTest;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.products.ProductVariant;
 import codemeans.shopify4j.rest.admin.model.products.ProductVariantList;
-import codemeans.shopify4j.rest.exception.RestApiException;
+import codemeans.shopify4j.core.exception.RestApiException;
 import org.junit.Test;
 
 /**
