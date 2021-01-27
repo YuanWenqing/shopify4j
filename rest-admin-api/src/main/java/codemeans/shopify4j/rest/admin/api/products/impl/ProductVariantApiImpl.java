@@ -1,11 +1,11 @@
 package codemeans.shopify4j.rest.admin.api.products.impl;
 
-import codemeans.shopify4j.rest.admin.RestStore;
+import codemeans.shopify4j.core.exception.RestApiException;
+import codemeans.shopify4j.rest.admin.RestAdmin;
 import codemeans.shopify4j.rest.admin.api.products.ProductVariantApi;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.products.ProductVariant;
 import codemeans.shopify4j.rest.admin.model.products.ProductVariantList;
-import codemeans.shopify4j.core.exception.RestApiException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
 import codemeans.shopify4j.rest.http.RestInvoker;
@@ -24,7 +24,7 @@ public class ProductVariantApiImpl implements ProductVariantApi {
     this.invoker = invoker;
   }
 
-  public static ProductVariantApi of(RestStore store) {
+  public static ProductVariantApi of(RestAdmin store) {
     return new ProductVariantApiImpl(store.getBaseEndpoint(), store.getInvoker());
   }
 

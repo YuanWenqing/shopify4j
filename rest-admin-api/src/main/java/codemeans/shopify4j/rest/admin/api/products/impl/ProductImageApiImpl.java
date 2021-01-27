@@ -1,11 +1,11 @@
 package codemeans.shopify4j.rest.admin.api.products.impl;
 
-import codemeans.shopify4j.rest.admin.RestStore;
+import codemeans.shopify4j.core.exception.RestApiException;
+import codemeans.shopify4j.rest.admin.RestAdmin;
 import codemeans.shopify4j.rest.admin.api.products.ProductImageApi;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.products.ProductImage;
 import codemeans.shopify4j.rest.admin.model.products.ProductImageList;
-import codemeans.shopify4j.core.exception.RestApiException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
 import codemeans.shopify4j.rest.http.RestInvoker;
@@ -24,7 +24,7 @@ public class ProductImageApiImpl implements ProductImageApi {
     this.invoker = invoker;
   }
 
-  public static ProductImageApi of(RestStore store) {
+  public static ProductImageApi of(RestAdmin store) {
     return new ProductImageApiImpl(store.getBaseEndpoint(), store.getInvoker());
   }
 

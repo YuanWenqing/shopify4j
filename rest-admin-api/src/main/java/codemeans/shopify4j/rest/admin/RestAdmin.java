@@ -1,5 +1,6 @@
 package codemeans.shopify4j.rest.admin;
 
+import codemeans.shopify4j.core.exception.RestApiException;
 import codemeans.shopify4j.rest.admin.api.Pipeline;
 import codemeans.shopify4j.rest.admin.api.discounts.DiscountCodeApi;
 import codemeans.shopify4j.rest.admin.api.discounts.DiscountCodeCreationApi;
@@ -13,14 +14,13 @@ import codemeans.shopify4j.rest.admin.api.products.ProductApi;
 import codemeans.shopify4j.rest.admin.api.products.ProductImageApi;
 import codemeans.shopify4j.rest.admin.api.products.ProductVariantApi;
 import codemeans.shopify4j.rest.admin.api.products.SmartCollectionApi;
-import codemeans.shopify4j.core.exception.RestApiException;
 import codemeans.shopify4j.rest.http.RestInvoker;
 
 /**
  * @author: yuanwq
  * @date: 2021-01-12
  */
-public interface RestStore {
+public interface RestAdmin {
 
   String getMyshopifyDomain();
 
@@ -37,7 +37,7 @@ public interface RestStore {
 
   RestInvoker getInvoker();
 
-  default <R> R pipeline(Pipeline<RestStore, R> pipeline) throws RestApiException {
+  default <R> R pipeline(Pipeline<RestAdmin, R> pipeline) throws RestApiException {
     return pipeline.runWith(this);
   }
 

@@ -1,10 +1,10 @@
 package codemeans.shopify4j.rest.admin.api.discounts.impl;
 
-import codemeans.shopify4j.rest.admin.RestStore;
+import codemeans.shopify4j.core.exception.RestApiException;
+import codemeans.shopify4j.rest.admin.RestAdmin;
 import codemeans.shopify4j.rest.admin.api.discounts.DiscountCodeApi;
 import codemeans.shopify4j.rest.admin.model.discounts.DiscountCode;
 import codemeans.shopify4j.rest.admin.model.discounts.DiscountCodeList;
-import codemeans.shopify4j.core.exception.RestApiException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;
 import codemeans.shopify4j.rest.http.RestInvoker;
@@ -23,7 +23,7 @@ public class DiscountCodeApiImpl implements DiscountCodeApi {
     this.invoker = invoker;
   }
 
-  public static DiscountCodeApi of(RestStore store) {
+  public static DiscountCodeApi of(RestAdmin store) {
     return new DiscountCodeApiImpl(store.getBaseEndpoint(), store.getInvoker());
   }
 

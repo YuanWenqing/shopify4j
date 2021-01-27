@@ -2,13 +2,13 @@ package codemeans.shopify4j.rest.admin.api.orders;
 
 import static junit.framework.TestCase.assertEquals;
 
+import codemeans.shopify4j.core.exception.RestApiException;
 import codemeans.shopify4j.rest.admin.ContextForTest;
 import codemeans.shopify4j.rest.admin.api.orders.DraftOrderApi.CountReq;
 import codemeans.shopify4j.rest.admin.api.orders.DraftOrderApi.ListReq;
 import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.orders.DraftOrder;
 import codemeans.shopify4j.rest.admin.model.orders.DraftOrderList;
-import codemeans.shopify4j.core.exception.RestApiException;
 import org.junit.Test;
 
 /**

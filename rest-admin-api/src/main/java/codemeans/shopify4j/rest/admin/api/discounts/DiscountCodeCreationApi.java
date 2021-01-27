@@ -1,8 +1,8 @@
 package codemeans.shopify4j.rest.admin.api.discounts;
 
+import codemeans.shopify4j.core.exception.RestApiException;
 import codemeans.shopify4j.rest.admin.model.discounts.DiscountCodeCreation;
 import codemeans.shopify4j.rest.admin.model.discounts.DiscountCodeList;
-import codemeans.shopify4j.core.exception.RestApiException;
 import codemeans.shopify4j.rest.http.HttpResponse;
 
 /**

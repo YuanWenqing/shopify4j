@@ -29,9 +29,9 @@ public class ContextForTest {
 
   public static final RestInvoker INVOKER = new OkHttpRestInvoker(
       new PrivateAppAdminAccessTokenProvider(STORE_SETTING_STORAGE));
-  public static final StoreFactory<RestStore> FACTORY = CachedStoreFactory
-      .of(new RestStoreFactory(INVOKER));
-  public static final RestStore TEST_STORE = FACTORY.getStore(STORE_SETTING.getMyshopifyDomain());
+  public static final StoreFactory<RestAdmin> FACTORY = CachedStoreFactory
+      .of(new RestAdminFactory(INVOKER));
+  public static final RestAdmin TEST_STORE = FACTORY.getStore(STORE_SETTING.getMyshopifyDomain());
 
   private static StoreSetting loadStoreSetting(String resourceName) {
     try {
