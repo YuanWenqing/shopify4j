@@ -1,4 +1,4 @@
-package codemeans.shopify4j.rest.exception;
+package codemeans.shopify4j.core.exception;
 
 /**
  * shopify rest api error
@@ -6,7 +6,7 @@ package codemeans.shopify4j.rest.exception;
  * @author: yuanwq
  * @date: 2021-01-12
  */
-public class RestApiException extends Exception {
+public class RestApiException extends ShopifyApiException {
 
   public RestApiException() {
   }

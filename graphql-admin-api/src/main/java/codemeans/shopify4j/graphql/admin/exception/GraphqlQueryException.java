@@ -1,5 +1,6 @@
 package codemeans.shopify4j.graphql.admin.exception;
 
+import codemeans.shopify4j.core.exception.GraphqlApiException;
 import codemeans.shopify4j.graphql.admin.types.QueryResponse;
 import codemeans.shopify4j.graphql.admin.types.QueryRootQuery;
 import lombok.Getter;

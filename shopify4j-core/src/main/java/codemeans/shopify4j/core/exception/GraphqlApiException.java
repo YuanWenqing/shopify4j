@@ -1,12 +1,12 @@
-package codemeans.shopify4j.graphql.admin.exception;
+package codemeans.shopify4j.core.exception;
 
 /**
- * GraphQL api exception
+ * GraphQL api error
  *
  * @author: yuanwq
  * @date: 2021-01-26
  */
-public class GraphqlApiException extends Exception {
+public class GraphqlApiException extends ShopifyApiException {
 
   public GraphqlApiException() {
   }

@@ -1,7 +1,7 @@
 package codemeans.shopify4j.core.exception;
 
 /**
- * fail to invoke request
+ * fail to invoke request in side of client
  *
  * @author: yuanwq
  * @date: 2021-01-12
@@ -23,8 +23,4 @@ public class ShopifyClientException extends RuntimeException {
     super(cause);
   }
 
-  public ShopifyClientException(String message, Throwable cause, boolean enableSuppression,
-      boolean writableStackTrace) {
-    super(message, cause, enableSuppression, writableStackTrace);
-  }
 }

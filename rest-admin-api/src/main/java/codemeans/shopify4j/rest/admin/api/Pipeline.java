@@ -1,6 +1,6 @@
 package codemeans.shopify4j.rest.admin.api;
 
-import codemeans.shopify4j.rest.exception.RestApiException;
+import codemeans.shopify4j.core.exception.RestApiException;
 
 /**
  * @author: yuanwq

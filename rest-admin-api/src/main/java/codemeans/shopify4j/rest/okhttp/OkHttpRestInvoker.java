@@ -3,7 +3,7 @@ package codemeans.shopify4j.rest.okhttp;
 import codemeans.shopify4j.core.auth.AccessTokenInterceptor;
 import codemeans.shopify4j.core.auth.AccessTokenProvider;
 import codemeans.shopify4j.core.exception.ShopifyClientException;
-import codemeans.shopify4j.rest.exception.RestApiException;
+import codemeans.shopify4j.core.exception.RestApiException;
 import codemeans.shopify4j.rest.exception.RestResponseException;
 import codemeans.shopify4j.rest.http.HttpRequest;
 import codemeans.shopify4j.rest.http.HttpResponse;

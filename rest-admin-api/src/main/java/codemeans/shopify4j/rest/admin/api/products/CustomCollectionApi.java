@@ -4,7 +4,7 @@ import codemeans.shopify4j.rest.admin.model.common.Count;
 import codemeans.shopify4j.rest.admin.model.enums.PublishedStatus;
 import codemeans.shopify4j.rest.admin.model.products.CustomCollection;
 import codemeans.shopify4j.rest.admin.model.products.CustomCollectionList;
-import codemeans.shopify4j.rest.exception.RestApiException;
+import codemeans.shopify4j.core.exception.RestApiException;
 import codemeans.shopify4j.rest.http.HttpResponse;
 import java.util.List;
 import lombok.Data;
