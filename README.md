@@ -2,35 +2,46 @@
 
 Java SDK for Shopify APIs, including:
 
+* Shopify Store & Shopify APP
 * GraphQL Admin Schema
 * GraphQL Admin API
 * GraphQL Storefront Schema
 * GraphQL Storefront API
-* Shopify APP
-* REST Admin API Models
-* REST Admin API
+* [INCOMPLETE] REST Admin API Models
+* [INCOMPLETE] REST Admin API
 * ...
 
 ## Usage
 
-GraphQL Admin API
+Shopify Core & APP
+
+```
+implementation("xyz.codemeans.shopify4j:shopify4j-core:1.0")
+```
+
+GraphQL Admin
+
 ```groovy
+// api
 implementation("xyz.codemeans.shopify4j:graphql-admin-api:1.0")
+// schema
+implementation("xyz.codemeans.shopify4j:graphql-admin-schema:1.0")
 ```
 
-GraphQL Storefront API
+GraphQL Storefront
 ```groovy
+// api
 implementation("xyz.codemeans.shopify4j:graphql-storefront-api:1.0")
+// schema
+implementation("xyz.codemeans.shopify4j:graphql-storefront-schema:1.0")
 ```
 
-REST API
+REST Admin
 ```groovy
+// api
 implementation("xyz.codemeans.shopify4j:rest-admin-api:1.0")
-```
-
-Shopify APP
-```groovy
-implementation("xyz.codemeans.shopify4j:shopify4j-app:1.0")
+// model
+implementation("xyz.codemeans.shopify4j:rest-admin-model:1.0")
 ```
 
 ## Build from source
@@ -57,6 +68,42 @@ Then run
 ~~~bash
 gradle publish -Prelease -Ppub=nexus
 ~~~
+
+# Shopify Core
+
+## Shopify App Oauth
+
+Shopify Oauth flow: https://shopify.dev/tutorials/authenticate-with-oauth
+
+```java
+// step1: Get client credentials
+PublicApp app = new PublicApp()
+  .setClientId("<client-id>")
+  .setClientSecret("<client-secret>")
+  .setScopes(...);
+
+// step2: Ask for permission
+AuthorizationReq req = new AuthorizationReq();
+...
+String authorizationUrl = oauthFlow.authorizationUrl(app, req);
+redirectTo(authorizationUrl);
+
+// step3: Confirm installation
+ConfirmRedirection redirection = new ConfirmRedirection()
+  .setCode("<code>")
+  .setShop("<shop>");
+OauthAccessToken accessToken = oauthFlow.exchangeAccessToken(app, redirection);
+...
+
+// step4: Making authenticated requests
+...
+```
+
+HMAC Verification
+
+```java
+boolean verified = HmacVerification.verifyHmac(queryString, app.getClientSecret());
+```
 
 ## Multi-Stores
 
@@ -209,11 +256,5 @@ ProductStatus status = ShopifyEnum.asEnum("active", ProductStatus.class);
 
 * API Documentation: https://shopify.dev/docs/admin-api/rest/reference
 
-## Shopify APP
 
-Defination of APP and handle oauth
-
-## Reference
-
-* Shopify Oauth flow: https://shopify.dev/tutorials/authenticate-with-oauth
 
