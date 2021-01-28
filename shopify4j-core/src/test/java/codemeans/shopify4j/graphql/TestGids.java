@@ -1,7 +1,7 @@
-package codemeans.shopify4j.core.utils;
+package codemeans.shopify4j.graphql;
 
-import static codemeans.shopify4j.core.utils.IdUtils.gid;
-import static codemeans.shopify4j.core.utils.IdUtils.parseLegacyResourceId;
+import static codemeans.shopify4j.graphql.Gids.gid;
+import static codemeans.shopify4j.graphql.Gids.parseLegacyResourceId;
 import static junit.framework.TestCase.assertEquals;
 
 import org.junit.Test;
@@ -10,7 +10,7 @@ import org.junit.Test;
  * @author: yuanwq
  * @date: 2021-01-28
  */
-public class TestIdUtils {
+public class TestGids {
 
   @Test
   public void testGid() {

@@ -1,4 +1,4 @@
-package codemeans.shopify4j.core.utils;
+package codemeans.shopify4j.graphql;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author: yuanwq
  * @date: 2021-01-28
  */
-public class IdUtils {
+public class Gids {
 
   /**
    * graphql gid: https://shopify.dev/docs/admin-api/graphql/reference/scalar#id-2021-01
