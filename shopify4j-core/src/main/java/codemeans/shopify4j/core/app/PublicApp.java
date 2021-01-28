@@ -1,4 +1,4 @@
-package codemeans.shopify4j.app;
+package codemeans.shopify4j.core.app;
 
 import codemeans.shopify4j.core.store.AdminAccessScope;
 import java.util.List;

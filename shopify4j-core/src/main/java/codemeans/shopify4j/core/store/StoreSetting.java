@@ -1,5 +1,6 @@
 package codemeans.shopify4j.core.store;
 
+import codemeans.shopify4j.core.app.PrivateApp;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
