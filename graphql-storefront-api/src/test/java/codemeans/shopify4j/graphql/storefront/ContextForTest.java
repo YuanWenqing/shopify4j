@@ -1,8 +1,8 @@
 package codemeans.shopify4j.graphql.storefront;
 
 import codemeans.shopify4j.core.auth.PrivateAppStorefrontAccessTokenProvider;
-import codemeans.shopify4j.core.graphql.GraphqlInvoker;
-import codemeans.shopify4j.core.graphql.OkHttpGraphqlInvoker;
+import codemeans.shopify4j.graphql.GraphqlInvoker;
+import codemeans.shopify4j.graphql.OkHttpGraphqlInvoker;
 import codemeans.shopify4j.core.store.CachedStoreFactory;
 import codemeans.shopify4j.core.store.MemoryStoreSettingStorage;
 import codemeans.shopify4j.core.store.StoreFactory;

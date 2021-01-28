@@ -1,7 +1,7 @@
 package codemeans.shopify4j.graphql.storefront;
 
 import codemeans.shopify4j.core.exception.GraphqlApiException;
-import codemeans.shopify4j.core.graphql.GraphqlInvoker;
+import codemeans.shopify4j.graphql.GraphqlInvoker;
 import codemeans.shopify4j.graphql.storefront.exception.GraphqlStorefrontMutationException;
 import codemeans.shopify4j.graphql.storefront.exception.GraphqlStorefrontQueryException;
 import codemeans.shopify4j.graphql.storefront.exception.GraphqlStorefrontSchemaException;
