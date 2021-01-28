@@ -3,14 +3,14 @@ package codemeans.shopify4j.graphql;
 import org.apache.commons.lang3.StringUtils;
 
 /**
+ * graphql gid: https://shopify.dev/docs/admin-api/graphql/reference/scalar
+ *
  * @author: yuanwq
  * @date: 2021-01-28
  */
 public class Gids {
 
   /**
-   * graphql gid: https://shopify.dev/docs/admin-api/graphql/reference/scalar#id-2021-01
-   * <br>
    * like: gid://shopify/Product/10079785100
    *
    * @see #gid(Class, long)
@@ -20,6 +20,8 @@ public class Gids {
   }
 
   /**
+   * like: gid://shopify/Product/10079785100
+   *
    * @see #gid(String, long)
    */
   public static String gid(Class<?> resourceType, long legacyResourceId) {
