@@ -4,6 +4,7 @@ dependencies {
     compileOnly("org.projectlombok:lombok:$lombokVersion")
     testCompileOnly("org.projectlombok:lombok:$lombokVersion")
 
+    api("commons-codec:commons-codec:$commonsCodecVersion")
     api("org.apache.commons:commons-lang3:$commonsLang3Version")
 //    api("org.apache.commons:commons-collections4:$commonsCollections4Version")
 

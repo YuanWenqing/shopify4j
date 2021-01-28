@@ -1,4 +1,4 @@
-package codemeans.shopify4j.app.oauth;
+package codemeans.shopify4j.core.oauth;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
