@@ -4,6 +4,7 @@ package codemeans.shopify4j.core.oauth;
  * @author: yuanwq
  * @date: 2021-01-26
  */
+@Deprecated
 public class HmacVerification {
 
   /**
