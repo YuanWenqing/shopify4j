@@ -16,4 +16,11 @@ public interface ShopifyHeaders {
   String STAGE = "X-Shopify-Stage";
   String SHOPID = "X-ShopId";
   String LOGIN_REQUIRED = "X-Shopify-Login-Required";
+
+  /* headers for webhook event */
+  String TOPIC = "X-Shopify-Topic";
+  String HMAC_SHA256 = "X-Shopify-Hmac-Sha256";
+  String SHOP_DOMAIN = "X-Shopify-Shop-Domain";
+  String WEBHOOK_ID = "X-Shopify-Webhook-Id";
 }
+
