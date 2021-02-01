@@ -2,6 +2,7 @@ package codemeans.shopify4j.core.verify;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.HmacAlgorithms;
 import org.apache.commons.codec.digest.HmacUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -52,7 +53,8 @@ public class HmacVerification {
    * https://shopify.dev/tutorials/manage-webhooks#verifying-webhooks
    */
   public static boolean verifyWebhookEvent(String clientSecret, String eventData, String hmac) {
-    String digest = new HmacUtils(HmacAlgorithms.HMAC_SHA_256, clientSecret).hmacHex(eventData);
+    byte[] bytes = new HmacUtils(HmacAlgorithms.HMAC_SHA_256, clientSecret).hmac(eventData);
+    String digest = Base64.encodeBase64String(bytes);
     return StringUtils.equalsIgnoreCase(digest, hmac);
   }
 }
