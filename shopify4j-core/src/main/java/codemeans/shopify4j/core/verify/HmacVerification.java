@@ -12,6 +12,9 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class HmacVerification {
 
+  /**
+   * https://shopify.dev/tutorials/authenticate-with-oauth#verification
+   */
   public static boolean verifyQueryString(String clientSecret, String queryString) {
     Map<String, String> map = splitQueryString(queryString);
     String hmac = map.remove("hmac");
@@ -45,6 +48,9 @@ public class HmacVerification {
     return map;
   }
 
+  /**
+   * https://shopify.dev/tutorials/manage-webhooks#verifying-webhooks
+   */
   public static boolean verifyWebhookEvent(String clientSecret, String eventData, String hmac) {
     String digest = new HmacUtils(HmacAlgorithms.HMAC_SHA_256, clientSecret).hmacHex(eventData);
     return StringUtils.equalsIgnoreCase(digest, hmac);
