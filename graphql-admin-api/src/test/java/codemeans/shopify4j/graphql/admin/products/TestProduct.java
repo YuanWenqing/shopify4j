@@ -18,7 +18,6 @@ import com.shopify.graphql.support.ID;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import org.joda.time.DateTime;
 import org.junit.Test;
 
 /**
@@ -84,7 +83,7 @@ public class TestProduct {
         .setOptions(Collections.singletonList("XL"))
         .setImageSrc(imageInputList.get(variantInputs.size()).getSrc()));
     ProductInput productInput = new ProductInput()
-        .setTitle(getClass().getName() + DateTime.now())
+//        .setTitle(getClass().getName() + DateTime.now())
         .setImages(imageInputList)
         .setOptions(Collections.singletonList("Size"))
         .setVariants(variantInputs);
@@ -126,6 +125,9 @@ public class TestProduct {
                             )
                         )
                     )
+            ).userErrors(
+                errors -> errors.field()
+                    .message()
             )
         )
     );
