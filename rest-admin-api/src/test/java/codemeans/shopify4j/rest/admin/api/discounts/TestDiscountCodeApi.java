@@ -14,7 +14,7 @@ import org.junit.Test;
  */
 public class TestDiscountCodeApi {
 
-  private final long priceRuleId = 749521109157L;
+  private final long priceRuleId = 751407857816L;
   private final DiscountCodeApi api = ContextForTest.TEST_STORE.discountCodes();
 
   @Test

@@ -17,7 +17,7 @@ public class TestProductImageApi {
 
   private final ProductImageApi api = ContextForTest.TEST_STORE.productImages();
 
-  private final Long productId = 5496978866341L;
+  private final Long productId = 6245046223000L;
 
   @Test
   public void testCount() throws RestApiException {

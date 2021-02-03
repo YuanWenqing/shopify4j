@@ -17,7 +17,7 @@ public class TestProductVariantApi {
 
   private final ProductVariantApi api = ContextForTest.TEST_STORE.productVariants();
 
-  private final Long productId = 5496978866341L;
+  private final Long productId = 6245046223000L;
 
   @Test
   public void testCount() throws RestApiException {

@@ -19,7 +19,7 @@ public class TestProductApi {
 
   @Test
   public void testGetProduct() throws RestApiException {
-    Product product = api.get(5496978866341L).object();
+    Product product = api.get(6245046223000L).object();
     System.out.println(product);
   }
 
