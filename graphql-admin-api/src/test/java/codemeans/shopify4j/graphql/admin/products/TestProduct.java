@@ -93,8 +93,8 @@ public class TestProduct {
         .setImages(imageInputList)
         .setOptions(Collections.singletonList("Size"))
         .setVariants(variantInputs);
-    MutationQuery mutationQuery = Operations.mutation(
-        mutation -> mutation.productCreate(productInput, query -> query
+    MutationQuery mutationQuery = Operations.mutation(mutation -> mutation
+        .productCreate(productInput, query -> query
             .product(product -> product
                 .title()
                 .totalVariants()

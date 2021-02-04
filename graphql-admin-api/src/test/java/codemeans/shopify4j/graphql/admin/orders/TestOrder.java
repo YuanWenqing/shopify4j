@@ -22,7 +22,8 @@ import org.junit.Test;
 public class TestOrder {
 
   @Test
-  public void testOrderCreate() throws GraphqlApiException {
+  public void testOrder() throws GraphqlApiException {
+    // create
     MailingAddressInput mailingAddress = new MailingAddressInput()
         .setAddress1("address1")
         .setAddress2("address2")
@@ -44,13 +45,14 @@ public class TestOrder {
         .setLineItems(Arrays.asList(lineItemInput1, lineItemInput2))
         .setTags(Arrays.asList(getClass().getSimpleName(), "test"))
         .setNote("This is a test order created by graphql");
-    MutationQuery mutationQuery = Operations.mutation(
-        mutation -> mutation.draftOrderCreate(orderInput, query -> query
+    MutationQuery mutationQuery = Operations.mutation(mutation -> mutation
+        .draftOrderCreate(orderInput, query -> query
             .userErrors(errors -> errors
                 .field()
                 .message()
             )
-            .draftOrder(order -> order
+            .draftOrder(draftOrder -> draftOrder
+                .name()
                 .email()
                 .customer(customer -> customer
                     .email()
@@ -66,11 +68,72 @@ public class TestOrder {
                 .totalPrice()
                 .totalShippingPrice()
                 .totalTax()
+                .order(order -> order
+                    .canMarkAsPaid()
+                    .name()
+                    .canNotifyCustomer()
+                    .fullyPaid()
+                    .closed()
+                    .capturable()
+                    .confirmed()
+                    .fulfillable()
+                    .edited()
+                    .tags()
+                    .test()
+                    .unpaid()
+                )
                 .subtotalPrice()
             )
         )
     );
     MutationResponse response = TEST_STORE.mutation(mutationQuery);
     System.out.println(response.prettyPrintJson());
+
+    // complete
+    ID orderID = response.getData().getDraftOrderCreate().getDraftOrder().getId();
+    mutationQuery = Operations.mutation(mutation -> mutation
+        .draftOrderComplete(orderID, query -> query
+            .userErrors(errors -> errors
+                .field()
+                .message()
+            )
+            .draftOrder(draftOrder -> draftOrder
+                .name()
+                .email()
+                .customer(customer -> customer
+                    .email()
+                    .state()
+                )
+                .createdAt()
+                .completedAt()
+                .invoiceSentAt()
+                .invoiceUrl()
+                .currencyCode()
+                .ready()
+                .status()
+                .totalPrice()
+                .totalShippingPrice()
+                .totalTax()
+                .order(order -> order
+                    .canMarkAsPaid()
+                    .name()
+                    .canNotifyCustomer()
+                    .fullyPaid()
+                    .closed()
+                    .capturable()
+                    .confirmed()
+                    .fulfillable()
+                    .edited()
+                    .tags()
+                    .test()
+                    .unpaid()
+                )
+                .subtotalPrice()
+            )
+        )
+    );
+    response = TEST_STORE.mutation(mutationQuery);
+    System.out.println(response.prettyPrintJson());
+
   }
 }
