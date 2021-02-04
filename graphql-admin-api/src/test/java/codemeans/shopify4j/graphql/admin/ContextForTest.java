@@ -1,15 +1,16 @@
 package codemeans.shopify4j.graphql.admin;
 
 import codemeans.shopify4j.core.auth.PrivateAppAdminAccessTokenProvider;
-import codemeans.shopify4j.graphql.GraphqlInvoker;
-import codemeans.shopify4j.graphql.OkHttpGraphqlInvoker;
 import codemeans.shopify4j.core.store.CachedStoreFactory;
 import codemeans.shopify4j.core.store.MemoryStoreSettingStorage;
 import codemeans.shopify4j.core.store.StoreFactory;
 import codemeans.shopify4j.core.store.StoreSetting;
+import codemeans.shopify4j.graphql.GraphqlInvoker;
+import codemeans.shopify4j.graphql.OkHttpGraphqlInvoker;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Properties;
 
 /**
  * @author: yuanwq
@@ -17,6 +18,7 @@ import java.io.IOException;
  */
 public class ContextForTest {
 
+  public static final Properties PROPERTIES = new Properties();
   public static final StoreSetting STORE_SETTING = loadTestStore();
   public static final MemoryStoreSettingStorage STORE_SETTING_STORAGE = new MemoryStoreSettingStorage();
 
@@ -35,7 +37,8 @@ public class ContextForTest {
     File workdir = new File(System.getProperty("user.dir")).getParentFile();
     File propertiesFile = new File(workdir, "store.properties");
     try (FileInputStream inputStream = new FileInputStream(propertiesFile)) {
-      return StoreSetting.load(inputStream);
+      PROPERTIES.load(inputStream);
+      return StoreSetting.fromProperties(PROPERTIES);
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
