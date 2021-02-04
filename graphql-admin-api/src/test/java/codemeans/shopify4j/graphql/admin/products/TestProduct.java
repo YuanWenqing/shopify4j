@@ -3,6 +3,7 @@ package codemeans.shopify4j.graphql.admin.products;
 import static codemeans.shopify4j.graphql.admin.ContextForTest.TEST_STORE;
 
 import codemeans.shopify4j.core.exception.GraphqlApiException;
+import codemeans.shopify4j.graphql.admin.types.CurrencyCode;
 import codemeans.shopify4j.graphql.admin.types.ImageInput;
 import codemeans.shopify4j.graphql.admin.types.MutationQuery;
 import codemeans.shopify4j.graphql.admin.types.MutationResponse;
@@ -18,6 +19,7 @@ import com.shopify.graphql.support.ID;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import org.joda.time.DateTime;
 import org.junit.Test;
 
 /**
@@ -43,19 +45,56 @@ public class TestProduct {
 
     ID id = data.getEdges().get(0).getNode().getId();
 
-    queryRootQuery = Operations.query(query ->
-        query.product(id, product ->
-            product.title()
-                .handle()
-                .description()
-                .images(args -> args.first(100),
-                    images -> images.edges(edges ->
-                        edges.node(node ->
-                            node.id()
-                                .originalSrc()
-                                .transformedSrc())))));
-    Product product = TEST_STORE.query(queryRootQuery).getData().getProduct();
-    System.out.println(GSON.toJson(product));
+    queryRootQuery = Operations.query(query -> query
+        .product(id, product -> product
+            .title()
+            .handle()
+            .description()
+            .priceRangeV2(priceRangeV2 -> priceRangeV2
+                .minVariantPrice(price -> price
+                    .amount()
+                    .currencyCode()
+                )
+                .maxVariantPrice(price -> price
+                    .amount()
+                    .currencyCode()
+                )
+            )
+            .variants(args -> args.first(10), variants -> variants
+                .edges(edges -> edges
+                    .node(node -> node
+                        .price()
+                        .compareAtPrice()
+                        .presentmentPrices(
+                            args -> args
+                                .first(10),
+//                                .presentmentCurrencies(Collections.singletonList(CurrencyCode.USD)),
+                            prices -> prices
+                                .edges(priceEdges -> priceEdges
+                                    .node(priceNode -> priceNode
+                                        .price(price -> price
+                                            .currencyCode()
+                                            .amount()
+                                        )
+                                    )
+                                )
+                        )
+                    )
+                )
+            )
+            .images(args -> args.first(100), images -> images
+                .edges(edges -> edges
+                    .node(node -> node
+                        .id()
+                        .originalSrc()
+                        .transformedSrc()
+                    )
+                )
+            )
+        )
+    );
+    queryResponse = TEST_STORE.query(queryRootQuery);
+    System.out.println(queryResponse.prettyPrintJson());
   }
 
   @Test
@@ -83,51 +122,52 @@ public class TestProduct {
         .setOptions(Collections.singletonList("XL"))
         .setImageSrc(imageInputList.get(variantInputs.size()).getSrc()));
     ProductInput productInput = new ProductInput()
-//        .setTitle(getClass().getName() + DateTime.now())
+        .setTitle(getClass().getSimpleName() + DateTime.now())
         .setImages(imageInputList)
         .setOptions(Collections.singletonList("Size"))
         .setVariants(variantInputs);
-    MutationQuery mutationQuery = Operations.mutation(
-        mutation -> mutation.productCreate(productInput,
-            query -> query.product(
-                product -> product.title()
-                    .totalVariants()
-                    .options(
-                        options -> options.name()
-                            .position()
-                            .values()
+    MutationQuery mutationQuery = Operations.mutation(mutation -> mutation
+        .productCreate(productInput, query -> query
+            .product(product -> product
+                .title()
+                .totalVariants()
+                .options(options -> options
+                    .name()
+                    .position()
+                    .values()
+                )
+                .images(args -> args.first(10), images -> images
+                    .edges(edges -> edges
+                        .node(node -> node
+                            .id()
+                            .originalSrc()
+                            .transformedSrc()
+                            .height()
+                            .width()
+                        )
                     )
-                    .images(args -> args.first(10),
-                        images -> images.edges(
-                            edges -> edges.node(
-                                node -> node.id()
-                                    .originalSrc()
-                                    .transformedSrc()
-                                    .height()
-                                    .width()
+                )
+                .variants(args -> args.first(10), variants -> variants
+                    .edges(edges -> edges
+                        .node(node -> node
+                            .selectedOptions(options -> options
+                                .name()
+                                .value()
+                            )
+                            .image(image -> image
+                                .id()
+                                .originalSrc()
+                                .transformedSrc()
+                                .height()
+                                .width()
                             )
                         )
                     )
-                    .variants(args -> args.first(10),
-                        variants -> variants.edges(
-                            edges -> edges.node(
-                                node -> node.selectedOptions(
-                                    options -> options.name()
-                                        .value()
-                                )
-                                    .image(
-                                        image -> image.id()
-                                            .originalSrc()
-                                            .transformedSrc()
-                                            .height()
-                                            .width()
-                                    )
-                            )
-                        )
-                    )
-            ).userErrors(
-                errors -> errors.field()
-                    .message()
+                )
+            )
+            .userErrors(errors -> errors
+                .field()
+                .message()
             )
         )
     );
