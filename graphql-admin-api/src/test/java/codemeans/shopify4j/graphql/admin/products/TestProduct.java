@@ -3,6 +3,7 @@ package codemeans.shopify4j.graphql.admin.products;
 import static codemeans.shopify4j.graphql.admin.ContextForTest.TEST_STORE;
 
 import codemeans.shopify4j.core.exception.GraphqlApiException;
+import codemeans.shopify4j.graphql.admin.types.CurrencyCode;
 import codemeans.shopify4j.graphql.admin.types.ImageInput;
 import codemeans.shopify4j.graphql.admin.types.MutationQuery;
 import codemeans.shopify4j.graphql.admin.types.MutationResponse;
@@ -49,6 +50,38 @@ public class TestProduct {
             .title()
             .handle()
             .description()
+            .priceRangeV2(priceRangeV2 -> priceRangeV2
+                .minVariantPrice(price -> price
+                    .amount()
+                    .currencyCode()
+                )
+                .maxVariantPrice(price -> price
+                    .amount()
+                    .currencyCode()
+                )
+            )
+            .variants(args -> args.first(10), variants -> variants
+                .edges(edges -> edges
+                    .node(node -> node
+                        .price()
+                        .compareAtPrice()
+                        .presentmentPrices(
+                            args -> args
+                                .first(10),
+//                                .presentmentCurrencies(Collections.singletonList(CurrencyCode.USD)),
+                            prices -> prices
+                                .edges(priceEdges -> priceEdges
+                                    .node(priceNode -> priceNode
+                                        .price(price -> price
+                                            .currencyCode()
+                                            .amount()
+                                        )
+                                    )
+                                )
+                        )
+                    )
+                )
+            )
             .images(args -> args.first(100), images -> images
                 .edges(edges -> edges
                     .node(node -> node
@@ -60,8 +93,8 @@ public class TestProduct {
             )
         )
     );
-    Product product = TEST_STORE.query(queryRootQuery).getData().getProduct();
-    System.out.println(GSON.toJson(product));
+    queryResponse = TEST_STORE.query(queryRootQuery);
+    System.out.println(queryResponse.prettyPrintJson());
   }
 
   @Test
