@@ -132,13 +132,15 @@ public class OkHttpRestInvoker implements RestInvoker {
   private <T> HttpResponse<T> invoke(Request request, Class<T> respType)
       throws RestApiException {
     String body = null;
+    final long beg = System.currentTimeMillis();
     try (Response response = okHttpClient.newCall(request).execute()) {
       body = response.body().string();
       HttpResponse<T> httpResponse = new HttpResponse<>(response.code(), body);
       httpResponse.addAllHeaders(response.headers().toMultimap());
       if (log.isDebugEnabled()) {
-        log.debug("request: {}, response.code={}, response.body={}",
-            request, response.code(), body);
+        final long cost = System.currentTimeMillis() - beg;
+        log.debug("cost={}, request={}, response.code={}, response.body={}",
+            cost, request, response.code(), body);
       }
       if (response.isSuccessful()) {
         httpResponse.setObject(codec.deserialize(respType, body));

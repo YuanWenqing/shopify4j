@@ -56,11 +56,13 @@ public class OkHttpGraphqlInvoker implements GraphqlInvoker {
     Request request = new Request.Builder().url(endpoint)
         .post(RequestBody.create(MEDIA_TYPE_GRAPHQL, requestBody))
         .build();
+    final long beg = System.currentTimeMillis();
     try (Response response = okHttpClient.newCall(request).execute()) {
       String body = response.body().string();
       if (log.isDebugEnabled()) {
-        log.debug("request: {}, request.body={}, response.code={}, response.body={}",
-            request, requestBody, response.code(), body);
+        final long cost = System.currentTimeMillis() - beg;
+        log.debug("cost={}, request={}, request.body={}, response.code={}, response.body={}",
+            cost, request, requestBody, response.code(), body);
       }
       if (response.isSuccessful()) {
         return body;
