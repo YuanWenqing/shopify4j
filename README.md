@@ -7,6 +7,8 @@ Java SDK for Shopify APIs, including:
 * GraphQL Admin API
 * GraphQL Storefront Schema
 * GraphQL Storefront API
+* GraphQL Partner Schema
+* GraphQL Partner API
 * [INCOMPLETE] REST Admin API Models
 * [INCOMPLETE] REST Admin API
 * ...
@@ -29,11 +31,21 @@ implementation("xyz.codemeans.shopify4j:graphql-admin-schema:1.0")
 ```
 
 GraphQL Storefront
+
 ```groovy
 // api
 implementation("xyz.codemeans.shopify4j:graphql-storefront-api:1.0")
 // schema
 implementation("xyz.codemeans.shopify4j:graphql-storefront-schema:1.0")
+```
+
+GraphQL Partner
+
+```groovy
+// api
+implementation("xyz.codemeans.shopify4j:graphql-partner-api:1.0")
+// schema
+implementation("xyz.codemeans.shopify4j:graphql-partner-schema:1.0")
 ```
 
 REST Admin
@@ -102,12 +114,12 @@ OauthAccessToken accessToken = oauthFlow.exchangeAccessToken(app, redirection);
 HMAC Verification
 
 ```java
-boolean verified = HmacVerification.verifyHmac(queryString, app.getClientSecret());
+boolean verified = HmacVerification.verifyQueryString(app.getClientSecret(), queryString);
 ```
 
 ## Multi-Stores
 
-If you are integrating with multiple shopify stores in one sysmtem, just like we do, `StoreFactory` will be very helpful.
+If you are integrating with multiple shopify stores in one sysmtem, just like we do, `ClientFactory` will be very helpful.
 
 If information of your stores is saved in some persistent database, you can just implement a `StoreSettingStorage` to retrieve data and build out a `StoreSetting`.
 
@@ -117,9 +129,9 @@ Here is an example for REST & GraphQL API:
 StoreSettingStorage settingStorage = ...;
 
 GraphqlInvoker invoker = new OkHttpGraphqlInvoker(new PrivateAppAdminAccessTokenProvider(settingStorage));
-StoreFactory<GraphqlAdmin> storeFactory = new DefaultGraphqlAdminFactory(settingStorage, invoker);
-storeFactory = CachedStoreFactory.of(storeFactory); // cache created stores, avoiding duplicated creation
-GraphqlAdmin store1 = storeFactory.getStore(domain1);
+ClientFactory<GraphqlAdmin> clientFactory = new DefaultGraphqlAdminFactory(settingStorage, invoker);
+clientFactory = CachedClientFactory.of(clientFactory); // cache created stores, avoiding duplicated creation
+GraphqlAdmin store1 = clientFactory.getClient(domain1);
 ```
 
 ## Release
@@ -136,11 +148,13 @@ GraphqlInvoker invoker = new OkHttpGraphqlInvoker(AccessTokenProvider.constant(s
 GraphqlAdmin admin = new DefaultGraphqlAdmin(setting, invoker);
 
 // get a product with: title, handle ...
-QueryRootQuery queryRootQuery = Operations.query(
-    query -> query.product(id,
-        product -> product.title()
-            .handle()
-            ...));
+QueryRootQuery queryRootQuery = Operations.query(query -> query
+  .product(id, product -> product
+    .title()
+    .handle()
+    ...
+  )
+);
 Product product = admin.query(queryRootQuery).getData().getProduct();
 ~~~
 
@@ -154,8 +168,9 @@ You can customize your implementation on any http library you like.
 
 ## Reference
 
-* GraphQL Admin API Documentation: https://shopify.dev/docs/admin-api/graphql/reference
-* GraphQL Storefront API Documentation: https://shopify.dev/docs/storefront-api/reference
+* GraphQL Admin API Documentation: https://shopify.dev/docs/admin-api/graphql/
+* GraphQL Storefront API Documentation: https://shopify.dev/docs/storefront-api/
+* GraphQL Partner API Documentation: https://shopify.dev/docs/partner-api/
 * Starter Tutorial: https://www.shopify.com/partners/blog/getting-started-with-graphql
 * Codegen: https://github.com/Shopify/graphql_java_gen/
 * Find GraphQL schema: https://community.shopify.com/c/Shopify-APIs-SDKs/Admin-API-Graphql-shema-endpoint/m-p/837807

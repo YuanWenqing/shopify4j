@@ -1,9 +1,9 @@
 package codemeans.shopify4j.graphql.admin;
 
 import codemeans.shopify4j.core.auth.PrivateAppAdminAccessTokenProvider;
-import codemeans.shopify4j.core.base.CachedStoreFactory;
+import codemeans.shopify4j.core.base.CachedClientFactory;
+import codemeans.shopify4j.core.base.ClientFactory;
 import codemeans.shopify4j.core.base.MemoryStoreSettingStorage;
-import codemeans.shopify4j.core.base.StoreFactory;
 import codemeans.shopify4j.core.base.StoreSetting;
 import codemeans.shopify4j.graphql.GraphqlInvoker;
 import codemeans.shopify4j.graphql.OkHttpGraphqlInvoker;
@@ -28,10 +28,10 @@ public class ContextForTest {
 
   public static final GraphqlInvoker INVOKER = OkHttpGraphqlInvoker.admin(
       new PrivateAppAdminAccessTokenProvider(STORE_SETTING_STORAGE));
-  public static final StoreFactory<GraphqlAdmin> FACTORY = CachedStoreFactory
+  public static final ClientFactory<GraphqlAdmin> FACTORY = CachedClientFactory
       .of(new GraphqlAdminFactory(INVOKER));
   public static final GraphqlAdmin TEST_STORE = FACTORY
-      .getStore(STORE_SETTING.getMyshopifyDomain());
+      .getClient(STORE_SETTING.getMyshopifyDomain());
 
   private static StoreSetting loadTestStore() {
     File workdir = new File(System.getProperty("user.dir")).getParentFile();

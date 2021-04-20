@@ -1,9 +1,9 @@
 package codemeans.shopify4j.graphql.admin;
 
 
+import codemeans.shopify4j.core.base.ClientFactory;
 import codemeans.shopify4j.graphql.GraphqlInvoker;
-import codemeans.shopify4j.core.base.CachedStoreFactory;
-import codemeans.shopify4j.core.base.StoreFactory;
+import codemeans.shopify4j.core.base.CachedClientFactory;
 import lombok.Data;
 import lombok.NonNull;
 
@@ -12,7 +12,7 @@ import lombok.NonNull;
  * @date: 2021-01-12
  */
 @Data
-public class GraphqlAdminFactory implements StoreFactory<GraphqlAdmin> {
+public class GraphqlAdminFactory implements ClientFactory<GraphqlAdmin> {
 
   private final GraphqlInvoker graphqlInvoker;
   private String apiVersion = "2021-01";
@@ -22,7 +22,7 @@ public class GraphqlAdminFactory implements StoreFactory<GraphqlAdmin> {
   }
 
   @Override
-  public GraphqlAdmin getStore(String myshopifyDomain) {
+  public GraphqlAdmin getClient(String myshopifyDomain) {
     return new DefaultGraphqlAdmin(myshopifyDomain, apiVersion, graphqlInvoker);
   }
 
@@ -30,9 +30,9 @@ public class GraphqlAdminFactory implements StoreFactory<GraphqlAdmin> {
     return new CachedGraphqlAdminFactory(this);
   }
 
-  public static class CachedGraphqlAdminFactory extends CachedStoreFactory<GraphqlAdmin> {
+  public static class CachedGraphqlAdminFactory extends CachedClientFactory<GraphqlAdmin> {
 
-    protected CachedGraphqlAdminFactory(StoreFactory delegate) {
+    protected CachedGraphqlAdminFactory(ClientFactory delegate) {
       super(delegate);
     }
   }

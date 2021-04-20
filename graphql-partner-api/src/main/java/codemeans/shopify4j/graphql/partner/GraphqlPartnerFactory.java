@@ -1,5 +1,7 @@
 package codemeans.shopify4j.graphql.partner;
 
+import codemeans.shopify4j.core.base.CachedClientFactory;
+import codemeans.shopify4j.core.base.ClientFactory;
 import codemeans.shopify4j.graphql.GraphqlInvoker;
 import lombok.Data;
 import lombok.NonNull;
@@ -9,7 +11,7 @@ import lombok.NonNull;
  * @date: 2021-01-12
  */
 @Data
-public class GraphqlPartnerFactory implements PartnerFactory<GraphqlPartner> {
+public class GraphqlPartnerFactory implements ClientFactory<GraphqlPartner> {
 
   private final GraphqlInvoker graphqlInvoker;
   private String apiVersion = "2021-04";
@@ -19,7 +21,7 @@ public class GraphqlPartnerFactory implements PartnerFactory<GraphqlPartner> {
   }
 
   @Override
-  public GraphqlPartner getPartner(String organizationId) {
+  public GraphqlPartner getClient(String organizationId) {
     return new DefaultGraphqlPartner(organizationId, apiVersion, graphqlInvoker);
   }
 
@@ -27,9 +29,9 @@ public class GraphqlPartnerFactory implements PartnerFactory<GraphqlPartner> {
     return new CachedGraphqlPartnerFactory(this);
   }
 
-  public static class CachedGraphqlPartnerFactory extends CachedPartnerFactory<GraphqlPartner> {
+  public static class CachedGraphqlPartnerFactory extends CachedClientFactory<GraphqlPartner> {
 
-    protected CachedGraphqlPartnerFactory(PartnerFactory delegate) {
+    protected CachedGraphqlPartnerFactory(ClientFactory delegate) {
       super(delegate);
     }
   }
