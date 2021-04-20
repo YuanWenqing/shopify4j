@@ -23,7 +23,7 @@ public class DefaultGraphqlPartner implements GraphqlPartner {
       GraphqlInvoker invoker) {
     this.organizationId = organizationId;
     this.apiVersion = apiVersion;
-    this.graphqlEndpoint = String.format("https://partners.shopify.com//api/%s/graphql.json",
+    this.graphqlEndpoint = String.format("https://partners.shopify.com/%s/api/%s/graphql.json",
         this.organizationId, apiVersion);
     this.invoker = invoker;
   }

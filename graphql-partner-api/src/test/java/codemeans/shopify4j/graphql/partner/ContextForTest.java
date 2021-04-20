@@ -21,7 +21,7 @@ public class ContextForTest {
   public static final PartnerFactory<GraphqlPartner> FACTORY = CachedPartnerFactory
       .of(new GraphqlPartnerFactory(INVOKER));
   public static final GraphqlPartner PARTNER = FACTORY
-      .getPartner(PROPERTIES.getProperty("parnter.organization-id"));
+      .getPartner(PROPERTIES.getProperty("partner.organization-id"));
 
 
   private static Properties loadProperties() {
