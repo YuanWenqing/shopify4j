@@ -18,42 +18,42 @@ Java SDK for Shopify APIs, including:
 Shopify Core & APP
 
 ```
-implementation("xyz.codemeans.shopify4j:shopify4j-core:1.0")
+implementation("xyz.codemeans.shopify4j:shopify4j-core:$shopify4jVersion")
 ```
 
 GraphQL Admin
 
 ```groovy
 // api
-implementation("xyz.codemeans.shopify4j:graphql-admin-api:1.0")
+implementation("xyz.codemeans.shopify4j:graphql-admin-api:$shopify4jVersion")
 // schema
-implementation("xyz.codemeans.shopify4j:graphql-admin-schema:1.0")
+implementation("xyz.codemeans.shopify4j:graphql-admin-schema:$shopify4jVersion")
 ```
 
 GraphQL Storefront
 
 ```groovy
 // api
-implementation("xyz.codemeans.shopify4j:graphql-storefront-api:1.0")
+implementation("xyz.codemeans.shopify4j:graphql-storefront-api:$shopify4jVersion")
 // schema
-implementation("xyz.codemeans.shopify4j:graphql-storefront-schema:1.0")
+implementation("xyz.codemeans.shopify4j:graphql-storefront-schema:$shopify4jVersion")
 ```
 
 GraphQL Partner
 
 ```groovy
 // api
-implementation("xyz.codemeans.shopify4j:graphql-partner-api:1.0")
+implementation("xyz.codemeans.shopify4j:graphql-partner-api:$shopify4jVersion")
 // schema
-implementation("xyz.codemeans.shopify4j:graphql-partner-schema:1.0")
+implementation("xyz.codemeans.shopify4j:graphql-partner-schema:$shopify4jVersion")
 ```
 
 REST Admin
 ```groovy
 // api
-implementation("xyz.codemeans.shopify4j:rest-admin-api:1.0")
+implementation("xyz.codemeans.shopify4j:rest-admin-api:$shopify4jVersion")
 // model
-implementation("xyz.codemeans.shopify4j:rest-admin-model:1.0")
+implementation("xyz.codemeans.shopify4j:rest-admin-model:$shopify4jVersion")
 ```
 
 ## Build from source
