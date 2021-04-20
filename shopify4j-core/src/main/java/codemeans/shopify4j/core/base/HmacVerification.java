@@ -1,4 +1,4 @@
-package codemeans.shopify4j.core.verify;
+package codemeans.shopify4j.core.base;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

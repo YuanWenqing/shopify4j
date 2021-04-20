@@ -2,8 +2,8 @@ package codemeans.shopify4j.graphql.admin;
 
 
 import codemeans.shopify4j.graphql.GraphqlInvoker;
-import codemeans.shopify4j.core.store.CachedStoreFactory;
-import codemeans.shopify4j.core.store.StoreFactory;
+import codemeans.shopify4j.core.base.CachedStoreFactory;
+import codemeans.shopify4j.core.base.StoreFactory;
 import lombok.Data;
 import lombok.NonNull;
 

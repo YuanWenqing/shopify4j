@@ -1,4 +1,4 @@
-package codemeans.shopify4j.core.utils;
+package codemeans.shopify4j.core.base;
 
 /**
  * @author: yuanwq

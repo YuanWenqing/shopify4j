@@ -1,7 +1,7 @@
 package codemeans.shopify4j.rest.admin;
 
-import codemeans.shopify4j.core.store.CachedStoreFactory;
-import codemeans.shopify4j.core.store.StoreFactory;
+import codemeans.shopify4j.core.base.CachedStoreFactory;
+import codemeans.shopify4j.core.base.StoreFactory;
 import codemeans.shopify4j.rest.http.RestInvoker;
 import lombok.Data;
 import lombok.NonNull;
