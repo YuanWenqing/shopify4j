@@ -42,4 +42,8 @@ public class AccessTokenInterceptor implements Interceptor {
   public static AccessTokenInterceptor storefront(AccessTokenProvider accessTokenProvider) {
     return new AccessTokenInterceptor(ShopifyHeaders.STOREFRONT_ACCESS_TOKEN, accessTokenProvider);
   }
+
+  public static AccessTokenInterceptor partner(AccessTokenProvider accessTokenProvider) {
+    return new AccessTokenInterceptor(ShopifyHeaders.STOREFRONT_ACCESS_TOKEN, accessTokenProvider);
+  }
 }
