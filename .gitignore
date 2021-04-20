@@ -3,7 +3,7 @@ build
 gen
 out
 .idea
-store.properties
+test.properties
 
 # Ignore Gradle GUI config
 gradle-app.setting

@@ -35,7 +35,7 @@ buildscript {
 // git version
 apply plugin: "org.ajoberstar.grgit"
 int commits = grgit.log().size()
-version = "1.0"
+version = "1.1"
 String pubRepo = rootProject.hasProperty("pub") ? rootProject.property("pub") : "nexus"
 if (pubRepo != "oss") {
     version = "${version}.${commits}"

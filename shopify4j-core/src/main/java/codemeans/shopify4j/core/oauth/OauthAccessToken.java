@@ -1,6 +1,6 @@
 package codemeans.shopify4j.core.oauth;
 
-import codemeans.shopify4j.core.store.AdminAccessScope;
+import codemeans.shopify4j.core.base.AdminAccessScope;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Arrays;

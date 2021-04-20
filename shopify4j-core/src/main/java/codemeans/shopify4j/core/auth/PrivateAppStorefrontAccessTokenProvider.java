@@ -1,7 +1,9 @@
 package codemeans.shopify4j.core.auth;
 
-import codemeans.shopify4j.core.store.StoreSetting;
-import codemeans.shopify4j.core.store.StoreSettingStorage;
+import codemeans.shopify4j.core.base.StoreSetting;
+import codemeans.shopify4j.core.base.StoreSettingStorage;
+import codemeans.shopify4j.core.base.EndpointUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author: yuanwq
@@ -16,11 +18,11 @@ public class PrivateAppStorefrontAccessTokenProvider implements AccessTokenProvi
   }
 
   @Override
-  public String getAccessToken(String myshopifyDomain) {
-    StoreSetting setting = settingStorage.getStoreSetting(myshopifyDomain);
+  public String getAccessToken(String endpoint) {
+    StoreSetting setting = settingStorage.getStoreSetting(EndpointUtils.parseDomain(endpoint));
     if (setting != null && setting.getPrivateApp() != null) {
       return setting.getPrivateApp().getStorefrontAccessToken();
     }
-    return null;
+    return StringUtils.EMPTY;
   }
 }

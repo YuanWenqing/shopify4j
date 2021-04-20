@@ -2,6 +2,7 @@ package codemeans.shopify4j.graphql;
 
 import codemeans.shopify4j.core.auth.AccessTokenInterceptor;
 import codemeans.shopify4j.core.auth.AccessTokenProvider;
+import codemeans.shopify4j.core.base.TrustAll;
 import codemeans.shopify4j.core.exception.GraphqlApiException;
 import codemeans.shopify4j.core.exception.ShopifyClientException;
 import java.io.IOException;
@@ -33,6 +34,21 @@ public class OkHttpGraphqlInvoker implements GraphqlInvoker {
   public static OkHttpGraphqlInvoker storefront(AccessTokenProvider accessTokenProvider) {
     return new OkHttpGraphqlInvoker(
         createOkHttpClient(AccessTokenInterceptor.storefront(accessTokenProvider)));
+  }
+
+  public static OkHttpGraphqlInvoker partner(AccessTokenProvider accessTokenProvider) {
+    // partner ssl causes PKIX error default, so hack it as trust all
+    return partner(accessTokenProvider, true);
+  }
+
+  public static OkHttpGraphqlInvoker partner(AccessTokenProvider accessTokenProvider,
+      boolean trustAll) {
+    OkHttpClient okHttpClient = createOkHttpClient(
+        AccessTokenInterceptor.partner(accessTokenProvider));
+    if (trustAll) {
+      okHttpClient = TrustAll.trustAll(okHttpClient);
+    }
+    return new OkHttpGraphqlInvoker(okHttpClient);
   }
 
   public OkHttpGraphqlInvoker(OkHttpClient okHttpClient) {

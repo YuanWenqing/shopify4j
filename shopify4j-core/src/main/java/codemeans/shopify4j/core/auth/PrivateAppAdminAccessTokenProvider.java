@@ -1,7 +1,9 @@
 package codemeans.shopify4j.core.auth;
 
-import codemeans.shopify4j.core.store.StoreSetting;
-import codemeans.shopify4j.core.store.StoreSettingStorage;
+import codemeans.shopify4j.core.base.StoreSetting;
+import codemeans.shopify4j.core.base.StoreSettingStorage;
+import codemeans.shopify4j.core.base.EndpointUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * private app use admin api password as accessToken: https://shopify.dev/tutorials/authenticate-a-private-app-with-shopify-admin
@@ -18,11 +20,11 @@ public class PrivateAppAdminAccessTokenProvider implements AccessTokenProvider {
   }
 
   @Override
-  public String getAccessToken(String myshopifyDomain) {
-    StoreSetting setting = settingStorage.getStoreSetting(myshopifyDomain);
+  public String getAccessToken(String endpoint) {
+    StoreSetting setting = settingStorage.getStoreSetting(EndpointUtils.parseDomain(endpoint));
     if (setting != null && setting.getPrivateApp() != null) {
       return setting.getPrivateApp().getAdminApiPassword();
     }
-    return null;
+    return StringUtils.EMPTY;
   }
 }

@@ -1,7 +1,7 @@
 package codemeans.shopify4j.rest.admin;
 
-import codemeans.shopify4j.core.store.CachedStoreFactory;
-import codemeans.shopify4j.core.store.StoreFactory;
+import codemeans.shopify4j.core.base.CachedClientFactory;
+import codemeans.shopify4j.core.base.ClientFactory;
 import codemeans.shopify4j.rest.http.RestInvoker;
 import lombok.Data;
 import lombok.NonNull;
@@ -11,7 +11,7 @@ import lombok.NonNull;
  * @date: 2021-01-12
  */
 @Data
-public class RestAdminFactory implements StoreFactory<RestAdmin> {
+public class RestAdminFactory implements ClientFactory<RestAdmin> {
 
   private final RestInvoker invoker;
   private String apiVersion = "2021-01";
@@ -21,7 +21,7 @@ public class RestAdminFactory implements StoreFactory<RestAdmin> {
   }
 
   @Override
-  public RestAdmin getStore(String myshopifyDomain) {
+  public RestAdmin getClient(String myshopifyDomain) {
     return new DefaultRestAdmin(myshopifyDomain, apiVersion, invoker);
   }
 
@@ -29,9 +29,9 @@ public class RestAdminFactory implements StoreFactory<RestAdmin> {
     return new CachedRestAdminFactory(this);
   }
 
-  public static class CachedRestAdminFactory extends CachedStoreFactory<RestAdmin> {
+  public static class CachedRestAdminFactory extends CachedClientFactory<RestAdmin> {
 
-    protected CachedRestAdminFactory(StoreFactory delegate) {
+    protected CachedRestAdminFactory(ClientFactory delegate) {
       super(delegate);
     }
   }

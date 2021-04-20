@@ -1,4 +1,4 @@
-package codemeans.shopify4j.core.store;
+package codemeans.shopify4j.core.base;
 
 /**
  * @author: yuanwq
@@ -8,6 +8,7 @@ public interface ShopifyHeaders {
 
   String ADMIN_ACCESS_TOKEN = "X-Shopify-Access-Token";
   String STOREFRONT_ACCESS_TOKEN = "X-Shopify-Storefront-Access-Token";
+  String PARTNER_ACCESS_TOKEN = "X-Shopify-Access-Token";
   String API_VERSION = "X-Shopify-API-Version";
   String API_DEPRECATED_REASON = "X-Shopify-API-Deprecated-Reason";
   String API_CALL_LIMIT = "X-Shopify-Shop-Api-Call-Limit";
