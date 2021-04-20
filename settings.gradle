@@ -14,4 +14,5 @@ include 'graphql-storefront-api'
 
 // partner
 include 'graphql-partner-schema'
+include 'graphql-partner-api'
 
