@@ -35,6 +35,11 @@ public class OkHttpGraphqlInvoker implements GraphqlInvoker {
         createOkHttpClient(AccessTokenInterceptor.storefront(accessTokenProvider)));
   }
 
+  public static OkHttpGraphqlInvoker partner(AccessTokenProvider accessTokenProvider) {
+    return new OkHttpGraphqlInvoker(
+        createOkHttpClient(AccessTokenInterceptor.partner(accessTokenProvider)));
+  }
+
   public OkHttpGraphqlInvoker(OkHttpClient okHttpClient) {
     this.okHttpClient = okHttpClient;
   }
