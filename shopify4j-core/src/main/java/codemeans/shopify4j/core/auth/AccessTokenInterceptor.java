@@ -1,7 +1,7 @@
 package codemeans.shopify4j.core.auth;
 
 import codemeans.shopify4j.core.exception.ShopifyClientException;
-import codemeans.shopify4j.core.store.ShopifyHeaders;
+import codemeans.shopify4j.core.utils.ShopifyHeaders;
 import java.io.IOException;
 import okhttp3.Interceptor;
 import okhttp3.Request;
@@ -25,7 +25,12 @@ public class AccessTokenInterceptor implements Interceptor {
   @Override
   public Response intercept(Chain chain) throws IOException {
     Request request = chain.request();
+    // try host first, just for compatibility
     String accessToken = accessTokenProvider.getAccessToken(request.url().host());
+    // finally try url
+    if (StringUtils.isBlank(accessToken)) {
+      accessToken = accessTokenProvider.getAccessToken(request.url().toString());
+    }
     if (StringUtils.isBlank(accessToken)) {
       throw new ShopifyClientException("blank accessToken, request: " + request);
     }
@@ -44,6 +49,6 @@ public class AccessTokenInterceptor implements Interceptor {
   }
 
   public static AccessTokenInterceptor partner(AccessTokenProvider accessTokenProvider) {
-    return new AccessTokenInterceptor(ShopifyHeaders.STOREFRONT_ACCESS_TOKEN, accessTokenProvider);
+    return new AccessTokenInterceptor(ShopifyHeaders.PARTNER_ACCESS_TOKEN, accessTokenProvider);
   }
 }
