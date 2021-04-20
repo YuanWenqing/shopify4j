@@ -1,6 +1,6 @@
 package codemeans.shopify4j.core.oauth;
 
-import codemeans.shopify4j.core.app.PublicApp;
+import codemeans.shopify4j.core.base.PublicApp;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
