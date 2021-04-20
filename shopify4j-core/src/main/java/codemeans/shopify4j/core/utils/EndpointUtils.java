@@ -12,7 +12,7 @@ public class EndpointUtils {
   public static String parseDomain(String endpoint) {
     HttpUrl httpUrl = HttpUrl.parse(endpoint);
     if (httpUrl == null) {
-      return null;
+      return StringUtils.EMPTY;
     }
     return httpUrl.host();
   }
@@ -20,14 +20,14 @@ public class EndpointUtils {
   public static String parsePartnerOrganizationId(String partnerEndpoint) {
     HttpUrl httpUrl = HttpUrl.parse(partnerEndpoint);
     if (httpUrl == null) {
-      return null;
+      return StringUtils.EMPTY;
     }
     if (StringUtils.equalsIgnoreCase(httpUrl.host(), "partners.shopify.com")) {
       return httpUrl.pathSegments().stream()
           .findFirst()
-          .orElse(null);
+          .orElse(StringUtils.EMPTY);
     }
-    return null;
+    return StringUtils.EMPTY;
   }
 
 }

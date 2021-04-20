@@ -25,11 +25,11 @@ public class AccessTokenInterceptor implements Interceptor {
   @Override
   public Response intercept(Chain chain) throws IOException {
     Request request = chain.request();
-    // try host first, just for compatibility
-    String accessToken = accessTokenProvider.getAccessToken(request.url().host());
-    // finally try url
+    // first try url
+    String accessToken = accessTokenProvider.getAccessToken(request.url().toString());
     if (StringUtils.isBlank(accessToken)) {
-      accessToken = accessTokenProvider.getAccessToken(request.url().toString());
+      // try host: just for compatibility
+      accessToken = accessTokenProvider.getAccessToken(request.url().host());
     }
     if (StringUtils.isBlank(accessToken)) {
       throw new ShopifyClientException("blank accessToken, request: " + request);

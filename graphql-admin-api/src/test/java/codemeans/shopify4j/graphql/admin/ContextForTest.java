@@ -35,7 +35,7 @@ public class ContextForTest {
 
   private static StoreSetting loadTestStore() {
     File workdir = new File(System.getProperty("user.dir")).getParentFile();
-    File propertiesFile = new File(workdir, "store.properties");
+    File propertiesFile = new File(workdir, "test.properties");
     try (FileInputStream inputStream = new FileInputStream(propertiesFile)) {
       PROPERTIES.load(inputStream);
       return StoreSetting.fromProperties(PROPERTIES);

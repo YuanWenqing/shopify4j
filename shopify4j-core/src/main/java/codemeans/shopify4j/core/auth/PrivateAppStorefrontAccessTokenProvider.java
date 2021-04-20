@@ -3,6 +3,7 @@ package codemeans.shopify4j.core.auth;
 import codemeans.shopify4j.core.store.StoreSetting;
 import codemeans.shopify4j.core.store.StoreSettingStorage;
 import codemeans.shopify4j.core.utils.EndpointUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author: yuanwq
@@ -22,6 +23,6 @@ public class PrivateAppStorefrontAccessTokenProvider implements AccessTokenProvi
     if (setting != null && setting.getPrivateApp() != null) {
       return setting.getPrivateApp().getStorefrontAccessToken();
     }
-    return null;
+    return StringUtils.EMPTY;
   }
 }
