@@ -1,6 +1,6 @@
 package codemeans.shopify4j.core.app;
 
-import codemeans.shopify4j.core.store.AdminAccessScope;
+import codemeans.shopify4j.core.base.AdminAccessScope;
 import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;

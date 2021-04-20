@@ -1,7 +1,7 @@
 package codemeans.shopify4j.core.auth;
 
 import codemeans.shopify4j.core.exception.ShopifyClientException;
-import codemeans.shopify4j.core.utils.ShopifyHeaders;
+import codemeans.shopify4j.core.base.ShopifyHeaders;
 import java.io.IOException;
 import okhttp3.Interceptor;
 import okhttp3.Request;

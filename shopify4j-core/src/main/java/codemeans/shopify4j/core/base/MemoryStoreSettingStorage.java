@@ -1,4 +1,4 @@
-package codemeans.shopify4j.core.store;
+package codemeans.shopify4j.core.base;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

@@ -1,4 +1,4 @@
-package codemeans.shopify4j.core.utils;
+package codemeans.shopify4j.core.base;
 
 import okhttp3.HttpUrl;
 import org.apache.commons.lang3.StringUtils;

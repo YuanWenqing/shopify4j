@@ -1,8 +1,8 @@
 package codemeans.shopify4j.core.auth;
 
-import codemeans.shopify4j.core.store.StoreSetting;
-import codemeans.shopify4j.core.store.StoreSettingStorage;
-import codemeans.shopify4j.core.utils.EndpointUtils;
+import codemeans.shopify4j.core.base.StoreSetting;
+import codemeans.shopify4j.core.base.StoreSettingStorage;
+import codemeans.shopify4j.core.base.EndpointUtils;
 import org.apache.commons.lang3.StringUtils;
 
 /**
