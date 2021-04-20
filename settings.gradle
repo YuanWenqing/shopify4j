@@ -11,3 +11,7 @@ include 'graphql-admin-schema'
 include 'graphql-admin-api'
 include 'graphql-storefront-schema'
 include 'graphql-storefront-api'
+
+// partner
+include 'graphql-partner-schema'
+

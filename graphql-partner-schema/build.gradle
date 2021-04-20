@@ -1,0 +1,20 @@
+task codegen(type: Exec) {
+    workingDir "$projectDir"
+    commandLine 'ruby', 'codegen.rb'
+}
+clean {
+    delete "src/gen/java"
+}
+sourceSets {
+    main.java.srcDir("src/gen/java")
+}
+compileJava.dependsOn(codegen)
+
+dependencies {
+    api("joda-time:joda-time:$jodatimeVersion")
+    api("com.shopify.graphql.support:support:$shopifyGraphqlVersion")
+    api("com.google.code.gson:gson:$gsonVersion")
+}
+
+description "Shopify Partner GraphQL Types Auto-Generated From Schema"
+apply from: "$rootDir/publish.gradle"
