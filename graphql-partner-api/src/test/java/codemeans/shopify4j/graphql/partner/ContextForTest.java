@@ -1,6 +1,8 @@
 package codemeans.shopify4j.graphql.partner;
 
 import codemeans.shopify4j.core.auth.AccessTokenProvider;
+import codemeans.shopify4j.core.base.CachedClientFactory;
+import codemeans.shopify4j.core.base.ClientFactory;
 import codemeans.shopify4j.graphql.GraphqlInvoker;
 import codemeans.shopify4j.graphql.OkHttpGraphqlInvoker;
 import java.io.File;
@@ -18,10 +20,10 @@ public class ContextForTest {
 
   public static final GraphqlInvoker INVOKER = OkHttpGraphqlInvoker.partner(
       AccessTokenProvider.constant(PROPERTIES.getProperty("partner.access-token")));
-  public static final PartnerFactory<GraphqlPartner> FACTORY = CachedPartnerFactory
+  public static final ClientFactory<GraphqlPartner> FACTORY = CachedClientFactory
       .of(new GraphqlPartnerFactory(INVOKER));
   public static final GraphqlPartner PARTNER = FACTORY
-      .getPartner(PROPERTIES.getProperty("partner.organization-id"));
+      .getClient(PROPERTIES.getProperty("partner.organization-id"));
 
 
   private static Properties loadProperties() {

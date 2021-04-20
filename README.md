@@ -117,9 +117,9 @@ Here is an example for REST & GraphQL API:
 StoreSettingStorage settingStorage = ...;
 
 GraphqlInvoker invoker = new OkHttpGraphqlInvoker(new PrivateAppAdminAccessTokenProvider(settingStorage));
-StoreFactory<GraphqlAdmin> storeFactory = new DefaultGraphqlAdminFactory(settingStorage, invoker);
-storeFactory = CachedStoreFactory.of(storeFactory); // cache created stores, avoiding duplicated creation
-GraphqlAdmin store1 = storeFactory.getStore(domain1);
+StoreFactory<GraphqlAdmin> clientFactory = new DefaultGraphqlAdminFactory(settingStorage, invoker);
+clientFactory = CachedStoreFactory.of(clientFactory); // cache created stores, avoiding duplicated creation
+GraphqlAdmin store1 = clientFactory.getStore(domain1);
 ```
 
 ## Release
